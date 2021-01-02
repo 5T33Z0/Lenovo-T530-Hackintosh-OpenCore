@@ -26,8 +26,30 @@ Currently not working:
 
 Any help on getting this fixed is highly appreciated.
 
-Files are coming soon. I need to familiarize with how uploafing the EFI on githhb works first.
+Files are coming soon. I need to familiarize with how uploafing the EFI on github works first.
 
-CREDITS and THANKS:
+PREPARATIONS:
+
+Before copying the EFI onto your SSD/HDD you should check the Following specs:
+
+- You should test the EFI using a FAT32 formatted USB Stick 
+- SSDT-PM.aml inside the ACPI Folder is for an i7 3630QM Processor. If you have a differnt Model, disable it and create your own using ssdtPRGEN in Postinstall
+- If you use a different Brand for Bluetooth/Wifi Card than Broadcom you should replace the Kexts for networking for your device.
+- If you use a broadcom card you need to either add BrcmFirmwareData.kext to EFI > OC > Kexts or install BrcmFirmwareRepo.kext to S/L/E to get Bluetooth working
+- Copy over existing PlatformInfo > Generic information (Catalina needs MacBookPro10,1; Big Sur needs MacBookPro11,2) or create a new one using GenSMBIOS
+
+INSTALLATION (on ESP):
+
+- Mount EFI
+- Paste EFI Folder
+- Restart
+- Perform NVRAM Reset (in Bootpicker, hit Space Bar and select Clean NVRAM). Especially important when switching from DSDT to DSDT-less config!!!
+- Reboot agaiin
+- Select macOS to boot. It's currently configured for running Catalina. If you want to run Big Sur, you need to use SMBIOS 11,1 or 11,2  depending on your CPU.
+
+CREDITS and THANK YOUs:
+
+Acidanthera abd Team for OpenCore Bootloader: https://github.com/acidanthera/OpenCorePkg
+Dortantia for OpenCore Install Guide: https://dortania.github.io/OpenCore-Install-Guide/
 Al6042 and Sascha_77 from Hackintosh-Forum.de for providing patched DSDTs and initial EFI Folder for the T530
-Daliansky for OC Little Repo with all the ACPI Hotpatches for OpenCore
+Daliansky for OC Little Repo with all the ACPI Hotpatches for OpenCore: https://ooh3dpsdytm34sfhws63yjfbwy--github-com.translate.goog/daliansky/OC-little
