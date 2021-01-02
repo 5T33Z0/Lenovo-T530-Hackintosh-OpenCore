@@ -1,7 +1,7 @@
 # Lenovo-T530-Hackinosh-OpenCore
 EFI Folder with configs for running macOS Catalina an Big Sur wih either a patched DSDT or DSDT-less.
 
-The config for running macOS on the Lenovo T530 includes 2 configs:
+The EFI for running macOS on the Lenovo T530 includes 2 configs:
 
 1. config_DSDT.plist
 
@@ -13,9 +13,9 @@ In this config, have a look at ACPI > Add and enable either DSDT-HD.aml or DSDT-
 for more info. 
 
 2. config_DSDT-less.plist
+
 This is the default config which runs macOS without a patched DSDT making use of ACPI Hotpatches (SSDT files and ACPI patches in config). This is independent 
-of the installed BIOS Version and DSDT and also runs a lot snappier. The current config is for T530 Models with HD+ Displays (Resolution ≥1600x900 px). If you have a Laptop 
-with a lower resolution you need to add the correct Framebuffer-Patch for IntelHD 4000 (AAPL,ig-platform-id 03006601).
+of the installed BIOS Version and DSDT and also runs a lot snappier. The current config is for T530 Models with HD+ Displays (Resolution ≥1600x900 px). If you have a Laptop with a lower resolution you need to add the correct Framebuffer-Patch for IntelHD 4000 (AAPL,ig-platform-id 03006601).
 
 But unfortunately, this config is currently not working 100% yet. 
 
