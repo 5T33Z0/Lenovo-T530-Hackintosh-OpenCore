@@ -1,5 +1,6 @@
-# Lenovo-T530-Hackinosh-OpenCore
-EFI Folder with configs for running macOS Catalina and Big Sur with either a patched DSDT or DSDT-less.
+# Lenovo T530 Hackinosh OpenCore (DSTD-less)
+
+An EFI Folder with configs for running macOS Catalina and Big Sur with either a patched DSDT or DSDT-less.
 
 The EFI for running macOS on the Lenovo T530 includes 2 configs:
 
@@ -19,7 +20,7 @@ This config runs macOS without a patched DSDT making use of ACPI Hotpatches (SSD
 
 But unfortunately, this config is currently not working 100% yet. 
 
-What is not working:
+Currently not working:
 - Lid: Sleep/Clamshell Mode and switching over the Main Display to an External Monitor when the lid is closed
 - Power LED keeps pulsing sleep
 
