@@ -50,6 +50,7 @@ INSTALLATION (on ESP):
 CREDITS and THANK YOUs:
 
 Acidanthera abd Team for OpenCore Bootloader: https://github.com/acidanthera/OpenCorePkg
-Dortantia for OpenCore Install Guide: https://dortania.github.io/OpenCore-Install-Guide/
+Dortantia for OpenCore Install Guide: https://dortania.github.io/OpenCore-Install-Guide
 Al6042 and Sascha_77 from Hackintosh-Forum.de for providing patched DSDTs and initial EFI Folder for the T530
 Daliansky for OC Little Repo with all the ACPI Hotpatches for OpenCore: https://ooh3dpsdytm34sfhws63yjfbwy--github-com.translate.goog/daliansky/OC-little
+Real Kiro for Clover EFI with ACPI Patches for referencing https://translate.google.com/translate?sl=auto&tl=en&u=https://github.com/RealKiro/Hackintosh
