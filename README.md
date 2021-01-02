@@ -1,5 +1,5 @@
 # Lenovo-T530-Hackinosh-OpenCore
-EFI Folder with configs for running macOS Catalina an Big Sur wih either a patched DSDT or DSDT-less.
+EFI Folder with configs for running macOS Catalina and Big Sur with either a patched DSDT or DSDT-less.
 
 The EFI for running macOS on the Lenovo T530 includes 2 configs:
 
