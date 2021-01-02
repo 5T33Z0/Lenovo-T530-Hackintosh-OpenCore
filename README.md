@@ -15,8 +15,7 @@ In this config, have a look at ACPI > Add and enable either DSDT-HD.aml or DSDT-
 
 2. config_DSDT-less.plist
 
-This is the default config which runs macOS without a patched DSDT making use of ACPI Hotpatches (SSDT files and ACPI patches in config). This is independent 
-of the installed BIOS Version and DSDT and also runs a lot snappier. The current config is for T530 Models with HD+ Displays (Resolution ≥1600x900 px). If you have a Laptop with a lower resolution you need to add the correct Framebuffer-Patch for IntelHD 4000 (AAPL,ig-platform-id 03006601).
+This config runs macOS without a patched DSDT making use of ACPI Hotpatches (SSDT files and ACPI patches in the config). This is independent of the installed BIOS Version and DSDT and also runs a lot snappier. The current config is for T530 Models with HD+ Displays (Resolution ≥1600x900 px). If you have a Laptop with a lower resolution you need to add the correct Framebuffer-Patch for IntelHD 4000 (AAPL,ig-platform-id 03006601).
 
 But unfortunately, this config is currently not working 100% yet. 
 
