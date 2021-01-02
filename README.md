@@ -26,4 +26,4 @@ What is not working:
 
 Any help on getting this fixed is highly appreciated.
 
-Files are coming soon. I need to familiarize with githb first
+Files are coming soon. I need to familiarize with how uploafing the EFI on githhb works first.
