@@ -6,11 +6,12 @@ The EFI for running macOS on the Lenovo T530 includes 2 configs:
 1. config_DSDT.plist
 
 This is 100% working for T530 Models wih both HD (AAPL,ig-platform-id 03006601) and HD+ Displays (AAPL,ig-platform-id 04006601). If you just want to have
-a well running System, use this. You need to rename this config to config.plist in order to boot with this. You can't Boot Windows from within the BootPicker 
-of OpenCore if you have Dual Boot Setup using a single HDD/SSD for both Windows and MacOS.
+a well running System, use this!
 
-In this config, have a look at ACPI > Add and enable either DSDT-HD.aml or DSDT-HD+.aml depending on the Display Panel your Lenovo T530 uses. Check the comments
-for more info. 
+ATTENTION: You need to rename this config to config.plist in order to boot with this. You can't Boot Windows from within the BootPicker of OpenCore if you 
+have Dual Boot Setup using a single HDD/SSD for both Windows and MacOS.
+
+In this config, have a look at ACPI > Add and enable either DSDT-HD.aml or DSDT-HD+.aml depending on the Display Panel your Lenovo T530 uses. Check the comments to decide which one you need.
 
 2. config_DSDT-less.plist
 
