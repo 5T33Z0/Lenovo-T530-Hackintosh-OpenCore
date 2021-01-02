@@ -20,7 +20,6 @@ This config runs macOS without a patched DSDT making use of ACPI Hotpatches (SSD
 But unfortunately, this config is currently not working 100% yet. 
 
 What is not working:
-- Audio via AppleALC. It uses VoodooHDA for now.
 - Lid: Sleep/Clamshell Mode and switching over the Main Display to an External Monitor when the lid is closed
 - Power LED keeps pulsing sleep
 
