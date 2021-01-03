@@ -32,20 +32,21 @@ PREPARATIONS:
 
 Before copying the EFI onto your SSD/HDD you should check the Following specs:
 
-- You should test the EFI using a FAT32 formatted USB Stick 
-- SSDT-PM.aml inside the ACPI Folder is for an i7 3630QM Processor. If you have a differnt Model, disable it and create your own using ssdtPRGEN in Postinstall
-- If you use a different Brand for Bluetooth/Wifi Card than Broadcom you should replace the Kexts for networking for your device.
-- If you use a broadcom card you need to either add BrcmFirmwareData.kext to EFI > OC > Kexts or install BrcmFirmwareRepo.kext to S/L/E to get Bluetooth working
+- You should test the EFI using a FAT32 formatted USB Stick
 - Copy over existing PlatformInfo > Generic information (Catalina needs MacBookPro10,1; Big Sur needs MacBookPro11,2) or create a new one using GenSMBIOS
+- SSDT-PM.aml inside the ACPI Folder is for an i7 3630QM Processor. If you have a differnt Model, disable it and create your own using ssdtPRGEN in Postinstall
+- If you use a Broadcom card for Bluetooth and Wifi you need to either add BrcmFirmwareData.kext to EFI > OC > Kexts or install BrcmFirmwareRepo.kext to S/L/E to get Bluetooth working
+- If you use a different Brand than Broadcom for Bluetooth/Wifi should replace the Kexts for networking for your device and update your config.
 
-INSTALLATION (on ESP):
+INSTALLATION (into ESP):
 
-- Mount EFI
-- Paste EFI Folder
-- Restart
-- Perform NVRAM Reset (in Bootpicker, hit Space Bar and select Clean NVRAM). Especially important when switching from DSDT to DSDT-less config!!!
-- Reboot agaiin
-- Select macOS to boot. It's currently configured for running Catalina. If you want to run Big Sur, you need to use SMBIOS 11,1 or 11,2  depending on your CPU.
+1. Rename the config file of your choice to config.plist
+2. Mount EFI
+3. Replace EFI Folder
+4. Restart
+5. Perform NVRAM Reset (in Bootpicker, hit Space Bar and select Clean NVRAM). Especially important when switching from a DSDT to DSDT-less config!!!
+6. Reboot again
+7. Select macOS to boot. It's currently configured for running Catalina. If you want to run Big Sur, you need to use SMBIOS 11,x. You can research a suitable/matching SMBIOS for your CPU on everymac.com
 
 CREDITS and THANK YOUs:
 
