@@ -2,7 +2,7 @@
 
 An EFI Folder with configs for running macOS Catalina and Big Sur with either a patched DSDT or DSDT-less. 
 
-Current OC Version: 065
+Current OC Version: 0.6.5
 
 The EFI for running macOS on the Lenovo T530 includes 2 configs:
 
