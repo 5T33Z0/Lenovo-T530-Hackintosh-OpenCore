@@ -36,11 +36,11 @@ Before copying the EFI onto your SSD/HDD you should check the Following:
 
 - Test the EFI using a FAT32 formatted USB Stick first
 - Copy over existing PlatformInfo > Generic information (Catalina needs MacBookPro10,1; Big Sur needs MacBookPro11,X) or create a new one using GenSMBIOS
-- SSDT-PM.aml inside the ACPI Folder is for an i7 3630QM Processor. If you have a differnt CPU Model, disable it and create your own using ssdtPRGEN in Postinstall. You can drop the low freqeuncy from 1200 mHz to 900 MHz, but no lower than that. Otherwise the System Crashes.
+- SSDT-PM.aml inside the ACPI Folder is for an i7 3630QM Processor. If you have a differnt CPU Model, disable it and create your own using ssdtPRGEN in Postinstall. You can drop the low frequency from 1200 MHz to 900 MHz in 100 mHz increments, but no lower than that. Otherwise the System Crashes.
 - If you use a Broadcom card for Bluetooth and Wifi you need to either add BrcmFirmwareData.kext to EFI > OC > Kexts or install BrcmFirmwareRepo.kext to S/L/E to get Bluetooth working
 - If you use a different Brand than Broadcom for Bluetooth/Wifi you should replace the Kexts for networking for your device and update your config.
 - If you create Snapshots for the DSDT-less config using ProperTree, make sure to delete/disable the ACPI > Add entries for DSDT files afterwards. Best practice would be to delete both DSDTs from the EFI anyway, if you use the DSDT-less setup.
-- DON'T DON'T DON'T create Snapshots for the config_DSDT which is using the DSDT Files. Because this will add all the SSDTs and ACPI patches back in, which are not necessary since this is all defined in the DSDTs already. If you plan to use the DSDT setup, you might as well delete all of the SSDTs except for SSDT-PM.
+- DON'T DON'T DON'T create Snapshots for the config_DSDT.plist which is using the DSDT Files. Because this will add all the SSDTs, which are not necessary since all these changes are defined in the patched DSDTs already. If you plan to use the DSDT setup, you might as well delete all of the SSDTs except for SSDT-PM.
 
 INSTALLATION (into ESP):
 
