@@ -3,29 +3,23 @@
 ## About
 This Repo contains an EFI Folder with configs for running macOS Catalina or Big Sur with either a patched DSDT or DSDT-less on a Lenovo T530 Laptop. The EFI for running macOS on the Lenovo T530 includes 2 configs:
 
-### 1. config_DSDT.plist
+1. config_DSDT.plist
 
 This is 100% working for T530 Models wih both HD (AAPL,ig-platform-id 03006601) and HD+ Displays (AAPL,ig-platform-id 04006601). If you just want to have
-a well running System, use this!
+a well running System, use this! You need to rename the config to config.plist in order to boot with this. But befor you do, open the config and have a look at "ACPI > Add" and enable either DSDT-HD.aml or DSDT-HD+.aml (never both) depending on the Display Panel of your T530. Check the commente of the entries to decide which one you need enable.
 
-ATTENTION: You need to rename this config to config.plist in order to boot with this. You can't Boot Windows from within the BootPicker of OpenCore if you 
-have Dual Boot Setup using a single HDD/SSD for both Windows and MacOS.
-
-In this config, have a look at ACPI > Add and enable either DSDT-HD.aml or DSDT-HD+.aml (never both) depending on the Display Panel your Lenovo T530 uses. Check the comments to decide which one you need.
+Isssue: you can't noot Windows from within the BootPicker of OpenCore if you run a Dual Boot Setup using a single HDD/SSD for both Windows and MacOS, because it gives you ACPI Errors. Workaround: use the F12 Bootmenu to run Windows instead to bypass OpenCore.
 
 2. config_DSDT-less.plist
 
 This config runs macOS without a patched DSDT making use of ACPI Hotpatches (SSDT files and ACPI patches in the config). This is independent of the installed BIOS Version and also runs smoother and snappier. The current config is for T530 Models with HD+ Displays (Resolution ≥1600x900 px). If you have a Laptop with a lower resolution you need to add the correct Framebuffer-Patch for IntelHD 4000 (AAPL,ig-platform-id 03006601).
 
-Unfortunately, this config is currently not working 100% perfect yet. 
-
 Currently not working:
+
 - Lid: Sleep/Clamshell Mode and switching over the Main Display to an External Monitor when the lid is closed
 - Power LED keeps pulsing after exiting sleep
 
-Any help on getting this fixed is highly appreciated.
-
-Files are coming soon. I need to familiarize with how uploafing the EFI on github works first.
+Any help on getting this fixed is highly appreciated!
 
 ## PREPARATIONS, DO's and DONT's
 
@@ -50,7 +44,7 @@ Before copying the EFI onto your SSD/HDD, you should check the following:
 6. Reboot again
 7. Select macOS to boot. It's currently configured for running Catalina. If you want to run Big Sur, you need to use SMBIOS 11,x. You can research a suitable/matching SMBIOS for your CPU on everymac.com
 
-CREDITS and THANK YOUs:
+## CREDITS and THANK YOUs:
 
 - Acidanthera and Team for the OpenCore Bootloader: https://github.com/acidanthera/OpenCorePkg
 - Dortantia for the OpenCore Install Guide: https://dortania.github.io/OpenCore-Install-Guide
