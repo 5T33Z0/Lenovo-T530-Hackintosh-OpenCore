@@ -5,10 +5,10 @@ This Repo contains an EFI Folder with configs for running macOS Catalina or Big 
 
 1. config_DSDT.plist
 
-This is 100% working for T530 Models wih both HD (AAPL,ig-platform-id 03006601) and HD+ Displays (AAPL,ig-platform-id 04006601). If you just want to have
-a well running System, use this! You need to rename the config to config.plist in order to boot with this. But befor you do, open the config and have a look at "ACPI > Add" and enable either DSDT-HD.aml or DSDT-HD+.aml (never both) depending on the Display Panel of your T530. Check the commente of the entries to decide which one you need enable.
+This is 100% working for T530 Models wih both HD (AAPL,ig-platform-id 03006601) or HD+ Displays (AAPL,ig-platform-id 04006601). If you just want to have
+a well running System, use this! You need to rename the config to config.plist, though in order to boot with this. But before you do, open the config and have a look at "ACPI > Add" and enable either DSDT-HD.aml or DSDT-HD+.aml (never both) depending on the Display Panel of your T530. Check the commente of the entries to decide which one you need enable.
 
-Isssue: you can't noot Windows from within the BootPicker of OpenCore if you run a Dual Boot Setup using a single HDD/SSD for both Windows and MacOS, because it gives you ACPI Errors. Workaround: use the F12 Bootmenu to run Windows instead to bypass OpenCore.
+Isssue: you can't start Windows from within the BootPicker of OpenCore if you run a Dual Boot Setup using a single HDD/SSD for both Windows and MacOS, because it gives you ACPI Errors. Workaround: use the F12 Bootmenu to run Windows instead to bypass OpenCore.
 
 2. config_DSDT-less.plist
 
@@ -26,21 +26,21 @@ Any help on getting this fixed is highly appreciated!
 Before copying the EFI onto your SSD/HDD, you should check the following:
 
 - Test the EFI using a FAT32 formatted USB Stick first
-- Copy over existing PlatformInfo > Generic information from your current config or create a new ones using GenSMBIOS (Catalina requires MacBookPro10,1; Big Sur needs MacBookPro11,X) 
-- SSDT-PM.aml inside the ACPI Folder is for an i7 3630QM Processor. If you have a differnt CPU, disable it and create your own using ssdtPRGEN in Postinstall. You can drop the low frequency from 1200 MHz to 900 MHz in 100 mHz increments, but no lower than that. Otherwise the System Crashes.
-- If you use a Broadcom card for Bluetooth and Wifi you need to either add BrcmFirmwareData.kext to EFI > OC > Kexts or install BrcmFirmwareRepo.kext to S/L/E to get Bluetooth working
+- Copy over existing PlatformInfo > Generic information from your current config or create a new serial, MLB, etc. using GenSMBIOS (Catalina requires MacBookPro10,X; Big Sur needs MacBookPro11,X) 
+- The SSDT-PM.aml inside the ACPI Folder is for an i7 3630QM Processor. If you have a differnt CPU, disable it and create your own using ssdtPRGEN in Postinstall. You can drop the low frequency from 1200 MHz to 900 MHz in 100 mHz increments, but no lower than that. Otherwise the System Crashes during boot.
+- If you use a Broadcom Card for Bluetooth and Wifi you need to either add BrcmFirmwareData.kext to "EFI > OC > Kexts" or install BrcmFirmwareRepo.kext to S/L/E to get Bluetooth working
 - If you use a different Brand than Broadcom for Bluetooth/Wifi you should replace the Kext(s) for networking for your device and update your config.
-- If you create Snapshots for the DSDT-less config using ProperTree, make sure to delete/disable the ACPI > Add entries for DSDT files afterwards. Best practice would be to delete both DSDTs from the EFI anyway, if you use the DSDT-less setup.
-- DON'T DON'T DON'T create Snapshots for the config_DSDT.plist which is using the DSDT Files. Because this will add all the SSDTs back in, which unnecessary since all these changes are defined in the patched DSDTs already. If you plan to use the DSDT setup, you might as well delete all of the SSDTs except for SSDT-PM.
+- If you create Snapshots for the DSDT-less config using ProperTree, make sure to disable the "ACPI > Add" entries for DSDT files afterwards. Best practice would be to delete both DSDTs from the EFI anyway, if you use the DSDT-less config.
+- DON'T DON'T DON'T create Snapshots for the config_DSDT.plist which is using the DSDT Files. Because this will add all the SSDTs back in, which is unnecessary since all these changes are defined in the patched DSDT already. If you plan to use the DSDT setup, you might as well delete all of the SSDTs except for SSDT-PM.
 - DON'T Update VoodooPS2Controller.kext! The current doesn't work well with the trackpad even with an additional SSDT for the Trackpad. So exclude it from updates.
 
 ## INSTALLATION
 
-1. Rename the config file of your choice to config.plist
-2. Mount EFI
+1. Rename the config file of your choice to "config.plist"
+2. Mount the EFI
 3. Replace EFI Folder
 4. Restart
-5. Perform NVRAM Reset (in Bootpicker, hit Space Bar and select Clean NVRAM). Especially important when switching from a DSDT to DSDT-less config!!!
+5. IMPORTANT: Perform an NVRAM Reset (in Bootpicker, hit Space Bar and select Clean NVRAM). Especially important when switching from a DSDT to DSDT-less config!
 6. Reboot again
 7. Select macOS to boot. It's currently configured for running Catalina. If you want to run Big Sur, you need to use SMBIOS 11,x. You can research a suitable/matching SMBIOS for your CPU on everymac.com
 
