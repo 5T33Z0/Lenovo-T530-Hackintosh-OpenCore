@@ -1,12 +1,9 @@
 # Lenovo T530 Hackinosh OpenCore (DSTD-less)
 
-An EFI Folder with configs for running macOS Catalina and Big Sur with either a patched DSDT or DSDT-less. 
+## About
+This Repo contains an EFI Folder with configs for running macOS Catalina or Big Sur with either a patched DSDT or DSDT-less on a Lenovo T530 Laptop. The EFI for running macOS on the Lenovo T530 includes 2 configs:
 
-Current OC Version: 0.6.5
-
-The EFI for running macOS on the Lenovo T530 includes 2 configs:
-
-1. config_DSDT.plist
+### 1. config_DSDT.plist
 
 This is 100% working for T530 Models wih both HD (AAPL,ig-platform-id 03006601) and HD+ Displays (AAPL,ig-platform-id 04006601). If you just want to have
 a well running System, use this!
@@ -30,7 +27,7 @@ Any help on getting this fixed is highly appreciated.
 
 Files are coming soon. I need to familiarize with how uploafing the EFI on github works first.
 
-PREPARATIONS, DO's and DONT's:
+## PREPARATIONS, DO's and DONT's
 
 Before copying the EFI onto your SSD/HDD, you should check the following:
 
@@ -43,7 +40,7 @@ Before copying the EFI onto your SSD/HDD, you should check the following:
 - DON'T DON'T DON'T create Snapshots for the config_DSDT.plist which is using the DSDT Files. Because this will add all the SSDTs back in, which unnecessary since all these changes are defined in the patched DSDTs already. If you plan to use the DSDT setup, you might as well delete all of the SSDTs except for SSDT-PM.
 - DON'T Update VoodooPS2Controller.kext! The current doesn't work well with the trackpad even with an additional SSDT for the Trackpad. So exclude it from updates.
 
-INSTALLATION (into ESP):
+## INSTALLATION
 
 1. Rename the config file of your choice to config.plist
 2. Mount EFI
