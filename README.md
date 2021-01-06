@@ -1,4 +1,4 @@
-# Lenovo Thinkpad T530 Hackinosh OpenCore (DSTD-less)
+# Lenovo ThinkPad T530 Hackinosh OpenCore (DSTD-less)
 
 This Repo contains an EFI Folder with configs for running macOS Catalina or Big Sur with either a patched DSDT or DSDT-less on the Lenovo T530 Laptop. The EFI for running macOS on the Lenovo T530 includes 2 configs:
 
@@ -59,8 +59,17 @@ Before copying the EFI onto your SSD/HDD, you should check the following:
 
 ## BIOS SETTINGS
 
-Coming soon… I assume you have the correct ones already. In the meantime, you can refer to this: https://dortania.github.io/OpenCore-Install-Guide/config-laptop.plist/ivy-bridge.html#disable
+- CONFIG [TAB]
 
+    -USB
+        - USB UEFI BIOS Support: Enabled
+        - USB 3.0 Mode: Enabled
+    - Display
+        - Boot Display Device: ThinkPad LCD
+        - OS Detection for NVIDIA Optimus: Disabled (if your T530 deosn't have a discrete GPU you don't see this Option)
+    - Serial ATA (SATA)
+        - SATA Controller Mode: XHCI
+        
 ## CREDITS and THANK YOUs:
 
 - n4ru for 1vyrain jailbreak to remove WLAN whitelist: https://github.com/n4ru/1vyrain
