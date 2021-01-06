@@ -93,6 +93,7 @@ Before copying the EFI onto your SSD/HDD, you should check the following:
 		- Secure Boot: Disabled
 
 STARTUP [TAB]
+
 	- BOOT (Set the Order of Boot devices. Set HDD/SSD as firs device)
 	- UEFI/Legacy Boot: UEFI only
 		CSM Support: Disables
