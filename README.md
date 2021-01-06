@@ -93,10 +93,9 @@ Before copying the EFI onto your SSD/HDD, you should check the following:
 		- Secure Boot: Disabled
 
 STARTUP [TAB]
-
 	- BOOT (Set the Order of Boot devices. Set HDD/SSD as firs device)
 	- UEFI/Legacy Boot: UEFI only
-		CSM Support: Disables
+		- CSM Support: Disabled
 	- Boot Mode: Quick
 	- Boot Order Lock: Enabled. Enable this after you've set-up the order of the Boot Drives. Set HDD/SSD as first device. This prohibits WindowsBootManager from taking over the first slot of the Boot Devices. 
 		
