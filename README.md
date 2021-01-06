@@ -88,11 +88,11 @@ Before copying the EFI onto your SSD/HDD, you should check the following:
 		- ExpressCard Slot
 		- eSATA Port
 		- Fingerprint Reader
-	-Antitheft
-		- Current Setting: Disabled
-		- Computrace: Disabled
-	- Secure Boot
-		- Secure Boot: Disabled
+		-Antitheft
+			- Current Setting: Disabled
+			- Computrace: Disabled
+		- Secure Boot
+			- Secure Boot: Disabled
 
 - STARTUP [TAB]
 	- BOOT (Set the Order of Boot devices. Set HDD/SSD as firs device)
