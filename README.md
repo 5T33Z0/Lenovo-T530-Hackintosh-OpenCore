@@ -49,14 +49,15 @@ Before copying the EFI onto your SSD/HDD, you should check the following:
 
 ## INSTALLATION
 
-0. Read "Preparations" Section first
-1. Rename the config file of your choice to "config.plist"
-2. Mount the EFI
-3. Replace EFI Folder
-4. Restart
-5. IMPORTANT: Perform an NVRAM Reset (in Bootpicker, hit Space Bar and select Clean NVRAM). Especially important when switching from a DSDT to DSDT-less config!
-6. Reboot again
-7. Select macOS to boot. It's currently configured for running Catalina. If you want to run Big Sur, you need to use SMBIOS 11,x. You can research a suitable/matching SMBIOS for your CPU on everymac.com
+0. Download EFI Folder from the "Releases Section" on the right and unpack it
+1. Read "Preparations" Section first
+2. Rename the config file of your choice to "config.plist"
+3. Mount the EFI
+4. Replace EFI Folder
+5. Restart
+6. IMPORANT: Perform an NVRAM Reset (in Bootpicker, hit Space Bar and select Clean NVRAM). Especially important when switching from a DSDT to DSDT-less config!
+7. Reboot again
+8. Select macOS to boot. It's currently configured for running Catalina. If you want to run Big Sur, you need to use SMBIOS 11,x. You can research a suitable/matching SMBIOS for your CPU on everymac.com
 
 ## BIOS SETTINGS
 
