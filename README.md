@@ -60,8 +60,8 @@ Before copying the EFI onto your SSD/HDD, you should check the following:
 ## BIOS SETTINGS
 
 - CONFIG TAB
-	-USB
-        - USB UEFI BIOS Support: Enabled
+	- USB
+		- USB UEFI BIOS Support: Enabled
         - USB 3.0 Mode: Enabled
     - Display
         - Boot Display Device: ThinkPad LCD
