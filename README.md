@@ -7,7 +7,9 @@ This Repo contains an EFI Folder with configs for running macOS Catalina or Big 
 This config is working 100% for T530 Models wih both HD (AAPL,ig-platform-id 03006601) or HD+ Display (AAPL,ig-platform-id 04006601). If you just want to have
 a well running System, use this! You need to rename the config to config.plist in order to boot with this. But before you do, open the config and have a look at the "ACPI > Add" section. Enable either DSDT-HD.aml or DSDT-HD+.aml (never both) depending on the display panel of your T530. Check the comments of the entries to decide which one you need to enable. By default, the DSDT for HD+ panels is enabled.
 
-Isssue: 
+Not working:
+• Discrete NVIDIA GPU – moder not supported by macOS. Must be disbled in BIOS!
+• Finger Print Sensor - model not supported by macOS
 • you can't boot Windows from within OpenCore's BootPicker if you use a single HDD/SSD for both Windows and MacOS. It gives you ACPI Errors. Workaround: use the F12 Bootmenu and select "WindowsBootManager" instead to bypass OpenCore and boot windows (which is recommended anyway).
 
 2. config_DSDT-less.plist
@@ -16,12 +18,13 @@ This config is for running macOS without a patched DSDT – it relies on ACPI Ho
 
 The default config is for T530 Models with HD+ displays (Resolution ≥1600x900 px). If you have a model with a HD panel you need to add the correct Framebuffer-Patch for IntelHD 4000 (AAPL,ig-platform-id 03006601).
 
-Issues:
-
+Not working:
+• Discrete NVIDIA GPU is not supported by MacOS. Must be disbled in BIOS!
+• Finger Print Sensor - model not supported by macOS
 • Lid: Sleep/Clamshell Mode and switching over the Main Display to an External Monitor when the lid is closed
 • Power LED keeps pulsing after exiting sleep
 
-Any help on getting this fixed is highly appreciated!
+Any help on getting the lid sleep fixed is highly appreciated!
 
 ## PREPARATIONS: DO's and DONT's
 
@@ -46,8 +49,13 @@ Before copying the EFI onto your SSD/HDD, you should check the following:
 6. Reboot again
 7. Select macOS to boot. It's currently configured for running Catalina. If you want to run Big Sur, you need to use SMBIOS 11,x. You can research a suitable/matching SMBIOS for your CPU on everymac.com
 
+## BIOS SETTINGS
+
+coming soon… I assume you have the correct ones already.
+
 ## CREDITS and THANK YOUs:
 
+- n4ru for 1vyrain jailbreak to remove WLAN whitelist: https://github.com/n4ru/1vyrain
 - Acidanthera and Team for the OpenCore Bootloader: https://github.com/acidanthera/OpenCorePkg
 - Dortantia for the OpenCore Install Guide: https://dortania.github.io/OpenCore-Install-Guide
 - Corpnewt for incredibly useful Tools like SSDTTime, GenSMBIOS and ProperTree: https://github.com/corpnewt
