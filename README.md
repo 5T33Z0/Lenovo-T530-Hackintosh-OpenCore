@@ -83,7 +83,7 @@ Before copying the EFI onto your SSD/HDD, you should check the following:
 	- Memory Protection: Enabled
 	- Virtualization
 		- Intel (R) Virtualization Technology: Enabled (Relevant for Windows only, disabled for macOS via config)
-	- I/O PORT ACCESS (Disable the following devices/features)
+	- I/O Port Access (Disable the following devices/features)
 		- Wireless WAN
 		- ExpressCard Slot
 		- eSATA Port
