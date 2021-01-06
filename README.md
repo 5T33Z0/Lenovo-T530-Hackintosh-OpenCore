@@ -49,6 +49,7 @@ Before copying the EFI onto your SSD/HDD, you should check the following:
 
 ## INSTALLATION
 
+0. Read "Preparations" Section first
 1. Rename the config file of your choice to "config.plist"
 2. Mount the EFI
 3. Replace EFI Folder
@@ -80,12 +81,23 @@ Before copying the EFI onto your SSD/HDD, you should check the following:
 	- Memory Protection: Enabled
 	- Virtualization
 		- Intel (R) Virtualization Technology: Enabled (Relevant for Windows only, disabled for macOS via config)
+	- I/O PORT ACCESS (Disable the following devices/features)
+		- Wireless WAN
+		- ExpressCard Slot
+		- eSATA Port
+		- Fingerprint Reader
+	-Antitheft
+		- Current Setting: Disabled
+		- Computrace: Disabled
+	- Secure Boot
+		- Secure Boot: Disabled
 
-- I/O PORT ACCESS [TAB] (Disable the following devices/features)
-	- Wireless WAN
-	- ExpressCard Slot
-	- eSATA Port
-	- Fingerprint Reader
+STARTUP [TAB]
+	- BOOT (Set the Order of Boot devices. Set HDD/SSD as firs device)
+	- UEFI/Legacy Boot: UEFI only
+		CSM Support: Disables
+	- Boot Mode: Quick
+	- Boot Order Lock: Enabled. Enable this after you've set-up the order of the Boot Drives. Set HDD/SSD as first device. This prohibits WindowsBootManager from taking over the first slot of the Boot Devices. 
 		
 ## CREDITS and THANK YOUs:
 
