@@ -7,21 +7,23 @@ This Repo contains an EFI Folder with configs for running macOS Catalina or Big 
 This config is working 100% for T530 Models wih both HD (AAPL,ig-platform-id 03006601) or HD+ Display (AAPL,ig-platform-id 04006601). If you just want to have
 a well running System, use this! You need to rename the config to config.plist in order to boot with this. But before you do, open the config and have a look at the "ACPI > Add" section. Enable either DSDT-HD.aml or DSDT-HD+.aml (never both) depending on the display panel of your T530. Check the comments of the entries to decide which one you need to enable. By default, the DSDT for HD+ panels is enabled.
 
-### Isssue: 
-- you can't boot Windows from within OpenCore if you use a single HDD/SSD for both Windows and MacOS. It gives you ACPI Errors. Workaround: use the F12 Bootmenu and select "WindowsBootManager" instead to bypass OpenCore and boot windows (which is recommended anyway).
+Isssue: 
+• you can't boot Windows from within OpenCore's BootPicker if you use a single HDD/SSD for both Windows and MacOS. It gives you ACPI Errors. Workaround: use the F12 Bootmenu and select "WindowsBootManager" instead to bypass OpenCore and boot windows (which is recommended anyway).
 
 2. config_DSDT-less.plist
 
-This config runs macOS without a patched DSDT making use of ACPI Hotpatches (SSDT files and ACPI patches in the config). This is the recommended method which is independent of the installed BIOS Version and also runs smoother and snappier. The default config is for T530 Models with HD+ displays (Resolution ≥1600x900 px). If you have a model with a HD panel you need to add the correct Framebuffer-Patch for IntelHD 4000 (AAPL,ig-platform-id 03006601).
+This config is for running macOS without a patched DSDT – it relies on ACPI Hotpatches instead (SSDTs and ACPI patches in the config) which is the recommended method for OpenCore. Since this method does not rely on having a patched DSDT which might mismatch the System's DSDT of the installed BIOS Version, the process of hotpatching is more precise and independent of the installed BIOS. Instead of just replacing the whole system DSDT with the patched DSDT during boot, only the things which need patching are patched. This makes the system boot a bit faster, runs smoother and snappier. 
 
-### Issues:
+The default config is for T530 Models with HD+ displays (Resolution ≥1600x900 px). If you have a model with a HD panel you need to add the correct Framebuffer-Patch for IntelHD 4000 (AAPL,ig-platform-id 03006601).
 
-- Lid: Sleep/Clamshell Mode and switching over the Main Display to an External Monitor when the lid is closed
-- Power LED keeps pulsing after exiting sleep
+Issues:
+
+• Lid: Sleep/Clamshell Mode and switching over the Main Display to an External Monitor when the lid is closed
+• Power LED keeps pulsing after exiting sleep
 
 Any help on getting this fixed is highly appreciated!
 
-## PREPARATIONS, DO's and DONT's
+## PREPARATIONS: DO's and DONT's
 
 Before copying the EFI onto your SSD/HDD, you should check the following:
 
