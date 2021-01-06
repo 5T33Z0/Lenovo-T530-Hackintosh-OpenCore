@@ -7,11 +7,12 @@ This Repo contains an EFI Folder with configs for running macOS Catalina or Big 
 This config is working 100% for T530 Models wih both HD (AAPL,ig-platform-id 03006601) or HD+ Display (AAPL,ig-platform-id 04006601). If you just want to have
 a well running System, use this! You need to rename the config to config.plist in order to boot with this. But before you do, open the config and have a look at the "ACPI > Add" section. Enable either DSDT-HD.aml or DSDT-HD+.aml (never both) depending on the display panel of your T530. Check the comments of the entries to decide which one you need to enable. By default, the DSDT for HD+ panels is enabled.
 
-INCOMPATIBLE HARDWARE:
+INCOMPATIBLE HARDWARE COMPONENTS:
 
 - Intel Bluetooth/WIFI. You need a compatible card and a BIOS Unlock to disable the WLAN Card Whitelist using 1vyrain
 - Discrete NVIDIA GPU – model not supported by macOS. Must be disbled in BIOS!
 - Finger Print Sensor - model not supported by macOS
+- VGA Port is not working. More info here: https://github.com/acidanthera/WhateverGreen/blob/master/Manual/FAQ.IntelHD.en.md#vga-support
 
 NOT WORKING:
 
