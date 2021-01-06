@@ -39,9 +39,9 @@ Before copying the EFI onto your SSD/HDD, you should check the following:
 - The SSDT-PM.aml inside the ACPI Folder is for an i7 3630QM Processor. If you have a differnt CPU, disable it and create your own using ssdtPRGEN in Postinstall. You can drop the low frequency from 1200 MHz to 900 MHz in 100 mHz increments, but no lower than that. Otherwise the System Crashes during boot.
 - Wifi/Bluetooth:
     - Built-in Intel Wifi/Bluetooth Cards don't work. But you can have a look at OpenIntelWireless Kext: https://github.com/OpenIntelWireless/itlwm
-    - 3rd Party cards require 1vyrain jailbreak to unlock the BIOS in order to disable WLAN Whitelist (unless the card you are using is whitelisted)
+    - 3rd Party cards require 1vyrain jailbreak to unlock the BIOS in order to disable WLAN Whitelist (unless the 3rd party card is whitelisted)
     - Broadcom Cards require an additional kext for Bluetooth. Either BrcmFirmwareData.kext in "EFI > OC > Kexts" which will be injected through OpenCore or
-      BrcmFirmwareRepo.kext which needs to installed into S/L/E since it cannot be inject by bootloaders but works a bit more efficient.
+      BrcmFirmwareRepo.kext which needs to installed into S/L/E since it cannot be inject by bootloaders, but works a bit more efficient.
     - If you use a different vendor than Broadcom for Bluetooth/Wifi you should replace the Kext(s) for networking for your device and update your config.
 - If you create Snapshots for the DSDT-less config using ProperTree, make sure to disable the "ACPI > Add" entries for DSDT files afterwards. Best practice would be to delete both DSDTs from the EFI anyway, if you use the DSDT-less config.
 - DON'T DON'T DON'T create Snapshots for the config_DSDT.plist which is using the DSDT Files. Because this will add all the SSDTs back in, which is unnecessary since all these changes are defined in the patched DSDT already. If you plan to use the DSDT setup, you might as well delete all of the SSDTs except for SSDT-PM.
