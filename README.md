@@ -1,4 +1,4 @@
-# Lenovo Thinkpat T530 Hackinosh OpenCore (DSTD-less)
+# Lenovo Thinkpad T530 Hackinosh OpenCore (DSTD-less)
 
 This Repo contains an EFI Folder with configs for running macOS Catalina or Big Sur with either a patched DSDT or DSDT-less on the Lenovo T530 Laptop. The EFI for running macOS on the Lenovo T530 includes 2 configs:
 
@@ -44,8 +44,8 @@ Before copying the EFI onto your SSD/HDD, you should check the following:
       BrcmFirmwareRepo.kext which needs to installed into S/L/E since it cannot be inject by bootloaders, but works a bit more efficient.
     - If you use a different vendor than Broadcom for Bluetooth/Wifi you should replace the Kext(s) for networking for your device and update your config.
 - If you create Snapshots for the DSDT-less config using ProperTree, make sure to disable the "ACPI > Add" entries for DSDT files afterwards. Best practice would be to delete both DSDTs from the EFI anyway, if you use the DSDT-less config.
-- DON'T DON'T DON'T create Snapshots for the config_DSDT.plist which is using the DSDT Files. Because this will add all the SSDTs back in, which is unnecessary since all these changes are defined in the patched DSDT already. If you plan to use the DSDT setup, you might as well delete all of the SSDTs except for SSDT-PM.
-- DON'T Update VoodooPS2Controller.kext! The current doesn't work well with the trackpad even with an additional SSDT for the Trackpad. So exclude it from updates.
+- DON'T create Snapshots for the config_DSDT.plist which is using the DSDT Files. Because this will add all the SSDTs back in, which is unnecessary since all these changes are defined in the patched DSDT already. If you plan to use the DSDT-based config, you might as well delete all of the SSDTs except for SSDT-PM.
+- DON'T Update VoodooPS2Controller.kext! The current version doesn't work well with the Trackpad even with an additional Trackpad SSDT. So exclude it from updates.
 
 ## INSTALLATION
 
