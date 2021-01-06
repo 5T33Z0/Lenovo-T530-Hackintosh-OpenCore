@@ -71,11 +71,16 @@ Before copying the EFI onto your SSD/HDD, you should check the following:
 	-CPU
 		- Core Multi-Processing: Enabled
 		- Intel (R) Hyper-Threading: Enaybled (CPU must support it)
+
 - SECURITY TAB
 	- Security Chip: Disabled
 	- UEFI BIOS Update Options
-		- 
-
+		- Flash BIOS Updating by End-Users: Enabled
+		- Secure Rollback Prevention: Enabled
+	- Memory Protection: Enabled
+	- Virtualization
+		- Intel (R) Virtualization Technology: Enabled (Relevant for Windows only, disabled for macOS via config)
+		
 		
 ## CREDITS and THANK YOUs:
 
