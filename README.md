@@ -59,7 +59,7 @@ Before copying the EFI onto your SSD/HDD, you should check the following:
 
 ## BIOS SETTINGS
 
-- CONFIG TAB
+- CONFIG [TAB]
 	- USB
 		- USB UEFI BIOS Support: Enabled
         - USB 3.0 Mode: Enabled
@@ -72,7 +72,7 @@ Before copying the EFI onto your SSD/HDD, you should check the following:
 		- Core Multi-Processing: Enabled
 		- Intel (R) Hyper-Threading: Enaybled (CPU must support it)
 
-- SECURITY TAB
+- SECURITY [TAB]
 	- Security Chip: Disabled
 	- UEFI BIOS Update Options
 		- Flash BIOS Updating by End-Users: Enabled
@@ -80,7 +80,12 @@ Before copying the EFI onto your SSD/HDD, you should check the following:
 	- Memory Protection: Enabled
 	- Virtualization
 		- Intel (R) Virtualization Technology: Enabled (Relevant for Windows only, disabled for macOS via config)
-		
+
+- I/O PORT ACCESS [TAB] (Disable the following devices/features)
+	- Wireless WAN
+	- ExpressCard Slot
+	- eSATA Port
+	- Fingerprint Reader
 		
 ## CREDITS and THANK YOUs:
 
