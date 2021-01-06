@@ -1,20 +1,20 @@
-# Lenovo T530 Hackinosh OpenCore (DSTD-less)
+# Lenovo Thinkpat T530 Hackinosh OpenCore (DSTD-less)
 
-## About
-This Repo contains an EFI Folder with configs for running macOS Catalina or Big Sur with either a patched DSDT or DSDT-less on a Lenovo T530 Laptop. The EFI for running macOS on the Lenovo T530 includes 2 configs:
+This Repo contains an EFI Folder with configs for running macOS Catalina or Big Sur with either a patched DSDT or DSDT-less on the Lenovo T530 Laptop. The EFI for running macOS on the Lenovo T530 includes 2 configs:
 
 1. config_DSDT.plist
 
-This is 100% working for T530 Models wih both HD (AAPL,ig-platform-id 03006601) or HD+ Displays (AAPL,ig-platform-id 04006601). If you just want to have
-a well running System, use this! You need to rename the config to config.plist, though in order to boot with this. But before you do, open the config and have a look at "ACPI > Add" and enable either DSDT-HD.aml or DSDT-HD+.aml (never both) depending on the Display Panel of your T530. Check the commente of the entries to decide which one you need enable.
+This config is working 100% for T530 Models wih both HD (AAPL,ig-platform-id 03006601) or HD+ Display (AAPL,ig-platform-id 04006601). If you just want to have
+a well running System, use this! You need to rename the config to config.plist in order to boot with this. But before you do, open the config and have a look at the "ACPI > Add" section. Enable either DSDT-HD.aml or DSDT-HD+.aml (never both) depending on the display panel of your T530. Check the comments of the entries to decide which one you need to enable. By default, the DSDT for HD+ panels is enabled.
 
-Isssue: you can't start Windows from within the BootPicker of OpenCore if you run a Dual Boot Setup using a single HDD/SSD for both Windows and MacOS, because it gives you ACPI Errors. Workaround: use the F12 Bootmenu to run Windows instead to bypass OpenCore.
+### Isssue: 
+- you can't boot Windows from within OpenCore if you use a single HDD/SSD for both Windows and MacOS. It gives you ACPI Errors. Workaround: use the F12 Bootmenu and select "WindowsBootManager" instead to bypass OpenCore and boot windows (which is recommended anyway).
 
 2. config_DSDT-less.plist
 
-This config runs macOS without a patched DSDT making use of ACPI Hotpatches (SSDT files and ACPI patches in the config). This is independent of the installed BIOS Version and also runs smoother and snappier. The current config is for T530 Models with HD+ Displays (Resolution ≥1600x900 px). If you have a Laptop with a lower resolution you need to add the correct Framebuffer-Patch for IntelHD 4000 (AAPL,ig-platform-id 03006601).
+This config runs macOS without a patched DSDT making use of ACPI Hotpatches (SSDT files and ACPI patches in the config). This is the recommended method which is independent of the installed BIOS Version and also runs smoother and snappier. The default config is for T530 Models with HD+ displays (Resolution ≥1600x900 px). If you have a model with a HD panel you need to add the correct Framebuffer-Patch for IntelHD 4000 (AAPL,ig-platform-id 03006601).
 
-Currently not working:
+### Issues:
 
 - Lid: Sleep/Clamshell Mode and switching over the Main Display to an External Monitor when the lid is closed
 - Power LED keeps pulsing after exiting sleep
