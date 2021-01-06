@@ -59,8 +59,7 @@ Before copying the EFI onto your SSD/HDD, you should check the following:
 
 ## BIOS SETTINGS
 
-- CONFIG [TAB]
-
+- CONFIG (TAB)
     -USB
         - USB UEFI BIOS Support: Enabled
         - USB 3.0 Mode: Enabled
