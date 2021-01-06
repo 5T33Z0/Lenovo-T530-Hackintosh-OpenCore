@@ -1,4 +1,4 @@
-#Lenovo ThinkPad T530 Hackinosh OpenCore (DSTD-less)
+# Lenovo ThinkPad T530 Hackinosh OpenCore (DSTD-less)
 
 This Repo contains an EFI Folder with configs for running macOS Catalina or Big Sur with either a patched DSDT or DSDT-less on the Lenovo T530 Laptop. The EFI for running macOS on the Lenovo T530 includes 2 configs:
 
@@ -47,7 +47,7 @@ Before copying the EFI onto your SSD/HDD, you should check the following:
 - DON'T create Snapshots for the config_DSDT.plist which is using the DSDT Files. Because this will add all the SSDTs back in, which is unnecessary since all these changes are defined in the patched DSDT already. If you plan to use the DSDT-based config, you might as well delete all of the SSDTs except for SSDT-PM.
 - DON'T Update VoodooPS2Controller.kext! The current version doesn't work well with the Trackpad even with an additional Trackpad SSDT. So exclude it from updates.
 
-##INSTALLATION
+## INSTALLATION
 
 1. Rename the config file of your choice to "config.plist"
 2. Mount the EFI
@@ -57,7 +57,7 @@ Before copying the EFI onto your SSD/HDD, you should check the following:
 6. Reboot again
 7. Select macOS to boot. It's currently configured for running Catalina. If you want to run Big Sur, you need to use SMBIOS 11,x. You can research a suitable/matching SMBIOS for your CPU on everymac.com
 
-##BIOS SETTINGS
+## BIOS SETTINGS
 
 - CONFIG TAB
 	-USB
