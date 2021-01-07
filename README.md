@@ -111,4 +111,4 @@ Before copying the EFI onto your SSD/HDD, you should check the following:
 - Al6042 and Sascha_77 from Hackintosh-Forum.de for providing patched DSDTs and initial EFI Folder for the T530
 - Daliansky for OC Little Repo with all the ACPI Hotpatches for OpenCore: https://ooh3dpsdytm34sfhws63yjfbwy--github-com.translate.goog/daliansky/OC-little
 - Real Kiro for Clover EFI with ACPI Patches for referencing: https://translate.google.com/translate?sl=auto&tl=en&u=https://github.com/RealKiro/Hackintosh
-- Rehabman for all his Laptop Guides
+- Rehabman for all USBInjectall.kext, Laptop and DSDT patchig guides: https://github.com/RehabMan
