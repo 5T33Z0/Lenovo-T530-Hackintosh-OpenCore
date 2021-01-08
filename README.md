@@ -31,12 +31,12 @@ INCOMPATIBLE COMPONENTS:
 - Fingerprint Sensor - model not supported by macOS
 - VGA Port is not working. More info here: https://github.com/acidanthera/WhateverGreen/blob/master/Manual/FAQ.IntelHD.en.md#vga-support
 
-## PREPARATIONS: DO's and DONT's
+## PRE-INSTALL PREPARATIONS: DO's and DONT's
 
 Before copying the EFI onto your SSD/HDD, you should check the following:
 
 - Test the EFI using a FAT32 formatted USB Stick first
-- Create a new serial, MLB, etc. using GenSMBIOS (Catalina requires MacBookPro10,X; Big Sur needs MacBookPro11,X) and add the Information to PlatformInfo > Generic.
+- Copy over your existing SMBIOS Infos of create a new serial, MLB, etc. using GenSMBIOS (Catalina requires MacBookPro10,X; Big Sur needs MacBookPro11,X) and copy the Information to PlatformInfo > Generic.
 - The SSDT-PM.aml inside the ACPI Folder is for an i7 3630QM Processor. If you have a differnt CPU, disable it and create your own using ssdtPRGEN in Postinstall. You can drop the low frequency from 1200 MHz to 900 MHz in 100 mHz increments, but no lower than that. Otherwise the System Crashes during boot.
 - Wifi/Bluetooth:
     - Built-in Intel Wifi/Bluetooth Cards don't work. But you can have a look at OpenIntelWireless Kext: https://github.com/OpenIntelWireless/itlwm
@@ -59,6 +59,18 @@ Before copying the EFI onto your SSD/HDD, you should check the following:
 6. IMPORANT: Perform an NVRAM Reset (in Bootpicker, hit Space Bar and select Clean NVRAM). Especially important when switching from a DSDT to DSDT-less config!
 7. Reboot again
 8. Select macOS to boot. It's currently configured for running Catalina. If you want to run Big Sur, you need to use SMBIOS 11,x. You can research a suitable/matching SMBIOS for your CPU on everymac.com
+
+## POST-INSTALL
+
+- Fixing Sleep: If you have issues with sleep, run the following commands in Terminal:
+
+	sudo pmset hibernatemode 0
+	sudo rm /var/vm/sleepimage
+	sudo touch /var/vm/sleepimage
+	sudo chflags uchg /var/vm/sleepimage
+	
+- Switch Command and Option Keys. By default, the ALT key is the CMD Key in macOS and the Windows Key is the Option Key. To switch them around open System Settings > Keyboard. On the right there's a button for Special Keys. Just switch the Option and Command keys to the opposite and everything's fine.
+	
 
 ## BIOS SETTINGS
 
