@@ -37,7 +37,8 @@ Before copying the EFI onto your SSD/HDD, you should check the following:
 
 - Test the EFI using a FAT32 formatted USB Stick first
 - Copy over your existing SMBIOS Infos of create a new serial, MLB, etc. using GenSMBIOS (Catalina requires MacBookPro10,X; Big Sur needs MacBookPro11,X) and copy the Information to PlatformInfo > Generic.
-- The SSDT-PM.aml inside the ACPI Folder is for an i7 3630QM Processor. If you have a differnt CPU, disable it and create your own using ssdtPRGEN in Postinstall. You can drop the low frequency from 1200 MHz to 900 MHz in 100 mHz increments, but no lower than that. Otherwise the System Crashes during boot.
+- The SSDT-PM.aml inside the ACPI Folder is for an i7 3630QM Processor. If you have a differnt CPU, disable it and create your own using ssdtPRGEN in Postinstall.
+- If you use a different CPU enable the 2 Patches under "ACPI > delete" and save the config, so that the CPU runs full speed.
 - Wifi/Bluetooth:
     - Built-in Intel Wifi/Bluetooth Cards don't work. But you can have a look at OpenIntelWireless Kext: https://github.com/OpenIntelWireless/itlwm
     - 3rd Party cards require 1vyrain jailbreak to unlock the BIOS in order to disable WLAN Whitelist (unless the 3rd party card is whitelisted)
@@ -62,13 +63,27 @@ Before copying the EFI onto your SSD/HDD, you should check the following:
 
 ## POST-INSTALL
 
+- Fixing CPU Power Management (only necessarry if you use a differnt CPU than i7 3630QM).
+
+	1. Open Config
+	2. Enable the 2 Patches under "ACPI > Delete" (Drop CpuPm and Drop Cpu0Ist)
+	3. Save config and reboot
+	3. Install ssdtPRGen using terminal: https://github.com/Piker-Alpha/ssdtPRGen.sh
+	4. Open Terminal and type: sudo /Users/YOURUSERNAME/ssdtPRGen.sh
+	5. Go to Users/YOURUSERNAME/Library/ssdtPRGen. There you'll find an ssdt.aml
+	6. Rename ssdt.aml to SSDT-PM and replace the one in EFI > OC > ACPI with it
+	7. Disable the two patches from step 2 again.
+	8. Save config and reboot.
+	
+NOTE: You can also add modifiers to the terminal command for building the SSDT. You can - for example - drop the low frequency from their default 1200 MHz to 900 MHz in 100 mHz increments, but no lower than that. Otherwise the System Crashes during boot. I suggests you experiement a bit.
+
 - Fixing Sleep: If you have issues with sleep, run the following commands in Terminal:
 
 	sudo pmset hibernatemode 0
 	sudo rm /var/vm/sleepimage
 	sudo touch /var/vm/sleepimage
 	sudo chflags uchg /var/vm/sleepimage
-	
+
 - Switch Command and Option Keys. By default, the ALT key is the CMD Key in macOS and the Windows Key is the Option Key. To switch them around open System Settings > Keyboard. On the right there's a button for Special Keys. Just switch the Option and Command keys to the opposite and everything's fine.
 	
 
