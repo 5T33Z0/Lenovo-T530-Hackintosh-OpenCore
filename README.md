@@ -71,9 +71,12 @@ Before copying the EFI onto your SSD/HDD, you should check the following:
 	3. Install ssdtPRGen using terminal: https://github.com/Piker-Alpha/ssdtPRGen.sh
 	4. Open Terminal and type: sudo /Users/YOURUSERNAME/ssdtPRGen.sh
 	5. Go to Users/YOURUSERNAME/Library/ssdtPRGen. There you'll find an ssdt.aml
-	6. Rename ssdt.aml to SSDT-PM and replace the one in EFI > OC > ACPI with it
-	7. Disable the two patches from step 2 again.
-	8. Save config and reboot.
+	6. Rename ssdt.aml to SSDT-PM.aml and replace the one in EFI > OC > ACPI with it
+	7. In config, go to ACPI > Add and re-enable SSDT-PM if it is disabled. Add your CPU model to the comment section (if you like)
+	8. Disable the two patches from step 2 again.
+	9. Save config and reboot. 
+
+The CPU should work fine now. Optionally, you can install Intel Power Gadget to check if the CPU works within it's specs.
 	
 NOTE: You can also add modifiers to the terminal command for building the SSDT. You can - for example - drop the low frequency from their default 1200 MHz to 900 MHz in 100 mHz increments, but no lower than that. Otherwise the System Crashes during boot. I suggests you experiement a bit.
 
