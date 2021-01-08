@@ -87,7 +87,9 @@ NOTE: You can also add modifiers to the terminal command for building the SSDT. 
 	sudo touch /var/vm/sleepimage
 	sudo chflags uchg /var/vm/sleepimage
 
-- Switch Command and Option Keys. By default, the ALT key is the CMD Key in macOS and the Windows Key is the Option Key. To switch them around open System Settings > Keyboard. On the right there's a button for Special Keys. Just switch the Option and Command keys to the opposite and everything's fine.
+### Switching Command and Option Keys
+
+By default, the [ALT] key is the [CMD] Key in macOS and the [Windows Key] is the [Option Key]. To switch them around open System Settings > Keyboard. On the right there's a button for Special Keys. Just switch the Option and Command keys to the opposite and everything's fine.
 	
 
 ## BIOS SETTINGS
@@ -123,7 +125,7 @@ NOTE: You can also add modifiers to the terminal command for building the SSDT. 
 			- Computrace: Disabled
 		- Secure Boot
 			- Secure Boot: Disabled
-
+			
 - STARTUP [TAB]
 	- BOOT (Set the Order of Boot devices. Set HDD/SSD as firs device)
 	- UEFI/Legacy Boot: UEFI only
