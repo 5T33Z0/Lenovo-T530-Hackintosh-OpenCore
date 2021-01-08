@@ -63,7 +63,7 @@ Before copying the EFI onto your SSD/HDD, you should check the following:
 
 ## POST-INSTALL
 
-- Fixing CPU Power Management (only necessarry if you use a differnt CPU than i7 3630QM).
+### Fixing CPU Power Management (only necessarry if you use a differnt CPU than i7 3630QM).
 
 	1. Open Config
 	2. Enable the 2 Patches under "ACPI > Delete" (Drop CpuPm and Drop Cpu0Ist)
@@ -80,7 +80,7 @@ The CPU should work fine now. Optionally, you can install Intel Power Gadget to 
 	
 NOTE: You can also add modifiers to the terminal command for building the SSDT. You can - for example - drop the low frequency from their default 1200 MHz to 900 MHz in 100 mHz increments, but no lower than that. Otherwise the System Crashes during boot. I suggests you experiement a bit.
 
-- Fixing Sleep: If you have issues with sleep, run the following commands in Terminal:
+### Fixing Sleep: If you have issues with sleep, run the following commands in Terminal:
 
 	sudo pmset hibernatemode 0
 	sudo rm /var/vm/sleepimage
