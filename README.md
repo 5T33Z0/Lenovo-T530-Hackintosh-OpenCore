@@ -46,7 +46,7 @@ Before copying the EFI onto your SSD/HDD, you should check the following:
       BrcmFirmwareRepo.kext which needs to installed into S/L/E since it cannot be inject by bootloaders, but works a bit more efficient.
     - If you use a different vendor than Broadcom for Bluetooth/Wifi you should replace the Kext(s) for networking for your device and update your config.
 - If you create Snapshots for the DSDT-less config using ProperTree, make sure to disable the "ACPI > Add" entries for DSDT files afterwards. Best practice would be to delete both DSDTs from the EFI anyway, if you use the DSDT-less config.
-- NoTouchID is no longer required for macOS 10.15.7 and beyond, so you can disable it.
+- NoTouchID.kext is no longer necessary for macOS 10.15.7 and beyond, so you can disable it.
 - DON'T create Snapshots for the config_DSDT.plist which is using the DSDT Files. Because this will add all the SSDTs back in, which is unnecessary since all these changes are defined in the patched DSDT already. If you plan to use the DSDT-based config, you might as well delete all of the SSDTs except for SSDT-PM.
 - DON'T Update VoodooPS2Controller.kext! The current version doesn't work well with the Trackpad even with an additional Trackpad SSDT. So exclude it from updates.
 
