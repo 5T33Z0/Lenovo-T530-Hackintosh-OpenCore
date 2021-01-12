@@ -39,7 +39,7 @@ The default config is for T530 Models with HD+ displays (≥1600x900 px). If you
 Any help on getting the lid fixed is highly, highly appreciated!
 
 
-##PREPARATIONS: DOs and DONTs
+## PREPARATIONS: DOs and DONTs
 
 Before copying the EFI onto your SSD/HDD, you should do the following:
 
@@ -81,7 +81,7 @@ Before copying the EFI onto your SSD/HDD, you should do the following:
 	4. Open Terminal and type: sudo /Users/YOURUSERNAME/ssdtPRGen.sh
 	5. Go to Users/YOURUSERNAME/Library/ssdtPRGen. There you'll find an ssdt.aml
 	6. Rename ssdt.aml to SSDT-PM.aml and replace the one in EFI > OC > ACPI with it
-	7. In config, go to ACPI > Add and re-enable SSDT-PM if it is disabled. Add your CPU model to the comment section (if you like)
+	7. In config, go to ACPI > Add and re-enable SSDT-PM if it is disabled.
 	8. Disable the two patches from step 2 again.
 	9. Save config and reboot. 
 
