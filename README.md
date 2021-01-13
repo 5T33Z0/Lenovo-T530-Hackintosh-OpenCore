@@ -117,7 +117,7 @@ macOS locks the Optical drive sometimes so that you can't open it with the physi
         - USB 3.0 Mode: Enabled
     - Display
         - Boot Display Device: ThinkPad LCD
-        - OS Detection for NVIDIA Optimus: Disabled (if your T530 deosn't have a discrete GPU you don't see this Option)
+        - OS Detection for NVIDIA Optimus: Disabled (if your T530 does not have a discrete GPU you don't see this Option)
     - Serial ATA (SATA)
         - SATA Controller Mode: XHCI
 	-CPU
