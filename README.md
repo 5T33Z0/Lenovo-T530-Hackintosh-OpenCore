@@ -47,8 +47,7 @@ Before copying the EFI onto your SSD/HDD, you should do the following:
 - Test the EFI first using a FAT32 formatted USB Stick
 - Create SMBIOS infos using GenSMBIOS (MacBookPro10,X for Catalina and MacBookPro11,X for Big Sur) and add the data to `PlatformInfo > Generic` or copy over existing SMBIOS info from your current system.
 - CPU:
-	- The `SSDT-PM.aml` inside the ACPI Folder is for an i7 3630QM. If you use a differnt CPU, disable it in the config and create your own using `ssdtPRGEN` in Post-Install.
-	- Enable the 2 Patches under "ACPI > delete" and save the config, before creating `SSDT-PM.aml` so that your CPU runs full speed. You can disable the 2 delete patches afterwards.
+	- The `SSDT-PM.aml` inside the ACPI Folder is for an i7 3630QM. If you use a differnt CPU, disable it in the config and create your own using `ssdtPRGEN` in Post-Install. (See 'Fixing CPU Power Management' in 'Post-Install Section')
 - Wifi/Bluetooth:
     - Built-in Intel Wifi/Bluetooth cards don't work. But you can have a look at OpenIntelWireless Kext: https://github.com/OpenIntelWireless/itlwm
     - 3rd Party cards require `1vyrain` jailbreak to unlock the BIOS in order to disable WLAN Whitelist (unless the 3rd party card is whitelisted)
