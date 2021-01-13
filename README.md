@@ -54,10 +54,10 @@ Before copying the EFI onto your SSD/HDD, you should do the following:
     - 3rd Party cards require `1vyrain` jailbreak to unlock the BIOS in order to disable WLAN Whitelist (unless the 3rd party card is whitelisted)
     - Broadcom cards require an additional kext for Bluetooth. Either `BrcmFirmwareData.kext` in "EFI > OC > Kexts" which will be injected through OpenCore or
       `BrcmFirmwareRepo.kext` which needs to be installed into S/L/E since it cannot be inject by bootloaders, but works a bit more efficient according to the documentation.
-    - If you use a card from a different vendor than Broadcom replace the Kext(s) for networking for your device and update your config.
-- Editing/Updating and creating Snapshots off the config files:
+    - If you use a card from a different vendor replace the Kext(s) for networking for your device and update your config.
+- Updating and creating Snapshots of config files:
 	- If you create Snapshots for the DSDT-less config using `ProperTree`, make sure to disable the "ACPI > Add" entries for `DSDT` files afterwards. Best practice would be to delete both DSDTs from the EFI anyway, if you use the DSDT-less config.
-	- DON'T create Snapshots for the config_DSDT.plist which is using the DSDT Files. Because this will add all the SSDTs back in, which are unnecessary since all these patches exist in the patched DSDT already. If you plan to use the DSDT-based config, you might as well delete all of the SSDTs except for `SSDT-PM`.
+	- DON'T create Snapshots for the config_DSDT.plist which is using the DSDT Files. Because this will add all the SSDTs back in, which are unnecessary since all these patches exist in the patched DSDT already. If you plan to use the DSDT-based config, you should delete all of the SSDTs except for `SSDT-PM`.
 - Kexts
 	- DON'T Update `VoodooPS2Controller.kext`! The current version doesn't work well with the Trackpad even with an additional Trackpad SSDT. So exclude it from updates.
 	- `NoTouchID.kext` is no longer necessary for macOS 10.15.7 and beyond, so you can disable it.
