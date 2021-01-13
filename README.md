@@ -45,7 +45,10 @@ Any help on getting the lid fixed is highly, highly appreciated!
 Before copying the EFI onto your SSD/HDD, you should do the following:
 
 - Test the EFI first using a FAT32 formatted USB Stick
-- Create SMBIOS infos using GenSMBIOS (MacBookPro10,X for Catalina and MacBookPro11,X for Big Sur) and add the data to `PlatformInfo > Generic` or copy over existing SMBIOS info from your current system.
+- SMBIOS
+	- Create SMBIOS infos using GenSMBIOS and add the data to `PlatformInfo > Generic`
+	- For Catalina: MacBookPro10,1 or 10,2 (depending on CPU) and csr-active-config: 77080000
+	- For Big Sur: MacBookPro11,1 or 11,2 (depending on CPU) and csr-active-config: FF0F0000
 - CPU:
 	- The `SSDT-PM.aml` inside the ACPI Folder is for an i7 3630QM. If you use a differnt CPU, disable it in the config and create your own using `ssdtPRGEN` in Post-Install. (See 'Fixing CPU Power Management' in 'Post-Install Section')
 - Wifi/Bluetooth:
