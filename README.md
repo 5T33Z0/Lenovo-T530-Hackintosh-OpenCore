@@ -44,21 +44,24 @@ Any help on getting the lid fixed is highly, highly appreciated!
 
 Before copying the EFI onto your SSD/HDD, you should do the following:
 
-- Test the EFI using a FAT32 formatted USB Stick first
-- Create SMBIOS infos using GenSMBIOS (MacBookPro10,X for Catalina and MacBookPro11,X for Big Sur) and add the data to `PlatformInfo > Generic`.
+- Test the EFI first using a FAT32 formatted USB Stick
+- Create SMBIOS infos using GenSMBIOS (MacBookPro10,X for Catalina and MacBookPro11,X for Big Sur) and add the data to `PlatformInfo > Generic` or copy over existing SMBIOS info from your current system.
 - CPU:
-	- The `SSDT-PM.aml` inside the ACPI Folder is for an i7 3630QM Processor. If you use a differnt CPU, disable it in the config and create your own using `ssdtPRGEN` in Post-Install.
-	- If you use a different CPU enable the 2 Patches under "ACPI > delete" and save the config, so that your CPU runs full speed.
+	- The `SSDT-PM.aml` inside the ACPI Folder is for an i7 3630QM. If you use a differnt CPU, disable it in the config and create your own using `ssdtPRGEN` in Post-Install.
+	- Enable the 2 Patches under "ACPI > delete" and save the config, before creating `SSDT-PM.aml` so that your CPU runs full speed. You can disable the 2 delete patches afterwards.
 - Wifi/Bluetooth:
     - Built-in Intel Wifi/Bluetooth cards don't work. But you can have a look at OpenIntelWireless Kext: https://github.com/OpenIntelWireless/itlwm
     - 3rd Party cards require `1vyrain` jailbreak to unlock the BIOS in order to disable WLAN Whitelist (unless the 3rd party card is whitelisted)
     - Broadcom cards require an additional kext for Bluetooth. Either `BrcmFirmwareData.kext` in "EFI > OC > Kexts" which will be injected through OpenCore or
       `BrcmFirmwareRepo.kext` which needs to be installed into S/L/E since it cannot be inject by bootloaders, but works a bit more efficient according to the documentation.
     - If you use a card from a different vendor than Broadcom replace the Kext(s) for networking for your device and update your config.
-- If you create Snapshots for the DSDT-less config using `ProperTree`, make sure to disable the "ACPI > Add" entries for DSDT files afterwards. Best practice would be to delete both DSDTs from the EFI anyway, if you use the DSDT-less config.
-- `NoTouchID.kext` is no longer necessary for macOS 10.15.7 and beyond, so you can disable it.
-- DON'T create Snapshots for the config_DSDT.plist which is using the DSDT Files. Because this will add all the SSDTs back in, which are unnecessary since all these patches exist in the patched DSDT already. If you plan to use the DSDT-based config, you might as well delete all of the SSDTs except for `SSDT-PM`.
-- DON'T Update VoodooPS2Controller.kext! The current version doesn't work well with the Trackpad even with an additional Trackpad SSDT. So exclude it from updates.
+- Editing/Updating and creating Snapshots off the config files:
+	- If you create Snapshots for the DSDT-less config using `ProperTree`, make sure to disable the "ACPI > Add" entries for `DSDT` files afterwards. Best practice would be to delete both DSDTs from the EFI anyway, if you use the DSDT-less config.
+	- DON'T create Snapshots for the config_DSDT.plist which is using the DSDT Files. Because this will add all the SSDTs back in, which are unnecessary since all these patches exist in the patched DSDT already. If you plan to use the DSDT-based config, you might as well delete all of the SSDTs except for `SSDT-PM`.
+- Kexts
+	- DON'T Update `VoodooPS2Controller.kext`! The current version doesn't work well with the Trackpad even with an additional Trackpad SSDT. So exclude it from updates.
+	- `NoTouchID.kext` is no longer necessary for macOS 10.15.7 and beyond, so you can disable it.
+
 
 ## INSTALLATION
 
