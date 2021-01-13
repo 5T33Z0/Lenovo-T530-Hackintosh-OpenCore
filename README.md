@@ -64,7 +64,7 @@ Before copying the EFI onto your SSD/HDD, you should do the following:
 
 ## INSTALLATION
 
-0. Download the EFI Folder from the `"Releases Section"` on the right and unpack it
+0. Download the EFI Folder from the `Releases` Section on the right and unpack it
 1. Read "Preparations" Section first
 2. Rename the config file of your choice to "config.plist"
 3. Mount the EFI
@@ -91,7 +91,7 @@ Before copying the EFI onto your SSD/HDD, you should do the following:
 
 The CPU should work fine now. Optionally, you can install Intel Power Gadget to check if the CPU works within it's specs.
 	
-**NOTE**: You can also add modifiers to the terminal command for building the SSDT. You can - for example - drop the low frequency from their default 1200 MHz to 900 MHz in 100 mHz increments, but no lower than that. Otherwise the System Crashes during boot. I suggests you experiement a bit.
+**NOTE**: You can also add modifiers to the terminal command for building the SSDT. You can - for example - drop the low frequency from their default 1200 MHz to 900 MHz in 100 mHz increments, but no lower than that. Otherwise the system crashes during boot. I suggests you experiement with the modifiers a bit.
 
 ### Fixing Sleep: If you have issues with sleep, run the following commands in Terminal:
 
