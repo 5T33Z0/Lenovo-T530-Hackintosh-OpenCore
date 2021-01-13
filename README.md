@@ -18,9 +18,9 @@ You can't boot Windows from OpenCore's BootPicker if you use a single HDD/SSD fo
 
 **2. config_DSDT-less.plist**
 
-This config is for running macOS without a patched DSDT – it relies on ACPI Hotpatches instead (SSDTs and ACPI renames mainly) which is the recommended method for OpenCore anyway. 
+This config is for running macOS without a custom/patched DSDT – it relies on ACPI Hotpatches instead (SSDTs and ACPI renames mainly) which is the recommended method for OpenCore anyway. You need to rename it to `config.plist` in order to make it bootable.
 
-Since this method does not rely on the presence of a patched DSDT which might mismatch the System's DSDT for the installed BIOS Version, the process of hotpatching is more precise and independent of the installed BIOS version. So, instead of just replacing the whole system DSDT with a patched one during boot, only the things which need pathcing are patched-in on the fly during boot. This makes the system boot faster, runs smoother and snappier. 
+Since this method does not rely on the presence of a patched DSDT which might mismatch the system's DSDT for the installed BIOS Version, the process of hotpatching is more precise and independent of the installed BIOS version. So, instead of just replacing the whole system DSDT with a patched one during boot, only the things which need pathcing are patched-in on the fly during boot. This makes the system boot faster, runs smoother and snappier. 
 
 The default config is for T530 Models with HD+ displays (≥1600x900 px). If you have a model with a HD panel you need to add the correct Framebuffer-Patch for IntelHD 4000 (`AAPL,ig-platform-id 03006601`).
 
