@@ -34,8 +34,8 @@ Any help on getting the lid fixed is highly, highly appreciated!
 
 ## INCOMPATIBLE COMPONENTS | HARDWARE LIMITATIONS
 
-- Intel Bluetooth/WIFI. You need a compatible card and a BIOS Unlock to disable the WLAN Card Whitelist using `1vyrain`
-- Discrete NVIDIA GPU – model not supported by macOS. Must be disabled in BIOS!
+- Discrete NVIDIA GPU – model not supported by macOS. Must be disabled in BIOS otherwise no Boot!
+- Intel Bluetooth/WIFI. You need a macOS compatible card and a BIOS Unlock to disable the WLAN Card Whitelist using `1vyrain`
 - Fingerprint Sensor - model not supported by macOS
 - VGA Port is not working. More info here: https://github.com/acidanthera/WhateverGreen/blob/master/Manual/FAQ.IntelHD.en.md#vga-support
 
@@ -92,7 +92,7 @@ Before copying the EFI onto your SSD/HDD, you should do the following:
 	8. Disable the two patches from step 2 again.
 	9. Save config and reboot. 
 
-The CPU should work fine now. Optionally, you can install Intel Power Gadget to check if the CPU works within it's specs.
+CPU Power Management should work fine after that. Optionally, you can install Intel Power Gadget to check if the CPU runs within it's specs.
 	
 **NOTE**: You can also add modifiers to the terminal command for building the SSDT. You can - for example - drop the low frequency from their default 1200 MHz to 900 MHz in 100 mHz increments, but no lower than that. Otherwise the system crashes during boot. I suggests you experiement with the modifiers a bit.
 
