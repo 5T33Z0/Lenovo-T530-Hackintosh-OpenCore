@@ -47,7 +47,7 @@ Before copying the EFI onto your SSD/HDD, you should do the following:
 - Test the EFI first using a FAT32 formatted USB Stick
 - SMBIOS
 	- Create SMBIOS infos using GenSMBIOS and add the data to `PlatformInfo > Generic`
-	- For Catalina: MacBookPro10,1 or 10,2 (depending on CPU) and csr-active-config: 77080000
+	- For Catalina: MacBookPro10,1 or 10,2 (depending on CPU) and csr-active-config: FF070000
 	- For Big Sur: MacBookPro11,1 or 11,2 (depending on CPU) and csr-active-config: FF0F0000
 - CPU:
 	- The `SSDT-PM.aml` inside the ACPI Folder is for an i7 3630QM. If you use a differnt CPU, disable it in the config and create your own using `ssdtPRGEN` in Post-Install. (See 'Fixing CPU Power Management' in 'Post-Install Section')
