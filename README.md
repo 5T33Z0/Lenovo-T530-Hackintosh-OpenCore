@@ -39,7 +39,7 @@ Any help on getting the lid fixed is highly, highly appreciated!
 - Discrete NVIDIA GPU – model not supported by macOS. Must be disabled in BIOS otherwise no Boot!
 - Intel Bluetooth/WIFI. You need a macOS compatible card and a BIOS Unlock to disable the WLAN Card Whitelist using `1vyrain`
 - Fingerprint Sensor - model not supported by macOS
-- VGA Port is not working. More info here: https://github.com/acidanthera/WhateverGreen/blob/master/Manual/FAQ.IntelHD.en.md#vga-support
+- VGA Port is not working. [Whatever Green Manual: Intel HD Graphics FAQs] (https://github.com/acidanthera/WhateverGreen/blob/master/Manual/FAQ.IntelHD.en.md#vga-support)
 
 
 ## PREPARATIONS: DOs and DONTs
@@ -54,7 +54,7 @@ Before copying the EFI onto your SSD/HDD, you should do the following:
 - CPU:
 	- The `SSDT-PM.aml` inside the ACPI Folder is for an i7 3630QM. If you use a differnt CPU, disable it in the config and create your own using `ssdtPRGEN` in Post-Install. (See 'Fixing CPU Power Management' in 'Post-Install Section')
 - Wifi/Bluetooth:
-    - Built-in Intel Wifi/Bluetooth cards don't work. But you can have a look at OpenIntelWireless Kext: https://github.com/OpenIntelWireless/itlwm
+    - Built-in Intel Wifi/Bluetooth cards don't work. But you can have a look at [OpenIntelWireless](OpenIntelWireless Kext: https://github.com/OpenIntelWireless/itlwm)
     - 3rd Party cards require `1vyrain` jailbreak to unlock the BIOS in order to disable WLAN Whitelist (unless the 3rd party card is whitelisted)
     - Broadcom cards require an additional kext for Bluetooth. Either `BrcmFirmwareData.kext` in "EFI > OC > Kexts" which will be injected through OpenCore or
       `BrcmFirmwareRepo.kext` which needs to be installed into S/L/E since it cannot be inject by bootloaders, but works a bit more efficient according to the documentation.
@@ -87,7 +87,7 @@ Before copying the EFI onto your SSD/HDD, you should do the following:
 	1. Open Config
 	2. Enable the 2 Patches under "ACPI > Delete" (Drop CpuPm and Drop Cpu0Ist)
 	3. Save config and reboot
-	3. Install ssdtPRGen using terminal: https://github.com/Piker-Alpha/ssdtPRGen.sh
+	3. Install [ssdtPRGen](https://github.com/Piker-Alpha/ssdtPRGen.sh)
 	4. Open Terminal and type: sudo /Users/YOURUSERNAME/ssdtPRGen.sh
 	5. Go to Users/YOURUSERNAME/Library/ssdtPRGen. There you'll find an ssdt.aml
 	6. Rename ssdt.aml to SSDT-PM.aml and replace the one in EFI > OC > ACPI with it
