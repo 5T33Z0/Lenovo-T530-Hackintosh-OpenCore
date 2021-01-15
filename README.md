@@ -39,8 +39,7 @@ Any help on getting the lid fixed is highly, highly appreciated!
 - Discrete NVIDIA GPU – model not supported by macOS. Must be disabled in BIOS otherwise no Boot!
 - Intel Bluetooth/WIFI. You need a macOS compatible card and a BIOS Unlock to disable the WLAN Card Whitelist using `1vyrain`
 - Fingerprint Sensor - model not supported by macOS
-- VGA Port is not working. [Whatever Green Manual: Intel HD Graphics FAQs] (https://github.com/acidanthera/WhateverGreen/blob/master/Manual/FAQ.IntelHD.en.md#vga-support)
-
+- VGA Port is not working: [Intel HD Graphics VGA Support](https://github.com/acidanthera/WhateverGreen/blob/master/Manual/FAQ.IntelHD.en.md#vga-support)
 
 ## PREPARATIONS: DOs and DONTs
 
