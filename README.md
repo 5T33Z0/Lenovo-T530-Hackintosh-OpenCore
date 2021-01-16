@@ -130,7 +130,7 @@ macOS locks the Optical drive sometimes so that you can't open it with the physi
         - SATA Controller Mode: XHCI
 	- CPU
 		- Core Multi-Processing: Enabled
-		- Intel (R) Hyper-Threading: Enaybled (CPU must support it)
+		- Intel (R) Hyper-Threading: Enabled (CPU must support it)
 
 - SECURITY [TAB]
 	- Security Chip: Disabled
