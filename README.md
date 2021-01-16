@@ -86,16 +86,16 @@ Before copying the EFI onto your SSD/HDD, you should do the following:
 
 ### Fixing CPU Power Management (only necessarry if you use a differnt CPU than i7 3630QM).
 
-	1. Open Config
-	2. Enable the 2 Patches under "ACPI > Delete" (`Drop CpuPm` and `Drop Cpu0Ist`)
-	3. Save config and reboot
-	3. Install [ssdtPRGen](https://github.com/Piker-Alpha/ssdtPRGen.sh)
-	4. Open Terminal and type: sudo /Users/YOURUSERNAME/ssdtPRGen.sh
-	5. Go to Users/YOURUSERNAME/Library/ssdtPRGen. There you'll find an ssdt.aml
-	6. Rename `ssdt.aml` to `SSDT-PM.aml` and replace the one in EFI > OC > ACPI with it
-	7. In config, go to ACPI > Add and re-enable `SSDT-PM.aml` if it is disabled.
-	8. Disable the two patches from step 2 again.
-	9. Save config and reboot. 
+1. Open Config
+2. Enable the 2 Patches under "ACPI > Delete" (`Drop CpuPm` and `Drop Cpu0Ist`)
+3. Save config and reboot
+4. Install [ssdtPRGen](https://github.com/Piker-Alpha/ssdtPRGen.sh)
+5. Open Terminal and type: sudo /Users/YOURUSERNAME/ssdtPRGen.sh
+6. Go to Users/YOURUSERNAME/Library/ssdtPRGen. There you'll find an ssdt.aml
+7. Rename `ssdt.aml` to `SSDT-PM.aml` and replace the one in EFI > OC > ACPI with it
+8. In config, go to ACPI > Add and re-enable `SSDT-PM.aml` if it is disabled.
+9. Disable the two patches from step 2 again.
+10. Save config and reboot. 
 
 CPU Power Management should work fine after that. Optionally, you can install Intel Power Gadget to check if the CPU runs within it's specs.
 	
