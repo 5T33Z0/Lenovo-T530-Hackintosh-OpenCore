@@ -53,7 +53,7 @@ Before copying the EFI onto your SSD/HDD, you should do the following:
 - CPU:
 	- The `SSDT-PM.aml` inside the ACPI Folder is for an i7 3630QM. If you use a differnt CPU, disable it in the config and create your own using `ssdtPRGEN` in Post-Install. (See 'Fixing CPU Power Management' in 'Post-Install Section')
 - Wifi/Bluetooth:
-    - Built-in Intel Wifi/Bluetooth cards don't work. But you can have a look at [OpenIntelWireless](https://github.com/OpenIntelWireless/itlwm)
+    - Built-in Intel Wifi/Bluetooth cards don't work. But you can have a look at [OpenIntelWireless](https://github.com/OpenIntelWireless)
     - 3rd Party cards require `1vyrain` jailbreak to unlock the BIOS in order to disable WLAN Whitelist (unless the 3rd party card is whitelisted)
     - Broadcom cards require an additional kext for Bluetooth. Either `BrcmFirmwareData.kext` in "EFI > OC > Kexts" which will be injected through OpenCore or
       `BrcmFirmwareRepo.kext` which needs to be installed into S/L/E since it cannot be inject by bootloaders, but works a bit more efficient according to the documentation.
