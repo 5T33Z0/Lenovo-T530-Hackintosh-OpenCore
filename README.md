@@ -128,7 +128,7 @@ macOS locks the Optical drive sometimes so that you can't open it with the physi
         - OS Detection for NVIDIA Optimus: Disabled (if your T530 does not have a discrete GPU you don't see this Option)
     - Serial ATA (SATA)
         - SATA Controller Mode: XHCI
-	-CPU
+	- CPU
 		- Core Multi-Processing: Enabled
 		- Intel (R) Hyper-Threading: Enaybled (CPU must support it)
 
