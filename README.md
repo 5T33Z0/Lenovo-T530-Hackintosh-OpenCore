@@ -36,7 +36,7 @@ Any help on getting the lid fixed is highly, highly appreciated!
 
 ## INCOMPATIBLE COMPONENTS | HARDWARE LIMITATIONS
 
-- Discrete NVIDIA GPU – model not supported by macOS. Must be disabled in BIOS otherwise no Boot!
+- Discrete NVIDIA GPU not supported by macOS. Must be disabled in BIOS otherwise no Boot!
 - Intel Bluetooth/WIFI. You need a macOS compatible card and a BIOS Unlock to disable the WLAN Card Whitelist using `1vyrain`
 - Fingerprint Sensor - model not supported by macOS
 - VGA Port is not working: [Intel HD Graphics VGA Support](https://github.com/acidanthera/WhateverGreen/blob/master/Manual/FAQ.IntelHD.en.md#vga-support)
@@ -48,8 +48,8 @@ Before copying the EFI onto your SSD/HDD, you should do the following:
 - Test the EFI first using a FAT32 formatted USB Stick
 - SMBIOS and SIP
 	- Create SMBIOS infos using GenSMBIOS and add the data to `PlatformInfo > Generic`
-	- For Catalina: MacBookPro10,1 or 10,2 (depending on CPU) and csr-active-config: FF070000 to deactivate SIP
-	- For Big Sur: MacBookPro11,1 or 11,2 (depending on CPU) and csr-active-config: FF0F0000 to deactivate SIP
+	- For Catalina: `MacBookPro10,1` or 10,2 (depending on CPU) and `csr-active-config: FF070000` to deactivate SIP
+	- For Big Sur: `MacBookPro11,1` or 11,2 (depending on CPU) and `csr-active-config: FF0F0000` to deactivate SIP
 - CPU:
 	- The `SSDT-PM.aml` inside the ACPI Folder is for an i7 3630QM. If you use a differnt CPU, disable it in the config and create your own using `ssdtPRGEN` in Post-Install. (See 'Fixing CPU Power Management' in 'Post-Install Section')
 - Wifi/Bluetooth:
@@ -66,8 +66,8 @@ Before copying the EFI onto your SSD/HDD, you should do the following:
 	- DON'T Update `VoodooPS2Controller.kext`! The current version doesn't work well with the Trackpad even with an additional Trackpad SSDT. So exclude it from updates.
 	- `NoTouchID.kext` is no longer necessary for macOS 10.15.7 and beyond, so you can disable it.
 - Max brightness level tweaks: 
-	- Set boot-arg applbkl=1 for reasonable maximum brightness level controlled by Whatevergreen. 
-	- Set boot.arg applbkl=0 for increased maximum brightness as defined in SSDT-PNLF.aml
+	- Set boot-arg `applbkl=1` for reasonable maximum brightness level controlled by `WhateverGreen`. 
+	- Set boot-arg `applbkl=0` for increased maximum brightness as defined in `SSDT-PNLF.aml`
 
 
 ## INSTALLATION
@@ -87,13 +87,13 @@ Before copying the EFI onto your SSD/HDD, you should do the following:
 ### Fixing CPU Power Management (only necessarry if you use a differnt CPU than i7 3630QM).
 
 	1. Open Config
-	2. Enable the 2 Patches under "ACPI > Delete" (Drop CpuPm and Drop Cpu0Ist)
+	2. Enable the 2 Patches under "ACPI > Delete" (`Drop CpuPm` and `Drop Cpu0Ist`)
 	3. Save config and reboot
 	3. Install [ssdtPRGen](https://github.com/Piker-Alpha/ssdtPRGen.sh)
 	4. Open Terminal and type: sudo /Users/YOURUSERNAME/ssdtPRGen.sh
 	5. Go to Users/YOURUSERNAME/Library/ssdtPRGen. There you'll find an ssdt.aml
-	6. Rename ssdt.aml to SSDT-PM.aml and replace the one in EFI > OC > ACPI with it
-	7. In config, go to ACPI > Add and re-enable SSDT-PM if it is disabled.
+	6. Rename `ssdt.aml` to `SSDT-PM.aml` and replace the one in EFI > OC > ACPI with it
+	7. In config, go to ACPI > Add and re-enable `SSDT-PM.aml` if it is disabled.
 	8. Disable the two patches from step 2 again.
 	9. Save config and reboot. 
 
@@ -124,7 +124,7 @@ macOS locks the Optical drive sometimes so that you can't open it with the physi
 		- USB UEFI BIOS Support: Enabled
         - USB 3.0 Mode: Enabled
     - Display
-        - Boot Display Device: ThinkPad LCD
+        - Boot Display Device: `ThinkPad LCD`
         - OS Detection for NVIDIA Optimus: Disabled (if your T530 does not have a discrete GPU you don't see this Option)
     - Serial ATA (SATA)
         - SATA Controller Mode: XHCI
