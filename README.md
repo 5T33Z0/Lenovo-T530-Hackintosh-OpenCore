@@ -14,13 +14,13 @@ If you simply want to have a well-running system, use this config! You need to r
 
 **NOT WORKING**
 
-You can't boot Windows from OpenCore's BootPicker if you use a single HDD/SSD for both Windows and MacOS. It crashes with ACPI Errors due to the patched DSDT.
+You can't boot Windows 10 from OpenCore's BootPicker if you use a single HDD/SSD for both Windows and MacOS. It crashes with ACPI Errors due to the patched DSDT.
 
-**Workaround**: use the F12 Bootmenu and select "WindowsBootManager" instead to prohibit OpenCore injecting patches, which is recommended anyway. Otherwise use the DSDT-less config instead.
+**Workaround**: use the F12 Bootmenu and select "WindowsBootManager" instead to prohibit OpenCore injecting ACPI patches. Otherwise use the DSDT-less config.
 
 **2. config_DSDT-less.plist**
 
-This config is for running macOS without a custom/patched DSDT – it relies on ACPI Hotpatches instead (SSDTs and ACPI renames mainly) which is the recommended method for OpenCore anyway. You need to rename it to `config.plist` in order to make it bootable.
+This config is for running macOS without a custom/patched DSDT – it relies on ACPI Hotpatches instead (SSDTs and ACPI renames mainly) which is the recommended method for using OpenCore anyway. You need to rename it to `config.plist` in order to make it bootable.
 
 Since this method does not rely on the presence of a patched DSDT which might mismatch the system's DSDT for the installed BIOS Version, the process of hotpatching is more precise and independent of the installed BIOS version. So, instead of just replacing the whole system DSDT with a patched one during boot, only the things which need pathcing are patched-in on the fly during boot. This makes the system boot faster, runs smoother and snappier. 
 
