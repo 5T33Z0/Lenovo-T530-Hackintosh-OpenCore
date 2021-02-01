@@ -118,7 +118,7 @@ macOS locks the Optical drive sometimes so that you can't open it with the physi
 
 
 ## BIOS SETTINGS
-
+```
 - CONFIG [TAB]
 	- USB
 		- USB UEFI BIOS Support: Enabled
@@ -157,6 +157,7 @@ macOS locks the Optical drive sometimes so that you can't open it with the physi
 		- CSM Support: Disabled
 	- Boot Mode: Quick
 	- Boot Order Lock: Enabled. Enable this after you've set-up the order of the Boot Drives. This prohibits WindowsBootManager from taking over the first slot of the boot drives.
+```
 		
 ## CREDITS and THANK YOUs:
 
