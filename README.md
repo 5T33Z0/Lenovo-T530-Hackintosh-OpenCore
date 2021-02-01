@@ -121,43 +121,42 @@ macOS locks the Optical drive sometimes so that you can't open it with the physi
 
 - CONFIG [TAB]
 	- USB
-		- USB UEFI BIOS Support: Enabled
-        - USB 3.0 Mode: Enabled
+		- USB UEFI BIOS Support: `Enabled`
+		- USB 3.0 Mode: Enabled
     - Display
-        - Boot Display Device: `ThinkPad LCD`
-        - OS Detection for NVIDIA Optimus: Disabled (if your T530 does not have a discrete GPU you don't see this Option)
+   		- Boot Display Device: `ThinkPad LCD`
+      	- OS Detection for NVIDIA Optimus: `Disabled` (if availabe)
     - Serial ATA (SATA)
-        - SATA Controller Mode: XHCI
+	   - SATA Controller Mode: `XHCI`
 	- CPU
-		- Core Multi-Processing: Enabled
-		- Intel (R) Hyper-Threading: Enabled (CPU must support it)
+		- Core Multi-Processing: `Enabled`
+		- Intel (R) Hyper-Threading: `Enabled` (CPU must support it)
 
 - SECURITY [TAB]
-	- Security Chip: Disabled
+	- Security Chip: `Disabled`
 	- UEFI BIOS Update Options
-		- Flash BIOS Updating by End-Users: Enabled
-		- Secure Rollback Prevention: Enabled
-	- Memory Protection: Enabled
+		- Flash BIOS Updating by End-Users: `Enabled`
+		- Secure Rollback Prevention: `Enabled`
+	- Memory Protection: `Enabled`
 	- Virtualization
-		- Intel (R) Virtualization Technology: Enabled (Relevant for Windows only, disabled for macOS via config)
-	- I/O Port Access (Disable the following devices/features)
+		- Intel (R) Virtualization Technology: `Enabled` (Windows only, disabled in macOS via `DisableIOMapper` Quirk)
+	- I/O Port Access.`Disable` the following devices and features:
 		- Wireless WAN
 		- ExpressCard Slot
 		- eSATA Port
 		- Fingerprint Reader
 		- Antitheft
-			- Current Setting: Disabled
-			- Computrace: Disabled
+			- Current Setting: `Disabled`
+			- Computrace: `Disabled`
 		- Secure Boot
-			- Secure Boot: Disabled
+			- Secure Boot: `Disabled`
 			
 - STARTUP [TAB]
 	- BOOT (Set the Order of Boot devices. Set HDD/SSD as firs device)
-	- UEFI/Legacy Boot: UEFI only
-		- CSM Support: Disabled
-	- Boot Mode: Quick
-	- Boot Order Lock: Enabled. Enable this to prohibit `WindowsBootManager` from taking over the first slot of the boot order.
-
+	- UEFI/Legacy Boot: `UEFI only`
+		- CSM Support: `Disabled`
+	- Boot Mode: `Quick`
+	- Boot Order Lock: `Enabled`. Enable this to prohibit `WindowsBootManager` from taking over the first slot of the boot order. Set HDD/SSD as first boot device!
 		
 ## CREDITS and THANK YOUs:
 
