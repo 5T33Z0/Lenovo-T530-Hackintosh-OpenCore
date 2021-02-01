@@ -158,7 +158,7 @@ macOS locks the Optical drive sometimes so that you can't open it with the physi
 	- Boot Mode: `Quick`
 	- Boot Order Lock: `Enabled`. Enable this to prohibit `WindowsBootManager` from taking over the first slot of the boot order. Set HDD/SSD as first boot device!
 	
-## CPU Benchmark
+## CPU Benchmark Catalina
 
 ![Screenshot](https://github.com/5T33Z0/Lenovo-T530-Hackinosh-OpenCore/blob/main/Lenovo%20T530%20OpenCore%20Benchmark.png)
 
