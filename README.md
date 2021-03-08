@@ -20,7 +20,7 @@ Check the comments of the entries to decide which one you need to enable. By def
 
 **NOT WORKING**
 
----You can't boot Windows 10 from OpenCore's BootPicker if you use a single HDD/SSD for both Windows and MacOS. It crashes with ACPI Errors due to the patched DSDT.--- This has been fixed in the latest Release (0.6.8)
+~~You can't boot Windows 10 from OpenCore's BootPicker if you use a single HDD/SSD for both Windows and MacOS. It crashes with ACPI Errors due to the patched DSDT.~~ This has been fixed in the latest Release (0.6.8)
 
 **Workaround**: use the F12 Bootmenu and select "WindowsBootManager" instead to prohibit OpenCore injecting ACPI patches. Otherwise use the DSDT-less config.
 
