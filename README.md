@@ -1,9 +1,5 @@
 # Lenovo ThinkPad T530 Hackintosh OpenCore (DSTD-less)
 
-## IMPORTANT: DON'T UPDATE OpenCore to 0.6.7 Release Build! 
-
-Something was changed in the code which results in a KernelPanic. I don't know the exact source of the issue but it seems to be related to VoodooPS2. So don't update OpenCore, otherwise your system won't boot
-
 ## Description
 
 This Repo contains an EFI Folder with configs for running macOS Catalina and Big Sur with either a patched DSDT or DSDT-less on a Lenovo T530 Laptop using OpenCore (currently version 0.6.5).
