@@ -1,6 +1,8 @@
 # Lenovo ThinkPad T530 Hackintosh OpenCore (DSTD-less)
 
-## Description
+[TOC]
+
+## ABOUT
 
 This Repo contains an EFI Folder with configs for running macOS Catalina and Big Sur with either a patched DSDT or DSDT-less on a Lenovo T530 Laptop using OpenCore (currently version 0.6.5).
 
@@ -53,27 +55,27 @@ Before copying the EFI onto your SSD/HDD, you should do the following:
 
 - Test the EFI first using a FAT32 formatted USB Stick
 - SMBIOS and SIP
-	- Create SMBIOS infos using GenSMBIOS and add the data to `PlatformInfo > Generic`
-	- For Catalina: `MacBookPro10,1` or 10,2 (depending on CPU) and `csr-active-config: FF070000` to deactivate SIP
-	- For Big Sur: `MacBookPro11,1` or 11,2 (depending on CPU) and `csr-active-config: FF0F0000` to deactivate SIP
+  - Create SMBIOS infos using GenSMBIOS and add the data to `PlatformInfo > Generic`
+  - For Catalina: `MacBookPro10,1` or 10,2 (depending on CPU) and `csr-active-config: FF070000` to deactivate SIP
+  - For Big Sur: `MacBookPro11,1` or 11,2 (depending on CPU) and `csr-active-config: FF0F0000` to deactivate SIP
 - CPU:
-	- The `SSDT-PM.aml` inside the ACPI Folder is for an i7 3630QM. If you use a differnt CPU, disable it in the config and create your own using `ssdtPRGEN` in Post-Install. (See 'Fixing CPU Power Management' in 'Post-Install Section')
+  - The `SSDT-PM.aml` inside the ACPI Folder is for an i7 3630QM. If you use a differnt CPU, disable it in the config and create your own using `ssdtPRGEN` in Post-Install. (See 'Fixing CPU Power Management' in 'Post-Install Section')
 - Wifi/Bluetooth:
-    - Built-in Intel Wifi/Bluetooth cards don't work. But you can have a look at [OpenIntelWireless](https://github.com/OpenIntelWireless)
-    - 3rd Party cards require `1vyrain` jailbreak to unlock the BIOS in order to disable WLAN Whitelist (unless the 3rd party card is whitelisted)
-    - Broadcom cards require an additional kext for Bluetooth. Either `BrcmFirmwareData.kext` in "EFI > OC > Kexts" which will be injected through OpenCore or
-      `BrcmFirmwareRepo.kext` which needs to be installed into S/L/E since it cannot be inject by bootloaders, but works a bit more efficient according to the documentation.
-    - If you use a card from a different vendor replace the Kext(s) for networking for your device and update your config.
+  - Built-in Intel Wifi/Bluetooth cards don't work. But you can have a look at [OpenIntelWireless](https://github.com/OpenIntelWireless)
+  - 3rd Party cards require `1vyrain` jailbreak to unlock the BIOS in order to disable WLAN Whitelist (unless the 3rd party card is whitelisted)
+  - Broadcom cards require an additional kext for Bluetooth. Either `BrcmFirmwareData.kext` in "EFI > OC > Kexts" which will be injected through OpenCore or
+    `BrcmFirmwareRepo.kext` which needs to be installed into S/L/E since it cannot be inject by bootloaders, but works a bit more efficient according to the documentation.
+  - If you use a card from a different vendor replace the Kext(s) for networking for your device and update your config.
 - Editing/Updating config files:
-	- If you create Snapshots for the DSDT-less config using `ProperTree`, make sure to disable the "ACPI > Add" entries for `DSDT` files afterwards. Best practice would be to delete both DSDTs from the EFI anyway, if you use the DSDT-less config.
-	- DON'T create Snapshots for the config_DSDT.plist which is using the DSDT Files. Because this will add all the SSDTs back in, which are unnecessary since all these patches exist in the patched DSDT already. If you plan to use the DSDT-based config, you should delete all of the SSDTs except for `SSDT-PM`.
-	- Bootstrap: if you only have macOS installed on your HDD you can disable `BootstrapShort`. To do so, change Misc > Security > BootProtect to `None`.
+  - If you create Snapshots for the DSDT-less config using `ProperTree`, make sure to disable the "ACPI > Add" entries for `DSDT` files afterwards. Best practice would be to delete both DSDTs from the EFI anyway, if you use the DSDT-less config.
+  - DON'T create Snapshots for the config_DSDT.plist which is using the DSDT Files. Because this will add all the SSDTs back in, which are unnecessary since all these patches exist in the patched DSDT already. If you plan to use the DSDT-based config, you should delete all of the SSDTs except for `SSDT-PM`.
+  - Bootstrap: if you only have macOS installed on your HDD you can disable `BootstrapShort`. To do so, change Misc > Security > BootProtect to `None`.
 - Kexts
-	- DON'T Update `VoodooPS2Controller.kext`! The current version doesn't work well with the Trackpad even with an additional Trackpad SSDT. So exclude it from updates.
-	- `NoTouchID.kext` is no longer necessary for macOS 10.15.7 and beyond, so you can disable it.
+  - DON'T Update `VoodooPS2Controller.kext`! The current version doesn't work well with the Trackpad even with an additional Trackpad SSDT. So exclude it from updates.
+  - `NoTouchID.kext` is no longer necessary for macOS 10.15.7 and beyond, so you can disable it.
 - Max brightness level tweaks: 
-	- Set boot-arg `applbkl=1` for reasonable maximum brightness level controlled by `WhateverGreen`. 
-	- Set boot-arg `applbkl=0` for increased maximum brightness as defined in `SSDT-PNLF.aml`
+  - Set boot-arg `applbkl=1` for reasonable maximum brightness level controlled by `WhateverGreen`. 
+  - Set boot-arg `applbkl=0` for increased maximum brightness as defined in `SSDT-PNLF.aml`
 
 
 ## INSTALLATION
@@ -118,6 +120,7 @@ CPU Power Management should work fine after that. Optionally, you can install In
 
 By default, in macOS the [**ALT**] key is the [**CMD**] Key and the [**Windows**] Key is the [**Option Key**]. To switch them around, open System Settings > Keyboard. On the right there's a button for Special Keys. Just switch the Option and Command keys to the opposite and everything's fine.
 	
+
 ### Fixing Eject Function of the Optical Drive
 
 macOS locks the Optical drive sometimes so that you can't open it with the physical eject button – even if no media is present. To fix this, go to `System > Library > CoreService > Menu Extras` and double-click on `Eject.menu`. This adds an Eject Button to the Menu Bar.
@@ -126,44 +129,44 @@ macOS locks the Optical drive sometimes so that you can't open it with the physi
 ## BIOS SETTINGS
 
 - CONFIG [TAB]
-	- USB
-		- USB UEFI BIOS Support: `Enabled`
-		- USB 3.0 Mode: Enabled
+  - USB
+    - USB UEFI BIOS Support: `Enabled`
+    - USB 3.0 Mode: Enabled
     - Display
-   		- Boot Display Device: `ThinkPad LCD`
-      	- OS Detection for NVIDIA Optimus: `Disabled` (if availabe)
+     - Boot Display Device: `ThinkPad LCD`
+           	- OS Detection for NVIDIA Optimus: `Disabled` (if availabe)
     - Serial ATA (SATA)
-	   - SATA Controller Mode: `XHCI`
-	- CPU
-		- Core Multi-Processing: `Enabled`
-		- Intel (R) Hyper-Threading: `Enabled` (CPU must support it)
+     - SATA Controller Mode: `XHCI`
+  - CPU
+    - Core Multi-Processing: `Enabled`
+    - Intel (R) Hyper-Threading: `Enabled` (CPU must support it)
 
 - SECURITY [TAB]
-	- Security Chip: `Disabled`
-	- UEFI BIOS Update Options
-		- Flash BIOS Updating by End-Users: `Enabled`
-		- Secure Rollback Prevention: `Enabled`
-	- Memory Protection: `Enabled`
-	- Virtualization
-		- Intel (R) Virtualization Technology: `Enabled` (Windows only, disabled in macOS via `DisableIOMapper` Quirk)
-	- I/O Port Access.`Disable` the following devices and features:
-		- Wireless WAN
-		- ExpressCard Slot
-		- eSATA Port
-		- Fingerprint Reader
-		- Antitheft
-			- Current Setting: `Disabled`
-			- Computrace: `Disabled`
-		- Secure Boot
-			- Secure Boot: `Disabled`
-			
+  - Security Chip: `Disabled`
+  - UEFI BIOS Update Options
+    - Flash BIOS Updating by End-Users: `Enabled`
+    - Secure Rollback Prevention: `Enabled`
+  - Memory Protection: `Enabled`
+  - Virtualization
+    - Intel (R) Virtualization Technology: `Enabled` (Windows only, disabled in macOS via `DisableIOMapper` Quirk)
+  - I/O Port Access.`Disable` the following devices and features:
+    - Wireless WAN
+    - ExpressCard Slot
+    - eSATA Port
+    - Fingerprint Reader
+    - Antitheft
+      - Current Setting: `Disabled`
+      - Computrace: `Disabled`
+    - Secure Boot
+      - Secure Boot: `Disabled`
+
 - STARTUP [TAB]
-	- BOOT (Set the Order of Boot devices. Set HDD/SSD as firs device)
-	- UEFI/Legacy Boot: `UEFI only`
-		- CSM Support: `Disabled`
-	- Boot Mode: `Quick`
-	- Boot Order Lock: `Enabled`. Enable this to prohibit `WindowsBootManager` from taking over the first slot of the boot order. Set HDD/SSD as first boot device!
-	
+  - BOOT (Set the Order of Boot devices. Set HDD/SSD as firs device)
+  - UEFI/Legacy Boot: `UEFI only`
+    - CSM Support: `Disabled`
+  - Boot Mode: `Quick`
+  - Boot Order Lock: `Enabled`. Enable this to prohibit `WindowsBootManager` from taking over the first slot of the boot order. Set HDD/SSD as first boot device!
+
 ## CPU Benchmark Catalina
 
 ![Screenshot](https://github.com/5T33Z0/Lenovo-T530-Hackinosh-OpenCore/blob/main/Lenovo%20T530%20OpenCore%20Benchmark.png)
