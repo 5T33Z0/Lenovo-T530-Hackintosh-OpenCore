@@ -1,7 +1,5 @@
 # Lenovo ThinkPad T530 Hackintosh OpenCore (DSTD-less)
 
-[TOC]
-
 ## ABOUT
 
 This Repo contains an EFI Folder with configs for running macOS Catalina and Big Sur with either a patched DSDT or DSDT-less on a Lenovo T530 Laptop using OpenCore (currently version 0.6.5).
