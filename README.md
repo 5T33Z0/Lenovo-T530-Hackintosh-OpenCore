@@ -178,7 +178,6 @@ macOS locks the Optical drive sometimes so that you can't open it with the physi
 - Dortantia for the [OpenCore Install Guide](https://dortania.github.io/OpenCore-Install-Guide)
 - [Corpnewt](https://github.com/corpnewt) for incredibly useful Tools like SSDTTime, GenSMBIOS and ProperTree
 - Piker-Alpha for [ssdtPRGen](https://github.com/Piker-Alpha/ssdtPRGen.sh)
-- Al6042 and Sascha_77 from [Hackintosh-Forum](https://www.hackintosh-forum.de/) for providing patched DSDTs and initial EFI Folder for the T530
 - Daliansky for [OC Little Repo](https://ooh3dpsdytm34sfhws63yjfbwy--github-com.translate.goog/daliansky/OC-little) containing all the ACPI Hotpatches for OpenCore
 - [RealKiro](https://translate.google.com/translate?sl=auto&tl=en&u=https://github.com/RealKiro/Hackintosh) for Clover EFI with ACPI Patches for referencing
 - [Rehabman](https://github.com/RehabMan) for USBInjectall.kext, Laptop and DSDT patching guides
