@@ -12,9 +12,8 @@ This config is working 100% for T530 Models wih both HD (`AAPL,ig-platform-id 03
 
 If you simply want to have a well-running system, use this config! You need to rename it to `config.plist` in order to boot with this. But before you do, open the config and have a look at the `ACPI > Add` section. Enable either `DSDT-HD.aml` or `DSDT-HD+.aml` *(never both)* depending on the display panel of your T530:
 
-AAPL,ig-platform-id 04006601 = HD+ = 1600x900 px
-
-AAPL,ig-platform-id 03006601 = HD = 1366x768 px
+`AAPL,ig-platform-id` `04006601` = **HD+** = 1600x900 px  
+`AAPL,ig-platform-id` `03006601` = **HD** = 1366x768 px
 
 Check the comments of the entries to decide which one you need to enable. By default, the DSDT for HD+ panels is enabled.
 
@@ -132,7 +131,7 @@ macOS locks the Optical drive sometimes so that you can't open it with the physi
     - USB 3.0 Mode: Enabled
     - Display
      - Boot Display Device: `ThinkPad LCD`
-           	- OS Detection for NVIDIA Optimus: `Disabled` (if availabe)
+     - OS Detection for NVIDIA Optimus: `Disabled` (if availabe)
     - Serial ATA (SATA)
      - SATA Controller Mode: `XHCI`
   - CPU
