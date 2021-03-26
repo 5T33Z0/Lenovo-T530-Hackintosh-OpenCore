@@ -87,7 +87,6 @@ Before copying the EFI onto your SSD/HDD, you should do the following:
   - DON'T create Snapshots for the config_DSDT.plist which is using the DSDT Files. Because this will add all the SSDTs back in, which are unnecessary since all these patches exist in the patched DSDT already. If you plan to use the DSDT-based config, you should delete all of the SSDTs except for `SSDT-PM`.
   - Bootstrap: if you only have macOS installed on your HDD you can disable `BootstrapShort`. To do so, change Misc > Security > BootProtect to `None`.
 - Kexts
-  - DON'T Update `VoodooPS2Controller.kext`! The current version doesn't work well with the Trackpad even with an additional Trackpad SSDT. So exclude it from updates.
   - `NoTouchID.kext` is no longer necessary for macOS 10.15.7 and beyond, so you can disable it.
 - Max brightness level tweaks: 
   - Set boot-arg `applbkl=1` for reasonable maximum brightness level controlled by `WhateverGreen`. 
