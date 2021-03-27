@@ -176,9 +176,9 @@ Useful Tool: [ANYmacOS](https://www.sl-soft.de/en/anymacos/)
 
 CPU Power Management should work fine after that. Optionally, you can install Intel Power Gadget to check if the CPU runs within it's specs.
 
-**NOTE 1**: Only necessarry if you use a differnt CPU than i7 3630QM
-**NOTE 2**: You can also add modifiers to the terminal command for building the SSDT. You can - for example - drop the low frequency from their default 1200 MHz to 900 MHz in 100 mHz increments, but no lower than that. Otherwise the system crashes during boot. I suggests you experiement with the modifiers a bit.
-**NOTE 3**: If you feel really enthusiastic you could also enable XCPM if you're so inclined: https://github.com/5T33Z0/Lenovo-T530-Hackinosh-OpenCore/blob/main/Enable%20XCPM.md
+**NOTE 1**: Only necessarry if you use a differnt CPU than i7 3630QM </br>
+**NOTE 2**: You can also add modifiers to the terminal command for building the SSDT. You can - for example - drop the low frequency from their default 1200 MHz to 900 MHz in 100 mHz increments, but no lower than that. Otherwise the system crashes during boot. I suggests you experiement with the modifiers a bit.</br>
+**NOTE 3**: If you feel really confident and enthusiastic you could also re-enable XCPM. But in my experience the machine does not perform as good. You can follow this guide if you're so inclined: https://github.com/5T33Z0/Lenovo-T530-Hackinosh-OpenCore/blob/main/Enable%20XCPM.md
 </details>
 <details>
 <summary><strong>Fixing Sleep Issues</strong></summary>
