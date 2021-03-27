@@ -69,10 +69,10 @@ Any help on getting the lid fixed is highly, highly appreciated!
 </details>
 <details>
 <summary><strong>Incompatible Components</strong></summary>
-[ ] NVIDIA Optimus GPU not supported by macOS. Must be disabled in BIOS otherwise no Boot!
-[ ] Fingerprint Reader - model not supported by macOS
-[ ] Intel Bluetooth/WIFI. You need a macOS compatible card and a BIOS Unlock to disable the WLAN Card Whitelist using `1vyrain`
-[ ] VGA Port is not working: [Intel HD Graphics VGA Support](https://github.com/acidanthera/WhateverGreen/blob/master/Manual/FAQ.IntelHD.en.md#vga-support)
+- [ ] NVIDIA Optimus GPU not supported by macOS. Must be disabled in BIOS otherwise no Boot!
+- [ ] Fingerprint Reader - model not supported by macOS
+- [ ] Intel Bluetooth/WIFI. You need a macOS compatible card and a BIOS Unlock to disable the WLAN Card Whitelist using `1vyrain`
+- [ ] VGA Port is not working: [Intel HD Graphics VGA Support](https://github.com/acidanthera/WhateverGreen/blob/master/Manual/FAQ.IntelHD.en.md#vga-support)
 </details>
 
 ## INSTALLATION
