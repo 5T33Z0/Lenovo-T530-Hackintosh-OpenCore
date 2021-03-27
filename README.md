@@ -82,26 +82,26 @@ Any help on getting the lid fixed is highly, highly appreciated!
 
 Before copying the EFI onto your SSD/HDD, you should do the following:
 
-- Test the EFI first using a FAT32 formatted USB Stick
-- SMBIOS and SIP
-  - Create SMBIOS infos using GenSMBIOS and add the data to `PlatformInfo > Generic`
-  - For Catalina: `MacBookPro10,1` or 10,2 (depending on CPU) and `csr-active-config: FF070000` to deactivate SIP
+- **CAUTION**: Test the EFI first, using a FAT32 formatted USB Stick!
+- **SMBIOS**: Create SMBIOS infos using GenSMBIOS and add the data to `PlatformInfo > Generic`
+- **System Integrity Protection (SIP)**
+	- For Catalina: `MacBookPro10,1` or 10,2 (depending on CPU) and `csr-active-config: FF070000` to deactivate SIP
   - For Big Sur: `MacBookPro11,1` or 11,2 (depending on CPU) and `csr-active-config: 67080000` to deactivate SIP
-- CPU:
+- **CPU**
   - The `SSDT-PM.aml` inside the ACPI Folder is for an i7 3630QM. If you use a differnt CPU, disable it in the config and create your own using `ssdtPRGEN` in Post-Install. (See 'Fixing CPU Power Management' in 'Post-Install Section')
-- Wifi/Bluetooth:
+- **Wifi/Bluetooth**
   - Built-in Intel Wifi/Bluetooth cards don't work. But you can have a look at [OpenIntelWireless](https://github.com/OpenIntelWireless)
   - 3rd Party cards require `1vyrain` jailbreak to unlock the BIOS in order to disable WLAN Whitelist (unless the 3rd party card is whitelisted)
   - Broadcom cards require an additional kext for Bluetooth. Either `BrcmFirmwareData.kext` in "EFI > OC > Kexts" which will be injected through OpenCore or
     `BrcmFirmwareRepo.kext` which needs to be installed into S/L/E since it cannot be inject by bootloaders, but works a bit more efficient according to the documentation.
   - If you use a card from a different vendor replace the Kext(s) for networking for your device and update your config.
-- Editing/Updating config files:
+- **Editing/Updating config files:**
   - If you create Snapshots for the DSDT-less config using `ProperTree`, make sure to disable the "ACPI > Add" entries for `DSDT` files afterwards. Best practice would be to delete both DSDTs from the EFI anyway, if you use the DSDT-less config.
   - DON'T create Snapshots for the config_DSDT.plist which is using the DSDT Files. Because this will add all the SSDTs back in, which are unnecessary since all these patches exist in the patched DSDT already. If you plan to use the DSDT-based config, you should delete all of the SSDTs except for `SSDT-PM`.
   - Bootstrap: if you only have macOS installed on your HDD you can disable `BootstrapShort`. To do so, change Misc > Security > BootProtect to `None`.
-- Kexts
-  - `NoTouchID.kext` is no longer necessary for macOS 10.15.7 and beyond, so you can disable it.
-- Max brightness level tweaks: 
+- **Kexts**
+  - `NoTouchID.kext` is no longer necessary for macOS 10.15.7 and beyond, so you can disable it (it's excluded from current release anyway).
+- **Backlight Brightness Level tweaks**: 
   - Set boot-arg `applbkl=1` for reasonable maximum brightness level controlled by `WhateverGreen`. 
   - Set boot-arg `applbkl=0` for increased maximum brightness as defined in `SSDT-PNLF.aml`
 </details>
