@@ -222,5 +222,5 @@ macOS locks the optical drive sometimes so that you can't open it with the physi
 - Piker-Alpha for [ssdtPRGen](https://github.com/Piker-Alpha/ssdtPRGen.sh)
 - Daliansky for [OC Little Repo](https://ooh3dpsdytm34sfhws63yjfbwy--github-com.translate.goog/daliansky/OC-little) containing all the ACPI Hotpatches for OpenCore
 - [RealKiro](https://translate.google.com/translate?sl=auto&tl=en&u=https://github.com/RealKiro/Hackintosh) for Clover EFI with ACPI Patches for referencing
-- [Rehabman](https://github.com/RehabMan) for USBInjectall.kext, Laptop and DSDT patching guides
-- jsassu20 for [MacDown](https://github.com/jsassu20/macdown) Markdown Editor
+- [Rehabman](https://github.com/RehabMan) for Laptop and DSDT patching guides
+- uranusjr for [MacDown](https://github.com/jsassu20/macdown) Markdown Editor
