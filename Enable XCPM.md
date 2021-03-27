@@ -59,16 +59,14 @@ Since Big Sur requires `MacBookPro11,x` to boot, `ssdtPRGen` fails to generate S
 
 **Disadvadtages** of using `MacBookPro10,1`: 
 
-- You won't be able to install System Updates because you won't be notified about them. But there's a simple workaround.
+- You won't be able to install System Updates because you won't be notified about them. But there's a simple **workaround**:
 
-	**Workaround**: 
-
-	- Change `SystemProductName` to `MacBookPro11,1`
-	- Set `csr-active-config` to `67080000`
-	- Reboot
-	- Reset NVRAM
-	- Boot macOS
-	- Check for and install Updates
-	- After the Updates are installed, revert to SMBIOS `MacBookPro10,1`
-	- Set `csr-active-config` to `FF070000` (For Catalina) 
-	- Reboot
+  - Change `SystemProductName` to `MacBookPro11,1`
+  - Set `csr-active-config` to `67080000`
+  - Reboot
+  - Reset NVRAM
+  - Boot macOS
+  - Check for and install Updates
+  - After the Updates are installed, revert to SMBIOS `MacBookPro10,1`
+  - Set `csr-active-config` to `FF070000` (For Catalina)
+  - Reboot
