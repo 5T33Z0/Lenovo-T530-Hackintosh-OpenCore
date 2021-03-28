@@ -18,7 +18,7 @@ So that's exactly what we are going to do: re-enable `XPCM` with a kernel patch 
 ## How-To:
 
 ### 1. Enable XCPM for Ivy Bridge:
-* Add the Kernel Patch inside of "XCPM_IvyBridge.plist" to your `config.plist` and save it
+* Add the Kernel Patch inside of [XCPM_IvyBridge.plist](https://github.com/5T33Z0/Lenovo-T530-Hackinosh-OpenCore/blob/main/Guides/XCPM_IvyBridge.plist) to your `config.plist` and save it
 * Enable `AppleXcpmExtraMsrs` under Kernel > Quirks.
 * Save.
 
