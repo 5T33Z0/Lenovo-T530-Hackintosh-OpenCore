@@ -159,8 +159,8 @@ Before copying the EFI onto your SSD/HDD, you should do the following:
 If you have already have macOS installed but want to perform a clean install, you can either download macOS from the App Store or use [**ANYmacOS**](https://www.sl-soft.de/en/anymacos/). It's hassl-free App than can download High Sierra, Catalina and Big Sur and also create a USB Installer for you.
 
 If you are on Windows or Linux follow the guide provided by [Dortania](https://dortania.github.io/OpenCore-Install-Guide/installer-guide/#making-the-installer)
-
 </details>
+
 ## POST-INSTALL
 </details>
 <details>
