@@ -7,22 +7,22 @@ Apple deactivated the `X86PlatformPlugin` support for Ivy Bridge CPUs in macOS a
 
 So that's exactly what we are going to do: re-enable `XPCM` with a kernel patch and a modified `SSDT-PM.aml` or `SSDT-PLUG.aml` to use the `X86PlatformPlugin` (i.e. setting Plugin Type to `1`).
 
-### Compatibility: macOS Catalina (10.15.5+) to Big Sur (11.3 beta)
+## Compatibility: macOS Catalina (10.15.5+) to Big Sur (11.3 beta)
 
-### Requirements:
+## Requirements:
 
 * Intel Ivy Bridge CPU
 * Tools: Terminal, ssdtPRGEN, SSDTTime (optional), Plist Editor, MaciASL (optional), IORegistryExplorer (optional), CPUFriendFriend (optional)
 * SMBIOS that supports Ivy Bridge CPUs (like MacBookPro9,x or 10,x)
 
-### How-To:
+## How-To:
 
-1. Enable XCPM for Ivy Bridge:
+### 1. Enable XCPM for Ivy Bridge:
 	* Add the Kernel Patch inside of "XCPM_IvyBridge.plist" to your `config.plist` and save it
 	* Enable `AppleXcpmExtraMsrs` under Kernel > Quirks.
 	* Save.
 
-2. Generate a modified `SSDT-PM` for Plugin Type 1
+### 2. Generate a modified `SSDT-PM` for Plugin Type 1
 
 	Next, we need to set the plugin type of SSDT-PM.aml to "1". To do this, we generate a new SSDT-PM with ssdtPRGen. Since it generatea SSDTs without XCPM support by default, we have to modify the command line in terminal.
 
