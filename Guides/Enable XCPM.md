@@ -18,32 +18,30 @@ So that's exactly what we are going to do: re-enable `XPCM` with a kernel patch 
 ## How-To:
 
 ### 1. Enable XCPM for Ivy Bridge:
-	* Add the Kernel Patch inside of "XCPM_IvyBridge.plist" to your `config.plist` and save it
-	* Enable `AppleXcpmExtraMsrs` under Kernel > Quirks.
-	* Save.
+* Add the Kernel Patch inside of "XCPM_IvyBridge.plist" to your `config.plist` and save it
+* Enable `AppleXcpmExtraMsrs` under Kernel > Quirks.
+* Save.
 
 ### 2. Generate a modified `SSDT-PM` for Plugin Type 1
+Next, we need to set the plugin type of SSDT-PM.aml to "1". To do this, we generate a new SSDT-PM with ssdtPRGen. Since it generatea SSDTs without XCPM support by default, we have to modify the command line in terminal.
 
-	Next, we need to set the plugin type of SSDT-PM.aml to "1". To do this, we generate a new SSDT-PM with ssdtPRGen. Since it generatea SSDTs without XCPM support by default, we have to modify the command line in terminal.
+Terminal command for ssdtPRGen: `sudo /Users/YOUR_USERNAME/ssdtPRGen.sh -x 1`
 
-	Terminal command for ssdtPRGen: 
-	`sudo /Users/YOUR_USERNAME/ssdtPRGen.sh -x 1`
+`-x 1` sets plugin type to 1
 
-	`-x 1` sets plugin type to 1
+The finished ssdt.aml and ssdt.dsl are located in `/Users/YOUR_USERNAME/Library/ssdtPRGen`
 
-	The finished ssdt.aml and ssdt.dsl are located in `/Users/YOUR_USERNAME/Library/ssdtPRGen`
+A look into the ssdt.aml file list a summary of all settings for the SSDT. If there is a "1" in the last line, everything is correct:
 
-	A look into the ssdt.aml file list a summary of all settings for the SSDT. If there is a "1" in the last line, everything is correct:
+> Debug = "machdep.xcpm.mode.....: 1"
 
-	> Debug = "machdep.xcpm.mode.....: 1"
+* Rename the newly generated "ssdt.aml" to "SSDT-PM.aml"
+* Copy it to EFI > OC > ACPI (backup or rename the original)
+* Update your config.plist
+* Reboot
+* Enter in terminal: `sysctl machdep.xcpm.mode`
 
-	* Rename the newly generated "ssdt.aml" to "SSDT-PM.aml"
-	* Copy it to EFI > OC > ACPI (backup or rename the original)
-	* Update your config.plist
-	* Reboot
-	* Enter in terminal: `sysctl machdep.xcpm.mode`
-
-	If the output is "1", the `X86PlatformPlugin` is active, otherwise it is not.
+If the output is "1", the `X86PlatformPlugin` is active, otherwise it is not.
 
 ## NOTE for Big Sur Users:
 Since Big Sur requires `MacBookPro11,x` to boot, `ssdtPRGen` fails to generate SSDT-PM in this case, because it relies on Board-IDs containing data for Plugin-Type 0. As a workaround, you can either:
