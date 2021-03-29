@@ -43,8 +43,8 @@ The default config is for T530 Models with HD+ displays (≥1600x900 px). If you
 
 **NOT WORKING:**
 
-- Lid: Triggerein Sleep/Clamshell mode and switching over the main display to an External Monitor when the lid is closed
-- Power LED keeps pulsing after exiting sleep
+- [ ] Lid: Triggering Sleep or Switching over the main display to an external monitor when closing the lid is not working. 
+- [ ] Power LED keeps pulsing after exiting sleep mode
 
 Any help on getting the lid fixed is highly, highly appreciated!
 </details>
