@@ -21,6 +21,7 @@ The EFI Folder contains 2 configs. The 1st utilizes a patched `DSDT` and works f
 <details>
 <summary><strong>DSDT-based config</strong></summary>
 
+### DSDT-based config
 This config is working 100% for T530 Models and supports both HD and HD+ display panels.
 
 If you simply want to a well-running system, use this config! You need to rename it to `config.plist` in order to boot with this. But before you do, open the config and have a look at the `ACPI > Add` section. Enable either `DSDT-HD.aml` or `DSDT-HD+.aml` *(never both)* depending on the display panel of your T530:
@@ -33,6 +34,7 @@ Check the comments of the entries to decide which one you need to enable. By def
 <details>
 <summary><strong>DSDT-less Config.plist</strong></summary>
 
+### Hotpatch-based Config 
 This config is for running macOS without a patched DSDT – it relies on solely binary Renames and ACPI Hotpatches (SSDTs) instead, which is the recommended method for using OpenCore anyway. You need to rename it to `config.plist` in order to make it bootable.
 
 Since this method does not rely on the presence of a patched DSDT which might mismatch the system's DSDT for the installed BIOS Version, the process of hotpatching is more precise and independent of the installed BIOS version.
