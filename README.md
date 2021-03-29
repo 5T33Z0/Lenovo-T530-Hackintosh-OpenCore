@@ -54,7 +54,7 @@ Any help on getting the lid fixed is highly, highly appreciated!
 <summary><strong>ThinkPad Model</strong></summary>
 
 | Component           | Details                                       |
-| :------------------ | :-------------------------------------------- |
+| ------------------: | :-------------------------------------------- |
 | Model               | Lenovo ThinkPad T530, Model# 2429-62G         |
 | BIOS Version        | 2.77, unlocked with IvyRain                   |
 | Processor           | Intel(r) Core i7 3630QM                       |
