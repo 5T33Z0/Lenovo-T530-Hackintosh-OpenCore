@@ -54,6 +54,7 @@ Check the comments of the entries to decide which one you need to enable. By def
 <details>
 <summary><strong>ThinkPad Model</strong></summary>
 
+### ThinkPad T530 Specs 
 | Component           | Details                                       |
 | ------------------: | :-------------------------------------------- |
 | Model               | Lenovo ThinkPad T530, Model# 2429-62G         |
@@ -81,7 +82,8 @@ Check the comments of the entries to decide which one you need to enable. By def
 <details>
 <summary><strong>Preparation: Do's and Dont's</strong></summary>
 
-Before copying the EFI onto your SSD/HDD, you should do the following:
+### Do's and Dont's
+Before you copy the EFI onto your system SSD/HDD, you should do the following:
 
 - **CAUTION**: Test the EFI first, using a FAT32 formatted USB Stick!
 - **SMBIOS**: Create SMBIOS infos using GenSMBIOS and add the data to `PlatformInfo > Generic`
@@ -109,6 +111,7 @@ Before copying the EFI onto your SSD/HDD, you should do the following:
 <details>
 <summary><strong>EFI Handling</strong></summary>
 
+### EFI How To
 0. Download the EFI Folder from the `Releases` Section on the right and unpack it
 1. Read "Preparations" Section first
 2. Rename the config file of your choice to "config.plist"
@@ -122,8 +125,7 @@ Before copying the EFI onto your SSD/HDD, you should do the following:
 <details>
 <summary><strong>BIOS Settings</strong></summary>
 
-## BIOS Settings
-
+### BIOS Settings
 **Latest BIOS Version:** `2.77`
 [**DOWNLOAD**](https://pcsupport.lenovo.com/us/en/products/laptops-and-netbooks/thinkpad-t-series-laptops/thinkpad-t530/downloads/ds029246?clickid=RhAUWZ1-exyLRCuwUx0Mo3ELUkERY-RmHTlwSg0&Program=3786&pid=269814&acid=ww%3Aaffiliate%3A74clty&cid=de%3Aaffiliate%3Axg02ds)
 
@@ -174,6 +176,7 @@ If you are on Windows or Linux follow the guide provided by [Dortania](https://d
 <details>
 <summary><strong>Fixing CPU Power Management</strong></summary>
 
+### Fixing CPU Power Management 
 1. Open Config
 2. Enable the 2 Patches under "ACPI > Delete" (`Drop CpuPm` and `Drop Cpu0Ist`)
 3. Save config and reboot
@@ -202,13 +205,15 @@ If you have issues with sleep, run the following commands in Terminal:
 	sudo chflags uchg /var/vm/sleepimage
 </details>
 <details>
-<summary><strong>Switching Command and Option Key</strong></summary>
+<summary><strong>Fixing Command and Option Keys</strong></summary>
 
+### Fixing Command and Option Keys positions
 By default, in macOS the [**ALT**] key is the [**CMD**] Key and the [**Windows**] Key is the [**Option Key**]. To switch them around, open System Settings > Keyboard. On the right there's a button for "Special Keys". Just switch the Option and Command keys to the opposite and everything's fine.
 </details>
 <details>
 <summary><strong>Adding `Eject` Button to the Menu bar</strong></summary>
 
+### Eject Button 
 macOS locks the optical drive sometimes so that you can't open it with the physical eject button – even if no media is present. To fix this you have 2 Options.
 
 - Option 1: Adding an Eject Button to the Menu Bar
