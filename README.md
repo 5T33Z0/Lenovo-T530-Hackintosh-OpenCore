@@ -217,7 +217,7 @@ macOS locks the optical drive sometimes so that you can't open it with the physi
 
 ## CREDITS and THANK YOU's
 
-- n4ru for [1vyrain jailbreak](https://github.com/n4ru/1vyrain) to remove WLAN whitelist
+- George Kushnir for [1vyrain BIOS Jailbreak](https://github.com/n4ru/1vyrain) to remove WLAN whitelist
 - Acidanthera and Team for the [OpenCore Bootloader](https://github.com/acidanthera/OpenCorePkg) 
 - Dortantia for the [OpenCore Install Guide](https://dortania.github.io/OpenCore-Install-Guide)
 - [Corpnewt](https://github.com/corpnewt) for incredibly useful Tools like SSDTTime, GenSMBIOS and ProperTree
@@ -225,4 +225,4 @@ macOS locks the optical drive sometimes so that you can't open it with the physi
 - Daliansky for [OC Little Repo](https://ooh3dpsdytm34sfhws63yjfbwy--github-com.translate.goog/daliansky/OC-little) containing all the ACPI Hotpatches for OpenCore
 - [RealKiro](https://translate.google.com/translate?sl=auto&tl=en&u=https://github.com/RealKiro/Hackintosh) for Clover EFI with ACPI Patches for referencing
 - [Rehabman](https://github.com/RehabMan) for Laptop and DSDT patching guides
-- uranusjr for [MacDown](https://github.com/jsassu20/macdown) Markdown Editor
+- uranusjr for [MacDown](https://github.com/MacDownApp/macdown) Markdown Editor
