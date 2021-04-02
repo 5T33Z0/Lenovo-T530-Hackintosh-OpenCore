@@ -19,23 +19,10 @@ This Repo contains an EFI Folder with configs for running macOS Catalina and Big
 The EFI Folder contains 2 configs. The 1st utilizes a patched `DSDT` and works flawlessly. The 2nd config is DSDT-less, solely based on binary Renames and SSDT Hotpatches – just like it's suppossed to be done in OpenCore. It's not working perfectly (99 %) but overall, it runs smoother and snappier than the DSDT-based config and also performs better according to the test results in Geekbench.
 
 <details>
-<summary><strong>DSDT-based config</strong></summary>
-
-### DSDT-based config
-This config is working 100% for T530 Models and supports both HD and HD+ display panels.
-
-If you simply want to a well-running system, use this config! You need to rename it to `config.plist` in order to boot with this. But before you do, open the config and have a look at the `ACPI > Add` section. Enable either `DSDT-HD.aml` or `DSDT-HD+.aml` *(never both)* depending on the display panel of your T530:
-
-`AAPL,ig-platform-id` `04006601` = **HD+** = 1600x900 px  
-`AAPL,ig-platform-id` `03006601` = **HD** = 1366x768 px
-
-Check the comments of the entries to decide which one you need to enable. By default, the DSDT for HD+ panels is enabled.
-</details>
-<details>
 <summary><strong>DSDT-less Config.plist</strong></summary>
 
-### Hotpatch-based Config 
-This config is for running macOS without a patched DSDT – it relies on solely binary Renames and ACPI Hotpatches (SSDTs) instead, which is the recommended method for using OpenCore anyway. You need to rename it to `config.plist` in order to make it bootable.
+### Hotpatch-based Config (DSDT-less)
+This config is for running macOS without a patched DSDT – it relies solely on binary Renames and ACPI Hotpatches (SSDTs) instead, which is the recommended method for using OpenCore anyway. You need to rename it to `config.plist` in order to make it bootable.
 
 Since this method does not rely on the presence of a patched DSDT which might mismatch the system's DSDT for the installed BIOS Version, the process of hotpatching is more precise and independent of the installed BIOS version.
 
@@ -48,6 +35,19 @@ The default config is for T530 Models with HD+ displays (≥1600x900 px). If you
 - Lid: triggering sleep or entering Clamshell Mode when closing the lid are not working. In Clamshell Mode, the Desktop and Menu Bar from the Laptop's display are transferred over to an external display when the lid is closed. 
 
 Any help on getting the lid fixed is highly, highly appreciated!
+</details>
+<details>
+<summary><strong>DSDT-based config</strong></summary>
+
+### DSDT-based config
+This config is working 100% for T530 Models and supports both HD and HD+ display panels.
+
+If you simply want to a well-running system, use this config! You need to rename it to `config.plist` in order to boot with this. But before you do, open the config and have a look at the `ACPI > Add` section. Enable either `DSDT-HD.aml` or `DSDT-HD+.aml` *(never both)* depending on the display panel of your T530:
+
+`AAPL,ig-platform-id` `04006601` = **HD+** = 1600x900 px  
+`AAPL,ig-platform-id` `03006601` = **HD** = 1366x768 px
+
+Check the comments of the entries to decide which one you need to enable. By default, the DSDT for HD+ panels is enabled.
 </details>
 
 ## HARDWARE SPECS
