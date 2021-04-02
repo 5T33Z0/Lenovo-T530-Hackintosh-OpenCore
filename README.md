@@ -19,9 +19,9 @@ This Repo contains an EFI Folder with configs for running macOS Catalina and Big
 The EFI Folder contains 2 configs. The 1st utilizes a patched `DSDT` and works flawlessly. The 2nd config is DSDT-less, solely based on binary Renames and SSDT Hotpatches – just like it's suppossed to be done in OpenCore. It's not working perfectly (99 %) but overall, it runs smoother and snappier than the DSDT-based config and also performs better according to the test results in Geekbench.
 
 <details>
-<summary><strong>DSDT-less Config.plist</strong></summary>
+<summary><strong>DSDT-less config (recommended)</strong></summary>
 
-### Hotpatch-based Config (DSDT-less)
+### Hotpatch-based config (DSDT-less)
 This config is for running macOS without a patched DSDT – it relies solely on binary Renames and ACPI Hotpatches (SSDTs) instead, which is the recommended method for using OpenCore anyway. You need to rename it to `config.plist` in order to make it bootable.
 
 Since this method does not rely on the presence of a patched DSDT which might mismatch the system's DSDT for the installed BIOS Version, the process of hotpatching is more precise and independent of the installed BIOS version.
