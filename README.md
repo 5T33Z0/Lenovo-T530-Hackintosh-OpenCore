@@ -197,6 +197,7 @@ CPU Power Management should work fine after that. Optionally, you can install In
 <details>
 <summary><strong>Fixing Sleep Issues</strong></summary>
 
+### Fixing Sleepimage
 If you have issues with sleep, run the following commands in Terminal:
 
 	sudo pmset hibernatemode 0
