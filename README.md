@@ -1,4 +1,4 @@
-# Lenovo ThinkPad T530 Hackintosh OpenCore (DSTD-less)
+# Lenovo ThinkPad T530 Hackintosh OpenCore
 
 **5T4TU5: Work in Progress. Looking good though…**
 
@@ -46,7 +46,7 @@ The default config is for T530 Models with HD+ displays (≥1600x900 px). If you
 **NOT WORKING:**
 
 - [ ] Lid: Triggering Sleep or Switching over the main display to an external monitor when closing the lid is not working. 
-- [ ] Power LED keeps pulsing after exiting sleep mode
+- [x] Power LED keeps pulsing after exiting sleep mode
 
 Any help on getting the lid fixed is highly, highly appreciated!
 </details>
@@ -226,3 +226,4 @@ macOS locks the optical drive sometimes so that you can't open it with the physi
 - [RealKiro](https://translate.google.com/translate?sl=auto&tl=en&u=https://github.com/RealKiro/Hackintosh) for Clover EFI with ACPI Patches for referencing
 - [Rehabman](https://github.com/RehabMan) for Laptop and DSDT patching guides
 - uranusjr for [MacDown](https://github.com/MacDownApp/macdown) Markdown Editor
+- [banhbaoxamlan](https://github.com/banhbaoxamlan/X230-Hackintosh) for his X230 repo which had all the files for fixing the LED pulsing issue.
