@@ -202,10 +202,10 @@ By default, in macOS the [**ALT**] key is the [**CMD**] Key and the [**Windows**
 
 macOS locks the optical drive sometimes so that you can't open it with the physical eject button – even if no media is present. To fix this you have 2 Options.
 
-- Option 1: Adding an Eject Button to the Menu bar
+- Option 1: Adding an Eject Button to the Menu Bar
 	- Go to `System > Library > CoreService > Menu Extras` and double-click on `Eject.menu`. This adds an Eject Button to the Menu Bar.
 
-- Option 2: Press and hold the `INS` button (right below the Power Button) until the EJect Icon apperas on the screen.
+- Option 2: Press and hold the `INS` button (right below the Power Button) until the Eject Icon appears on the screen and the CD tray opens.
 </details>
 
 ## CPU BENCHMARK
