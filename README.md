@@ -22,13 +22,13 @@ The EFI Folder contains 2 configs. The 1st utilizes a patched `DSDT` and works f
 <summary><strong>DSDT-less config (recommended)</strong></summary>
 
 ### Hotpatch-based config (DSDT-less)
-This config is for running macOS without a patched DSDT – it relies solely on binary Renames and ACPI Hotpatches (SSDTs) instead, which is the recommended method for using OpenCore anyway. You need to rename it to `config.plist` in order to make it bootable.
+This config is for running macOS without a patched `DSDT` – it relies solely on binary Renames and ACPI Hotpatches (SSDTs) instead, which is the recommended method for using OpenCore anyway. You need to rename it to `config.plist` in order to make it bootable.
 
-Since this method does not rely on the presence of a patched DSDT which might mismatch the system's DSDT for the installed BIOS Version, the process of hotpatching is more precise and independent of the installed BIOS version.
+Since this method does not rely on a patched DSDT which might mismatch the system's DSDT for the installed BIOS, the process of hotpatching is more precise and independent of the installed BIOS version.
 
-So, instead of just replacing the whole system `DSDT` with a patched one during boot, only the things which need fixing are patched-in on the fly during boot. This makes the system boot faster, runs smoother and snappier. 
+So, instead of just replacing the whole system `DSDT` with a patched one during the boot process, only the things which need fixing are patched-in on the fly. This makes the system boot faster, run smoother and snappier and slightly improves overall performance as well.
 
-The default config is for T530 Models with HD+ displays (≥1600x900 px). If you have a model with a HD panel you need to selecr the correct Framebuffer-Patch for IntelHD 4000 (`AAPL,ig-platform-id 03006601`). It is integrated in the config but is deactivated by a `#`.
+**NOTE**: by default, the iGPU (IntelHD 4000) is configured for T530 models with `HD+` panels (≥1600x900 px). If you have a model with a `HD` panel (1366x768), you need to enable the other Framebuffer-Patch under `DevicePropeties` instead. See the section "Preparation: Do's and Dont's" for Details.
 </details>
 <details>
 <summary><strong>DSDT-based config</strong></summary>
@@ -82,6 +82,15 @@ Before you copy the EFI onto your system SSD/HDD, you should do the following:
 
 - **CAUTION**: Test the EFI first, using a FAT32 formatted USB Stick!
 - **SMBIOS**: Create SMBIOS infos using GenSMBIOS and add the data to `PlatformInfo > Generic`
+- **Framebuffer-Patch**: 2 variants of T530 models exist, using display panels with different screen resolutions – HD+ and HD - having different identifiers:
+
+	`AAPL,ig-platform-id 04006601` = HD+ ≥ 1600x900 px
+	`AAPL,ig-platform-id 03006601` = HD = 1366x768 px
+
+	By default, the Framebuffer-Patch for HD+ models is enabled in the config under 	`DeviceProperties` > `PciRoot(0x0)/Pci(0x2,0x0)`.
+
+	If your model uses a `HD` panel, you need to disable `PciRoot(0x0)/Pci(0x2,0x0)` by placing a `#` in front of it. Next, enable "#PciRoot(0x0)/Pci(0x2,0x0) 1366x768 px" instead. Delete the leading `#` and the description after the bracket, so that it looks this: `PciRoot(0x0)/Pci(0x2,0x0)`.
+
 - **System Integrity Protection (SIP)**
 	- For Catalina: `MacBookPro10,1` or 10,2 (depending on CPU) and `csr-active-config: FF070000` to deactivate SIP
   - For Big Sur: `MacBookPro11,1` or 11,2 (depending on CPU) and `csr-active-config: 67080000` to deactivate SIP
