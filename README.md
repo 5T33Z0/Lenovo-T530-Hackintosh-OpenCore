@@ -82,14 +82,18 @@ Before you copy the EFI onto your system SSD/HDD, you should do the following:
 
 - **CAUTION**: Test the EFI first, using a FAT32 formatted USB Stick!
 - **SMBIOS**: Create SMBIOS infos using GenSMBIOS and add the data to `PlatformInfo > Generic`
-- **Framebuffer-Patch**: 2 variants of T530 models exist, using display panels with different screen resolutions – HD+ and HD - having different identifiers:
+- **Integrtaed Graphics**: 
+Two variants of T530 models with different display panels and screen resolutions exist: `HD+` and `HD` models. Both are using different identifiers:
 
 	`AAPL,ig-platform-id 04006601` = HD+ ≥ 1600x900 px
 	`AAPL,ig-platform-id 03006601` = HD = 1366x768 px
 
-	By default, the Framebuffer-Patch for HD+ models is enabled in the config under 	`DeviceProperties` > `PciRoot(0x0)/Pci(0x2,0x0)`.
+	By default, the Framebuffer-Patch for `HD+` models is enabled in the config under `DeviceProperties` > `PciRoot(0x0)/Pci(0x2,0x0)`.
 
-	If your model uses a `HD` panel, you need to disable `PciRoot(0x0)/Pci(0x2,0x0)` by placing a `#` in front of it. Next, enable "#PciRoot(0x0)/Pci(0x2,0x0) 1366x768 px" instead. Delete the leading `#` and the description after the bracket, so that it looks this: `PciRoot(0x0)/Pci(0x2,0x0)`.
+	If your model uses a `HD` panel, you need to disable `PciRoot(0x0)/Pci(0x2,0x0)` by placing a `#` in front of it. 
+	Next, enable "#PciRoot(0x0)/Pci(0x2,0x0) 1366x768 px" instead. Delete the leading `#` and the description after the bracket, so that it looks this: `PciRoot(0x0)/Pci(0x2,0x0)`.
+	
+	**HINT**: if your screen turns off during boot, you are using the wrong Framebuffer-Patch!
 
 - **System Integrity Protection (SIP)**
 	- For Catalina: `MacBookPro10,1` or 10,2 (depending on CPU) and `csr-active-config: FF070000` to deactivate SIP
