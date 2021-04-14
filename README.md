@@ -4,13 +4,14 @@
 
 [![T530](https://img.shields.io/badge/ThinkPad-T530-informational.svg)](https://psref.lenovo.com/syspool/Sys/PDF/withdrawnbook/ThinkPad_T530.pdf)
 [![OpenCore](https://img.shields.io/badge/OpenCore-0.6.9-orange.svg)](https://github.com/acidanthera/OpenCorePkg/releases/latest)
+[![MacOS High Sierra](https://img.shields.io/badge/macOS-10.13.6-white.svg)](https://support.apple.com/kb/SP765?locale=en_US) 
 [![MacOS Catalina](https://img.shields.io/badge/macOS-10.15.7-white.svg)](https://www.apple.com/li/macos/catalina/) 
 [![MacOS Big Sur](https://img.shields.io/badge/macOS-11.2.3-white.svg)](https://www.apple.com/macos/big-sur/)
 [![release](https://img.shields.io/badge/Download-latest-success.svg)](https://github.com/5T33Z0/Lenovo-T530-Hackinosh-OpenCore/releases)
 
 ## SUMMARY
 
-This Repo contains an EFI Folder with configs for running macOS Catalina and Big Sur with either a patched `DSDT` or `DSDT-less` on a Lenovo T530 Laptop using OpenCore.
+This Repo contains an EFI Folder with configs for running macOS Catalina and Big Sur with either a patched `DSDT` or `DSDT-less` on a Lenovo T530 Laptop using OpenCore. Compatible and tested with: macOS High Sierra, Catalina and Big Sur.
 
 **NOTE**: Please read the README carefully and follow the instructions.
 
