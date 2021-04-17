@@ -133,7 +133,7 @@ Two variants of T530 models with different display panels and screen resolutions
 7. Reboot again
 8. Select macOS to boot. It's currently configured for running Catalina. If you want to run Big Sur, you need to use SMBIOS 11,x. You can research a suitable/matching SMBIOS for your CPU on everymac.com
 
-**NOTE**: If your macOS Drive is not shown in the BootPicker, enable `ConnectDrivers` in the Config located under `UEFI`.
+**NOTE**: If your macOS Drive or macOS Installer does not shown up in the BootPicker, enable `ConnectDrivers` in the Config located under `UEFI`.
 </details>
 <details>
 <summary><strong>BIOS Settings</strong></summary>
