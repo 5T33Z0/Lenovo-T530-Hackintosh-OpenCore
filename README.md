@@ -9,6 +9,8 @@
 [![MacOS Big Sur](https://img.shields.io/badge/macOS-11.2.3-white.svg)](https://www.apple.com/macos/big-sur/)
 [![release](https://img.shields.io/badge/Download-latest-success.svg)](https://github.com/5T33Z0/Lenovo-T530-Hackinosh-OpenCore/releases)
 
+![](https://github.com/5T33Z0/Lenovo-T530-Hackinosh-OpenCore/blob/main/Pics/BootPicker.png)
+
 ## SUMMARY
 
 This Repo contains an EFI Folder with configs for running macOS Catalina and Big Sur with either a patched `DSDT` or `DSDT-less` on a Lenovo T530 Laptop using OpenCore. Compatible and tested with: macOS High Sierra, Catalina and Big Sur.
