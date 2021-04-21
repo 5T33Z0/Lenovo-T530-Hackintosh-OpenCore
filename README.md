@@ -178,7 +178,7 @@ Two variants of T530 models with different display panels and screen resolutions
 <summary><strong>How to install macOS</strong></summary>
 
 ### Installing macOS
-If you have already have macOS installed but want to perform a clean install, you can either download macOS from the App Store or use [**ANYmacOS**](https://www.sl-soft.de/en/anymacos/). It's hassl-free App than can download High Sierra, Catalina and Big Sur and also create a USB Installer for you.
+If you have already have macOS installed but want to perform a clean install, you can either download macOS from the App Store or use [**ANYmacOS**](https://www.sl-soft.de/en/anymacos/). It's a hassle-free App than can download High Sierra, Catalina and Big Sur and also create a USB Installer for you.
 
 If you are on Windows or Linux follow the guide provided by [Dortania](https://dortania.github.io/OpenCore-Install-Guide/installer-guide/#making-the-installer)
 </details>
