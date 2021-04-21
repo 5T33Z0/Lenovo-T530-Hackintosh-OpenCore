@@ -70,9 +70,8 @@ Check the comments of the entries to decide which one you need to enable. By def
 <summary><strong>Incompatible Components</strong></summary>
 
 ### Incompatible Hardware
-- [ ] NVIDIA Optimus GPU is not supported by macOS. Must be disabled in BIOS otherwise no Boot!
+- [ ] NVIDIA Optimus GPU is not supported by macOS and must be disabled in BIOS - otherwise no Boot!
 - [ ] Fingerprint Reader - model not supported by macOS
-- [ ] Intel Bluetooth/WIFI. You need a macOS compatible card and a BIOS Unlock to disable the WLAN Card Whitelist using `1vyrain`
 - [ ] VGA Port is not working: [Intel HD Graphics VGA Support](https://github.com/acidanthera/WhateverGreen/blob/master/Manual/FAQ.IntelHD.en.md#vga-support)
 </details>
 
