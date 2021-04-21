@@ -99,15 +99,15 @@ Two variants of T530 models with different display panels and screen resolutions
 	**HINT**: if your screen turns off during boot, you are using the wrong Framebuffer-Patch!
 
 - **System Integrity Protection (SIP)**
-	- For Catalina: `MacBookPro10,1` or 10,2 (depending on CPU) and `csr-active-config: FF070000` to deactivate SIP
+  - For Catalina: `MacBookPro10,1` or 10,2 (depending on CPU) and `csr-active-config: FF070000` to deactivate SIP
   - For Big Sur: `MacBookPro11,1` or 11,2 (depending on CPU) and `csr-active-config: 67080000` to deactivate SIP
 - **CPU**
   - The `SSDT-PM.aml` inside the ACPI Folder is for an i7 3630QM. If you use a differnt CPU, disable it in the config and create your own using `ssdtPRGEN` in Post-Install. (See 'Fixing CPU Power Management' in 'Post-Install Section')
 - **Wifi/Bluetooth**
-  - Built-in Intel Wifi/Bluetooth cards don't work. But you can have a look at [OpenIntelWireless](https://github.com/OpenIntelWireless)
-  - 3rd Party cards require `1vyrain` jailbreak to unlock the BIOS in order to disable WLAN Whitelist (unless the 3rd party card is whitelisted)
+  - Built-in Intel Wifi/Bluetooth may work. Have a look at [OpenIntelWireless](https://github.com/OpenIntelWireless) to check if your card is supported yet.
+  - 3rd Party cards require the `1vyrain` jailbreak to unlock the BIOS in order to disable WLAN Whitelist (unless the 3rd party card is whitelisted)
   - Broadcom cards require an additional kext for Bluetooth. Either `BrcmFirmwareData.kext` in "EFI > OC > Kexts" which will be injected through OpenCore or
-    `BrcmFirmwareRepo.kext` which needs to be installed into S/L/E since it cannot be inject by bootloaders, but works a bit more efficient according to the documentation.
+    `BrcmFirmwareRepo.kext` which needs to be installed into S/L/E since it cannot be injected by bootloaders, but works a bit more efficient according to the documentation.
   - If you use a card from a different vendor replace the Kext(s) for networking for your device and update your config.
 - **Editing/Updating config files:**
   - If you create Snapshots for the DSDT-less config using `ProperTree`, make sure to disable the "ACPI > Add" entries for `DSDT` files afterwards. Best practice would be to delete both DSDTs from the EFI anyway, if you use the DSDT-less config.
