@@ -82,7 +82,7 @@ Check the comments of the entries to decide which one you need to enable. By def
 ### Dos and Don'ts
 Before you copy the EFI onto your system SSD/HDD, you should do the following:
 
-- **CAUTION**: Test the EFI first, using a FAT32 formatted USB Stick!
+- **Testing**: Test the EFI folder first using a FAT32 formatted USB Stick!
 - **SMBIOS**: Create SMBIOS infos using GenSMBIOS and add the data to `PlatformInfo > Generic`
 - **Integrated Graphics**: 
 Two variants of T530 models with different display panels and screen resolutions exist: `HD+` and `HD` models. Both are using different identifiers:
