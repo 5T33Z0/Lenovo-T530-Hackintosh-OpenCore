@@ -77,7 +77,7 @@ Check the comments of the entries to decide which one you need to enable. By def
 
 ## INSTALLATION
 <details>
-<summary><strong>Preparation: Do's and Dont's</strong></summary>
+<summary><strong>Preparation: Dos and Don'ts</strong></summary>
 
 ### Dos and Don'ts
 Before you copy the EFI onto your system SSD/HDD, you should do the following:
