@@ -41,7 +41,7 @@ This config is working 100% for T530 Models and supports both HD and HD+ display
 
 If you simply want to a well-running system, use this config! You need to rename it to `config.plist` in order to boot with this. But before you do, open the config and have a look at the `ACPI > Add` section. Enable either `DSDT-HD.aml` or `DSDT-HD+.aml` *(never both)* depending on the display panel of your T530:
 
-`AAPL,ig-platform-id` `04006601` = **HD+** = 1600x900 px</br>
+`AAPL,ig-platform-id` `04006601` = **HD+** = 1600x900 px </br>
 `AAPL,ig-platform-id` `03006601` = **HD** = 1366x768 px
 
 Check the comments of the entries to decide which one you need to enable. By default, the DSDT for HD+ panels is enabled.
@@ -84,10 +84,10 @@ Before you copy the EFI onto your system SSD/HDD, you should do the following:
 
 - **CAUTION**: Test the EFI first, using a FAT32 formatted USB Stick!
 - **SMBIOS**: Create SMBIOS infos using GenSMBIOS and add the data to `PlatformInfo > Generic`
-- **Integrtaed Graphics**: 
+- **Integrated Graphics**: 
 Two variants of T530 models with different display panels and screen resolutions exist: `HD+` and `HD` models. Both are using different identifiers:
 
-	`AAPL,ig-platform-id 04006601` = HD+ ≥ 1600x900 px
+	`AAPL,ig-platform-id 04006601` = HD+ ≥ 1600x900 px </br>
 	`AAPL,ig-platform-id 03006601` = HD = 1366x768 px
 
 	By default, the Framebuffer-Patch for `HD+` models is enabled in the config under `DeviceProperties` > `PciRoot(0x0)/Pci(0x2,0x0)`.
