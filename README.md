@@ -79,7 +79,7 @@ Check the comments of the entries to decide which one you need to enable. By def
 <details>
 <summary><strong>Preparation: Do's and Dont's</strong></summary>
 
-### Do's and Dont's
+### Dos and Don'ts
 Before you copy the EFI onto your system SSD/HDD, you should do the following:
 
 - **CAUTION**: Test the EFI first, using a FAT32 formatted USB Stick!
