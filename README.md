@@ -20,7 +20,7 @@ This Repo contains an EFI Folder with configs for running macOS Catalina and Big
 
 ## PICK a CONFIG
 
-The EFI Folder contains 2 configs. The 1st utilizes a patched `DSDT` and works flawlessly. The 2nd config is DSDT-less, solely based on binary Renames and SSDT Hotpatches – just like it's suppossed to be done in OpenCore. It's not working perfectly (99 %) but overall, it runs smoother and snappier than the DSDT-based config and also performs better according to the test results in Geekbench.
+The EFI Folder contains 2 configs. The 1st utilizes a patched `DSDT` and works flawlessly. The 2nd config is DSDT-less, solely based on binary Renames and SSDT Hotpatches – just like it's suppossed to be done in OpenCore. It's working perfectly (100 %) and runs smoother and snappier than the DSDT-based config and also performs better according to the test results in Geekbench.
 
 <details>
 <summary><strong>DSDT-less config (recommended)</strong></summary>
