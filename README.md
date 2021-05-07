@@ -56,7 +56,7 @@ Check the comments of the entries to decide which one you need to enable. By def
 | Component           | Details                                       |
 | ------------------: | :-------------------------------------------- |
 | Model               | Lenovo ThinkPad T530, Model# 2429-62G         |
-| BIOS Version        | 2.77, unlocked with IvyRain                   |
+| BIOS Version        | 2.77, unlocked with 1vyRain                   |
 | Processor           | Intel(r) Core i7 3630QM                       |
 | Memory              | 16GB Samsung DDR3 1600MHz, Dual-Channel       |
 | Hard Disk           | Samsung 840 Evo 250GB                         |
