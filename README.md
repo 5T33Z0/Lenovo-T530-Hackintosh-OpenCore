@@ -84,7 +84,7 @@ Check the comments of the entries to decide which one you need to enable. By def
 Before you copy the EFI onto your system SSD/HDD, you should do the following:
 
 - **Testing**: Test the EFI folder first using a FAT32 formatted USB Stick!
-- **SMBIOS**: Create SMBIOS infos using GenSMBIOS and add the data to `PlatformInfo > Generic`
+- **SMBIOS**: Create SMBIOS infos using GenSMBIOS and add the data to `PlatformInfo > Generic`. High Sierra and Catalina require `MacBookPro10,1`, Big Sur requires `MaBookPro11,1`!
 - **Integrated Graphics**: 
 Two variants of T530 models with different display panels and screen resolutions exist: `HD+` and `HD` models. Both are using different identifiers:
 
@@ -108,7 +108,7 @@ Two variants of T530 models with different display panels and screen resolutions
   - 3rd Party cards require the `1vyrain` jailbreak to unlock the BIOS in order to disable WLAN Whitelist (unless the 3rd party card is whitelisted)
   - Broadcom cards require an additional kext for Bluetooth. Either `BrcmFirmwareData.kext` in "EFI > OC > Kexts" which will be injected through OpenCore or
     `BrcmFirmwareRepo.kext` which needs to be installed into S/L/E since it cannot be injected by bootloaders, but works a bit more efficient according to the documentation.
-  - If you use a card from a different vendor replace the Kext(s) for networking for your device and update your config.
+  - If you use a card from a different vendor replace the Kext(s) for networking for your device and update your config before trying to boot with this EFI.
 - **Editing/Updating config files:**
   - If you create Snapshots for the DSDT-less config using `ProperTree`, make sure to disable the "ACPI > Add" entries for `DSDT` files afterwards. Best practice would be to delete both DSDTs from the EFI anyway, if you use the DSDT-less config.
   - DON'T create Snapshots for the config_DSDT.plist which is using the DSDT Files. Because this will add all the SSDTs back in, which are unnecessary since all these patches exist in the patched DSDT already. If you plan to use the DSDT-based config, you should delete all of the SSDTs except for `SSDT-PM`.
