@@ -16,7 +16,7 @@
 
 This Repo contains an EFI Folder with configs for running macOS with either a patched `DSDT` or `DSDT-less` on a Lenovo T530 Laptop using OpenCore. Compatible and tested with: macOS High Sierra, Catalina and Big Sur.
 
-**NOTE**: Please read the README carefully and follow the instructions.
+**NOTE**: For best results, read and follow the install instruction thoroughly. 
 
 ## PICK a CONFIG
 
@@ -244,7 +244,7 @@ macOS locks the optical drive sometimes so that you can't open it with the physi
 
 [Benchmark Results](https://browser.geekbench.com/v5/cpu/7355955)
 
-## CREDITS and THANK YOU's
+## CREDITS and THANK YOUs
 
 - George Kushnir for [1vyrain BIOS Jailbreak](https://github.com/n4ru/1vyrain) to remove WLAN whitelist
 - Acidanthera and Team for the [OpenCore Bootloader](https://github.com/acidanthera/OpenCorePkg) 
@@ -255,4 +255,5 @@ macOS locks the optical drive sometimes so that you can't open it with the physi
 - [RealKiro](https://github.com/RealKiro/Hackintosh) for Clover EFI with ACPI Patches for referencing
 - [Rehabman](https://github.com/RehabMan) for Laptop and DSDT patching guides
 - uranusjr for [MacDown](https://github.com/MacDownApp/macdown) Markdown Editor
-- [banhbaoxamlan](https://github.com/banhbaoxamlan/X230-Hackintosh) for his X230 repo which had all the files for fixing the LED pulsing issue.
+- [banhbaoxamlan](https://github.com/banhbaoxamlan/X230-Hackintosh) for his X230 repo which contained the missing parts for fixing the post sleep pulsing LED issue.
+- [chris1111](https://github.com/chris1111) for config validator stand-alone apps for OpenCore and Clover
