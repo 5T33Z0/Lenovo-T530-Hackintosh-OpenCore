@@ -14,25 +14,23 @@
 
 ## SUMMARY
 
-This Repo contains an EFI Folder with configs for running macOS Catalina and Big Sur with either a patched `DSDT` or `DSDT-less` on a Lenovo T530 Laptop using OpenCore. Compatible and tested with: macOS High Sierra, Catalina and Big Sur.
+This Repo contains an EFI Folder with configs for running macOS with either a patched `DSDT` or `DSDT-less` on a Lenovo T530 Laptop using OpenCore. Compatible and tested with: macOS High Sierra, Catalina and Big Sur.
 
 **NOTE**: Please read the README carefully and follow the instructions.
 
 ## PICK a CONFIG
 
-The EFI Folder contains 2 configs. The 1st utilizes a patched `DSDT` and works flawlessly. The 2nd config is DSDT-less, solely based on binary Renames and SSDT Hotpatches – just like it's suppossed to be done in OpenCore. It's working perfectly (100 %) and runs smoother and snappier than the DSDT-based config and also performs better according to the test results in Geekbench.
+The EFI Folder contains 2 configs. The first one is DSDT-less, solely based on binary Renames and ACPI Hotpatches (SSDTs) – just like it's suppossed to be done in OpenCore. It's working perfectly (100 %) and runs smoother and snappier than the DSDT-based config and also performs better according to the test results in Geekbench. The 2nd config utilizes a patched `DSDT` which works flawlessly - for macOS at least – but causes issues when used in a dual boot scenario in Windows 10 causing ACPI Errors. I tried fixing them but to no avail.
 
 <details>
 <summary><strong>DSDT-less config (recommended)</strong></summary>
 
 ### Hotpatch-based config (DSDT-less)
-This config is for running macOS without a patched `DSDT` – it relies solely on binary Renames and ACPI Hotpatches (SSDTs) instead, which is the recommended method for using OpenCore anyway. You need to rename it to `config.plist` in order to make it bootable.
+This config is for running macOS without a patched `DSDT` – it relies solely on binary Renames and ACPI Hotpatches (SSDTs) instead, which is the recommended method for using OpenCore anyway. You need to rename it to `config.plist` in order to make it bootable. Since this config does not rely on a patched DSDT which might mismatch the system's DSDT for the installed BIOS, the process of hotpatching is more precise and independent of the installed BIOS version.
 
-Since this method does not rely on a patched DSDT which might mismatch the system's DSDT for the installed BIOS, the process of hotpatching is more precise and independent of the installed BIOS version.
+So, instead of just replacing the whole system `DSDT` with a patched one during boot, only the things which need fixing are patched-in on the fly. This makes the system boot faster, run smoother and snappier and slightly improves overall performance as well.
 
-So, instead of just replacing the whole system `DSDT` with a patched one during the boot process, only the things which need fixing are patched-in on the fly. This makes the system boot faster, run smoother and snappier and slightly improves overall performance as well.
-
-**NOTE**: by default, the iGPU (IntelHD 4000) is configured for T530 models with `HD+` panels (≥1600x900 px). If you have a model with a `HD` panel (1366x768), you need to enable the other Framebuffer-Patch under `DevicePropeties` instead. See section "Preparation: Dos and Don'ts" for Details.
+**NOTE**: By default, the iGPU (IntelHD 4000) is configured for T530 models with `HD+` panels (≥ 1600x900 px). If you have a model with a `HD` panel (1366x768 px), you need to enable the other Framebuffer-Patch under `DevicePropeties` instead. See section "Preparation: Dos and Don'ts" for Details.
 
 **Config Validation:**
 
@@ -43,14 +41,15 @@ So, instead of just replacing the whole system `DSDT` with a patched one during 
 <summary><strong>DSDT-based config</strong></summary>
 
 ### DSDT-based config
-This config is working 100% for T530 Models and supports both HD and HD+ display panels.
+This config is working well for T530 Models in macOS and supports both HD and HD+ display panels but causes ACPI errors when used alongside Windows 10 in a dual boot setup with one physical drive.
 
-If you simply want to a well-running system, use this config! You need to rename it to `config.plist` in order to boot with this. But before you do, open the config and have a look at the `ACPI > Add` section. Enable either `DSDT-HD.aml` or `DSDT-HD+.aml` *(never both)* depending on the display panel of your T530:
+If you simply want to a well-running system for running macOS, use this config! You need to rename it to `config.plist` in order to boot with this. But before you do, open the config and have a look at the `ACPI > Add` section. Enable either `DSDT-HD.aml` or `DSDT-HD+.aml` *(never both)* depending on the display panel of your T530:
 
 `AAPL,ig-platform-id` `04006601` = **HD+** = 1600x900 px </br>
 `AAPL,ig-platform-id` `03006601` = **HD** = 1366x768 px
 
 Check the comments of the entries to decide which one you need to enable. By default, the DSDT for HD+ panels is enabled.
+
 </details>
 
 ## HARDWARE SPECS
