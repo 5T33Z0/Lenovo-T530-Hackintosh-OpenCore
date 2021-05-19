@@ -32,7 +32,12 @@ Since this method does not rely on a patched DSDT which might mismatch the syste
 
 So, instead of just replacing the whole system `DSDT` with a patched one during the boot process, only the things which need fixing are patched-in on the fly. This makes the system boot faster, run smoother and snappier and slightly improves overall performance as well.
 
-**NOTE**: by default, the iGPU (IntelHD 4000) is configured for T530 models with `HD+` panels (≥1600x900 px). If you have a model with a `HD` panel (1366x768), you need to enable the other Framebuffer-Patch under `DevicePropeties` instead. See the section "Preparation: Do's and Dont's" for Details.
+**NOTE**: by default, the iGPU (IntelHD 4000) is configured for T530 models with `HD+` panels (≥1600x900 px). If you have a model with a `HD` panel (1366x768), you need to enable the other Framebuffer-Patch under `DevicePropeties` instead. See section "Preparation: Dos and Don'ts" for Details.
+
+**Config Validation:**
+
+![](https://github.com/5T33Z0/Lenovo-T530-Hackinosh-OpenCore/blob/main/Pics/ConfigValidation.png)
+
 </details>
 <details>
 <summary><strong>DSDT-based config</strong></summary>
@@ -102,7 +107,7 @@ Two variants of T530 models with different display panels and screen resolutions
   - For Catalina: `MacBookPro10,1` or 10,2 (depending on CPU) and `csr-active-config: FF070000` to deactivate SIP
   - For Big Sur: `MacBookPro11,1` or 11,2 (depending on CPU) and `csr-active-config: 67080000` to deactivate SIP
 - **CPU**
-  - The `SSDT-PM.aml` inside the ACPI Folder is for an i7 3630QM. If you use a differnt CPU, disable it in the config and create your own using `ssdtPRGEN` in Post-Install. (See 'Fixing CPU Power Management' in 'Post-Install Section')
+  - The `SSDT-PM.aml` inside the ACPI Folder is for an **Intel i7 3630QM**. If you use a differnt CPU, disable it in the config and create your own using `ssdtPRGEN` in Post-Install. (See 'Fixing CPU Power Management' in the 'Post-Install Section')
 - **Wifi/Bluetooth**
   - Built-in Intel Wifi/Bluetooth may work. Have a look at [OpenIntelWireless](https://github.com/OpenIntelWireless) to check if your card is supported yet.
   - 3rd Party cards require the `1vyrain` jailbreak to unlock the BIOS in order to disable WLAN Whitelist (unless the 3rd party card is whitelisted)
@@ -112,8 +117,7 @@ Two variants of T530 models with different display panels and screen resolutions
 - **Editing/Updating config files:**
   - If you create Snapshots for the DSDT-less config using `ProperTree`, make sure to disable the "ACPI > Add" entries for `DSDT` files afterwards. Best practice would be to delete both DSDTs from the EFI anyway, if you use the DSDT-less config.
   - DON'T create Snapshots for the config_DSDT.plist which is using the DSDT Files. Because this will add all the SSDTs back in, which are unnecessary since all these patches exist in the patched DSDT already. If you plan to use the DSDT-based config, you should delete all of the SSDTs except for `SSDT-PM`.
-  - Bootstrap: if you only have macOS installed on your HDD you can disable `BootstrapShort`. To do so, change Misc > Security > BootProtect to `None`.
-- **Kexts**
+ - **Kexts**
   - `NoTouchID.kext` is no longer necessary for macOS 10.15.7 and beyond, so you can disable it (it's excluded from current release anyway).
 - **Backlight Brightness Level tweaks**: 
   - Set boot-arg `applbkl=1` for reasonable maximum brightness level controlled by `WhateverGreen`. 
