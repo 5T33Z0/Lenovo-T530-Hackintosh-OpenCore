@@ -38,7 +38,7 @@ So, instead of just replacing the whole system `DSDT` with a patched one during 
 
 </details>
 <details>
-<summary><strong>DSDT-based config</strong></summary>
+<summary><strong>DSDT-based config (retired)</strong></summary>
 
 ### DSDT-based config
 This config is working well for T530 Models in macOS and supports both HD and HD+ display panels but causes ACPI errors when used alongside Windows 10 in a dual boot setup with one physical drive.
@@ -50,6 +50,7 @@ If you simply want to a well-running system for running macOS, use this config! 
 
 Check the comments of the entries to decide which one you need to enable. By default, the DSDT for HD+ panels is enabled.
 
+**NOTE**: The DSDT-based config and associated .aml files have since been retired and removed from current relelease to reduce clutter and prevent user errors. Last release that contains them is: OC 070 v1.0 (2021-05-03)   
 </details>
 
 ## HARDWARE SPECS
@@ -247,13 +248,18 @@ macOS locks the optical drive sometimes so that you can't open it with the physi
 ## CREDITS and THANK YOUs
 
 - George Kushnir for [1vyrain BIOS Jailbreak](https://github.com/n4ru/1vyrain) to remove WLAN whitelist
-- Acidanthera and Team for the [OpenCore Bootloader](https://github.com/acidanthera/OpenCorePkg) 
+- Acidanthera and Team for the [OpenCore Bootloader](https://github.com/acidanthera/OpenCorePkg)
+- SergeySlice for [Clover Bootloader](https://github.com/CloverHackyColor/CloverBootloader)
 - Dortantia for the [OpenCore Install Guide](https://dortania.github.io/OpenCore-Install-Guide)
-- [Corpnewt](https://github.com/corpnewt) for incredibly useful Tools like SSDTTime, GenSMBIOS and ProperTree
+- [Corpnewt](https://github.com/corpnewt) for SSDTTime, GenSMBIOS and ProperTree
 - Piker-Alpha for [ssdtPRGen](https://github.com/Piker-Alpha/ssdtPRGen.sh)
-- Daliansky for [OC Little Repo](https://ooh3dpsdytm34sfhws63yjfbwy--github-com.translate.goog/daliansky/OC-little) containing all the ACPI Hotpatches for OpenCore
-- [RealKiro](https://github.com/RealKiro/Hackintosh) for Clover EFI with ACPI Patches for referencing
+- daliansky for [OC Little](https://github.com/5T33Z0/OC-Little-Translated) ACPI Hotpatch Collection
 - [Rehabman](https://github.com/RehabMan) for Laptop and DSDT patching guides
-- uranusjr for [MacDown](https://github.com/MacDownApp/macdown) Markdown Editor
-- [banhbaoxamlan](https://github.com/banhbaoxamlan/X230-Hackintosh) for his X230 repo which contained the missing parts for fixing the post sleep pulsing LED issue.
+- [RealKiro](https://github.com/RealKiro/Hackintosh) for Clover EFI with ACPI Patches for referencing
+- [banhbaoxamlan](https://github.com/banhbaoxamlan/X230-Hackintosh) for his X230 repo which contained the last missing pieces for fixing the post-sleep pulsing LED issue.
 - [chris1111](https://github.com/chris1111) for config validator stand-alone apps for OpenCore and Clover
+- [Pavo-IM](https://github.com/Pavo-IM/) for OC_Gen-X
+- [SL-Soft](https://www.sl-soft.de/software/) for Kext Updater and ANYmacOS
+- jsassu20 for [MacDown](https://macdown.uranusjr.com/) Markdown Editor
+- [chris1111](https://github.com/chris1111) for config validator apps for OpenCore and Clover
+
