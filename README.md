@@ -262,4 +262,3 @@ macOS locks the optical drive sometimes so that you can't open it with the physi
 - [SL-Soft](https://www.sl-soft.de/software/) for Kext Updater and ANYmacOS
 - jsassu20 for [MacDown](https://macdown.uranusjr.com/) Markdown Editor
 - [chris1111](https://github.com/chris1111) for config validator apps for OpenCore and Clover
-
