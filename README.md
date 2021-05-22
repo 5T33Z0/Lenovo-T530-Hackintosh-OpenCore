@@ -259,8 +259,7 @@ macOS locks the optical drive sometimes so that you can't open it with the physi
 - [Rehabman](https://github.com/RehabMan) for Laptop and DSDT patching guides
 - [RealKiro](https://github.com/RealKiro/Hackintosh) for Clover EFI with ACPI Patches for referencing
 - [banhbaoxamlan](https://github.com/banhbaoxamlan/X230-Hackintosh) for his X230 repo which contained the last missing pieces for fixing the post-sleep pulsing LED issue.
-- [chris1111](https://github.com/chris1111) for config validator stand-alone apps for OpenCore and Clover
-- [Pavo-IM](https://github.com/Pavo-IM/) for OC_Gen-X
 - [SL-Soft](https://www.sl-soft.de/software/) for Kext Updater and ANYmacOS
+- [Pavo-IM](https://github.com/Pavo-IM/) for OC_Gen-X
 - jsassu20 for [MacDown](https://macdown.uranusjr.com/) Markdown Editor
 - [chris1111](https://github.com/chris1111) for config validator apps for OpenCore and Clover
