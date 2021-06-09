@@ -1,6 +1,6 @@
 # Lenovo ThinkPad T530 Hackintosh OpenCore
 
-**5T4TU5**: 100% Completed! Added Clover EFI, too.
+**5T4TU5**: 100% Completed! Added Clover EFI, too. Since macOS Monterey drops support for Intel HD 4000, Big Sur is the last version which can run on this Laptop!
 
 [![T530](https://img.shields.io/badge/ThinkPad-T530-informational.svg)](https://psref.lenovo.com/syspool/Sys/PDF/withdrawnbook/ThinkPad_T530.pdf)
 [![OpenCore](https://img.shields.io/badge/OpenCore-0.7.0-important.svg)](https://github.com/acidanthera/OpenCorePkg/releases/latest)
