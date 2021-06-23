@@ -1,6 +1,6 @@
 # Lenovo ThinkPad T530 Hackintosh OpenCore
 
-**5T4TU5**: 100% Completed! Added Clover EFI, too. Since macOS Monterey drops support for Intel HD 4000, Big Sur is the last version which can run on this Laptop!
+**5T4TU5**: 100% Completed! Added macOS Monterey support!
 
 [![T530](https://img.shields.io/badge/ThinkPad-T530-informational.svg)](https://psref.lenovo.com/syspool/Sys/PDF/withdrawnbook/ThinkPad_T530.pdf)
 [![OpenCore](https://img.shields.io/badge/OpenCore-0.7.0-important.svg)](https://github.com/acidanthera/OpenCorePkg/releases/latest)
@@ -263,4 +263,4 @@ macOS locks the optical drive sometimes so that you can't open it with the physi
 - [SL-Soft](https://www.sl-soft.de/software/) for Kext Updater and ANYmacOS
 - [Pavo-IM](https://github.com/Pavo-IM/) for OC_Gen-X
 - jsassu20 for [MacDown](https://macdown.uranusjr.com/) Markdown Editor
-- [chris1111](https://github.com/chris1111) for config validator apps for OpenCore and Clover
+- [chris1111](https://github.com/chris1111) for IntelHD4000 Patcher
