@@ -90,7 +90,7 @@ Check the comments of the entries to decide which one you need to enable. By def
 Before you copy the EFI onto your system SSD/HDD, you should do the following:
 
 - **Testing**: Test the EFI folder first using a FAT32 formatted USB Stick!
-- **SMBIOS**: Create SMBIOS infos using GenSMBIOS and add the data to `PlatformInfo > Generic`. High Sierra and Catalina require `MacBookPro10,1`, Big Sur requires `MaBookPro11,1`!
+- **SMBIOS**: Create SMBIOS infos using GenSMBIOS and add the data to `PlatformInfo > Generic`. High Sierra and Catalina require `MacBookPro10,1`, Big Sur requires `MaBookPro11,1` and macOS Monterey requires `MaBookPro11,4` (amongst other changes).
 - **Integrated Graphics**: 
 Two variants of T530 models with different display panels and screen resolutions exist: `HD+` and `HD` models. Both are using different identifiers:
 
