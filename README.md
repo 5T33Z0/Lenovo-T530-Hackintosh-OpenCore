@@ -27,11 +27,11 @@ The EFI Folder contains 2 configs. The first one is DSDT-less, solely based on b
 <summary><strong>DSDT-less config (recommended)</strong></summary>
 
 ### Hotpatch-based config (DSDT-less)
-This config is for running macOS without a patched `DSDT` – it relies solely on binary Renames and ACPI Hotpatches (SSDTs) instead, which is the recommended method for using OpenCore anyway. You need to rename it to `config.plist` in order to make it bootable. Since this config does not rely on a patched DSDT which might mismatch the system's DSDT for the installed BIOS, the process of hotpatching is more precise and independent of the installed BIOS version.
+This config is for running macOS without a patched `DSDT` – it solely relies on binary renames and ACPI Hotpatches (SSDTs) instead, which is the recommended method for using OpenCore anyway. First, you need to rename the config of yoiur choice to `config.plist` in order to make it bootable. Since this config does not rely on a patched DSDT which might mismatch the system's DSDT for the installed BIOS, the process of hotpatching is more precise and independent of the installed BIOS version.
 
 So, instead of just replacing the whole system `DSDT` with a patched one during boot, only the things which need fixing are patched-in on the fly. This makes the system boot faster, run smoother and snappier and slightly improves overall performance as well.
 
-**NOTE**: By default, the iGPU (IntelHD 4000) is configured for T530 models with `HD+` panels (≥ 1600x900 px). If you have a model with a `HD` panel (1366x768 px), you need to enable the other Framebuffer-Patch under `DevicePropeties` instead. See section "Preparation: Dos and Don'ts" for Details.
+**NOTE**: By default, the iGPU (IntelHD 4000) is configured for T530 models with `HD+` and FullHD panels (≥ 1600x900 px). If you have a model with a `HD` panel (1366x768 px), you need to enable the other Framebuffer-Patch under `DevicePropeties` instead. See section "Preparation: Dos and Don'ts" for Details.
 
 **Config Validation:**
 
@@ -51,7 +51,7 @@ If you simply want to a well-running system for running macOS, use this config! 
 
 Check the comments of the entries to decide which one you need to enable. By default, the DSDT for HD+ panels is enabled.
 
-**NOTE**: The DSDT-based config and associated .aml files have since been retired and removed from current relelease to reduce clutter and prevent user errors. Last release that contains them is: OC 070 v1.0 (2021-05-03)   
+**NOTE**: The DSDT-based config and associated .aml files have since been retired and removed from current releases to reduce clutter and prevent user errors. Last release that contains them is: OC 070 v1.0 (2021-05-03)   
 </details>
 
 ## HARDWARE SPECS
@@ -77,9 +77,9 @@ Check the comments of the entries to decide which one you need to enable. By def
 <summary><strong>Incompatible Components</strong></summary>
 
 ### Incompatible Hardware
-- [ ] NVIDIA Optimus GPU is not supported by macOS and must be disabled in BIOS - otherwise no Boot!
+- [ ] NVIDIA Optimus GPU is not supported by macOS and must be disabled in BIOS - otherwise no boot!
 - [ ] Fingerprint Reader - model not supported by macOS
-- [ ] VGA Port is not working: [Intel HD Graphics VGA Support](https://github.com/acidanthera/WhateverGreen/blob/master/Manual/FAQ.IntelHD.en.md#vga-support)
+- [ ] VGA Port is n lnger supported by macOS: [Intel HD Graphics VGA Support](https://github.com/acidanthera/WhateverGreen/blob/master/Manual/FAQ.IntelHD.en.md#vga-support)
 </details>
 
 ## INSTALLATION
@@ -89,8 +89,8 @@ Check the comments of the entries to decide which one you need to enable. By def
 ### Dos and Don'ts
 Before you copy the EFI onto your system SSD/HDD, you should do the following:
 
-- **Testing**: Test the EFI folder first using a FAT32 formatted USB Stick!
-- **SMBIOS**: Create SMBIOS infos using GenSMBIOS and add the data to `PlatformInfo > Generic`. High Sierra and Catalina require `MacBookPro10,1`, Big Sur requires `MaBookPro11,1` and macOS Monterey requires `MaBookPro11,4` (amongst other changes).
+- **Testing**: Test the EFI folder first using a FAT32 formatted USB Stick! Also perform an NVRAM Reset prior to booting.
+- **SMBIOS**: Create SMBIOS infos using GenSMBIOS and add the data to `PlatformInfo > Generic`. High Sierra and Catalina require `MacBookPro10,1`, Big Sur requires `MaBookPro11,1` and macOS Monterey requires `MaBookPro11,4` (amongst other settings).
 - **Integrated Graphics**: 
 Two variants of T530 models with different display panels and screen resolutions exist: `HD+` and `HD` models. Both are using different identifiers:
 
@@ -123,6 +123,7 @@ Two variants of T530 models with different display panels and screen resolutions
 - **Backlight Brightness Level tweaks**: 
   - Set boot-arg `applbkl=1` for reasonable maximum brightness level controlled by `WhateverGreen`. 
   - Set boot-arg `applbkl=0` for increased maximum brightness as defined in `SSDT-PNLF.aml`
+
 </details>
 <details>
 <summary><strong>EFI Handling</strong></summary>
@@ -184,7 +185,7 @@ Two variants of T530 models with different display panels and screen resolutions
 <summary><strong>How to install macOS</strong></summary>
 
 ### Installing macOS
-If you have already have macOS installed but want to perform a clean install, you can either download macOS from the App Store or use [**ANYmacOS**](https://www.sl-soft.de/en/anymacos/). It's a hassle-free App than can download High Sierra, Catalina and Big Sur and also create a USB Installer for you.
+If you have already have macOS installed but want to perform a clean install, you can either download macOS from the App Store or use [**ANYmacOS**](https://www.sl-soft.de/en/anymacos/). It's a hassle-free App than can download macOS High Sierra, Catalina, Big Sur and Monterey and also create a USB Installer for you.
 
 If you are on Windows or Linux follow the guide provided by [Dortania](https://dortania.github.io/OpenCore-Install-Guide/installer-guide/#making-the-installer)
 </details>
