@@ -76,15 +76,17 @@ Two variants of T530 models with different display panels and screen resolutions
 	**HINT**: if your screen turns off during boot, you are using the wrong Framebuffer-Patch!
 
 - **System Integrity Protection (SIP)**
-  - For Catalina: `MacBookPro10,1` or 10,2 (depending on CPU) and `csr-active-config: FF070000` to deactivate SIP
-  - For Big Sur: `MacBookPro11,1` or 11,2 (depending on CPU) and `csr-active-config: 67080000` to deactivate SIP
+  - For High Sierra: `MacBookPro10,1` or 10,2 (depending on CPU) and `csr-active-config: FF030000`to disable SIP
+  - For Mojave/Catalina: `MacBookPro10,1` or 10,2 (depending on CPU) and `csr-active-config: FF070000` to disable SIP
+  - For Big Sur: `MacBookPro11,1` or 11,2 (depending on CPU) and `csr-active-config: 67080000` to disable SIP
+  - For Monterey: `MacBookPro11,4` and `csr-active-config: EF0F0000` to disable SIP
 - **CPU**
   - The `SSDT-PM.aml` inside the ACPI Folder is for an **Intel i7 3630QM**. If you use a differnt CPU, disable it in the config and create your own using `ssdtPRGEN` in Post-Install. (See 'Fixing CPU Power Management' in the 'Post-Install Section')
 - **Wifi/Bluetooth**
   - Built-in Intel Wifi/Bluetooth may work. Have a look at [OpenIntelWireless](https://github.com/OpenIntelWireless) to check if your card is supported yet.
   - 3rd Party cards require the `1vyrain` jailbreak to unlock the BIOS in order to disable WLAN Whitelist (unless the 3rd party card is whitelisted)
   - Broadcom cards require an additional kext for Bluetooth. Either `BrcmFirmwareData.kext` in "EFI > OC > Kexts" which will be injected through OpenCore or
-    `BrcmFirmwareRepo.kext` which needs to be installed into S/L/E since it cannot be injected by bootloaders, but works a bit more efficient according to the documentation.
+    `BrcmFirmwareRepo.kext` which needs to be installed into S/L/E since it cannot be injected by bootloaders, but works a bit more efficient according to the documentation. **ATTENTION**: Monterey cannot use `BrcmBluetoothInjector.kext` - use `BlueToolFixup.kext` instead
   - If you use a card from a different vendor replace the Kext(s) for networking for your device and update your config before trying to boot with this EFI.
 - **Editing/Updating config files:**
   - If you create Snapshots for the DSDT-less config using `ProperTree`, make sure to disable the "ACPI > Add" entries for `DSDT` files afterwards. Best practice would be to delete both DSDTs from the EFI anyway, if you use the DSDT-less config.
@@ -106,11 +108,10 @@ Two variants of T530 models with different display panels and screen resolutions
 3. Mount the EFI
 4. Replace EFI Folder
 5. Restart
-6. **IMPORTANT**: Perform a NVRAM Reset (in Bootpicker, hit Space Bar and select Clean NVRAM). Especially important when switching from a DSDT to DSDT-less config!
+6. **IMPORTANT**: Perform a NVRAM Reset (in Bootpicker, hit Space Bar and select "Clean NVRAM")
 7. Reboot again
-8. Select macOS to boot. It's currently configured for running Catalina. If you want to run Big Sur, you need to use SMBIOS 11,x. You can research a suitable/matching SMBIOS for your CPU on everymac.com
+8. Select macOS to boot. It's currently configured for running Catalina but there's an extra config file for running Monterey included. If you want to run Big Sur, you need to use SMBIOS 11,x. You can research a suitable/matching SMBIOS for your CPU on everymac.com
 
-**NOTE**: If your macOS Drive or macOS Installer does not shown up in the BootPicker, enable `ConnectDrivers` in the Config located under `UEFI`.
 </details>
 <details>
 <summary><strong>BIOS Settings</strong></summary>
