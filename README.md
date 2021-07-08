@@ -15,44 +15,15 @@
 
 ## SUMMARY
 
-This Repo contains an EFI Folder with configs for running macOS with either a patched `DSDT` or `DSDT-less` on a Lenovo T530 Laptop using OpenCore. Compatible and tested with: macOS High Sierra, Catalina and Big Sur.
+This Repo contains an EFI Folder for running macOS with on a Lenovo T530 Laptop using OpenCore or Clover. Compatible and tested with: macOS High Sierra, Catalina, Big Sur and Monterey.
 
-**NOTE**: For best results, read and follow the install instruction thoroughly. 
+**NOTE**: Read and follow the install instruction carefully and thoroughly!
 
-## PICK a CONFIG
+## About
 
-The EFI Folder contains 2 configs. The first one is DSDT-less, solely based on binary Renames and ACPI Hotpatches (SSDTs) – just like it's suppossed to be done in OpenCore. It's working perfectly (100 %) and runs smoother and snappier than the DSDT-based config and also performs better according to the test results in Geekbench. The 2nd config utilizes a patched `DSDT` which works flawlessly - for macOS at least – but causes issues when used in a dual boot scenario in Windows 10 causing ACPI Errors. I tried fixing them but to no avail.
+The EFI Folders contained in this repo are configured DSDT-less. They are solely based on binary Renames and ACPI Hotpatches (SSDTs) – just like it's suppossed to be done in OpenCore. They are working perfectly fine (100 %). Since DSDT-less configs do not rely on a patched DSDT which might mismatch the system's DSDT of the installed BIOS, the process of hotpatching is cleaner, more precise and independent of the installed BIOS version. So, instead of just replacing the whole system `DSDT` with a patched one during boot, only the things which need fixing are patched-in on the fly. This makes the system boot faster, run smoother and snappier and slightly improves overall performance as well.
 
-<details>
-<summary><strong>DSDT-less config (recommended)</strong></summary>
-
-### Hotpatch-based config (DSDT-less)
-This config is for running macOS without a patched `DSDT` – it solely relies on binary renames and ACPI Hotpatches (SSDTs) instead, which is the recommended method for using OpenCore anyway. First, you need to rename the config of yoiur choice to `config.plist` in order to make it bootable. Since this config does not rely on a patched DSDT which might mismatch the system's DSDT for the installed BIOS, the process of hotpatching is more precise and independent of the installed BIOS version.
-
-So, instead of just replacing the whole system `DSDT` with a patched one during boot, only the things which need fixing are patched-in on the fly. This makes the system boot faster, run smoother and snappier and slightly improves overall performance as well.
-
-**NOTE**: By default, the iGPU (IntelHD 4000) is configured for T530 models with `HD+` and FullHD panels (≥ 1600x900 px). If you have a model with a `HD` panel (1366x768 px), you need to enable the other Framebuffer-Patch under `DevicePropeties` instead. See section "Preparation: Dos and Don'ts" for Details.
-
-**Config Validation:**
-
-![](https://github.com/5T33Z0/Lenovo-T530-Hackinosh-OpenCore/blob/main/Pics/ConfigValidation.png)
-
-</details>
-<details>
-<summary><strong>DSDT-based config (retired)</strong></summary>
-
-### DSDT-based config
-This config is working well for T530 Models in macOS and supports both HD and HD+ display panels but causes ACPI errors when used alongside Windows 10 in a dual boot setup with one physical drive.
-
-If you simply want to a well-running system for running macOS, use this config! You need to rename it to `config.plist` in order to boot with this. But before you do, open the config and have a look at the `ACPI > Add` section. Enable either `DSDT-HD.aml` or `DSDT-HD+.aml` *(never both)* depending on the display panel of your T530:
-
-`AAPL,ig-platform-id` `04006601` = **HD+** = 1600x900 px </br>
-`AAPL,ig-platform-id` `03006601` = **HD** = 1366x768 px
-
-Check the comments of the entries to decide which one you need to enable. By default, the DSDT for HD+ panels is enabled.
-
-**NOTE**: The DSDT-based config and associated .aml files have since been retired and removed from current releases to reduce clutter and prevent user errors. Last release that contains them is: OC 070 v1.0 (2021-05-03)   
-</details>
+**NOTE**: By default, the integrated graphics (IntelHD 4000) are configured for T530 models with `HD+` and FullHD panels (≥ 1600x900 px). So, if you have a model with an `HD` panel (1366x768 px), you need to enable the other Framebuffer-Patch under `DevicePropeties` instead. See section "Preparation: Dos and Don'ts" for Details.
 
 ## HARDWARE SPECS
 <details>
