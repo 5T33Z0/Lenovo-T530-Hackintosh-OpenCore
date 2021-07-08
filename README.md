@@ -60,8 +60,8 @@ The EFI Folders contained in this repo are configured DSDT-less. They are solely
 ### Dos and Don'ts
 Before you copy the EFI onto your system SSD/HDD, you should do the following:
 
-- **Testing**: Test the EFI folder first using a FAT32 formatted USB Stick! Also perform an NVRAM Reset prior to booting.
-- **SMBIOS**: Create SMBIOS infos using GenSMBIOS and add the data to `PlatformInfo > Generic`. High Sierra and Catalina require `MacBookPro10,1`, Big Sur requires `MaBookPro11,1` and macOS Monterey requires `MaBookPro11,4` (amongst other settings).
+- **Test it**: Test the EFI folder first using a FAT32 formatted USB Stick! Also perform an NVRAM Reset prior to booting.
+- **SMBIOS**: Create SMBIOS infos using GenSMBIOS and add the data to `PlatformInfo > Generic`. High Sierra and Catalina require `MacBookPro10,1`, Big Sur requires `MaBookPro11,1` and macOS Monterey requires `MaBookPro11,4 – amongst other files and settings. That's why There's an extra config_Monterey.plist included.
 - **Integrated Graphics**: 
 Two variants of T530 models with different display panels and screen resolutions exist: `HD+` and `HD` models. Both are using different identifiers:
 
