@@ -15,15 +15,20 @@
 
 ## SUMMARY
 
-This Repo contains an EFI Folder for running macOS with on a Lenovo T530 Laptop using OpenCore or Clover. Compatible and tested with: macOS High Sierra, Catalina, Big Sur and Monterey.
+This Repo contains EFI Folders for running macOS on a Lenovo T530 Laptop using OpenCore or Clover. Compatible and tested with: macOS High Sierra, Catalina, Big Sur and Monterey.
 
 **NOTE**: Read and follow the install instruction carefully and thoroughly!
 
-## About
+## ABOUT
 
-The EFI Folders contained in this repo are configured DSDT-less. They are solely based on binary Renames and ACPI Hotpatches (SSDTs) – just like it's suppossed to be done in OpenCore. They are working perfectly fine (100 %). Since DSDT-less configs do not rely on a patched DSDT which might mismatch the system's DSDT of the installed BIOS, the process of hotpatching is cleaner, more precise and independent of the installed BIOS version. So, instead of just replacing the whole system `DSDT` with a patched one during boot, only the things which need fixing are patched-in on the fly. This makes the system boot faster, run smoother and snappier and slightly improves overall performance as well.
+The EFI Folders contained in this repo are configured DSDT-less. This means, they are solely based on ACPI Hotpatches (SSDTs) and Binary Renames and don't use a patched DSDT file – just like it's suppossed to be done in OpenCore.
 
-**NOTE**: By default, the integrated graphics (IntelHD 4000) are configured for T530 models with `HD+` and FullHD panels (≥ 1600x900 px). So, if you have a model with an `HD` panel (1366x768 px), you need to enable the other Framebuffer-Patch under `DevicePropeties` instead. See section "Preparation: Dos and Don'ts" for Details.
+Instead of replacing the *whole* system `DSDT` with a patched one during boot, only things which need fixing are addressed and patched-in on the fly (hence the term "hot-patching"). The benefits of this approach are:
+
+- ACPI Hotpatches and Binary Renames are independant of the installed BIOS version, so there are no mismatches if the BIOS versions between two machines differ.
+- Hotpatching is cleaner, more precise and independent of the installed BIOS version since they can address specific areas of the ACPI table
+- Overall, the system boots faster, run smoother and snappier then using a patched DSDT.
+- Issues which might occur with newer macOS versions can be addressed and resolved easier by mdifying or adding specific SSDTs without having to update the whole or the patched DSDT again.
 
 ## HARDWARE SPECS
 <details>
@@ -60,39 +65,39 @@ The EFI Folders contained in this repo are configured DSDT-less. They are solely
 ### Dos and Don'ts
 Before you copy the EFI onto your system SSD/HDD, you should do the following:
 
-- **Test it**: Test the EFI folder first using a FAT32 formatted USB Stick! Also perform an NVRAM Reset prior to booting.
-- **SMBIOS**: Create SMBIOS infos using GenSMBIOS and add the data to `PlatformInfo > Generic`. High Sierra and Catalina require `MacBookPro10,1`, Big Sur requires `MaBookPro11,1` and macOS Monterey requires `MaBookPro11,4 – amongst other files and settings. That's why There's an extra config_Monterey.plist included.
-- **Integrated Graphics**: 
-Two variants of T530 models with different display panels and screen resolutions exist: `HD+` and `HD` models. Both are using different identifiers:
+- **Test it**: Test the EFI folder first using a FAT32 formatted USB Stick! Also perform an NVRAM reset prior to booting.
+- **Integrated Graphics**: Three variants of T530 models with different display panels exist: `HD+` (including FullHD) and `HD` models. Both are using different identifiers:
 
-	`AAPL,ig-platform-id 04006601` = HD+ ≥ 1600x900 px </br>
+	`AAPL,ig-platform-id 04006601` = HD+/FullHD ≥ 1600x900 px </br>
 	`AAPL,ig-platform-id 03006601` = HD = 1366x768 px
 
-	By default, the Framebuffer-Patch for `HD+` models is enabled in the config under `DeviceProperties` > `PciRoot(0x0)/Pci(0x2,0x0)`.
-
-	If your model uses a `HD` panel, you need to disable `PciRoot(0x0)/Pci(0x2,0x0)` by placing a `#` in front of it. 
-	Next, enable "#PciRoot(0x0)/Pci(0x2,0x0) 1366x768 px" instead. Delete the leading `#` and the description after the bracket, so that it looks this: `PciRoot(0x0)/Pci(0x2,0x0)`.
+	By default, the iGPU (Intel(R) HD 4000) is configured for T530 models with `HD+` and FullHD panels. If your model has an `HD` panel you need to select a different Framebuffer-Patch, which is included in the config but is disabled. To enable it, do the folowing:
+	1. Go to `DeviceProperties` > `PciRoot(0x0)/Pci(0x2,0x0)`. 
+	2. Disable the HD+ Frambuffer-Patch by placing a `#` in front of `PciRoot(0x0)/Pci(0x2,0x0)`.
+	3. 	Next, enable "#PciRoot(0x0)/Pci(0x2,0x0) 1366x768 px" by deleting the leading `#` and the description after the bracket, so that it looks this: `PciRoot(0x0)/Pci(0x2,0x0)`.
 	
-	**HINT**: if your screen turns off during boot, you are using the wrong Framebuffer-Patch!
+	**HINT**: If your screen turns off during boot, you are using the wrong Framebuffer-Patch!
+- **CPU**: The `SSDT-PM.aml` inside the ACPI Folder is for an **Intel i7 3630QM**. If you use a differnt CPU, disable it for now and create your own using `ssdtPRGEN` in Post-Install. (See 'Fixing CPU Power Management' in the 'Post-Install Section')
+- **SMBIOS**: Create SMBIOS infos using GenSMBIOS and add the data to `PlatformInfo > Generic`. 
+	- High Sierra and Catalina require `MacBookPro10,1`
+	- Big Sur requires `MaBookPro11,1`
+	- Monterey requires `MaBookPro11,4` – amongst other files and settings. That's why There's an extra `config_Monterey.plist` included.
+- **Disabling System Integrity Protection (SIP)**: to Disable SIP, go to `NVRAM` > `Add` > `7C436110-AB2A-4BBB-A880-FE41995C9F82 `and change the value of `csr-active-config` according to the installes version of macOS
+  - For High Sierra: `FF030000`
+  - For Mojave/Catalina: `FF070000`
+  - For Big Sur: `67080000`
+  - For Monterey: `EF0F0000`
 
-- **System Integrity Protection (SIP)**
-  - For High Sierra: `MacBookPro10,1` or 10,2 (depending on CPU) and `csr-active-config: FF030000`to disable SIP
-  - For Mojave/Catalina: `MacBookPro10,1` or 10,2 (depending on CPU) and `csr-active-config: FF070000` to disable SIP
-  - For Big Sur: `MacBookPro11,1` or 11,2 (depending on CPU) and `csr-active-config: 67080000` to disable SIP
-  - For Monterey: `MacBookPro11,4` and `csr-active-config: EF0F0000` to disable SIP
-- **CPU**
-  - The `SSDT-PM.aml` inside the ACPI Folder is for an **Intel i7 3630QM**. If you use a differnt CPU, disable it in the config and create your own using `ssdtPRGEN` in Post-Install. (See 'Fixing CPU Power Management' in the 'Post-Install Section')
 - **Wifi/Bluetooth**
   - Built-in Intel Wifi/Bluetooth may work. Have a look at [OpenIntelWireless](https://github.com/OpenIntelWireless) to check if your card is supported yet.
   - 3rd Party cards require the `1vyrain` jailbreak to unlock the BIOS in order to disable WLAN Whitelist (unless the 3rd party card is whitelisted)
   - Broadcom cards require an additional kext for Bluetooth. Either `BrcmFirmwareData.kext` in "EFI > OC > Kexts" which will be injected through OpenCore or
-    `BrcmFirmwareRepo.kext` which needs to be installed into S/L/E since it cannot be injected by bootloaders, but works a bit more efficient according to the documentation. **ATTENTION**: Monterey cannot use `BrcmBluetoothInjector.kext` - use `BlueToolFixup.kext` instead
-  - If you use a card from a different vendor replace the Kext(s) for networking for your device and update your config before trying to boot with this EFI.
-- **Editing/Updating config files:**
-  - If you create Snapshots for the DSDT-less config using `ProperTree`, make sure to disable the "ACPI > Add" entries for `DSDT` files afterwards. Best practice would be to delete both DSDTs from the EFI anyway, if you use the DSDT-less config.
-  - DON'T create Snapshots for the config_DSDT.plist which is using the DSDT Files. Because this will add all the SSDTs back in, which are unnecessary since all these patches exist in the patched DSDT already. If you plan to use the DSDT-based config, you should delete all of the SSDTs except for `SSDT-PM`.
- - **Kexts**
-  - `NoTouchID.kext` is no longer necessary for macOS 10.15.7 and beyond, so you can disable it (it's excluded from current release anyway).
+    `BrcmFirmwareRepo.kext` which needs to be installed into S/L/E since it cannot be injected by bootloaders, but works a bit more efficient according to the documentation. **ATTENTION**: macOS Monterey cannot use `BrcmBluetoothInjector.kext` - use `BlueToolFixup.kext` instead!
+  - If you use a Wif/BT card from a different vendor than Broadcom replace the Kext(s) for networking for your device and update your config before trying to boot with this EFI.
+- **Editing/Updating config files**: If you create Snapshots for the included config.plists using `ProperTree`, make sure to double-check the `Kernel` > `Add` Section afterwards for the following:
+	- `config.plist` must not include `BlueToolFixup.kext`. If it is present after generating a Snapshot, disable it. 
+	- `config_Monterey.plist` must not include `BrcmBluetoothInjector.kext`. If it is present after generating a Snapshot, disable it. 
+- **Kexts**: `NoTouchID.kext` is no longer required for macOS 10.15.7 and beyond, so you can disable it (it's excluded from current releases anyway).
 - **Backlight Brightness Level tweaks**: 
   - Set boot-arg `applbkl=1` for reasonable maximum brightness level controlled by `WhateverGreen`. 
   - Set boot-arg `applbkl=0` for increased maximum brightness as defined in `SSDT-PNLF.aml`
