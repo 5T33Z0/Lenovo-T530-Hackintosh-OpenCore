@@ -91,8 +91,8 @@ Before you copy the EFI onto your system SSD/HDD, you should do the following:
 - **Wifi/Bluetooth**
   - Built-in Intel Wifi/Bluetooth may work. Have a look at [OpenIntelWireless](https://github.com/OpenIntelWireless) to check if your card is supported yet.
   - 3rd Party cards require the `1vyrain` jailbreak to unlock the BIOS in order to disable WLAN Whitelist (unless the 3rd party card is whitelisted)
-  - Broadcom cards require an additional kext for Bluetooth. Either `BrcmFirmwareData.kext` in "EFI > OC > Kexts" which will be injected through OpenCore or
-    `BrcmFirmwareRepo.kext` which needs to be installed into S/L/E since it cannot be injected by bootloaders, but works a bit more efficient according to the documentation. **ATTENTION**: macOS Monterey cannot use `BrcmBluetoothInjector.kext` - use `BlueToolFixup.kext` instead!
+  - Broadcom cards require an additional kext for Bluetooth. Either `BrcmFirmwareData.kext` in EFI > OC > Kexts which will be injected through OpenCore or
+    `BrcmFirmwareRepo.kext` which needs to be installed into S/L/E since it cannot be injected by Bootloaders, but works a bit more efficient according to the documentation. But it also requires more effort to install when updating Kexts (that's why I am using `BrcmFirmwareData.kext` instead). **ATTENTION**: macOS Monterey cannot handle `BrcmBluetoothInjector.kext` and causes a boot loop so use `BlueToolFixup.kext` instead!
   - If you use a Wif/BT card from a different vendor than Broadcom replace the Kext(s) for networking for your device and update your config before trying to boot with this EFI.
 - **Editing/Updating config files**: If you create Snapshots for the included config.plists using `ProperTree`, make sure to double-check the `Kernel` > `Add` Section afterwards for the following:
 	- `config.plist` must not include `BlueToolFixup.kext`. If it is present after generating a Snapshot, disable it. 
