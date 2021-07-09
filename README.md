@@ -97,7 +97,9 @@ Before you copy the EFI onto your system SSD/HDD, you should do the following:
 - **Editing/Updating config files**: If you create Snapshots for the included config.plists using `ProperTree`, make sure to double-check the `Kernel` > `Add` Section afterwards for the following:
 	- `config.plist` must not include `BlueToolFixup.kext`. If it is present after generating a Snapshot, disable it. 
 	- `config_Monterey.plist` must not include `BrcmBluetoothInjector.kext`. If it is present after generating a Snapshot, disable it. 
-- **Kexts**: `NoTouchID.kext` is no longer required for macOS 10.15.7 and beyond, so you can disable it (it's excluded from current releases anyway).
+- **Kexts**: 
+	- `NoTouchID.kext` is no longer required for macOS 10.15.7 and beyond, so you can disable it (it's excluded from current releases anyway).
+	- If you need additional Features like Sidecar, NighShift, Airplay to Mac or Universal Control you can try adding [Feature Unlock](https://github.com/acidanthera/FeatureUnlock) Kext.
 - **Backlight Brightness Level tweaks**: 
   - Set boot-arg `applbkl=1` for reasonable maximum brightness level controlled by `WhateverGreen`. 
   - Set boot-arg `applbkl=0` for increased maximum brightness as defined in `SSDT-PNLF.aml`
