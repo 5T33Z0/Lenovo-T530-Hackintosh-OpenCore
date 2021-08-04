@@ -231,7 +231,6 @@ macOS locks the optical drive sometimes so that you can't open it with the physi
 - George Kushnir for [1vyrain BIOS Jailbreak](https://github.com/n4ru/1vyrain) to remove WLAN whitelist
 - Acidanthera and Team for [OpenCore Bootloader](https://github.com/acidanthera/OpenCorePkg)
 - Dortantia for the [OpenCore Install Guide](https://dortania.github.io/OpenCore-Install-Guide)
-- rierdorf for [OpenCore Sanity Checker](https://opencore.slowgeek.com/)
 - SergeySlice for [Clover Bootloader](https://github.com/CloverHackyColor/CloverBootloader)
 - khronokernel for [Clover Vanilla Install Guide](https://hackintosh.gitbook.io/-r-hackintosh-vanilla-desktop-guide/)
 - [Corpnewt](https://github.com/corpnewt) for SSDTTime, GenSMBIOS and ProperTree
@@ -239,7 +238,7 @@ macOS locks the optical drive sometimes so that you can't open it with the physi
 - daliansky for [OC Little](https://github.com/5T33Z0/OC-Little-Translated) ACPI Hotpatch Collection
 - [Rehabman](https://github.com/RehabMan) for Laptop and DSDT patching guides
 - [RealKiro](https://github.com/RealKiro/Hackintosh) for Clover EFI with ACPI Patches for referencing
-- [banhbaoxamlan](https://github.com/banhbaoxamlan/X230-Hackintosh) for his X230 repo which contained the last missing pieces for fixing the post-sleep pulsing LED issue.
+- [banhbaoxamlan](https://github.com/banhbaoxamlan/X230-Hackintosh) for his EFI folder containing ACPI files to fix the post-sleep pulsing LED issue.
 - [SL-Soft](https://www.sl-soft.de/software/) for Kext Updater and ANYmacOS
 - [Pavo-IM](https://github.com/Pavo-IM/) for OC_Gen-X
 - jsassu20 for [MacDown](https://macdown.uranusjr.com/) Markdown Editor
