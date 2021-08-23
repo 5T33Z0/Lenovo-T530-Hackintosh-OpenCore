@@ -171,6 +171,16 @@ If you are on Windows or Linux follow the guide provided by [Dortania](https://d
 
 ## POST-INSTALL
 <details>
+<summary><strong>Strengthen Security</strong></summary>
+Change the following settings to make your systm more secure:
+
+- Change UEFI > APFS: `MinDate` and `MinVersion` from `-1` (disabled) to the correct values for the macOS version you are using. A list with the correct values for macOS High Sierra up to Big Sur can be found [here](https://github.com/acidanthera/OpenCorePkg/blob/master/Include/Acidanthera/Library/OcApfsLib.h).</br>
+
+	**BACKGROUND**: OpenCore 0.7.2 introduced a new security feature which prevents loading the APFS driver if it does not match a specific Date and Version. If these values are left at their default `0`, your macOS partition will not show up in the Boot Picker unless macOS Big Sur or newer is installed since the APFS driver will not be loaded. For ease of use (and since I don't know which macOS you will be using) I've deactivated this feature. If you plan to setup a multiboot system running various iterations of macOS you probably should leave it at `-1`. Otherwise you won't be able to boot older OSes.
+
+**NOTE**: You should test this setting first, booting from a USB Stick since it can prevent the system from booting.
+</details>
+<details>
 <summary><strong>Fixing CPU Power Management</strong></summary>
 
 ### Fixing CPU Power Management 
