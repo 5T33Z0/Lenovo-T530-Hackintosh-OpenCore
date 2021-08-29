@@ -117,7 +117,7 @@ Before you copy the EFI onto your system SSD/HDD, you should do the following:
 5. Restart
 6. **IMPORTANT**: Perform a NVRAM Reset (in Bootpicker, hit Space Bar and select "Clean NVRAM")
 7. Reboot again
-8. Select macOS to boot. It's currently configured for running Catalina but there's an extra config file for running Monterey included. If you want to run Big Sur, use the default config, change `SystemProductName` to `MacBookPro11,1` and `csr-active-config` value accordingly. You can research a suitable/matching SMBIOS for your CPU on everymac.com.
+8. Select macOS to boot. It's currently configured for running macOS Mojave/Catalina but there's an extra config file for running Monterey included. If you want to run Big Sur, use the default config, change `SystemProductName` to `MacBookPro11,1` and `csr-active-config` value accordingly. You can research a suitable/matching SMBIOS for your CPU on everymac.com.
 
 </details>
 <details>
