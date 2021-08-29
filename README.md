@@ -27,8 +27,8 @@ Instead of replacing the *whole* system `DSDT` with a patched one during boot, o
 
 - ACPI Hotpatches and Binary Renames are independant of the installed BIOS version, so there are no mismatches if the BIOS versions between two machines differ.
 - Hotpatching is cleaner, more precise and independent of the installed BIOS version since they can address specific areas of the ACPI table
-- Overall, the system boots faster, run smoother and snappier then using a patched DSDT.
-- Issues which might occur with newer macOS versions can be addressed and resolved easier by mdifying or adding specific SSDTs without having to update the whole or the patched DSDT again.
+- Overall, the system boots faster, runs smoother and snappier than using a patched DSDT.
+- Issues which might occur with newer macOS versions can be addressed and resolved easier by modifying or adding specific SSDTs without having to update and export the whole patched DSDT again.
 
 ## HARDWARE SPECS
 <details>
