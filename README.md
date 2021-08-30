@@ -30,6 +30,67 @@ Instead of replacing the *whole* system `DSDT` by a patched one during boot, onl
 - Overall, the system boots faster, runs smoother and snappier than using a patched DSDT.
 - Issues which might occur with newer macOS versions can be addressed and resolved easier by modifying or adding specific SSDTs without having to update and export the whole patched DSDT again.
 
+<details>
+<summary><strong>EFI Folder Content</strong></summary>
+
+### EFI Folder Structure
+
+```
+EFI
+├── BOOT
+│   └── BOOTx64.efi
+└── OC
+    ├── ACPI
+    │   ├── SSDT-ALS0.aml
+    │   ├── SSDT-BATTERY.aml
+    │   ├── SSDT-BKEYS.aml
+    │   ├── SSDT-EXT4.aml
+    │   ├── SSDT-EXT5.aml
+    │   ├── SSDT-HPET.aml
+    │   ├── SSDT-LID.aml
+    │   ├── SSDT-PM.aml
+    │   ├── SSDT-PNLF.aml
+    │   ├── SSDT-PTSWAKTTS.aml
+    │   ├── SSDT-PWRB.aml
+    │   ├── SSDT-SBUS-MCHC.aml
+    │   ├── SSDT-Sleep_PRW-0D6D.aml
+    │   ├── SSDT-XDSM.aml
+    │   └── SSDT-XOSI.aml
+    ├── Drivers
+    │   ├── HfsPlus.efi
+    │   ├── OpenCanopy.efi
+    │   └── OpenRuntime.efi
+    ├── Kexts
+    │   ├── AirportBrcmFixup.kext
+    │   ├── AppleALC.kext
+    │   ├── BlueToolFixup.kext
+    │   ├── BrcmBluetoothInjector.kext
+    │   ├── BrcmFirmwareData.kext
+    │   ├── BrcmPatchRAM3.kext
+    │   ├── IntelMausi.kext
+    │   ├── Lilu.kext
+    │   ├── SMCBatteryManager.kext
+    │   ├── VirtualSMC.kext
+    │   ├── VoodooPS2Controller.kext
+    │   ├── VoodooSDHC.kext
+    │   └── WhateverGreen.kext
+    ├── OpenCore.efi
+    ├── Resources (NOTE: removed files of sub-folders from tree view to reduce clutter)
+    │   ├── Audio
+    │   ├── Font
+    │   ├── Image
+    │   │   └── Acidanthera
+    │   │       ├── Chardonnay
+    │   │       ├── GoldenGate
+    │   │       └── Syrah
+    │   └── Label
+    ├── Tools
+    │   └── CleanNvram.efi
+    ├── config.plist
+    └── config_Monterey.plist
+```
+</details>
+
 ## HARDWARE SPECS
 <details>
 <summary><strong>ThinkPad Model</strong></summary>
