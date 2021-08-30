@@ -15,18 +15,18 @@
 
 ## SUMMARY
 
-This Repo contains EFI Folders for running macOS on a Lenovo T530 Laptop using OpenCore or Clover. Compatible and tested with: macOS High Sierra, Catalina, Big Sur and Monterey.
+This Repo contains EFI Folders for running macOS on a Lenovo T530 Laptop using OpenCore and/or Clover. Compatible and tested with: macOS High Sierra, Mojave, Catalina, Big Sur and Monterey.
 
 **NOTE**: Read and follow the install instruction carefully and thoroughly!
 
 ## ABOUT
 
-The EFI Folders contained in this repo are configured DSDT-less. This means, they are solely based on ACPI Hotpatches (SSDTs) and Binary Renames and don't use a patched DSDT file – just like it's suppossed to be done in OpenCore.
+The EFI Folders contained in this repo are configured DSDT-less. This means, they are solely based on Binary Renames and ACPI Hotpatches (SSDTs) – they don't use a patched `DSDT` file – just like it's suppossed to be done in OpenCore.
 
-Instead of replacing the *whole* system `DSDT` with a patched one during boot, only things which need fixing are addressed and patched-in on the fly (hence the term "hot-patching"). The benefits of this approach are:
+Instead of replacing the *whole* system `DSDT` by a patched one during boot, only things which need fixing are addressed and patched-in on the fly (hence the term "hot-patching"). The benefits of this approach are:
 
-- ACPI Hotpatches and Binary Renames are independant of the installed BIOS version, so there are no mismatches if the BIOS versions between two machines differ.
-- Hotpatching is cleaner, more precise and independent of the installed BIOS version since they can address specific areas of the ACPI table
+- Binary Renames and ACPI Hotpatches are independant of the installed BIOS version, so there are no mismatches if the BIOS versions between two machines differ.
+- Hotpatching is cleaner, more precise and independent of the installed BIOS version since they only address specific areas of the ACPI table.
 - Overall, the system boots faster, runs smoother and snappier than using a patched DSDT.
 - Issues which might occur with newer macOS versions can be addressed and resolved easier by modifying or adding specific SSDTs without having to update and export the whole patched DSDT again.
 
