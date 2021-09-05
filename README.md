@@ -4,7 +4,7 @@
 
 [![T530](https://img.shields.io/badge/ThinkPad-T530-informational.svg)](https://psref.lenovo.com/syspool/Sys/PDF/withdrawnbook/ThinkPad_T530.pdf)
 [![OpenCore](https://img.shields.io/badge/OpenCore-0.7.2-important.svg)](https://github.com/acidanthera/OpenCorePkg/releases/latest)
-[![Clover Version](https://img.shields.io/badge/Clover-r5139-important.svg)](https://github.com/CloverHackyColor/CloverBootloader/releases/tag/5134)
+[![Clover Version](https://img.shields.io/badge/Clover-r5138-important.svg)](https://github.com/CloverHackyColor/CloverBootloader/releases/tag/5134)
 [![MacOS High Sierra](https://img.shields.io/badge/macOS-10.13.6-white.svg)](https://support.apple.com/kb/SP765?locale=en_US) 
 [![MacOS Catalina](https://img.shields.io/badge/macOS-10.15.7-white.svg)](https://www.apple.com/li/macos/catalina/) 
 [![MacOS Big Sur](https://img.shields.io/badge/macOS-11.5-white.svg)](https://www.apple.com/macos/big-sur/)
@@ -127,9 +127,9 @@ EFI
 Before you copy the EFI onto your system SSD/HDD, you should do the following:
 
 - **Test it**: Test the EFI folder first using a FAT32 formatted USB Stick! Also perform an NVRAM reset prior to booting.
-- **Pick a Config**: The EFI Folder cotains 2 config files: `config.plist` and `config_Monterey.plist`. The latter one is for running macOS Monterey obviously. The major differences between the 2 configs are:
-	- `config.plist` uses MacBookPro10,1 as System Definition and can macOS 10.13 to 10.15. Adjust the required value for `csr-active-config` accordingly.
-	- `config_monterey.plist` uses MacBookPro11,4 to run macOS Big Sur and Monterey. Big Sur requires a different combination of Kexts for Broadcom WiFi/BT Cards. See "WiFi/Bluetooth" Section further down. Adjust the required value for `csr-active-config` accordingly.
+- **Pick a Config**: The EFI Folder cotains 2 config files: `config.plist` and `config_Monterey.plist`. The major differences between them are:
+	- `config.plist` uses `MacBookPro10,1` as System Definition. It can run everything from macOS 10.13 High Sierra up to macOS 11 Big Sur. Big Sur requires changing the `SystemProductName` to `MacBookPro11,1`, though. Adjust `csr-active-config` accordingly.
+	- `config_Monterey.plist` uses `MacBookPro11,4` and is for booting macOS Monterey (obvioulsy). It uses a different combination of Bluetooth Kexts for Broadcom Cards, otherwise the system won't boot (see "Wifi/Bluetooth" further down).
 - **Integrated Graphics**: Three variants of T530 models with different display panels exist: `HD+` (including FullHD) and `HD` models. Both are using different identifiers:
 
 	`AAPL,ig-platform-id 04006601` = HD+/FullHD ≥ 1600x900 px </br>
