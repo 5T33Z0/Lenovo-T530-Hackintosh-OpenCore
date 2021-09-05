@@ -152,7 +152,7 @@ Before you copy the EFI onto your system SSD/HDD, you should do the following:
   - For Big Sur/Monterey: `67080000`
   - For Monterey (alternative): `EF0F0000`
 - **Wifi/Bluetooth**
-	- I use a Broadcom Card biut built-in Intel(r) WiFi/Bluetooth Cards may also work. Check [OpenIntelWireless](https://github.com/OpenIntelWireless) to find out if your card is supported (yet).
+	- I use a Broadcom Card but built-in Intel(r) WiFi/Bluetooth Cards may also work. Check [OpenIntelWireless](https://github.com/OpenIntelWireless) to find out if your card is supported (yet).
 	- 3rd Party WiFi/BT Cards require the 1vyrain Jailbreak to unlock the BIOS in order to disable the WLAN Whitelist (unless the 3rd party card is whitelisted).
    - If you use a WiFi/BT Card from a different vendor than Broadcom, remove the BluetoolFixup and Brcm Kexts, add the required Kext(s) for your card and create a new snapshot of `config.plist` using ProperTree before trying to boot from this EFI.
    - I use `BrcmFirmwareData.kext` for Bluetooth which can be injected by OpenCore and Clover. Alternatively, you could use `BrcmFirmwareRepo.kext` instead. But it needs to be installed into System/Library/Extensions since it cannot be injected by Bootloaders. It's supposed to be more efficient than BrcmFirmwareData.kext, but it also takes more effort to install and update.
