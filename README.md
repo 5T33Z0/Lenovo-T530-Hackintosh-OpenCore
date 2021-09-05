@@ -127,6 +127,9 @@ EFI
 Before you copy the EFI onto your system SSD/HDD, you should do the following:
 
 - **Test it**: Test the EFI folder first using a FAT32 formatted USB Stick! Also perform an NVRAM reset prior to booting.
+- **Pick a Config**: The EFI Folder cotains 2 config files: `config.plist` and `config_Monterey.plist`. The latter one is for running macOS Monterey obviously. The major differences between the 2 configs are:
+	- `config.plist` uses MacBookPro10,1 as System Definition and can macOS 10.13 to 10.15. Adjust the required value for `csr-active-config` accordingly.
+	- `config_monterey.plist` uses MacBookPro11,4 to run macOS Big Sur and Monterey. Big Sur requires a different combination of Kexts for Broadcom WiFi/BT Cards. See "WiFi/Bluetooth" Section further down. Adjust the required value for `csr-active-config` accordingly.
 - **Integrated Graphics**: Three variants of T530 models with different display panels exist: `HD+` (including FullHD) and `HD` models. Both are using different identifiers:
 
 	`AAPL,ig-platform-id 04006601` = HD+/FullHD ≥ 1600x900 px </br>
@@ -146,8 +149,8 @@ Before you copy the EFI onto your system SSD/HDD, you should do the following:
 - **Disabling System Integrity Protection (SIP)**: to Disable SIP, go to `NVRAM` > `Add` > `7C436110-AB2A-4BBB-A880-FE41995C9F82 `and change the value of `csr-active-config` according to the installes version of macOS
   - For High Sierra: `FF030000`
   - For Mojave/Catalina: `FF070000`
-  - For Big Sur: `67080000`
-  - For Monterey: `EF0F0000`
+  - For Big Sur/Monterey: `67080000`
+  - For Monterey (alternative): `EF0F0000`
 
 - **Wifi/Bluetooth**
   - Built-in Intel Wifi/Bluetooth may work. Have a look at [OpenIntelWireless](https://github.com/OpenIntelWireless) to check if your card is supported yet.
