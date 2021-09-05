@@ -152,11 +152,11 @@ Before you copy the EFI onto your system SSD/HDD, you should do the following:
   - For Big Sur/Monterey: `67080000`
   - For Monterey (alternative): `EF0F0000`
 - **Wifi/Bluetooth**
+	- I use a Broadcom Card biut built-in Intel(r) WiFi/Bluetooth Cards may also work. Check [OpenIntelWireless](https://github.com/OpenIntelWireless) to find out if your card is supported (yet).
 	- 3rd Party WiFi/BT Cards require the 1vyrain Jailbreak to unlock the BIOS in order to disable the WLAN Whitelist (unless the 3rd party card is whitelisted).
-	- Built-in Intel(r) WiFi/Bluetooth Cards may work. Check [OpenIntelWireless](https://github.com/OpenIntelWireless) to find out if your card is supported.
+   - If you use a WiFi/BT Card from a different vendor than Broadcom, remove the BluetoolFixup and Brcm Kexts, add the required Kext(s) for your card and create a new snapshot of `config.plist` using ProperTree before trying to boot from this EFI.
+   - I use `BrcmFirmwareData.kext` for Bluetooth which can be injected by OpenCore and Clover. Alternatively, you could use `BrcmFirmwareRepo.kext` instead. But it needs to be installed into System/Library/Extensions since it cannot be injected by Bootloaders. It's supposed to be more efficient than BrcmFirmwareData.kext, but it also takes more effort to install and update.
    - macOS Monterey cannot handle `BrcmBluetoothInjector.kext` and causes a boot loop so use `BlueToolFixup.kext` instead!
-   - If you use a WiFi/BT Card from a different vendor than Broadcom, remove the BluetoolFixup and Brcm Kext for Bluetooth/WiFi, add the required Kext(s) for your card and update your `config.plist` before trying to boot with this EFI.
-  - I use `BrcmFirmwareData.kext` for Bluetooth which can be injected by OpenCore and Clover. Alternatively, you could use `BrcmFirmwareRepo.kext` instead. But it needs to be installed into System/Library/Extensions since it cannot be injected by Bootloaders. It's supposed to be more efficient than BrcmFirmwareData.kext, but it also takes more effort to install and update.
 - **Editing/Updating config files**: If you create Snapshots for the included config.plists using `ProperTree`, make sure to double-check the `Kernel` > `Add` Section afterwards for the following:
 	- `config.plist` must not include `BlueToolFixup.kext`. If it is present after generating a Snapshot, disable it. 
 	- `config_Monterey.plist` must not include `BrcmBluetoothInjector.kext`. If it is present after generating a Snapshot, disable it. 
