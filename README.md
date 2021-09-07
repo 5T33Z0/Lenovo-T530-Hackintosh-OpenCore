@@ -15,7 +15,7 @@
 
 ## SUMMARY
 
-This Repo contains EFI Folders for running macOS on a Lenovo T530 Laptop using OpenCore and/or Clover. Compatible and tested with: macOS High Sierra, Mojave, Catalina, Big Sur and Monterey.
+This Repo contains EFI Folders for running macOS on a Lenovo T530 Laptop using OpenCore and/or Clover. Compatible and tested with: macOS High Sierra, Mojave, Catalina, Big Sur and Monterey. It makes use of the ECEnabler.kext so no more Battery Patching is necessary to get working battery status read-outs!
 
 **NOTE**: Read and follow the install instruction carefully and thoroughly!
 
@@ -42,7 +42,6 @@ EFI
 └── OC
     ├── ACPI
     │   ├── SSDT-ALS0.aml
-    │   ├── SSDT-BATTERY.aml
     │   ├── SSDT-BKEYS.aml
     │   ├── SSDT-EXT4.aml
     │   ├── SSDT-EXT5.aml
@@ -67,6 +66,7 @@ EFI
     │   ├── BrcmBluetoothInjector.kext
     │   ├── BrcmFirmwareData.kext
     │   ├── BrcmPatchRAM3.kext
+    │   ├── ECEnabler.kext
     │   ├── IntelMausi.kext
     │   ├── Lilu.kext
     │   ├── SMCBatteryManager.kext
