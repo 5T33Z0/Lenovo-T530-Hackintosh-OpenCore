@@ -3,13 +3,13 @@
 **5T4TU5**: 100% Completed! Added macOS Monterey support!
 
 [![T530](https://img.shields.io/badge/ThinkPad-T530-informational.svg)](https://psref.lenovo.com/syspool/Sys/PDF/withdrawnbook/ThinkPad_T530.pdf)
-[![OpenCore](https://img.shields.io/badge/OpenCore-0.7.2-important.svg)](https://github.com/acidanthera/OpenCorePkg/releases/latest)
-[![Clover Version](https://img.shields.io/badge/Clover-r5138-important.svg)](https://github.com/CloverHackyColor/CloverBootloader/releases/tag/5134)
-[![MacOS High Sierra](https://img.shields.io/badge/macOS-10.13.6-white.svg)](https://support.apple.com/kb/SP765?locale=en_US) 
+[![OpenCore](https://img.shields.io/badge/OpenCore-0.7.3-important.svg)](https://github.com/acidanthera/OpenCorePkg/releases/latest)
+[![Clover Version](https://img.shields.io/badge/Clover-r5139-important.svg)](https://github.com/CloverHackyColor/CloverBootloader/releases/tag/5139)
+[![MacOS Mojave](https://img.shields.io/badge/macOS-10.14.6-white.svg)](https://support.apple.com/kb/SP777?locale=en_US)
 [![MacOS Catalina](https://img.shields.io/badge/macOS-10.15.7-white.svg)](https://www.apple.com/li/macos/catalina/) 
-[![MacOS Big Sur](https://img.shields.io/badge/macOS-11.5-white.svg)](https://www.apple.com/macos/big-sur/)
+[![MacOS Big Sur](https://img.shields.io/badge/macOS-11.5.2-white.svg)](https://www.apple.com/macos/big-sur/)
 [![MacOS Monterey](https://img.shields.io/badge/macOS-12-white.svg)](https://www.apple.com/macos/monterey-preview/)
-[![release](https://img.shields.io/badge/Download-latest-success.svg)](https://github.com/5T33Z0/Lenovo-T530-Hackinosh-OpenCore/releases)
+[![release](https://img.shields.io/badge/Download-latest-success.svg)](https://github.com/5T33Z0/Lenovo-T530-Hackinosh-OpenCore/releases/latest)
 
 ![](https://github.com/5T33Z0/Lenovo-T530-Hackinosh-OpenCore/blob/main/Pics/BootPicker.png)
 
@@ -262,7 +262,8 @@ CPU Power Management should work fine after that. Optionally, you can install In
 
 **NOTE 1**: Only necessarry if you use a differnt CPU than i7 3630QM </br>
 **NOTE 2**: You can also add modifiers to the terminal command for building the SSDT. You can - for example - drop the low frequency from their default 1200 MHz to 900 MHz in 100 mHz increments, but no lower than that. Otherwise the system crashes during boot. I suggests you experiement with the modifiers a bit.</br>
-**NOTE 3**: If you feel really confident and enthusiastic you could also re-enable XCPM. But in my experience the machine does not perform as good. You can follow this guide if you're so inclined: https://github.com/5T33Z0/Lenovo-T530-Hackinosh-OpenCore/blob/main/Guides/Enable%20XCPM.md
+**NOTE 3**: If you feel really confident and enthusiastic you could also re-enable XCPM. But in my experience the machine does not perform as good. You can follow this guide if you're so inclined: https://github.com/5T33Z0/Lenovo-T530-Hackinosh-OpenCore/blob/main/Guides/Enable%20XCPM.md/<br>
+**NOTE 4**: If you are running macOS Monterey you can achieve better CPU Power Management and thermals (with a lot less fan activity) if you define the System as `MacBookPro10,1` instead of the required `MacBookPro11,4`. But then you also need to add the boot-arg `-no_compat_check` as well. Otherwise your system won't boot since macOS Monterey is not supposed to run on anything older than MacBookPro11,4. The downside of using `-no_compat_check` is that you won't be able to download Systenm Updates directly (use ANYmacOS instead). But in my opionion, using `MacBookPro10,1` makes much more sense because the system is more power efficient and silent since the idle Frequency is around 800 mHz lower.
 </details>
 <details>
 <summary><strong>Fixing Sleep Issues</strong></summary>
