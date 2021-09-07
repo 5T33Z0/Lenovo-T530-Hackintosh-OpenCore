@@ -80,9 +80,12 @@ EFI
     │   ├── Font
     │   ├── Image
     │   │   └── Acidanthera
-    │   │       ├── Chardonnay
-    │   │       ├── GoldenGate
-    │   │       └── Syrah
+    │   │   │   ├── Chardonnay
+    │   │   │   ├── GoldenGate
+    │   │   │   └── Syrah
+    │   │   └── chris1111
+    │	│	├── Minimal
+    │   │       └── Minimal-SSD
     │   └── Label
     ├── Tools
     │   └── CleanNvram.efi
