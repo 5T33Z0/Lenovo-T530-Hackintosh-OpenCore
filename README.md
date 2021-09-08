@@ -248,7 +248,8 @@ Change the following settings to make your systm more secure:
 
 ### Fixing CPU Power Management 
 1. Open Config
-2. Enable the 2 Patches under "ACPI > Delete" (`Drop CpuPm` and `Drop Cpu0Ist`)
+2. Disable `SSDT-PM.aml` under ACPI > Add  	
+2. Enable the 2 Patches under ACPI > Delete (`Drop CpuPm` and `Drop Cpu0Ist`)
 3. Save config and reboot
 4. Install [ssdtPRGen](https://github.com/Piker-Alpha/ssdtPRGen.sh)
 5. Open Terminal and type: sudo /Users/YOURUSERNAME/ssdtPRGen.sh
@@ -290,7 +291,6 @@ macOS locks the optical drive sometimes so that you can't open it with the physi
 
 - Option 1: Adding an Eject Button to the Menu Bar
 	- Go to `System > Library > CoreService > Menu Extras` and double-click on `Eject.menu`. This adds an Eject Button to the Menu Bar.
-
 - Option 2: Press and hold the `INS` button (right below the Power Button) until the Eject Icon appears on the screen and the CD tray opens.
 </details>
 
