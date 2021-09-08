@@ -283,7 +283,7 @@ If you have issues with sleep, run the following commands in Terminal:
 <summary><strong>Fixing Command and Option Keys</strong></summary>
 
 ### Fixing Command and Option Keys positions
-By default, in macOS the [**ALT**] key is the [**CMD**] Key and the [**Windows**] Key is the [**Option Key**]. To switch them around, open System Settings > Keyboard. On the right there's a button for "Special Keys". Just switch the Option and Command keys to the opposite and everything's fine.
+By default, in macOS the [**WINDOWS**] key is the [**CMD**] Key and the [**ALT**] Key is the [**Option Key**]. To switch them around, open System Settings > Keyboard. On the bottom right, there's a button for "Modifier Keys" where you can change them to your liking. **NOTE**: For OpenCore 074 I changed the default behavior of the Keys from swapped to regular inside the `VoodooPS2Keyboard.kext`. So if you are updating from 073 to 074, restore the Keyboard Modifier Keys to default so everything is back to normal.
 </details>
 <details>
 <summary><strong>Adding `Eject` Button to the Menu bar</strong></summary>
