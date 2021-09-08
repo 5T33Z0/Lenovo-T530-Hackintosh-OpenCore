@@ -3,7 +3,7 @@
 **5T4TU5**: 100% Completed! Added macOS Monterey support!
 
 [![T530](https://img.shields.io/badge/ThinkPad-T530-informational.svg)](https://psref.lenovo.com/syspool/Sys/PDF/withdrawnbook/ThinkPad_T530.pdf)
-[![OpenCore](https://img.shields.io/badge/OpenCore-0.7.3-important.svg)](https://github.com/acidanthera/OpenCorePkg/releases/latest)
+[![OpenCore](https://img.shields.io/badge/OpenCore-0.7.4-important.svg)](https://github.com/acidanthera/OpenCorePkg/releases/latest)
 [![Clover Version](https://img.shields.io/badge/Clover-r5139-important.svg)](https://github.com/CloverHackyColor/CloverBootloader/releases/tag/5139)
 [![MacOS Mojave](https://img.shields.io/badge/macOS-10.14.6-white.svg)](https://support.apple.com/kb/SP777?locale=en_US)
 [![MacOS Catalina](https://img.shields.io/badge/macOS-10.15.7-white.svg)](https://www.apple.com/li/macos/catalina/) 
@@ -15,21 +15,18 @@
 
 ## SUMMARY
 
-This Repo contains EFI Folders for running macOS on a Lenovo T530 Laptop using OpenCore and/or Clover. Compatible and tested with: macOS High Sierra, Mojave, Catalina, Big Sur and Monterey. It makes use of the ECEnabler.kext so no more Battery Patching is necessary to get working battery status read-outs!
-
-**NOTE**: Read and follow the install instruction carefully and thoroughly!
+This Repo contains EFI Folders for running macOS on a Lenovo T530 Laptop using OpenCore and Clover. Compatible and tested with: macOS 10.13 High Sierra up to macOS 12 Monterey. It makes use of the brand new `ECEnabler.kext` which enables battery status read-outs directly from the Embedded Controller – without Battery ACPI Patches.
 
 ## ABOUT
 
-The EFI Folders contained in this repo are configured DSDT-less. This means, they are solely based on Binary Renames and ACPI Hotpatches (SSDTs) – they don't use a patched `DSDT` file – just like it's suppossed to be done in OpenCore.
-
-Instead of replacing the *whole* system `DSDT` by a patched one during boot, only things which need fixing are addressed and patched-in on the fly (hence the term "hot-patching"). The benefits of this approach are:
+The EFI Folders contained in this repo are configured DSDT-less. This means, besides Kexts they are solely based on Binary Renames and ACPI Hotpatches (SSDTs) – they don't use a patched `DSDT` file – just like it's suppossed to be done in OpenCore. Instead of replacing the *whole* system `DSDT` by a patched one during boot, only things which need fixing are addressed and patched-in on the fly (hence the term "hot-patching"). The benefits of this approach are:
 
 - Binary Renames and ACPI Hotpatches are independant of the installed BIOS version, so there are no mismatches if the BIOS versions between two machines differ.
 - Hotpatching is cleaner, more precise and independent of the installed BIOS version since they only address specific areas of the ACPI table.
 - Overall, the system boots faster, runs smoother and snappier than using a patched DSDT.
 - Issues which might occur with newer macOS versions can be addressed and resolved easier by modifying or adding specific SSDTs without having to update and export the whole patched DSDT again.
 
+**NOTE**: Read and follow the install instruction carefully and thoroughly!
 <details>
 <summary><strong>EFI Folder Content</strong></summary>
 
