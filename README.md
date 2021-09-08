@@ -308,6 +308,7 @@ macOS locks the optical drive sometimes so that you can't open it with the physi
 - SergeySlice for [Clover Bootloader](https://github.com/CloverHackyColor/CloverBootloader)
 - khronokernel for [Clover Vanilla Install Guide](https://hackintosh.gitbook.io/-r-hackintosh-vanilla-desktop-guide/)
 - [Corpnewt](https://github.com/corpnewt) for SSDTTime, GenSMBIOS and ProperTree
+- [1Revenger1](https://github.com/1Revenger1/ECEnabler) for ECEnabler
 - Piker-Alpha for [ssdtPRGen](https://github.com/Piker-Alpha/ssdtPRGen.sh)
 - daliansky for [OC Little](https://github.com/5T33Z0/OC-Little-Translated) ACPI Hotpatch Collection
 - [Rehabman](https://github.com/RehabMan) for Laptop and DSDT patching guides
