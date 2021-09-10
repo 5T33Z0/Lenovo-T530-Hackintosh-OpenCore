@@ -143,7 +143,7 @@ Before you copy the EFI onto your system SSD/HDD, you should do the following:
 	**HINT**: If your screen turns off during boot, you are using the wrong Framebuffer-Patch!
 - **CPU**: The `SSDT-PM.aml` inside the ACPI Folder is for an **Intel i7 3630QM**. If you use a differnt CPU, disable it for now and create your own using `ssdtPRGEN` in Post-Install. (See 'Fixing CPU Power Management' in the 'Post-Install Section')
 - **SMBIOS**: Create SMBIOS infos using GenSMBIOS and add the data to `PlatformInfo > Generic`. 
-	- High Sierra and Catalina require `MacBookPro10,1`
+	- High Sierra to Catalina require `MacBookPro10,1`
 	- Big Sur requires `MaBookPro11,1`
 	- Monterey requires `MaBookPro11,4` – amongst other files and settings. That's why There's an extra `config_Monterey.plist` included.
 - **Disabling System Integrity Protection (SIP)**: to Disable SIP, go to `NVRAM` > `Add` > `7C436110-AB2A-4BBB-A880-FE41995C9F82 `and change the value of `csr-active-config` according to the installes version of macOS
