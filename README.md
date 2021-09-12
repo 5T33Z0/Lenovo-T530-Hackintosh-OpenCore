@@ -109,6 +109,8 @@ EFI
 | Ethernet            | Intel(r) 82579LM Gigabit Network Connection   |
 | WIFI+BT             | Broadcom BCM94352HMB DW1550, 802.11 a/b/g/n/ac|
 | Docking Stattion    | Lenovo ThinkPad 4338 Mini Dock plus Series 3  |
+
+[**ThinkPad T530 User Guide (PDF)**](https://download.lenovo.com/ibmdl/pub/pc/pccbbs/mobiles_pdf/t530_t530i_w530_ug_en.pdf)
 </details>
 <details>
 <summary><strong>Incompatible Components</strong></summary>
