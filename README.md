@@ -288,6 +288,19 @@ Prior to version 0.7.4 of my OpenCore EFI Folder, the [**Command**] and [**Optio
 Since then, I've undone the key swap inside the `VoodooPS2Keyboard.kext` plugin so that the Key bindings are working as expected out of the box. So if you are updating from 0.7.3 or lower to 0.7.4, reset the Keyboard Modifier Keys back to Default in System Settings > Keyboard to so everything is back to normal.
 </details>
 <details>
+<summary><strong>Changing Themes</strong></summary>
+
+### Changing Themes
+Besides the 3 standard themes from Acidanthera which provide the standard macOS look and feel, I've added 2 additional themes by Chris1111: `Minimal` and `Minimal-SSD.` Neither of them is enabled by default. To enable them, do the following:
+
+- Open `config.plist`
+- Go tp Misc > Boot and change `PickerVariant` to: `chris1111\Minimal` or `chris1111\Minimal-SSD`
+- Next, go to Misc > Tools and change `Flavour` from `Auto` to: `ResetNVRAM:NVRAMTool` (otherwise the Icon for NVRAM Reset is not applied)
+- Save config.plist and reboot
+
+To revert these changes, enter `Acidanthera\GoldenGate` as PickerVarinat and change the Flavour of the NVRAM Reset Tool back to `Auto`.
+</details>
+<details>
 <summary><strong>Adding `Eject` Button to the Menu bar</strong></summary>
 
 ### Eject Button 
