@@ -291,7 +291,7 @@ Since then, I've undone the key swap inside the `VoodooPS2Keyboard.kext` plugin 
 <summary><strong>Changing Themes</strong></summary>
 
 ### Changing Themes
-Besides the 3 standard themes from Acidanthera which provide the standard macOS look and feel, I've added 2 additional themes by Chris1111: `Minimal` and `Minimal-SSD.` Neither of them is enabled by default. To enable them, do the following:
+Besides the 3 themes from Acidanthera which provide the standard macOS look and feel, I've added 2 additional themes by Chris1111: `Minimal` and `Minimal-SSD.` Neither of them is enabled by default. To enable them, do the following:
 
 - Open `config.plist`
 - Go tp Misc > Boot and change `PickerVariant` to: `chris1111\Minimal` or `chris1111\Minimal-SSD`
