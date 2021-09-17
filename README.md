@@ -278,9 +278,7 @@ CPU Power Management should work fine after that. Optionally, you can install In
 - The CPU runs at lower clock speeds in idle since this SMBIOS was written for Ivy Bridge, while 11,x was written for Haswell CPUs. Therefore the CPU produces less heat and the machine runs quieter.
 - Another benefit of using `MacBookPro10,1` is that you get the correct P-States and C-States for your CPU from ssdtPRGen.
 
-**Disadvantages** of using `MacBookPro10,1`: 
-
-- You won't be able to install System Updates because you won't be notified about them. But there's a simple **workaround**:
+**Disadvantage** of using `MacBookPro10,1`: you won't be able to install System Updates because you won't be notified about them. But there's a simple **workaround**:
 
   - Change `SystemProductName` back to `MacBookPro11,1`
   - Set `csr-active-config` to `67080000` (for Big Sur)
