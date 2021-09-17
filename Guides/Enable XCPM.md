@@ -45,11 +45,11 @@ A look into the ssdt.aml file list a summary of all settings for the SSDT. If th
 
 If the output is "1", the `X86PlatformPlugin` is active, otherwise it is not.
 
-## NOTE for Big Sur Users:
-Since Big Sur requires `MacBookPro11,x` to boot, `ssdtPRGen` fails to generate SSDT-PM, because it relies on Board-IDs containing data for Plugin-Type 0. As a workaround, you can either:
+## NOTE for macOS Big Sur and Monterey Users:
+Since macOS Big Sur and Monterey require `MacBookPro11,1` (`MacBookPro11,4` on Monterey) to boot, `ssdtPRGen` fails to generate a SSDT-PM.aml, because it relies on Board-IDs containing data for Plugin-Type 0. As a workaround, you can either:
 
 - use `SSDTTime` to generate a `SSDT-PLUG.aml` **or** 
-- use `MacBookPro10,1` but add `-no_compat_check` to `boot-args`.
+- use `MacBookPro10,1`, add `-no_compat_check` to `boot-args`, reboot and then you can use `ssdtPRGen
 
 **Advantages** of using `MacBookPro10,1` with `-no_compat_check` are:
 
