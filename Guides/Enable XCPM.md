@@ -46,10 +46,10 @@ A look into the ssdt.aml file list a summary of all settings for the SSDT. If th
 If the output is "1", the `X86PlatformPlugin` is active, otherwise it is not.
 
 ## NOTE for Big Sur Users:
-Since Big Sur requires `MacBookPro11,x` to boot, `ssdtPRGen` fails to generate SSDT-PM in this case, because it relies on Board-IDs containing data for Plugin-Type 0. As a workaround, you can either:
+Since Big Sur requires `MacBookPro11,x` to boot, `ssdtPRGen` fails to generate SSDT-PM, because it relies on Board-IDs containing data for Plugin-Type 0. As a workaround, you can either:
 
 - use `SSDTTime` to generate a `SSDT-PLUG.aml` **or** 
-- stay on `MacBookPro10,1` but add `-no_compat_check` to `boot-args`.
+- use `MacBookPro10,1` but add `-no_compat_check` to `boot-args`.
 
 **Advantages** of using `MacBookPro10,1` with `-no_compat_check` are:
 
@@ -57,16 +57,17 @@ Since Big Sur requires `MacBookPro11,x` to boot, `ssdtPRGen` fails to generate S
 - The CPU runs at lower clock speeds in idle since this SMBIOS was written for Ivy Bridge, while 11,x was written for Haswell CPUs. Therefore the CPU produces less heat and the machine runs quieter.
 - Another benefit of using `MacBookPro10,1` is that you get the correct P-States and C-States for your CPU from ssdtPRGen.
 
-**Disadvadtages** of using `MacBookPro10,1`: 
+**Disadvantages** of using `MacBookPro10,1`: 
 
 - You won't be able to install System Updates because you won't be notified about them. But there's a simple **workaround**:
 
-  - Change `SystemProductName` to `MacBookPro11,1`
-  - Set `csr-active-config` to `67080000`
+  - Change `SystemProductName` back to `MacBookPro11,1`
+  - Set `csr-active-config` to `67080000` (for Big Sur)
+  - Disable `-no_compat_check` boot-arg (add a '#' in front of it)
   - Reboot
   - Reset NVRAM
   - Boot macOS
   - Check for and install Updates
   - After the Updates are installed, revert to SMBIOS `MacBookPro10,1`
-  - Set `csr-active-config` to `FF070000` (For Catalina)
+  - re-enable `-no_compat_check` boot-arg 
   - Reboot
