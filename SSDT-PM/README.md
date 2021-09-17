@@ -15,9 +15,4 @@ Here you'll find additional SSDT-PM files for optimizing the CPU power managemen
 - Install [ssdtPRGen](https://github.com/Piker-Alpha/ssdtPRGen.sh)
 - Open Terminal and enter: `sudo /Users/YOURUSERNAME/ssdtPRGen.sh`
 - The generated file will be located at `/Users/YOURUSERNAME/Library/ssdtPRGen`
-- To generate a SSDT-PM for a different CPU, enter: `sudo /Users/YOURUSERNAME/ssdtPRGen.sh -p 'MODELNAME'` (for example `'i7-3360'`)
-
- 
-
-
-
+- To generate a SSDT-PM for a different CPU, enter: `sudo /Users/YOURUSERNAME/ssdtPRGen.sh -p 'MODELNAME'` (for example `'i7-3360QM'`)
