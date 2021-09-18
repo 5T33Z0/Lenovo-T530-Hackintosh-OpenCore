@@ -126,9 +126,10 @@ EFI
 <summary><strong>Preparation: Dos and Don'ts</strong></summary>
 
 ### Dos and Don'ts
-Before you copy the EFI onto your system SSD/HDD, follow each of the next steps precisely:
+Before you copy the EFI onto your system SSD/HDD, follow each of the next steps precisely if you want a working system!
 
-- **Test it**: Test the EFI folder first using a FAT32 formatted USB Stick! Also perform an NVRAM reset prior to booting.
+- **Test it**: Test the EFI folder first using a FAT32 formatted USB Stick! 
+- **Perform an NVRAM Reset**
 - **Pick a Config**: The EFI Folder cotains 2 config files: `config.plist` and `config_Monterey.plist`. The major differences between them are:
 	- `config.plist` uses `MacBookPro10,1` as System Definition. It can run everything from macOS 10.13 High Sierra up to macOS 11 Big Sur. Big Sur requires changing the `SystemProductName` to `MacBookPro11,1`, though. Adjust `csr-active-config` accordingly.
 	- `config_Monterey.plist` uses `MacBookPro11,4` and is for booting macOS Monterey (obvioulsy). It uses a different combination of Bluetooth Kexts for Broadcom Cards, otherwise the system won't boot (see "Wifi/Bluetooth" further down).
@@ -159,9 +160,6 @@ Before you copy the EFI onto your system SSD/HDD, follow each of the next steps 
    - If you use a WiFi/BT Card from a different vendor than Broadcom, remove the BluetoolFixup and Brcm Kexts, add the required Kext(s) for your card and create a new snapshot of `config.plist` using ProperTree before trying to boot from this EFI.
    - I use `BrcmFirmwareData.kext` for Bluetooth which can be injected by OpenCore and Clover. Alternatively, you could use `BrcmFirmwareRepo.kext` instead. But it needs to be installed into System/Library/Extensions since it cannot be injected by Bootloaders. It's supposed to be more efficient than BrcmFirmwareData.kext, but it also takes more effort to install and update.
    - macOS Monterey cannot handle `BrcmBluetoothInjector.kext` and causes a boot loop so use `BlueToolFixup.kext` instead!
-- **Editing/Updating config files**: If you create Snapshots for the included config.plists using `ProperTree`, make sure to double-check the `Kernel` > `Add` Section afterwards for the following:
-	- `config.plist` must not include `BlueToolFixup.kext`. If it is present after generating a Snapshot, disable it. 
-	- `config_Monterey.plist` must not include `BrcmBluetoothInjector.kext`. If it is present after generating a Snapshot, disable it. 
 - **Optional Kexts**: 
 	- [`NoTouchID.kext`](https://github.com/al3xtjames/NoTouchID) is only required for macOS 10.13 and 10.14, so you can disable it if you are using macOS 10.15.7 or newer. (excluded from current releases anyway).
 	- For additional features like Sidecar, NighShift, Airplay to Mac or Universal Control you can try [Feature Unlock](https://github.com/acidanthera/FeatureUnlock).
