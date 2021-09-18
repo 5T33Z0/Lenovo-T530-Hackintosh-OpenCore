@@ -229,7 +229,9 @@ Before you copy the EFI onto your system SSD/HDD, you should do the following:
 <summary><strong>How to install macOS</strong></summary>
 
 ### Installing macOS
-If you have already have macOS installed but want to perform a clean install, you can either download macOS from the App Store or use [**ANYmacOS**](https://www.sl-soft.de/en/anymacos/). It's a hassle-free App than can download macOS High Sierra, Catalina, Big Sur and Monterey and also create a USB Installer for you.
+If you already have macOS installed but want to perform a clean install, you can either download macOS from the App Store or use [**ANYmacOS**](https://www.sl-soft.de/en/anymacos/). It's a hassle-free app than can download macOS High Sierra, Catalina, Big Sur and Monterey. It also can create a USB Installer for you.
+
+For installing macOS Monterey follow the `Monterey Instructions-md` included in the EFI Downloads you find the Releases Section.
 
 If you are on Windows or Linux follow the guide provided by [Dortania](https://dortania.github.io/OpenCore-Install-Guide/installer-guide/#making-the-installer)
 </details>
