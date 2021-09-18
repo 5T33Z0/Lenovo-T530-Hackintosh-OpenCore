@@ -161,7 +161,7 @@ Before you copy the EFI onto your system SSD/HDD, follow each of the next steps 
    - I use `BrcmFirmwareData.kext` for Bluetooth which can be injected by OpenCore and Clover. Alternatively, you could use `BrcmFirmwareRepo.kext` instead. But it needs to be installed into System/Library/Extensions since it cannot be injected by Bootloaders. It's supposed to be more efficient than BrcmFirmwareData.kext, but it also takes more effort to install and update.
    - macOS Monterey cannot handle `BrcmBluetoothInjector.kext` and causes a boot loop so use `BlueToolFixup.kext` instead!
 - **Optional Kexts**: 
-	- [`NoTouchID.kext`](https://github.com/al3xtjames/NoTouchID) is only required for macOS 10.13 and 10.14, so you can disable it if you are using macOS 10.15.7 or newer. (excluded from current releases anyway).
+	- [`NoTouchID.kext`](https://github.com/al3xtjames/NoTouchID):only required for macOS 10.13 and 10.14.
 	- For additional features like Sidecar, NighShift, Airplay to Mac or Universal Control you can try [Feature Unlock](https://github.com/acidanthera/FeatureUnlock).
 - **Backlight Brightness Level tweaks**: 
   - Set boot-arg `applbkl=1` for reasonable maximum brightness level controlled by `WhateverGreen`. 
