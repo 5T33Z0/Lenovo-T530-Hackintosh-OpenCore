@@ -126,7 +126,7 @@ EFI
 <summary><strong>Preparation: Dos and Don'ts</strong></summary>
 
 ### Dos and Don'ts
-Before you copy the EFI onto your system SSD/HDD, you should do the following:
+Before you copy the EFI onto your system SSD/HDD, follow each of the next steps precisely:
 
 - **Test it**: Test the EFI folder first using a FAT32 formatted USB Stick! Also perform an NVRAM reset prior to booting.
 - **Pick a Config**: The EFI Folder cotains 2 config files: `config.plist` and `config_Monterey.plist`. The major differences between them are:
