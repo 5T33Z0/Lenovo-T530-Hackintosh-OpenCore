@@ -137,11 +137,11 @@ In order to boot macOS with this EFI successfully, adjustments to the `config.pl
 
 Please read the explanations in the following sections carefully and thouroughly where the all of the above is covered in detail and follow the given instructions.
 
-- **Test it first**: Test the EFI folder first using a FAT32 formatted USB Stick before you copy it onto your system SSD! 
+- **Test it**: Test the EFI folder first using a FAT32 formatted USB Stick before you copy it onto your system SSD! 
 - **Perform an NVRAM Reset** before booting from this EFI!
-- **Pick a Config**: The EFI Folder cotains 2 config files: `config.plist` and `config_Monterey.plist`. The major differences between them are:
-	- `config.plist` uses `MacBookPro10,1` as System Definition. It can run everything from macOS 10.13 High Sierra up to macOS 11 Big Sur. Big Sur requires changing the `SystemProductName` to `MacBookPro11,1`, though. Adjust `csr-active-config` accordingly.
-	- `config_Monterey.plist` uses `MacBookPro11,4` and is for booting macOS Monterey (obvioulsy). It uses a different combination of Bluetooth Kexts for Broadcom Cards, otherwise the system won't boot (see "Wifi/Bluetooth" further down).
+- **Pick a Config**: The EFI folder cotains 2 config files: `config.plist` and `config_Monterey.plist`. The differences between them are:
+	- `config.plist` uses `MacBookPro10,1` as System Definition. It can boot everything from macOS 10.13 High Sierra up to macOS 11 Big Sur. Big Sur requires changing the `SystemProductName` to `MacBookPro11,1`, though. Adjust `csr-active-config` accordingly (the correct value for each OS is stored in the configs as commented-out entries).
+	- `config_Monterey.plist` uses `MacBookPro11,4` and is for booting macOS Monterey (obvioulsy). It uses a different combination of Bluetooth Kexts for Broadcom Cards, otherwise the system won't boot (see "Wifi/Bluetooth" further down). Rename the config plist of your choice to `config.plist`, otherwise it won't boot.
 - **Integrated Graphics**: Three variants of T530 models with different display panels exist: `HD+` (including FullHD) and `HD` models. Both are using different identifiers:
 
 	`AAPL,ig-platform-id 04006601` = `HD+` = FullHD. Resolution: ≥ 1600x900 px</br>
