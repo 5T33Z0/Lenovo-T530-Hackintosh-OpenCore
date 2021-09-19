@@ -15,7 +15,7 @@
 
 ## SUMMARY
 
-This Repo contains EFI Folders for running macOS on a Lenovo T530 Laptop using OpenCore and Clover. Compatible and tested with: macOS 10.13 High Sierra up to macOS 12 Monterey. It makes use of the brand new `ECEnabler.kext` which enables battery status read-outs directly from the Embedded Controller – without Battery ACPI Patches.
+This Repo contains EFI Folders for running various versions of macOS on a Lenovo T530 Laptop using OpenCore and Clover Bootloaders. Compatible and tested with: macOS 10.13 High Sierra up to macOS 12 Monterey. It makes use of the brand new `ECEnabler.kext` which enables battery status read-outs directly from the Embedded Controller – without Battery ACPI Patches.
 
 ## ABOUT
 
@@ -26,7 +26,7 @@ The EFI Folders contained in this repo are configured DSDT-less. This means, bes
 - Overall, the system boots faster, runs smoother and snappier than using a patched DSDT.
 - Issues which might occur with newer macOS versions can be addressed and resolved easier by modifying or adding specific SSDTs without having to update and export the whole patched DSDT again.
 
-**NOTE**: Read and follow the install instruction carefully and thoroughly!
+**NOTE**: Read and follow the install instruction carefully and thoroughly if you wnat your system to boot sucessfully!
 <details>
 <summary><strong>EFI Folder Content</strong></summary>
 
@@ -125,36 +125,36 @@ EFI
 <details>
 <summary><strong>Preparation: Dos and Don'ts</strong></summary>
 
-### Dos and Don'ts
-Before you copy the EFI onto your system SSD/HDD, follow each of the next steps precisely if you want a working system!
+### Preparing the `config.plist`
+Before you copy the EFI onto your system SSD/HDD, it is mandatory that your read the section of this documentation througly and follow the given instructions precisely, since additional adjustments to the `config.plist` may be required to match your hardware and the used version of macOS.
 
 - **Test it**: Test the EFI folder first using a FAT32 formatted USB Stick! 
-- **Perform an NVRAM Reset**
+- **Perform an NVRAM Reset** before booting from this EFI!
 - **Pick a Config**: The EFI Folder cotains 2 config files: `config.plist` and `config_Monterey.plist`. The major differences between them are:
 	- `config.plist` uses `MacBookPro10,1` as System Definition. It can run everything from macOS 10.13 High Sierra up to macOS 11 Big Sur. Big Sur requires changing the `SystemProductName` to `MacBookPro11,1`, though. Adjust `csr-active-config` accordingly.
 	- `config_Monterey.plist` uses `MacBookPro11,4` and is for booting macOS Monterey (obvioulsy). It uses a different combination of Bluetooth Kexts for Broadcom Cards, otherwise the system won't boot (see "Wifi/Bluetooth" further down).
 - **Integrated Graphics**: Three variants of T530 models with different display panels exist: `HD+` (including FullHD) and `HD` models. Both are using different identifiers:
 
-	`AAPL,ig-platform-id 04006601` = HD+/FullHD ≥ 1600x900 px </br>
-	`AAPL,ig-platform-id 03006601` = HD = 1366x768 px
+	`AAPL,ig-platform-id 04006601` = `HD+` = FullHD. Resolution: ≥ 1600x900 px</br>
+	`AAPL,ig-platform-id 03006601` = `HD` = SD. Resolution: ≤ 1366x768 px
 
-	By default, the iGPU (Intel(R) HD 4000) is configured for T530 models with `HD+` and FullHD panels. If your model has an `HD` panel you need to select a different Framebuffer-Patch, which is included in the config but is disabled. To enable it, do the folowing:
+	By default, the iGPU (Intel HD 4000) is configured for T530 models with `HD+` and FullHD panels. If your model has an `HD` panel you need to select a different Framebuffer-Patch, which is included in the config.plist but is disabled. To enable it, do the folowing:
 	1. Go to `DeviceProperties` > `PciRoot(0x0)/Pci(0x2,0x0)`. 
 	2. Disable the HD+ Frambuffer-Patch by placing a `#` in front of `PciRoot(0x0)/Pci(0x2,0x0)`.
-	3. 	Next, enable "#PciRoot(0x0)/Pci(0x2,0x0) 1366x768 px" by deleting the leading `#` and the description after the bracket, so that it looks this: `PciRoot(0x0)/Pci(0x2,0x0)`.
+	3. 	Next, enable "#PciRoot(0x0)/Pci(0x2,0x0) 1366x768 px" by deleting the leading `#` and the description ` 1366x768 px` after the bracket, so that it looks this: `PciRoot(0x0)/Pci(0x2,0x0)`.
 	
 	**HINT**: If your screen turns off during boot, you are using the wrong Framebuffer-Patch!
 - **CPU**: The `SSDT-PM.aml` inside the ACPI Folder is for an **Intel i7 3630QM**. If you use a differnt CPU, disable it for now and create your own using `ssdtPRGEN` in Post-Install. (See 'Fixing CPU Power Management' in the 'Post-Install Section')
-- **SMBIOS**: Create SMBIOS infos using GenSMBIOS and add the data to `PlatformInfo > Generic`. 
-	- High Sierra to Catalina require `MacBookPro10,1`
-	- Big Sur requires `MaBookPro11,1`
-	- Monterey requires `MaBookPro11,4` – amongst other files and settings. That's why There's an extra `config_Monterey.plist` included.
-- **Disabling System Integrity Protection (SIP)**: to Disable SIP, go to `NVRAM` > `Add` > `7C436110-AB2A-4BBB-A880-FE41995C9F82 `and change the value of `csr-active-config` according to the installes version of macOS
+- **SMBIOS**: Create SMBIOS infos using GenSMBIOS and add the data to `PlatformInfo > Generic`. Depending on the macOS version you are using, a different setting for `SystemProductName` is required:
+	- For macOS High Sierra to Catalina: `MacBookPro10,1`
+	- For macOS Big Sur: `MaBookPro11,1`
+	- For macOS Monterey requires `MaBookPro11,4` – amongst other files and settings. That's why There's an extra `config_Monterey.plist` included.
+- **Disabling System Integrity Protection (SIP)**: to Disable SIP, go to `NVRAM` > `Add` > `7C436110-AB2A-4BBB-A880-FE41995C9F82 `and change the value of `csr-active-config` according to the installed version of macOS
   - For High Sierra: `FF030000`
   - For Mojave/Catalina: `FF070000`
   - For Big Sur/Monterey: `67080000`
   - For Monterey (alternative): `EF0F0000`
-- **Wifi/Bluetooth**
+- **WiFi/Bluetooth**
 	- I use a Broadcom Card but built-in Intel(r) WiFi/Bluetooth Cards may also work. Check [OpenIntelWireless](https://github.com/OpenIntelWireless) to find out if your card is supported (yet).
 	- 3rd Party WiFi/BT Cards require the 1vyrain Jailbreak to unlock the BIOS in order to disable the WLAN Whitelist (unless the 3rd party card is whitelisted).
    - If you use a WiFi/BT Card from a different vendor than Broadcom, remove the BluetoolFixup and Brcm Kexts, add the required Kext(s) for your card and create a new snapshot of `config.plist` using ProperTree before trying to boot from this EFI.
@@ -227,11 +227,11 @@ Before you copy the EFI onto your system SSD/HDD, follow each of the next steps 
 <summary><strong>How to install macOS</strong></summary>
 
 ### Installing macOS
-If you already have macOS installed but want to perform a clean install, you can either download macOS from the App Store or use [**ANYmacOS**](https://www.sl-soft.de/en/anymacos/). It's a hassle-free app than can download macOS High Sierra, Catalina, Big Sur and Monterey. It also can create a USB Installer for you.
+**Coming from Windows/Linux**: If you are on Windows or Linux follow the guide provided by [Dortania](https://dortania.github.io/OpenCore-Install-Guide/installer-guide/#making-the-installer)
 
-For installing macOS Monterey follow the `Monterey Instructions-md` included in the EFI Downloads you find the Releases Section.
+**Coming from macOS**: If you already have access macOS, you can either download macOS from the App Store or use [**ANYmacOS**](https://www.sl-soft.de/en/anymacos/) instaed. It's a hassle-free app than can download any macOS from High Sierra up to Monterey and can create an USB Installer as well.
 
-If you are on Windows or Linux follow the guide provided by [Dortania](https://dortania.github.io/OpenCore-Install-Guide/installer-guide/#making-the-installer)
+**macOS Monterey**: For installing macOS Monterey follow the `Monterey Instructions-md` included in the EFI Downloads you find the [Releases](https://github.com/5T33Z0/Lenovo-T530-Hackinosh-OpenCore/releases) Section.
 </details>
 
 ## POST-INSTALL
@@ -250,7 +250,7 @@ Change the following settings to make your systm more secure:
 
 ### Fixing CPU Power Management 
 1. Open Config
-2. Disable `SSDT-PM.aml` under ACPI > Add  	
+2. Disable `SSDT-PM.aml` under ACPI > Add
 2. Enable the 2 Patches under ACPI > Delete (`Drop CpuPm` and `Drop Cpu0Ist`)
 3. Save config and reboot
 4. Install [ssdtPRGen](https://github.com/Piker-Alpha/ssdtPRGen.sh)
