@@ -126,9 +126,9 @@ EFI
 <summary><strong>Preparation: Dos and Don'ts</strong></summary>
 
 ### Preparing the `config.plist`
-Before you copy the EFI onto your system SSD/HDD, it is mandatory that your read the section of this documentation througly and follow the given instructions precisely, since additional adjustments to the `config.plist` may be required to match your hardware and the used version of macOS.
+In order to prepare my EFI folder and `config.plist` for your system, it is mandatory that you read the following sections througly and follow given instructions precisely, since additional adjustments to the config may be required to match your hardware and the used version of macOS:
 
-- **Test it**: Test the EFI folder first using a FAT32 formatted USB Stick! 
+- **Test it first**: Test the EFI folder first using a FAT32 formatted USB Stick before you copy it onto your system SSD! 
 - **Perform an NVRAM Reset** before booting from this EFI!
 - **Pick a Config**: The EFI Folder cotains 2 config files: `config.plist` and `config_Monterey.plist`. The major differences between them are:
 	- `config.plist` uses `MacBookPro10,1` as System Definition. It can run everything from macOS 10.13 High Sierra up to macOS 11 Big Sur. Big Sur requires changing the `SystemProductName` to `MacBookPro11,1`, though. Adjust `csr-active-config` accordingly.
@@ -144,7 +144,7 @@ Before you copy the EFI onto your system SSD/HDD, it is mandatory that your read
 	3. 	Next, enable "#PciRoot(0x0)/Pci(0x2,0x0) 1366x768 px" by deleting the leading `#` and the description ` 1366x768 px` after the bracket, so that it looks this: `PciRoot(0x0)/Pci(0x2,0x0)`.
 	
 	**HINT**: If your screen turns off during boot, you are using the wrong Framebuffer-Patch!
-- **CPU**: The `SSDT-PM.aml` inside the ACPI Folder is for an **Intel i7 3630QM**. If you use a differnt CPU, disable it for now and create your own using `ssdtPRGEN` in Post-Install. (See 'Fixing CPU Power Management' in the 'Post-Install Section')
+- **CPU**: The `SSDT-PM.aml` inside the ACPI Folder is for an **Intel i7 3630QM**. If you use a differnt CPU model, disable it for now and create your own using `ssdtPRGEN` in Post-Install. (See 'Fixing CPU Power Management' in the 'Post-Install Section')
 - **SMBIOS**: Create SMBIOS infos using GenSMBIOS and add the data to `PlatformInfo > Generic`. Depending on the macOS version you are using, a different setting for `SystemProductName` is required:
 	- For macOS High Sierra to Catalina: `MacBookPro10,1`
 	- For macOS Big Sur: `MaBookPro11,1`
@@ -154,15 +154,15 @@ Before you copy the EFI onto your system SSD/HDD, it is mandatory that your read
   - For Mojave/Catalina: `FF070000`
   - For Big Sur/Monterey: `67080000`
   - For Monterey (alternative): `EF0F0000`
-- **WiFi/Bluetooth**
-	- I use a Broadcom Card but built-in Intel(r) WiFi/Bluetooth Cards may also work. Check [OpenIntelWireless](https://github.com/OpenIntelWireless) to find out if your card is supported (yet).
-	- 3rd Party WiFi/BT Cards require the 1vyrain Jailbreak to unlock the BIOS in order to disable the WLAN Whitelist (unless the 3rd party card is whitelisted).
-   - If you use a WiFi/BT Card from a different vendor than Broadcom, remove the BluetoolFixup and Brcm Kexts, add the required Kext(s) for your card and create a new snapshot of `config.plist` using ProperTree before trying to boot from this EFI.
-   - I use `BrcmFirmwareData.kext` for Bluetooth which can be injected by OpenCore and Clover. Alternatively, you could use `BrcmFirmwareRepo.kext` instead. But it needs to be installed into System/Library/Extensions since it cannot be injected by Bootloaders. It's supposed to be more efficient than BrcmFirmwareData.kext, but it also takes more effort to install and update.
-   - macOS Monterey cannot handle `BrcmBluetoothInjector.kext` and causes a boot loop so use `BlueToolFixup.kext` instead!
+- **WiFi/Bluetooth** (Read carefully!)
+	- I use a 3rd Party WiFi/BT Card with a Broadcom Chip
+	- 3rd Party WiFi/BT Cards require the `1vyrain` Jailbreak to unlock the BIOS which disables the WLAN Whitelist (not necessary if the 3rd party card is whitelisted).
+	- I use `BrcmFirmwareData.kext` for Bluetooth which can be injected by OpenCore and Clover. Alternatively, you could use `BrcmFirmwareRepo.kext` instead. But it needs to be installed into System/Library/Extensions since it cannot be injected by Bootloaders. It's supposed to be more efficient than BrcmFirmwareData.kext, but it also takes more effort to install and update.
+	- If you use a WiFi/BT Card from a different vendor than Broadcom, remove BluetoolFixup and the "Brcm…" Kexts, add the Kext(s) required for your card and create a new snapshot of `config.plist` using `ProperTree` before trying to boot from this EFI!
+	- If you use the stock Intel(r) WiFi/Bluetooth Card, it may work with the OpenIntelWireless kext. Check [OpenIntelWireless](https://github.com/OpenIntelWireless) to find out if your card is supported (yet). If so, remove the BluetoolFixup and Brcm Kexts, add the required Kext(s) for your card and create a new snapshot of `config.plist` using `ProperTree` before trying to boot from this EFI.
 - **Optional Kexts**: 
-	- [`NoTouchID.kext`](https://github.com/al3xtjames/NoTouchID):only required for macOS 10.13 and 10.14.
-	- For additional features like Sidecar, NighShift, Airplay to Mac or Universal Control you can try [Feature Unlock](https://github.com/acidanthera/FeatureUnlock).
+	- [**NoTouchID**](https://github.com/al3xtjames/NoTouchID): only required for macOS 10.13 and 10.14 so the boot process won't stall if it is looking for the TouchPad.
+	- [**Feature Unlock**](https://github.com/acidanthera/FeatureUnlock): Unlocks additional features like Sidecar, NighShift, Airplay to Mac or Universal Control.
 - **Backlight Brightness Level tweaks**: 
   - Set boot-arg `applbkl=1` for reasonable maximum brightness level controlled by `WhateverGreen`. 
   - Set boot-arg `applbkl=0` for increased maximum brightness as defined in `SSDT-PNLF.aml`
