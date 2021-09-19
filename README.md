@@ -126,7 +126,16 @@ EFI
 <summary><strong>Preparation: Dos and Don'ts</strong></summary>
 
 ### Preparing the `config.plist`
-In order to prepare my EFI folder and `config.plist` for your system, it is mandatory that you read the following sections througly and follow given instructions precisely, since additional adjustments to the config may be required to match your hardware and the used version of macOS:
+In order to boot macOS with this EFI successfully, adjustments to the `config.plist` may be necessary in the following areas:
+
+- Picking the correct `config.plist` for the used version of macOS.
+- Selecting the correct SMBIOS required for your CPU and macOS Version.
+- Enabling the correct Framebuffer-Patch for your Display Panel in `DeviceProperties`.
+- Choosing the correct Kexts for your WiFi/BT Card (if it's not a Broadcom Card).
+- Setting the correct value for `csr-active-config` to disable System Integrity Protection (macOS dependent).
+- Generating the correct `SSDT-PM.aml` in Post-Install so CPU Power Management works as intended.
+
+Please read the explanations in the following sections carefully and thouroughly where the all of the above is covered in detail and follow the given instructions.
 
 - **Test it first**: Test the EFI folder first using a FAT32 formatted USB Stick before you copy it onto your system SSD! 
 - **Perform an NVRAM Reset** before booting from this EFI!
