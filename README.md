@@ -15,18 +15,18 @@
 
 ## SUMMARY
 
-This Repo contains EFI Folders for running various versions of macOS on a Lenovo T530 Laptop using OpenCore and Clover Bootloaders. Compatible and tested with: macOS 10.13 High Sierra up to macOS 12 Monterey. It makes use of the brand new `ECEnabler.kext` which enables battery status read-outs directly from the Embedded Controller – without Battery ACPI Patches.
+This Repo contains EFI Folders for running various versions of macOS on a Lenovo ThinkPad T530 Laptop using OpenCore (or Clover). Compatible and tested with: macOS 10.13 High Sierra up to macOS 12 Monterey. It makes use of the brand new `ECEnabler.kext` which enables battery status read-outs directly from the Embedded Controller – without Battery ACPI Patches.
 
 ## ABOUT
 
-The EFI Folders contained in this repo are configured DSDT-less. This means, besides Kexts they are solely based on Binary Renames and ACPI Hotpatches (SSDTs) – they don't use a patched `DSDT` file – just like it's suppossed to be done in OpenCore. Instead of replacing the *whole* system `DSDT` by a patched one during boot, only things which need fixing are addressed and patched-in on the fly (hence the term "hot-patching"). The benefits of this approach are:
+The EFI Folders contained in this repo are configured DSDT-less. This means, besides the used Kexts they are solely based on Binary Renames and ACPI Hotpatches (SSDTs) – they don't use a patched `DSDT` file – just like modern hackintoshing is suppossed to be done. Instead of replacing the *whole* system `DSDT` by a patched one during boot, only things which need fixing are addressed and patched-in on the fly (hence the term "hot-patching"). The benefits of this approach are:
 
 - Binary Renames and ACPI Hotpatches are independant of the installed BIOS version, so there are no mismatches if the BIOS versions between two machines differ.
 - Hotpatching is cleaner, more precise and independent of the installed BIOS version since they only address specific areas of the ACPI table.
 - Overall, the system boots faster, runs smoother and snappier than using a patched DSDT.
 - Issues which might occur with newer macOS versions can be addressed and resolved easier by modifying or adding specific SSDTs without having to update and export the whole patched DSDT again.
 
-**NOTE**: Read and follow the install instruction carefully and thoroughly if you wnat your system to boot sucessfully!
+**NOTE**: Read and follow the install instruction carefully and thoroughly before you deploay it correctly, if you want your system to boot successfully!
 <details>
 <summary><strong>EFI Folder Content</strong></summary>
 
