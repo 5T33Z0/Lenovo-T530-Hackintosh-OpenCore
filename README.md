@@ -142,8 +142,8 @@ Please read the explanations in the following sections carefully and thouroughly
 - **Pick a Config**: The EFI folder cotains 2 config files: `config.plist` and `config_Monterey.plist`. The differences between them are:
 	- `config.plist` uses `MacBookPro10,1` as System Definition. It can boot everything from macOS 10.13 High Sierra up to macOS 11 Big Sur. Big Sur requires changing the `SystemProductName` to `MacBookPro11,1`, though. Adjust `csr-active-config` accordingly (the correct value for each OS is stored in the configs as commented-out entries).
 	- `config_Monterey.plist` uses `MacBookPro11,4` and is for booting macOS Monterey (obvioulsy). It uses a different combination of Bluetooth Kexts for Broadcom Cards, otherwise the system won't boot (see "Wifi/Bluetooth" further down). Rename the config plist of your choice to `config.plist`, otherwise it won't boot.
-- **Integrated Graphics**: Three variants of T530 models with different display panels exist: `HD+` (including FullHD) and `HD` models. Both are using different identifiers:
-
+- **Integrated Graphics**: Three variants of T530 models with different display panels exist: `HD+` (including FullHD) and `HD` models. Both are using different identifiers:</br>
+	
 	`AAPL,ig-platform-id 04006601` = `HD+` = FullHD. Resolution: ≥ 1600x900 px</br>
 	`AAPL,ig-platform-id 03006601` = `HD` = SD. Resolution: ≤ 1366x768 px
 
