@@ -72,18 +72,14 @@ EFI
     │   ├── VoodooSDHC.kext
     │   └── WhateverGreen.kext
     ├── OpenCore.efi
-    ├── Resources (NOTE: removed files of sub-folders from tree view to reduce clutter)
-    │   ├── Audio
+    ├── Resources (NOTE: removed files of sub-folders from tree to reduce clutter)
     │   ├── Font
     │   ├── Image
     │   │   └── Acidanthera
     │   │   │   ├── Chardonnay
     │   │   │   ├── GoldenGate
     │   │   │   └── Syrah
-    │   │   └── chris1111
-    │	│	├── Minimal
-    │   │       └── Minimal-SSD
-    │   └── Label
+    │   │   └── Label
     ├── Tools
     │   └── CleanNvram.efi
     ├── config.plist
