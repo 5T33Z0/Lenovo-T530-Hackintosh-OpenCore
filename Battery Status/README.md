@@ -2,9 +2,9 @@
 
 Although the Battery Status Indicator is already working in both my Clover and OpenCore EFIs, this is for documenting how to enable it otherwise – just in case you want to use a different method for enabling it.
 
-To enable the battery status indictaor in macOS 2 methods exist:
+To enable the battery status indictaor in macOS, two methods exist:
 
-- **Method 1**: Using `ECEnabler.kext` (new method, current default)
+- **Method 1**: Using `ECEnabler.kext` (new method)
 - **Method 2**: Using a combinatiion of Binary Renames and a `SSDT-BATTERY.aml` (old method)
 
 Since the current set-up of my EFI uses `ECENabler.kext` there's not much to cover here since the kext takes care of everything. Therefore this section focuses on the old method as a fallback – just in case the Kext stops working in the furture.
