@@ -7,7 +7,7 @@ Apple deactivated the `X86PlatformPlugin` support for Ivy Bridge CPUs in macOS a
 
 So that's exactly what we are going to do: re-enable `XPCM` with a kernel patch and a modified `SSDT-PM.aml` or `SSDT-PLUG.aml` to use the `X86PlatformPlugin` (i.e. setting Plugin Type to `1`).
 
-**NOTE:** Enabling `X86PlatformPlugin` for Ivy Bridge CPUs is not recommended – the CPU performance is worse than using the legacy pluign. This guide only exists to show you that you can re-enable it – not that you should do it! 
+**NOTE:** Enabling `X86PlatformPlugin` for Ivy Bridge CPUs is not recommended – the CPU performance is worse than using the legacy plugin. This guide only exists to show you that you *can* re-enable it – not that you *should* do it! 
 
 ## Compatibility: macOS Catalina (10.15.5+) to Big Sur (11.3+)
 
