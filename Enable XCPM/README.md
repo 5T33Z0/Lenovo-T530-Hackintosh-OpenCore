@@ -1,4 +1,4 @@
-# Enabling XCPM for Ivy Bridge CPUs in Catalina and Big Sur (not recommended)
+# Enabling XCPM for Ivy Bridge CPUs (not recommended)
 
 ## Background: 
 Apple deactivated the `X86PlatformPlugin` support for Ivy Bridge CPUs in macOS a few years back. Instead, the `ACPI_SMC_PlatformPlugin` is used for CPU power management, although `XCPM` is supported by Ivy Bridge CPUs natively. But there isn't much info about how to re-enable it in OpenCore's documentation:
