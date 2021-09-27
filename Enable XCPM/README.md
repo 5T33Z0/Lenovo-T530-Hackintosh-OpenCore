@@ -5,11 +5,11 @@ Apple deactivated the `X86PlatformPlugin` support for Ivy Bridge CPUs in macOS a
 
 > **Note 4:** Note that the following configurations are unsupported by XCPM (at least out of the box): Consumer Ivy Bridge (0x0306A9) as Apple disabled XCPM for Ivy Bridge and recommends legacy power management for these CPUs. `_xcpm_bootstrap` should manually be patched to enforce XCPM on these CPUs […].
 
-So that's exactly what we are going to do: re-enable `XPCM` with a kernel patch and a modified `SSDT-PM.aml` or `SSDT-PLUG.aml` to use the `X86PlatformPlugin` (i.e. setting Plugin Type to `1`).
+So that's exactly what we are going to do: re-enable `XPCM` with a kernel patch, a kernel quirk and a modified `SSDT-PM.aml` or `SSDT-PLUG.aml` to use the `X86PlatformPlugin` (i.e. setting Plugin Type to `1`).
 
 **NOTE:** Enabling `X86PlatformPlugin` for Ivy Bridge CPUs is not recommended – the CPU performance is worse than using the legacy plugin. This guide only exists to show you that you *can* re-enable it – not that you *should* do it! 
 
-## Compatibility: macOS Catalina (10.15.5+) to Big Sur (11.3+)
+## Compatibility: macOS Catalina to Big Sur
 
 ## Requirements:
 
@@ -20,12 +20,22 @@ So that's exactly what we are going to do: re-enable `XPCM` with a kernel patch 
 ## How-To:
 
 ### 1. Enable XCPM for Ivy Bridge:
-* Add the Kernel Patch inside of [XCPM_IvyBridge.plist](https://github.com/5T33Z0/Lenovo-T530-Hackinosh-OpenCore/blob/main/Guides/XCPM_IvyBridge.plist) to your `config.plist` and save it
-* Enable `AppleXcpmExtraMsrs` under Kernel > Quirks.
+* Open `config.plist`
+* Under `ACPI > Add`, disable `SSDT-PM.aml` (if present)
+* Under `ACPI > Delete`, enable the 2 Patches "Drop CpuPm" and "Drop Cpu0Ist"
+* Under `Kernel > Patch`, enable "XCPM for Ivy Bridge" 
+* Under `Kernel > Quirks`, enable `AppleXcpmExtraMsrs`
+* Under `PlatformInfo`, change `SystemProductName` to `MacBookPro11,4`
 * Save.
+* Reboot.
 
-### 2. Generate a modified `SSDT-PM` for Plugin Type 1
-Next, we need to set the plugin type of SSDT-PM.aml to "1". To do this, we generate a new SSDT-PM with ssdtPRGen. Since it generatea SSDTs without XCPM support by default, we have to modify the command line in terminal.
+After a succesful reboot, run Terminal and enter: `sysctl machdep.xcpm.mode`. If the output is `1`, XCPM is working, if the output is `0`, it is not.
+
+### 2. Generate a modified `SSDT-PM` for optimizing CPU Power Management
+
+#### Method 1: using ssdtPRGen (SMBIOS ≤ MacBookPro10,x only)
+
+Next, we need to generate a new SSDT-PM with ssdtPRGen for optimzed CPU power management. Since it generatea SSDTs without XCPM support by default, we have to modify the command line in terminal.
 
 Terminal command for ssdtPRGen: `sudo /Users/YOUR_USERNAME/ssdtPRGen.sh -x 1`
 
@@ -45,27 +55,30 @@ A look into the ssdt.aml file list a summary of all settings for the SSDT. If th
 
 If the output is "1", the `X86PlatformPlugin` is active, otherwise it is not.
 
-## NOTE for macOS Big Sur and Monterey Users:
+#### Method 2: using CPUFriendFriend (SMBIOS ≥ MacBookPro11,x)
 Since macOS Big Sur and Monterey require `MacBookPro11,1` (`MacBookPro11,4` on Monterey) to boot, `ssdtPRGen` fails to generate a SSDT-PM.aml, because it relies on Board-IDs containing data for Plugin-Type 0. As a workaround, you can either:
 
-- use `SSDTTime` to generate a `SSDT-PLUG.aml` **or** 
+- Use `CPUFriendFreind` to generate a `SSDT_Data.aml` (llocated in "Result" Folder inside of "CPUFriendFriend-master")**or** 
 - use `MacBookPro10,1`, add `-no_compat_check` to `boot-args`, reboot and then you can use `ssdtPRGen`
 
-**Advantages** of using `MacBookPro10,1` with `-no_compat_check` are:
+**Advantages** of using `MacBookPro10,1` with `-no_compat_check`:
 
-- You can boot Big Sur **and** use ssdtPRGen. 
-- The CPU runs at lower clock speeds in idle since this SMBIOS was written for Ivy Bridge, while 11,x was written for Haswell CPUs. Therefore the CPU produces less heat and the machine runs quieter.
+- You can boot Big Sur **and** use `ssdtPRGen` to generate a SSDT-PM.
+- The CPU runs at a lower idle frequency, since this SMBIOS was written for Ivy Bridge, while 11,x was written for Haswell CPUs. 
+- CPU produces less heat and the machine runs quieter since fans ramp up later.
 - Another benefit of using `MacBookPro10,1` is that you get the correct P-States and C-States for your CPU from ssdtPRGen.
 
-**Disadvantages** of using `MacBookPro10,1`: You won't be able to install System Updates because you won't be notified about them. But there's a simple **workaround**:
+**Disadvantages** of using `MacBookPro10,1` with `-no_compat_check`:: You won't be able to install System Updates because you won't be notified about them, but theres a simple workaround. 
 
-  - Change `SystemProductName` back to `MacBookPro11,1` or `MacBookPro11,1` (for macOS Monterey)
+**Workaround**:
+
+  - Change `SystemProductName` back to `MacBookPro11,1` or `MacBookPro11,4` (for macOS Monterey)
   - Set `csr-active-config` to `67080000` (for Big Sur/Monterey)
   - Disable `-no_compat_check` boot-arg (add a '#' in front of it)
   - Reboot
   - Reset NVRAM
   - Boot macOS
-  - Check for and install Updates
+  - Check for Updates and install them
   - After the Updates are installed, revert to SMBIOS `MacBookPro10,1`
   - re-enable `-no_compat_check` boot-arg 
   - Reboot
