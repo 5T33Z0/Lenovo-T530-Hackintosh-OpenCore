@@ -14,8 +14,7 @@ So that's exactly what we are going to do: re-enable `XPCM` with a kernel patch,
 ## Requirements:
 
 * Intel Ivy Bridge CPU
-* Tools: Terminal, ssdtPRGEN, SSDTTime (optional), Plist Editor, MaciASL (optional), IORegistryExplorer (optional), CPUFriendFriend (optional)
-* SMBIOS that supports Ivy Bridge CPUs (like MacBookPro9,x or 10,x)
+* **Tools**: Terminal, [**ssdtPRGen**](https://github.com/Piker-Alpha/ssdtPRGen.sh), [**CPUFriendFriend**](https://github.com/corpnewt/CPUFriendFriend), [**Plist Editor**](https://github.com/ic005k/PlistEDPlus), [**MaciASL**](https://github.com/acidanthera/MaciASL) (optional), [**IORegistryExplorer**](https://github.com/utopia-team/IORegistryExplorer) (optional), [**SSDTTime**](https://github.com/corpnewt/SSDTTime) (optional)
 
 ## How-To:
 
