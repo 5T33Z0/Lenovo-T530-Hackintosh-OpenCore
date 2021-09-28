@@ -232,7 +232,7 @@ Please read the explanations in the following sections carefully and thouroughly
 <summary><strong>How to install macOS</strong></summary>
 
 ### Installing macOS
-**Coming from Windows/Linux**: If you are on Windows or Linux, follow the guide provided by [Dortania](https://dortania.github.io/OpenCore-Install-Guide/installer-guide/#making-the-installer)
+**Coming from Windows/Linux**: If you are on Windows or Linux, follow the guide provided by [Dortania](https://dortania.github.io/OpenCore-Install-Guide/installer-guide/#making-the-installer). **NOTE**: No support from my end for issues related to UBS Installers created in Windows or Linux!
 
 **Coming from macOS**: If you already have access macOS, you can either download macOS from the App Store or use [**ANYmacOS**](https://www.sl-soft.de/en/anymacos/) instead. It's a hassle-free app than can download any macOS from High Sierra up to Monterey and can create an USB Installer as well.
 
@@ -341,7 +341,7 @@ macOS locks the optical drive sometimes so that you can't open it with the physi
 
 ## CPU BENCHMARK
 
-![Screenshot](https://github.com/5T33Z0/Lenovo-T530-Hackinosh-OpenCore/blob/main/Pics/benchmark_latest.png)
+![Screenshot](https://raw.githubusercontent.com/5T33Z0/Lenovo-T530-Hackinosh-OpenCore/main/Pics/benchmark_latest.png)
 
 [Benchmark Results](https://browser.geekbench.com/v5/cpu/9553877)
 
