@@ -119,59 +119,54 @@ EFI
 <details>
 <summary><strong>Preparation: Dos and Don'ts</strong></summary>
 
-### Preparing the `config.plist`
-In order to boot macOS with this EFI successfully, adjustments to the `config.plist` may be necessary in the following areas:
+### Preparing the config.plist
+Please read the explanations in the following sections carefully and follow the given instructions. In order to boot macOS with this EFI successfully, adjustments to the `config.plist` may be necessary according to the used hardware and macOS version you want to use. 
 
-- Picking the correct `config.plist` for the used version of macOS.
-- Selecting the correct SMBIOS required for your CPU and macOS Version.
-- Enabling the correct Framebuffer-Patch for your Display Panel in `DeviceProperties`.
-- Choosing the correct Kexts for your WiFi/BT Card (if it's not a Broadcom Card).
-- Setting the correct value for `csr-active-config` to disable System Integrity Protection (macOS dependent).
-- Generating the correct `SSDT-PM.aml` in Post-Install so CPU Power Management works as intended.
+Opem the `config.plist` and do the following:
 
-Please read the explanations in the following sections carefully and thoroughly where the all of the above is covered in detail and follow the given instructions.
+1. Set `SystemProductName` according to the CPU and the macOS version you want to use: 
+	-  For Intel i5/i7, macOS 11/12: `MacBookPro11,4` (**Default**)
+	-  For Intel i7, macOS 10.13 to 10.15: `MacBookPro10,1` (Recommended combo)
+	-  For Intel i5, macOS 10.13 to 10.15: `MacBookPro10,2`
 
-- **Test it**: Test the EFI folder first using a FAT32 formatted USB Stick before you copy it onto your system SSD! 
-- **Perform an NVRAM Reset** before booting from this EFI!
-- **Pick a Config**: The EFI folder contains 2 config files: `config.plist` and `config_Monterey.plist`. The differences between them are:
-	- `config.plist` uses `MacBookPro10,1` as System Definition. It can boot everything from macOS 10.13 High Sierra up to macOS 11 Big Sur. Big Sur requires changing the `SystemProductName` to `MacBookPro11,1`, though. Adjust `csr-active-config` accordingly (the correct value for each OS is stored in the configs as commented-out entries).
-	- `config_Monterey.plist` uses `MacBookPro11,4` and is for booting macOS Monterey (obviously). It uses a different combination of Bluetooth Kexts for Broadcom Cards, otherwise the system won't boot (see "Wifi/Bluetooth" further down). Rename the config plist of your choice to `config.plist`, otherwise it won't boot.
-- **Integrated Graphics**: Three variants of T530 models with different display panels exist: `HD+` (including FullHD) and `HD` models. Both are using different identifiers:</br>
+2. Adjust `csr-active-config` according to the macOS version you want to use:
+		
+	- For macOS Monterey (12.0): `EF0F0000` (0xFEF) (**Default**)
+	- For macOS Big Sur (11.6): `67080000`(0x867)
+	- For macOS Mojave/Catalina (10.14/10.15): `FF070000`(0x7FF)
+	- For macOSHigh Sierra (10.13): `FF030000` (0x3FF)
+
+3. Select the correct Framebuffer-Patch for your T530 model Two display panels exist: `HD+` (WSXGA and FullHD) and `HD` panels. Both are using different identifiers:</br>
 	
-	`AAPL,ig-platform-id 04006601` = `HD+` = FullHD. Resolution: ≥ 1600x900 px</br>
-	`AAPL,ig-platform-id 03006601` = `HD` = SD. Resolution: ≤ 1366x768 px
-
-	By default, the iGPU (Intel HD 4000) is configured for T530 models with `HD+` and FullHD panels. If your model has an `HD` panel you need to select a different Framebuffer-Patch, which is included in the config.plist but is disabled. To enable it, do the following:
-	1. Go to `DeviceProperties` > `PciRoot(0x0)/Pci(0x2,0x0)`. 
-	2. Disable the HD+ Framebuffer-Patch by placing a `#` in front of `PciRoot(0x0)/Pci(0x2,0x0)`.
-	3. 	Next, enable "#PciRoot(0x0)/Pci(0x2,0x0) 1366x768 px" by deleting the leading `#` and the description ` 1366x768 px` after the bracket, so that it looks this: `PciRoot(0x0)/Pci(0x2,0x0)`.
+	`AAPL,ig-platform-id 04006601` = `HD+` = FullHD. Resolution: ≥ 1600x900 px. (**Default**)</br>
+	`AAPL,ig-platform-id 03006601` = `HD` = SD. Resolution: ≤ 1366x768 px</br>
+	
+	If your T530 Model uses an SD Panel, do the following;
+	 
+	- Go to `DeviceProperties` 
+	- Disable the `PciRoot(0x0)/Pci(0x2,0x0)` by placing `#` in front of it.
+	- Next, enable `#PciRoot(0x0)/Pci(0x2,0x0) 1366x768 px` by deleting the leading `#` and the description ` 1366x768 px`, so that it looks this: `PciRoot(0x0)/Pci(0x2,0x0)`.
 	
 	**HINT**: If your screen turns off during boot, you are using the wrong Framebuffer-Patch!
-- **CPU**: The `SSDT-PM.aml` inside the ACPI Folder is for an **Intel i7 3630QM**. If you use a different CPU model, disable it for now and create your own using `ssdtPRGEN` in Post-Install. (See 'Fixing CPU Power Management' in the 'Post-Install Section')
-- **SMBIOS**: Create SMBIOS infos using GenSMBIOS and add the data to `PlatformInfo > Generic`. Depending on the macOS version you are using, a different setting for `SystemProductName` is required:
-	- For macOS High Sierra to Catalina: `MacBookPro10,1`
-	- For macOS Big Sur: `MaBookPro11,1`
-	- For macOS Monterey requires `MaBookPro11,4` – amongst other files and settings. That's why There's an extra `config_Monterey.plist` included.
-- **Disabling System Integrity Protection (SIP)**: to Disable SIP, go to `NVRAM` > `Add` > `7C436110-AB2A-4BBB-A880-FE41995C9F82 `and change the value of `csr-active-config` according to the installed version of macOS
-  - For High Sierra: `FF030000` (0x3FF)
-  - For Mojave/Catalina: `FF070000`(0x7FF)
-  - For Big Sur: `67080000`(0x867)
-  - For Monterey: `EF0F0000` (0xFEF)
-- **WiFi/Bluetooth** (Read carefully!)
+
+4. **CPU**: The `SSDT-PM.aml` inside the ACPI Folder is for an **Intel i7 3630QM**. If you use a different CPU model, disable it for now and create your own using `ssdtPRGEN` in Post-Install. (See 'Fixing CPU Power Management' in the 'Post-Install Section')
+
+5. **WiFi/Bluetooth** (Read carefully!)
 	- I use a 3rd Party WiFi/BT Card with a Broadcom Chip
 	- 3rd Party WiFi/BT Cards require the `1vyrain` Jailbreak to unlock the BIOS which disables the WiFi Whitelist (not necessary if the 3rd party card is whitelisted).
 	- I use `BrcmFirmwareData.kext` for Bluetooth which can be injected by OpenCore and Clover. Alternatively, you could use `BrcmFirmwareRepo.kext` instead. But it needs to be installed into System/Library/Extensions since it cannot be injected by Bootloaders. It's supposed to be more efficient than BrcmFirmwareData.kext, but it also takes more effort to install and update.
 	- If you use a WiFi/BT Card from a different vendor than Broadcom, remove BluetoolFixup and the "Brcm…" Kexts, add the Kext(s) required for your card and create a new snapshot of `config.plist` using `ProperTree` before trying to boot from this EFI!
 	- If you use the stock Intel(r) WiFi/Bluetooth Card, it may work with the OpenIntelWireless kext. Check [OpenIntelWireless](https://github.com/OpenIntelWireless) to find out if your card is supported (yet). If so, remove the BluetoolFixup and Brcm Kexts, add the required Kext(s) for your card and create a new snapshot of `config.plist` using `ProperTree` before trying to boot from this EFI.
-- **Alternative/Optional Kexts**:
+
+6. **Alternative/Optional Kexts**:
 	- [**itlwm**](https://github.com/OpenIntelWireless/itlwm): Kext for Intel WiFi Cards. Use instead of `AirportBrcmFixup`if you don't use a Broadcom WiFi Card
 	- [**IntelBluetoothFirmware**](https://github.com/OpenIntelWireless/IntelBluetoothFirmware): Kext for Intel Bluetooth Cards. Use instead of `BrcmPatchRam` and Plugins if you don't use a Broadcom BT Card
 	- [**NoTouchID**](https://github.com/al3xtjames/NoTouchID): only required for macOS 10.13 and 10.14 so the boot process won't stall while looking for the fingerprint sensor.
 	- [**Feature Unlock**](https://github.com/acidanthera/FeatureUnlock): Unlocks additional features like Sidecar, NighShift, Airplay to Mac or Universal Control.
-- **Backlight Brightness Level tweaks**: 
+
+7. **Backlight Brightness Level tweaks** (optional): 
   - Set boot-arg `applbkl=1` for reasonable maximum brightness level controlled by `WhateverGreen`. 
   - Set boot-arg `applbkl=0` for increased maximum brightness as defined in `SSDT-PNLF.aml`
-
 </details>
 <details>
 <summary><strong>EFI Handling</strong></summary>
