@@ -153,10 +153,10 @@ Please read the explanations in the following sections carefully and thouroughly
 	- For macOS Big Sur: `MaBookPro11,1`
 	- For macOS Monterey requires `MaBookPro11,4` – amongst other files and settings. That's why There's an extra `config_Monterey.plist` included.
 - **Disabling System Integrity Protection (SIP)**: to Disable SIP, go to `NVRAM` > `Add` > `7C436110-AB2A-4BBB-A880-FE41995C9F82 `and change the value of `csr-active-config` according to the installed version of macOS
-  - For High Sierra: `FF030000`
-  - For Mojave/Catalina: `FF070000`
-  - For Big Sur/Monterey: `67080000`
-  - For Monterey (alternative): `EF0F0000`
+  - For High Sierra: `FF030000` (0x3FF)
+  - For Mojave/Catalina: `FF070000`(0x7FF)
+  - For Big Sur: `67080000`(0x867)
+  - For Monterey: `EF0F0000` (0xFEF)
 - **WiFi/Bluetooth** (Read carefully!)
 	- I use a 3rd Party WiFi/BT Card with a Broadcom Chip
 	- 3rd Party WiFi/BT Cards require the `1vyrain` Jailbreak to unlock the BIOS which disables the WLAN Whitelist (not necessary if the 3rd party card is whitelisted).
