@@ -1,7 +1,5 @@
 # Lenovo ThinkPad T530 Hackintosh OpenCore
 
-**5T4TU5**: 100% Completed! Added macOS Monterey support!
-
 [![T530](https://img.shields.io/badge/ThinkPad-T530-informational.svg)](https://psref.lenovo.com/syspool/Sys/PDF/withdrawnbook/ThinkPad_T530.pdf)
 [![OpenCore](https://img.shields.io/badge/OpenCore-0.7.4-important.svg)](https://github.com/acidanthera/OpenCorePkg/releases/latest)
 [![Clover Version](https://img.shields.io/badge/Clover-r5140-important.svg)](https://github.com/CloverHackyColor/CloverBootloader/releases)
