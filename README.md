@@ -28,7 +28,7 @@ The EFI Folders contained in this repo are configured DSDT-less. This means, bes
 
 **NOTE**: Read and follow the install instruction carefully and thoroughly before you deploay it correctly, if you want your system to boot successfully!
 <details>
-<summary><strong>EFI Folder Content</strong></summary>
+<summary><strong>EFI Folder Content (OpenCore)</strong></summary>
 
 ### EFI Folder Structure
 
