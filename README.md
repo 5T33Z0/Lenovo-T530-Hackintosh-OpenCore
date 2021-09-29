@@ -173,15 +173,13 @@ Opem the `config.plist` and do the following:
 
 ### EFI How To
 0. Download the EFI Folder from the `Releases` Section on the right and unpack it
-1. Read "Preparations" Section first
-2. Rename the config file of your choice to "config.plist"
-3. Mount the EFI
-4. Replace EFI Folder
-5. Restart
-6. **IMPORTANT**: Perform a NVRAM Reset (in Bootpicker, hit Space Bar and select "Clean NVRAM")
-7. Reboot again
-8. Select macOS to boot. It's currently configured for running macOS Mojave/Catalina but there's an extra config file for running Monterey included. If you want to run Big Sur, use the default config, change `SystemProductName` to `MacBookPro11,1` and `csr-active-config` value accordingly. You can research a suitable/matching SMBIOS for your CPU on everymac.com.
-
+1. Open config.plist and follow the instructions given in the "Preparation" Section
+2. Mount the EFI
+3. Replace EFI Folder
+4. Restart
+5. **IMPORTANT**: Perform a NVRAM Reset (in Bootpicker, hit Space Bar and select "Clean NVRAM")
+6. Reboot
+7. Select macOS to boot. It's currently configured for running macOS Mojave up to Monterey. You can research a suitable/matching SMBIOS for your CPU on everymac.com.
 </details>
 <details>
 <summary><strong>BIOS Settings</strong></summary>
