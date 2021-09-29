@@ -17,14 +17,14 @@ This Repo contains EFI Folders for running various versions of macOS on a Lenovo
 
 ## ABOUT
 
-The EFI Folders contained in this repo are configured DSDT-less. This means, besides the used Kexts they are solely based on Binary Renames and ACPI Hotpatches (SSDTs) – they don't use a patched `DSDT` file – just like modern hackintoshing is suppossed to be done. Instead of replacing the *whole* system `DSDT` by a patched one during boot, only things which need fixing are addressed and patched-in on the fly (hence the term "hot-patching"). The benefits of this approach are:
+The EFI Folders contained in this repo are configured DSDT-less. This means, besides the used Kexts they are solely based on Binary Renames and ACPI Hotpatches (SSDTs) – they don't use a patched `DSDT` file – just like modern hackintoshing is supposed to be done. Instead of replacing the *whole* system `DSDT` by a patched one during boot, only things which need fixing are addressed and patched-in on the fly (hence the term "hot-patching"). The benefits of this approach are:
 
-- Binary Renames and ACPI Hotpatches are independant of the installed BIOS version, so there are no mismatches if the BIOS versions between two machines differ.
+- Binary Renames and ACPI Hotpatches are independent of the installed BIOS version, so there are no mismatches if the BIOS versions between two machines differ.
 - Hotpatching is cleaner, more precise and independent of the installed BIOS version since they only address specific areas of the ACPI table.
 - Overall, the system boots faster, runs smoother and snappier than using a patched DSDT.
 - Issues which might occur with newer macOS versions can be addressed and resolved easier by modifying or adding specific SSDTs without having to update and export the whole patched DSDT again.
 
-**NOTE**: Read and follow the install instruction carefully and thoroughly before you deploay it correctly, if you want your system to boot successfully!
+**NOTE**: Read and follow the install instruction carefully and thoroughly before you deploy it correctly, if you want your system to boot successfully!
 <details>
 <summary><strong>EFI Folder Content (OpenCore)</strong></summary>
 
@@ -102,7 +102,7 @@ EFI
 | Audio               | Realtek ALC269VC Rev.3 (Layout-id:`29`)       |
 | Ethernet            | Intel(r) 82579LM Gigabit Network Connection   |
 | WIFI+BT             | Broadcom BCM94352HMB DW1550, 802.11 a/b/g/n/ac|
-| Docking Stattion    | Lenovo ThinkPad 4338 Mini Dock plus Series 3  |
+| Docking Station    | Lenovo ThinkPad 4338 Mini Dock plus Series 3  |
 
 [**ThinkPad T530 User Guide (PDF)**](https://download.lenovo.com/ibmdl/pub/pc/pccbbs/mobiles_pdf/t530_t530i_w530_ug_en.pdf)
 </details>
@@ -129,25 +129,25 @@ In order to boot macOS with this EFI successfully, adjustments to the `config.pl
 - Setting the correct value for `csr-active-config` to disable System Integrity Protection (macOS dependent).
 - Generating the correct `SSDT-PM.aml` in Post-Install so CPU Power Management works as intended.
 
-Please read the explanations in the following sections carefully and thouroughly where the all of the above is covered in detail and follow the given instructions.
+Please read the explanations in the following sections carefully and thoroughly where the all of the above is covered in detail and follow the given instructions.
 
 - **Test it**: Test the EFI folder first using a FAT32 formatted USB Stick before you copy it onto your system SSD! 
 - **Perform an NVRAM Reset** before booting from this EFI!
-- **Pick a Config**: The EFI folder cotains 2 config files: `config.plist` and `config_Monterey.plist`. The differences between them are:
+- **Pick a Config**: The EFI folder contains 2 config files: `config.plist` and `config_Monterey.plist`. The differences between them are:
 	- `config.plist` uses `MacBookPro10,1` as System Definition. It can boot everything from macOS 10.13 High Sierra up to macOS 11 Big Sur. Big Sur requires changing the `SystemProductName` to `MacBookPro11,1`, though. Adjust `csr-active-config` accordingly (the correct value for each OS is stored in the configs as commented-out entries).
-	- `config_Monterey.plist` uses `MacBookPro11,4` and is for booting macOS Monterey (obvioulsy). It uses a different combination of Bluetooth Kexts for Broadcom Cards, otherwise the system won't boot (see "Wifi/Bluetooth" further down). Rename the config plist of your choice to `config.plist`, otherwise it won't boot.
+	- `config_Monterey.plist` uses `MacBookPro11,4` and is for booting macOS Monterey (obviously). It uses a different combination of Bluetooth Kexts for Broadcom Cards, otherwise the system won't boot (see "Wifi/Bluetooth" further down). Rename the config plist of your choice to `config.plist`, otherwise it won't boot.
 - **Integrated Graphics**: Three variants of T530 models with different display panels exist: `HD+` (including FullHD) and `HD` models. Both are using different identifiers:</br>
 	
 	`AAPL,ig-platform-id 04006601` = `HD+` = FullHD. Resolution: ≥ 1600x900 px</br>
 	`AAPL,ig-platform-id 03006601` = `HD` = SD. Resolution: ≤ 1366x768 px
 
-	By default, the iGPU (Intel HD 4000) is configured for T530 models with `HD+` and FullHD panels. If your model has an `HD` panel you need to select a different Framebuffer-Patch, which is included in the config.plist but is disabled. To enable it, do the folowing:
+	By default, the iGPU (Intel HD 4000) is configured for T530 models with `HD+` and FullHD panels. If your model has an `HD` panel you need to select a different Framebuffer-Patch, which is included in the config.plist but is disabled. To enable it, do the following:
 	1. Go to `DeviceProperties` > `PciRoot(0x0)/Pci(0x2,0x0)`. 
-	2. Disable the HD+ Frambuffer-Patch by placing a `#` in front of `PciRoot(0x0)/Pci(0x2,0x0)`.
+	2. Disable the HD+ Framebuffer-Patch by placing a `#` in front of `PciRoot(0x0)/Pci(0x2,0x0)`.
 	3. 	Next, enable "#PciRoot(0x0)/Pci(0x2,0x0) 1366x768 px" by deleting the leading `#` and the description ` 1366x768 px` after the bracket, so that it looks this: `PciRoot(0x0)/Pci(0x2,0x0)`.
 	
 	**HINT**: If your screen turns off during boot, you are using the wrong Framebuffer-Patch!
-- **CPU**: The `SSDT-PM.aml` inside the ACPI Folder is for an **Intel i7 3630QM**. If you use a differnt CPU model, disable it for now and create your own using `ssdtPRGEN` in Post-Install. (See 'Fixing CPU Power Management' in the 'Post-Install Section')
+- **CPU**: The `SSDT-PM.aml` inside the ACPI Folder is for an **Intel i7 3630QM**. If you use a different CPU model, disable it for now and create your own using `ssdtPRGEN` in Post-Install. (See 'Fixing CPU Power Management' in the 'Post-Install Section')
 - **SMBIOS**: Create SMBIOS infos using GenSMBIOS and add the data to `PlatformInfo > Generic`. Depending on the macOS version you are using, a different setting for `SystemProductName` is required:
 	- For macOS High Sierra to Catalina: `MacBookPro10,1`
 	- For macOS Big Sur: `MaBookPro11,1`
@@ -159,7 +159,7 @@ Please read the explanations in the following sections carefully and thouroughly
   - For Monterey: `EF0F0000` (0xFEF)
 - **WiFi/Bluetooth** (Read carefully!)
 	- I use a 3rd Party WiFi/BT Card with a Broadcom Chip
-	- 3rd Party WiFi/BT Cards require the `1vyrain` Jailbreak to unlock the BIOS which disables the WLAN Whitelist (not necessary if the 3rd party card is whitelisted).
+	- 3rd Party WiFi/BT Cards require the `1vyrain` Jailbreak to unlock the BIOS which disables the WiFi Whitelist (not necessary if the 3rd party card is whitelisted).
 	- I use `BrcmFirmwareData.kext` for Bluetooth which can be injected by OpenCore and Clover. Alternatively, you could use `BrcmFirmwareRepo.kext` instead. But it needs to be installed into System/Library/Extensions since it cannot be injected by Bootloaders. It's supposed to be more efficient than BrcmFirmwareData.kext, but it also takes more effort to install and update.
 	- If you use a WiFi/BT Card from a different vendor than Broadcom, remove BluetoolFixup and the "Brcm…" Kexts, add the Kext(s) required for your card and create a new snapshot of `config.plist` using `ProperTree` before trying to boot from this EFI!
 	- If you use the stock Intel(r) WiFi/Bluetooth Card, it may work with the OpenIntelWireless kext. Check [OpenIntelWireless](https://github.com/OpenIntelWireless) to find out if your card is supported (yet). If so, remove the BluetoolFixup and Brcm Kexts, add the required Kext(s) for your card and create a new snapshot of `config.plist` using `ProperTree` before trying to boot from this EFI.
@@ -242,7 +242,7 @@ Please read the explanations in the following sections carefully and thouroughly
 ## POST-INSTALL
 <details>
 <summary><strong>Strengthen Security</strong></summary>
-Change the following settings to make your systm more secure:
+Change the following settings to make your system more secure:
 
 - Change UEFI > APFS: `MinDate` and `MinVersion` from `-1` (disabled) to the correct values for the macOS version you are using. A list with the correct values for macOS High Sierra up to Big Sur can be found [here](https://github.com/acidanthera/OpenCorePkg/blob/master/Include/Acidanthera/Library/OcApfsLib.h).</br>
 
@@ -268,10 +268,10 @@ Change the following settings to make your systm more secure:
 
 CPU Power Management should work fine after that. Optionally, you can install Intel Power Gadget to check if the CPU runs within it's specs.
 
-**NOTE 1**: Only necessarry if you use a differnt CPU than i7 3630QM</br>
-**NOTE 2**: You can add modifiers to the terminal command for building SSDT-PM. For example, you can drop the low frequency from the default 1200 MHz to 900 MHz in 100 MHz increments, but no lower than that. Otherwise the system crashes during boot. I suggests you experiement with the modifiers a bit.</br>
+**NOTE 1**: Only necessary if you use a different CPU than i7 3630QM</br>
+**NOTE 2**: You can add modifiers to the terminal command for building SSDT-PM. For example, you can drop the low frequency from the default 1200 MHz to 900 MHz in 100 MHz increments, but no lower than that. Otherwise the system crashes during boot. I suggests you experiment with the modifiers a bit.</br>
 **NOTE 3**: If you feel really confident and enthusiastic you could also re-enable XCPM. But in my experience the machine does not perform as good. You can follow this guide if you're so inclined: https://github.com/5T33Z0/Lenovo-T530-Hackinosh-OpenCore/blob/main/Guides/Enable%20XCPM.md/<br>
-**NOTE 4**: If you are running macOS Big Sur or Monterey, you can achieve better thermals (with a lot less fan activity) if you define the System as `MacBookPro10,1` instead of `MacBookPro11,1` (Big Sur) or `MacBookPro11,4` (Monterey). But then you also need to add the boot-arg `-no_compat_check`. Otherwise your system won't boot since macOS Monterey is not supposed to run on anything older than MacBookPro11,4. The downside of using `-no_compat_check` is that you won't be able to download System Updates directly (use ANYmacOS instead). But in my opionion, using `MacBookPro10,1` makes much more sense because the system is more power efficient and silent since the idle Frequency is around 800 mHz lower.<br>
+**NOTE 4**: If you are running macOS Big Sur or Monterey, you can achieve better thermals (with a lot less fan activity) if you define the System as `MacBookPro10,1` instead of `MacBookPro11,1` (Big Sur) or `MacBookPro11,4` (Monterey). But then you also need to add the boot-arg `-no_compat_check`. Otherwise your system won't boot since macOS Monterey is not supposed to run on anything older than MacBookPro11,4. The downside of using `-no_compat_check` is that you won't be able to download System Updates directly (use ANYmacOS instead). But in my opinion, using `MacBookPro10,1` makes much more sense because the system is more power efficient and silent since the idle Frequency is around 800 mHz lower.<br>
 **NOTE 5**: Since Big Sur requires `MacBookPro11,1` to boot and Monterey `MacBookPro11,4`, `ssdtPRGen` fails to generate SSDT-PM, because it relies on Board-IDs containing data for Plugin-Type 0. As a workaround, you can either:
 
 - use `SSDTTime` to generate a `SSDT-PLUG.aml` **or** 
@@ -326,7 +326,7 @@ Besides the 3 themes from Acidanthera which provide the standard macOS look and 
 - Next, go to Misc > Tools and change `Flavour` from `Auto` to: `ResetNVRAM:NVRAMTool` (otherwise the Icon for NVRAM Reset is not applied)
 - Save config.plist and reboot
 
-To revert these changes, enter `Acidanthera\GoldenGate` as PickerVarinat and change the Flavour of the NVRAM Reset Tool back to `Auto`.
+To revert these changes, enter `Acidanthera\GoldenGate` as `PickerVariant` and change the Flavour of the NVRAM Reset Tool back to `Auto`.
 </details>
 <details>
 <summary><strong>Adding `Eject` Button to the Menu bar</strong></summary>
