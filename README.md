@@ -136,7 +136,7 @@ Opem the `config.plist` and do the following:
 	- For macOS Mojave/Catalina (10.14/10.15): `FF070000`(0x7FF)
 	- For macOSHigh Sierra (10.13): `FF030000` (0x3FF)
 
-3. Select the correct Framebuffer-Patch for your T530 model Two display panels exist: `HD+` (WSXGA and FullHD) and `HD` panels. Both are using different identifiers:</br>
+3. Select the correct Framebuffer-Patch for your T530 model. Two display panels exist: `HD+` (WSXGA and FullHD) and `HD` panels. Both are using different identifiers:</br>
 	
 	`AAPL,ig-platform-id 04006601` = `HD+` = FullHD. Resolution: ≥ 1600x900 px. (**Default**)</br>
 	`AAPL,ig-platform-id 03006601` = `HD` = SD. Resolution: ≤ 1366x768 px</br>
