@@ -17,7 +17,7 @@ This Repo contains EFI Folders for running various versions of macOS on a Lenovo
 
 ## ABOUT
 
-The EFI Folders contained in this repo are configured DSDT-less. This means, besides the used Kexts they are solely based on Binary Renames and ACPI Hotpatches (SSDTs) – they don't use a patched `DSDT` file – just like modern hackintoshing is supposed to be done. Instead of replacing the *whole* system `DSDT` by a patched one during boot, only things which need fixing are addressed and patched-in on the fly (hence the term "hot-patching"). The benefits of this approach are:
+The EFI Folders contained in this repo are configured DSDT-less. This means, besides the used Kexts they are solely based on Binary Renames and ACPI Hotpatches (SSDTs) – they don't use a patched `DSDT` file – just like it is supposed to be done. Instead of replacing the *whole* system `DSDT` by a patched one during boot, only things which need fixing are addressed and patched-in on the fly (hence the term "hot-patching"). The benefits of this approach are:
 
 - Binary Renames and ACPI Hotpatches are independent of the installed BIOS version, so there are no mismatches if the BIOS versions between two machines differ.
 - Hotpatching is cleaner, more precise and independent of the installed BIOS version since they only address specific areas of the ACPI table.
@@ -149,7 +149,7 @@ Opem the `config.plist` and do the following:
 	
 	**HINT**: If your screen turns off during boot, you are using the wrong Framebuffer-Patch!
 
-4. **CPU**: The `SSDT-PM.aml` inside the ACPI Folder is for an **Intel i7 3630QM**. If you use a different CPU model, disable it for now and create your own using `ssdtPRGEN` in Post-Install. (See 'Fixing CPU Power Management' in the 'Post-Install Section')
+4. **CPU**: The `SSDT-PM.aml` inside the ACPI Folder is for an **Intel i7 3630QM**. If you use a different CPU model, disable it for now and create your own using `ssdtPRGen` in Post-Install. (See 'Fixing CPU Power Management' in the 'Post-Install Section')
 
 5. **WiFi/Bluetooth** (Read carefully!)
 	- I use a 3rd Party WiFi/BT Card with a Broadcom Chip
@@ -294,7 +294,7 @@ CPU Power Management should work fine after that. Optionally, you can install In
 <details>
 <summary><strong>Fixing Sleep Issues</strong></summary>
 
-### Fixing Sleepimage
+### Fixing SLeep issues
 If you have issues with sleep, run the following commands in Terminal:
 
 	sudo pmset hibernatemode 0
@@ -344,7 +344,7 @@ macOS locks the optical drive sometimes so that you can't open it with the physi
 
 - George Kushnir for [1vyrain BIOS Jailbreak](https://github.com/n4ru/1vyrain) to remove WLAN whitelist
 - Acidanthera and Team for [OpenCore Bootloader](https://github.com/acidanthera/OpenCorePkg)
-- Dortantia for the [OpenCore Install Guide](https://dortania.github.io/OpenCore-Install-Guide)
+- Dortania for the [OpenCore Install Guide](https://dortania.github.io/OpenCore-Install-Guide)
 - SergeySlice for [Clover Bootloader](https://github.com/CloverHackyColor/CloverBootloader)
 - khronokernel for [Clover Vanilla Install Guide](https://hackintosh.gitbook.io/-r-hackintosh-vanilla-desktop-guide/)
 - [Corpnewt](https://github.com/corpnewt) for SSDTTime, GenSMBIOS and ProperTree
