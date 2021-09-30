@@ -177,7 +177,7 @@ Opem the `config.plist` and do the following:
 2. Mount the EFI
 3. Replace EFI Folder
 4. Restart
-5. **IMPORTANT**: Perform a NVRAM Reset (in Bootpicker, hit Space Bar and select "Clean NVRAM")
+5. **IMPORTANT**: Perform a NVRAM Reset (in Bootpicker, hit Space Bar to reveal Tools)
 6. Reboot
 7. Select macOS to boot. It's currently configured for running macOS Mojave up to Monterey. You can research a suitable/matching SMBIOS for your CPU on everymac.com.
 </details>
