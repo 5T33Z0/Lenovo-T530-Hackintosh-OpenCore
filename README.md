@@ -81,8 +81,7 @@ EFI
     │   │   └── Label
     ├── Tools
     │   └── CleanNvram.efi
-    ├── config.plist
-    └── config_Monterey.plist
+    └── config.plist
 ```
 </details>
 
