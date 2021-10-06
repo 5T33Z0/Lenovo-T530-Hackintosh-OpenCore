@@ -6,9 +6,8 @@
 [![MacOS Mojave](https://img.shields.io/badge/macOS-10.14.6-white.svg)](https://support.apple.com/kb/SP777?locale=en_US)
 [![MacOS Catalina](https://img.shields.io/badge/macOS-10.15.7-white.svg)](https://www.apple.com/li/macos/catalina/) 
 [![MacOS Big Sur](https://img.shields.io/badge/macOS-11.6-white.svg)](https://www.apple.com/macos/big-sur/)
-[![MacOS Monterey](https://img.shields.io/badge/macOS-12beta8-white.svg)](https://www.apple.com/macos/monterey-preview/)
+[![MacOS Monterey](https://img.shields.io/badge/macOS-12beta-white.svg)](https://www.apple.com/macos/monterey-preview/)
 [![release](https://img.shields.io/badge/Download-latest-success.svg)](https://github.com/5T33Z0/Lenovo-T530-Hackinosh-OpenCore/releases/latest)
-
 ![](https://raw.githubusercontent.com/5T33Z0/Lenovo-T530-Hackinosh-OpenCore/main/Pics/BootPicker.png)
 
 ## SUMMARY
@@ -337,24 +336,25 @@ macOS locks the optical drive sometimes so that you can't open it with the physi
 ## CPU BENCHMARK
 
 ![Screenshot](https://raw.githubusercontent.com/5T33Z0/Lenovo-T530-Hackinosh-OpenCore/main/Pics/benchmark_latest.png)
-
 [Benchmark Results](https://browser.geekbench.com/v5/cpu/9553877)
 
 ## CREDITS and THANK YOUs
 
-- George Kushnir for [1vyrain BIOS Jailbreak](https://github.com/n4ru/1vyrain) to remove WLAN whitelist
-- Acidanthera and Team for [OpenCore Bootloader](https://github.com/acidanthera/OpenCorePkg)
-- Dortania for the [OpenCore Install Guide](https://dortania.github.io/OpenCore-Install-Guide)
+- George Kushnir for [1vyrain Jailbreak](https://github.com/n4ru/1vyrain) to remove WLAN whitelist from BIOS
+- Acidanthera and Team for [OpenCore Bootloader](https://github.com/acidanthera/OpenCorePkg) and additional Kexts
+- Dortania for [OpenCore Install Guide](https://dortania.github.io/OpenCore-Install-Guide)
 - SergeySlice for [Clover Bootloader](https://github.com/CloverHackyColor/CloverBootloader)
-- khronokernel for [Clover Vanilla Install Guide](https://hackintosh.gitbook.io/-r-hackintosh-vanilla-desktop-guide/)
-- [Corpnewt](https://github.com/corpnewt) for SSDTTime, GenSMBIOS and ProperTree
-- [1Revenger1](https://github.com/1Revenger1/ECEnabler) for ECEnabler
+- chris1111 for [IntelHD4000 Patcher](https://github.com/chris1111/Patch-HD4000-Monterey) for macOS Monterey and OC Themes
+- 1Revenger1 for [ECEnabler](https://github.com/1Revenger1/ECEnabler)
+- [ic005k](https://github.com/ic005k/) for OpenCore Auxiliary Tools and PlistEDPlus
+- Mackie100 for [Clover Configurator](https://mackie100projects.altervista.org/download-clover-configurator/)
+- [Corpnewt](https://github.com/corpnewt) for SSDTTime, GenSMBIOS, ProperTree and BitmaskDecode
 - Piker-Alpha for [ssdtPRGen](https://github.com/Piker-Alpha/ssdtPRGen.sh)
-- daliansky for [OC Little](https://github.com/5T33Z0/OC-Little-Translated) ACPI Hotpatch Collection
-- [Rehabman](https://github.com/RehabMan) for Laptop and DSDT patching guides
-- [RealKiro](https://github.com/RealKiro/Hackintosh) for Clover EFI with ACPI Patches for referencing
-- [banhbaoxamlan](https://github.com/banhbaoxamlan/X230-Hackintosh) for his EFI folder containing ACPI files to fix the post-sleep pulsing LED issue.
 - [SL-Soft](https://www.sl-soft.de/software/) for Kext Updater and ANYmacOS
-- [Pavo-IM](https://github.com/Pavo-IM/) for OC_Gen-X
+- khronokernel for [Clover Vanilla Install Guide](https://hackintosh.gitbook.io/-r-hackintosh-vanilla-desktop-guide/)
+- [Rehabman](https://github.com/RehabMan) for Laptop and DSDT patching guides
+- daliansky for [OC Little](https://github.com/5T33Z0/OC-Little-Translated) ACPI Hotpatch Collection
+- [RealKiro](https://github.com/RealKiro/Hackintosh) for Clover EFI with ACPI Patches for referencing
+- [banhbaoxamlan](https://github.com/banhbaoxamlan/X230-Hackintosh) for ACPI files to fix the post-sleep pulsing LED issue.
+- Pavo-IM for [OC-Gen-X](https://github.com/Pavo-IM/OC-Gen-X)
 - jsassu20 for [MacDown](https://macdown.uranusjr.com/) Markdown Editor
-- [chris1111](https://github.com/chris1111/Patch-HD4000-Monterey) for IntelHD4000 Patcher for macOS Monterey
