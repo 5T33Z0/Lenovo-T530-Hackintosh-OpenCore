@@ -6,7 +6,8 @@
 
 **Chris1111**:
 ![](https://raw.githubusercontent.com/5T33Z0/Lenovo-T530-Hackinosh-OpenCore/main/Pics/BootPicker_alt.png)
-#### Installation
+
+### Installation
 
 1. Copy to `/EFI/OC/Resources/Image`
 2. Open `config.plist`
@@ -17,7 +18,7 @@
 
 **NOTE**: If an Icon is not applied to a Tool, try to set is manually. Each Tool has an field for `Flavour` as well.
 
-## Theme Credits
+##Credits
 
 [**Chris1111**](https://github.com/chris1111)</br>
 **[Antuneddu](https://www.insanelymac.com/forum/profile/1390874-antuneddu/)** and from InsanelyMac Forum
