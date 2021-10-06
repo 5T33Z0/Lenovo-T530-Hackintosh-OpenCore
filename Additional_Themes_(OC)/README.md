@@ -1,5 +1,11 @@
 ## Additional Themes (OpenCore)
 
+### Previews
+**Antuneddu**:
+![](https://raw.githubusercontent.com/5T33Z0/Lenovo-T530-Hackinosh-OpenCore/main/Additional_Themes_(OC)/Antuneddu/Themes.png)
+
+**Chris1111**:
+![](https://raw.githubusercontent.com/5T33Z0/Lenovo-T530-Hackinosh-OpenCore/main/Pics/BootPicker_alt.png)
 #### Installation
 
 1. Copy to `/EFI/OC/Resources/Image`
