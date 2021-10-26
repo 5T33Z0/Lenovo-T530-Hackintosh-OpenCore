@@ -335,7 +335,7 @@ macOS locks the optical drive sometimes so that you can't open it with the physi
 
 ## CPU BENCHMARK
 
-![Screenshot](https://raw.githubusercontent.com/5T33Z0/Lenovo-T530-Hackinosh-OpenCore/main/Pics/benchmark_latest.png)
+![Screenshot](https://raw.githubusercontent.com/5T33Z0/Lenovo-T530-Hackinosh-OpenCore/main/Pics/benchmark_latest.png)</br>
 [Benchmark Results](https://browser.geekbench.com/v5/cpu/9553877)
 
 ## CREDITS and THANK YOUs
