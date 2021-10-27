@@ -24,6 +24,11 @@ The EFI Folders contained in this repo are configured DSDT-less. This means, bes
 - Issues which might occur with newer macOS versions can be addressed and resolved easier by modifying or adding specific SSDTs without having to update and export the whole patched DSDT again.
 
 **NOTE**: Read and follow the install instruction carefully and thoroughly before you deploy it correctly, if you want your system to boot successfully!
+
+|:warning: Issues related to macOS Monterey 12.0.1 (beyond my control)|
+|:--------------------------------------------------------------------|
+[Bluetooth issues](https://dortania.github.io/OpenCore-Install-Guide/extras/monterey.html#bluetooth)
+
 <details>
 <summary><strong>EFI Folder Content (OpenCore)</strong></summary>
 
