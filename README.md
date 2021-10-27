@@ -82,6 +82,8 @@ EFI
     │   │   │   ├── Chardonnay
     │   │   │   ├── GoldenGate
     │   │   │   └── Syrah
+    │   │   └── Blackosx
+    │   │   │   └── BsxM1
     │   │   └── Label
     ├── Tools
     │   └── CleanNvram.efi
