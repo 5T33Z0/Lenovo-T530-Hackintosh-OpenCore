@@ -27,7 +27,7 @@ The EFI Folders contained in this repo are configured DSDT-less. This means, bes
 
 |:warning: Issues related to macOS Monterey 12.0.1 (beyond my control)|
 |:--------------------------------------------------------------------|
-[Bluetooth issues](https://dortania.github.io/OpenCore-Install-Guide/extras/monterey.html#bluetooth)
+[Bluetooth issues](https://dortania.github.io/OpenCore-Install-Guide/extras/monterey.html#bluetooth) on legacy Broadcom and Intel cards
 
 <details>
 <summary><strong>EFI Folder Content (OpenCore)</strong></summary>
