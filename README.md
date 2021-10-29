@@ -6,7 +6,7 @@
 [![MacOS Mojave](https://img.shields.io/badge/macOS-10.14.6-white.svg)](https://support.apple.com/kb/SP777?locale=en_US)
 [![MacOS Catalina](https://img.shields.io/badge/macOS-10.15.7-white.svg)](https://www.apple.com/li/macos/catalina/) 
 [![MacOS Big Sur](https://img.shields.io/badge/macOS-11.6-white.svg)](https://www.apple.com/macos/big-sur/)
-[![MacOS Monterey](https://img.shields.io/badge/macOS-12.0.1-white.svg)](https://www.apple.com/macos/monterey/)
+[![MacOS Monterey](https://img.shields.io/badge/macOS-12.1_beta-white.svg)](https://www.apple.com/macos/monterey/)
 [![release](https://img.shields.io/badge/Download-latest-success.svg)](https://github.com/5T33Z0/Lenovo-T530-Hackinosh-OpenCore/releases/latest)
 ![](https://raw.githubusercontent.com/5T33Z0/Lenovo-T530-Hackinosh-OpenCore/main/Pics/BootPicker_alt2.png)
 
@@ -129,17 +129,18 @@ EFI
 ### Preparing the config.plist
 Please read the explanations in the following sections carefully and follow the given instructions. In order to boot macOS with this EFI successfully, adjustments to the `config.plist` may be necessary according to the used hardware and macOS version you want to use. 
 
-Opem the `config.plist` and do the following:
+Open the `config.plist` and do the following:
+
+**IMPORTANT**: You can skip steps 1 and 2 on macOS Monterey &rarr; the new Board ID skip and VMM patches enable native SMBIOS support for your CPU. No need to use a newer one which was not written for Ivy Bridge CPUs: either use `MacBookPro9,x` or `MacbookPro10,x` and macOS Monterey will boot and install updates via Software Update.
 
 1. Set `SystemProductName` according to the CPU and the macOS version you want to use: 
-	-  For Intel i5/i7, macOS 11/12: `MacBookPro11,4` (**Default**)
+	-  For Intel i5/i7, macOS 12: `MacBookPro10,1` or `MacBookPro10,2`
+	-  For Intel i5/i7, macOS 11 `MacBookPro11,4`
 	-  For Intel i7, macOS 10.13 to 10.15: `MacBookPro10,1` (Recommended combo)
 	-  For Intel i5, macOS 10.13 to 10.15: `MacBookPro10,2`
 
 2. Adjust `csr-active-config` according to the macOS version you want to use:
-		
-	- For macOS Monterey (12.0): `EF0F0000` (0xFEF) (**Default**)
-	- For macOS Big Sur (11.6): `67080000`(0x867)
+	- For macOS Big Sur/Monterey: `67080000`(0x867)
 	- For macOS Mojave/Catalina (10.14/10.15): `FF070000`(0x7FF)
 	- For macOSHigh Sierra (10.13): `FF030000` (0x3FF)
 
