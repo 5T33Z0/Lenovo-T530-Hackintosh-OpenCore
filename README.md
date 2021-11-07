@@ -12,7 +12,7 @@
 
 ## SUMMARY
 
-This Repo contains EFI Folders for running various versions of macOS on a Lenovo ThinkPad T530 Laptop using OpenCore (or Clover). Compatible and tested with: macOS 10.13 High Sierra up to macOS 12 Monterey. It makes use of the brand new `ECEnabler.kext` which enables battery status read-outs directly from the Embedded Controller – without Battery ACPI Patches. This EFI and config also includes the latest OpenCore Booter and Kernel patches which makes use of macOS Monterey's virtualization capabilities (VMM). This allows for using the correct SMBIOS for the CPU (MacBookPro10,1) which otherwise isn't supported. So you can enjoy the benefits of an optimal CPU configuration – system Updates included. If you want to know how it works, you can [check this](https://github.com/5T33Z0/OC-Little-Translated/tree/main/09_Board-ID_VMM-Spoof)
+This Repo contains EFI Folders for running various versions of macOS on a Lenovo ThinkPad T530 Laptop using OpenCore (or Clover). Compatible and tested with: macOS 10.13 High Sierra up to macOS 12 Monterey. It makes use of the brand new `ECEnabler.kext` which enables battery status read-outs directly from the Embedded Controller – without Battery ACPI Patches. This EFI and config also includes the latest OpenCore Booter and Kernel patches which makes use of macOS Monterey's virtualization capabilities (VMM). This allows for using the correct SMBIOS for the CPU (MacBookPro10,1) which otherwise isn't supported. So you can enjoy the benefits of an optimal CPU configuration – system Updates included. If you want to know how it works, you can [check this](https://github.com/5T33Z0/OC-Little-Translated/tree/main/09_Board-ID_VMM-Spoof).
 
 ## ABOUT
 
