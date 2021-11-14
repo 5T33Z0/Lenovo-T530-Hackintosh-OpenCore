@@ -6,7 +6,7 @@
 [![MacOS Mojave](https://img.shields.io/badge/macOS-10.14.6-white.svg)](https://support.apple.com/kb/SP777?locale=en_US)
 [![MacOS Catalina](https://img.shields.io/badge/macOS-10.15.7-white.svg)](https://www.apple.com/li/macos/catalina/) 
 [![MacOS Big Sur](https://img.shields.io/badge/macOS-11.6-white.svg)](https://www.apple.com/macos/big-sur/)
-[![MacOS Monterey](https://img.shields.io/badge/macOS-12.1_beta-white.svg)](https://www.apple.com/macos/monterey/)
+[![MacOS Monterey](https://img.shields.io/badge/macOS-12.1_beta2-white.svg)](https://www.apple.com/macos/monterey/)
 [![release](https://img.shields.io/badge/Download-latest-success.svg)](https://github.com/5T33Z0/Lenovo-T530-Hackinosh-OpenCore/releases/latest)
 ![](https://raw.githubusercontent.com/5T33Z0/Lenovo-T530-Hackinosh-OpenCore/main/Pics/BootPicker_alt2.png)
 
@@ -25,9 +25,9 @@ The EFI Folders contained in this repo are configured DSDT-less. This means, bes
 
 **NOTE**: Read and follow the install instruction carefully and thoroughly before you deploy it correctly, if you want your system to boot successfully!
 
-|:warning: Issues realted to macOS (beyond my control)|
-|:--------------------------------------------------------------------|
-macOS 10.15.7: Don't install Secruity Update 2021-007! It breaks the GL Driver of HD4000. Otherwise reinstall macOS 10.15.7 (19H4) and disable Updates afterwards.
+|:warning: Issues related to macOS (beyond my control)|
+|:----------------------------------------------------|
+macOS 10.15.7: Don't install Secruity Update 2021-007! It breaks the GL Driver of the HD 4000 integrated graphics. Otherwise reinstall macOS 10.15.7 (19H4) and disable Updates afterwards.
 macOS Monterey requires [Intel HD4000 Patcher](https://github.com/chris1111/Patch-HD4000-Monterey) to get graphics acceleration working
 [Bluetooth issues](https://dortania.github.io/OpenCore-Install-Guide/extras/monterey.html#bluetooth) on legacy Broadcom and Intel cards. Kimda fixed with [BrcmPatchRAM v2.6.1](https://dortania.github.io/builds/?product=BrcmPatchRAM&viewall=true)
 
@@ -42,10 +42,12 @@ EFI
 │   └── BOOTx64.efi
 └── OC
     ├── ACPI
+    │   ├── SSDT-AC.aml
     │   ├── SSDT-ALS0.aml
     │   ├── SSDT-BKEYS.aml
     │   ├── SSDT-EXT4.aml
     │   ├── SSDT-EXT5.aml
+    │   ├── SSDT-GPRW.aml
     │   ├── SSDT-HPET.aml
     │   ├── SSDT-LID.aml
     │   ├── SSDT-PM.aml
@@ -66,6 +68,7 @@ EFI
     │   ├── BlueToolFixup.kext
     │   ├── BrcmBluetoothInjector.kext
     │   ├── BrcmFirmwareData.kext
+    │   ├── BrcmPatchRAM2.kext
     │   ├── BrcmPatchRAM3.kext
     │   ├── ECEnabler.kext
     │   ├── IntelMausi.kext
