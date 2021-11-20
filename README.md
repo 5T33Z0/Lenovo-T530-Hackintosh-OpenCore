@@ -321,6 +321,9 @@ If you have issues with sleep, run the following commands in Terminal:
 Prior to version 0.7.4 of my OpenCore EFI Folder, the [**Command**] and [**Option**] keys were set to "swapped" in the `info.plist` of `VoodooPS2Keyboard.kext` by default. So in macOS, the [**WINDOWS**] key got bound to the [**Option**] function and the [**ALT**] Key got bound to the [**Command**] function which just felt weird. Therefore, users had to swap these Keys back around in the System Settings so everything worked as expected again.
 
 Since then, I've undone the key swap inside the `VoodooPS2Keyboard.kext` plugin so that the Key bindings are working as expected out of the box. So if you are updating from 0.7.3 or lower to 0.7.4, reset the Keyboard Modifier Keys back to Default in System Settings > Keyboard to so everything is back to normal.
+
+If the "</>" and "^" Keys are switched you could try changing "Use ISO layout keyboard" from false to true in the `info.plist` of the `VoodooPS2Keyboard.kext` (resides inside of `VoodooPS2Controller.kext` as a Plugin). 
+
 </details>
 <details>
 <summary><strong>Changing Themes</strong></summary>
