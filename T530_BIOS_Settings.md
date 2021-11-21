@@ -11,7 +11,7 @@
 * USB 3.0 Mode: `Enabled`
 * Display > Boot Display Device: `ThinkPad LCD`
 * Display > OS Detection for NVIDIA Optimus: `Disabled`
-* SATA > SATA Controller Mode: `XHCI`
+* SATA > SATA Controller Mode: `AHCI`
 * CPU > Core Multi-Processing: `Enabled`
 * CPU > Intel (R) Hyper-Threading: `Enabled` (CPU must support it)
 
