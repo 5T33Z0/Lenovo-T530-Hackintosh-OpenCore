@@ -329,14 +329,14 @@ If the "</>" and "^" Keys are switched you could try changing "Use ISO layout ke
 <summary><strong>Changing Themes</strong></summary>
 
 ### Changing Themes
-Besides the 3 themes from Acidanthera which provide the standard macOS look and feel, I've added 2 additional themes by Chris1111: `Minimal` and `Minimal-SSD.` Neither of them is enabled by default. To enable them, do the following:
+Besides the 3 default themes by Acidanthera included in the OpenCore package, I've added an additional theme by Blackosx called BsxM1 which is set as default. To change the theme to something else, do the following: 
 
-- Open `config.plist`
-- Go tp Misc > Boot and change `PickerVariant` to: `chris1111\Minimal` or `chris1111\Minimal-SSD`
-- Next, go to Misc > Tools and change `Flavour` from `Auto` to: `ResetNVRAM:NVRAMTool` (otherwise the Icon for NVRAM Reset is not applied)
-- Save config.plist and reboot
+- Open `config.plist` in OpenCore Auxiliary Tools
+- Go to Misc > Boot 
+- Select a different theme from the dropdown menu in `PickerVariant`
+- Save `config.plist` and reboot to apply the theme.
 
-To revert these changes, enter `Acidanthera\GoldenGate` as `PickerVariant` and change the Flavour of the NVRAM Reset Tool back to `Auto`.
+To revert these changes, enter `Acidanthera\GoldenGate` as `PickerVariant` and change the Flavour for the NVRAM Reset Tool back to `Auto`.
 </details>
 <details>
 <summary><strong>Adding `Eject` Button to the Menu bar</strong></summary>
