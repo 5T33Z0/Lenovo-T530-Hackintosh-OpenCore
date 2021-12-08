@@ -43,6 +43,7 @@ EFI
     ├── ACPI
     │   ├── SSDT-AC.aml
     │   ├── SSDT-ALS0.aml
+    │   ├── SSDT-BAT1-Disable.aml
     │   ├── SSDT-BKEYS.aml
     │   ├── SSDT-EXT4.aml
     │   ├── SSDT-EXT5.aml
@@ -72,7 +73,6 @@ EFI
     │   ├── ECEnabler.kext
     │   ├── IntelMausi.kext
     │   ├── Lilu.kext
-    │   ├── RestrictEvents.kext	
     │   ├── SMCBatteryManager.kext
     │   ├── VirtualSMC.kext
     │   ├── VoodooPS2Controller.kext
@@ -175,8 +175,8 @@ Open the `config.plist` and do the following:
 6. **Alternative/Optional Kexts**:
 	- [**itlwm**](https://github.com/OpenIntelWireless/itlwm): Kext for Intel WiFi Cards. Use instead of `AirportBrcmFixup`if you don't use a Broadcom WiFi Card
 	- [**IntelBluetoothFirmware**](https://github.com/OpenIntelWireless/IntelBluetoothFirmware): Kext for Intel Bluetooth Cards. Use instead of `BrcmPatchRam` and Plugins if you don't use a Broadcom BT Card
-	- [**NoTouchID**](https://github.com/al3xtjames/NoTouchID): only required for macOS 10.13 and 10.14 so the boot process won't stall while looking for the fingerprint sensor.
-	- [**Feature Unlock**](https://github.com/acidanthera/FeatureUnlock): Unlocks additional features like Sidecar, NighShift, Airplay to Mac or Universal Control.
+	- [**NoTouchID**](https://github.com/al3xtjames/NoTouchID): only required for macOS 10.13 and 10.14 so the boot process won't stall while looking for a Touch ID sensor.
+	- [**Feature Unlock**](https://github.com/acidanthera/FeatureUnlock): Unlocks additional features like Sidecar, NighShift, Airplay to Mac or Universal Control. Last time I tried it it crashed the system during boot, so try on your own risk.
 
 7. **Backlight Brightness Level tweaks** (optional): 
   - Set boot-arg `applbkl=1` for reasonable maximum brightness level controlled by `WhateverGreen`. 
