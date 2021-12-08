@@ -1,8 +1,8 @@
 # Lenovo ThinkPad T530 Hackintosh OpenCore
 
 [![T530](https://img.shields.io/badge/ThinkPad-T530-informational.svg)](https://psref.lenovo.com/syspool/Sys/PDF/withdrawnbook/ThinkPad_T530.pdf)
-[![OpenCore](https://img.shields.io/badge/OpenCore-0.7.5-cyan.svg)](https://github.com/acidanthera/OpenCorePkg/releases/latest)
-[![Clover Version](https://img.shields.io/badge/Clover-r5141-lime.svg)](https://github.com/CloverHackyColor/CloverBootloader/releases)
+[![OpenCore](https://img.shields.io/badge/OpenCore-0.7.6-cyan.svg)](https://github.com/acidanthera/OpenCorePkg/releases/latest)
+[![Clover Version](https://img.shields.io/badge/Clover-r5142-lime.svg)](https://github.com/CloverHackyColor/CloverBootloader/releases)
 [![MacOS Mojave](https://img.shields.io/badge/macOS-10.14.6-white.svg)](https://support.apple.com/kb/SP777?locale=en_US)
 [![MacOS Catalina](https://img.shields.io/badge/macOS-10.15.7-white.svg)](https://www.apple.com/li/macos/catalina/) 
 [![MacOS Big Sur](https://img.shields.io/badge/macOS-11.6-white.svg)](https://www.apple.com/macos/big-sur/)
@@ -10,20 +10,19 @@
 [![release](https://img.shields.io/badge/Download-latest-success.svg)](https://github.com/5T33Z0/Lenovo-T530-Hackinosh-OpenCore/releases/latest)
 ![](https://raw.githubusercontent.com/5T33Z0/Lenovo-T530-Hackinosh-OpenCore/main/Pics/BootPicker_alt2.png)
 
-## SUMMARY
-
-This Repo contains EFI Folders for running various versions of macOS on a Lenovo ThinkPad T530 Laptop using OpenCore (or Clover). Compatible and tested with: macOS 10.13 High Sierra up to macOS 12 Monterey. It makes use of the brand new `ECEnabler.kext` which enables battery status read-outs directly from the Embedded Controller – without Battery ACPI Patches. This EFI and config also includes the latest OpenCore Booter and Kernel patches which makes use of macOS Monterey's virtualization capabilities (VMM). This allows for using the correct SMBIOS for the CPU (MacBookPro10,1) which otherwise isn't supported. So you can enjoy the benefits of an optimal CPU configuration – system Updates included. If you want to know how it works, you can [check this](https://github.com/5T33Z0/OC-Little-Translated/tree/main/09_Board-ID_VMM-Spoof).
-
 ## ABOUT
 
-The EFI Folders contained in this repo are configured DSDT-less. This means, besides the used Kexts they are solely based on Binary Renames and ACPI Hotpatches (SSDTs) – they don't use a patched `DSDT` file – just like it is supposed to be done. Instead of replacing the *whole* system `DSDT` by a patched one during boot, only things which need fixing are addressed and patched-in on the fly (hence the term "hot-patching"). The benefits of this approach are:
+OpenCore and Clover EFI Folders for running macOS 10.13 to 12 on a Lenovo ThinkPad T530. They utilize the new `ECEnabler.kext` which enables battery status read-outs without the need for additional Battery Patches. The OpenCore EFI also includes the latest Booter and Kernel patches which make use of macOS Monterey's virtualization capabilities (VMM) to spoof a fake Board-ID. This allows installing and running macOS 12 with the `MacBookPro10,1` SMBIOS for Ivy Bridge CPUs which wouldn't be possible otherwise. So you can enjoy the benefits of optimal CPU Power Management and System Updates. If you want to know how these patches work, [read this](https://github.com/5T33Z0/OC-Little-Translated/tree/main/09_Board-ID_VMM-Spoof).
 
-- Binary Renames and ACPI Hotpatches are independent of the installed BIOS version, so there are no mismatches if the BIOS versions between two machines differ.
-- Hotpatching is cleaner, more precise and independent of the installed BIOS version since they only address specific areas of the ACPI table.
+## DSDT-less config
+
+The configs contained in this repo are configured DSDT-less. This means, besides Settings and Kexts they are solely based on Binary Renames and ACPI Hotpatches (SSDTs) – they don't use a patched DSDT – just like it is supposed to be done nowadays. So instead of replacing the *whole* system DSDT by a patched one during boot, only things which need fixing are addressed and patched-in on the fly (hence the term "hot-patching"). The benefits of this approach are:
+
+- Hotpatching is cleaner, more precise and independent of the installed BIOS version since it only addresses specific areas of ACPI tables which need patching.
 - Overall, the system boots faster, runs smoother and snappier than using a patched DSDT.
 - Issues which might occur with newer macOS versions can be addressed and resolved easier by modifying or adding specific SSDTs without having to update and export the whole patched DSDT again.
 
-**NOTE**: Read and follow the install instruction carefully and thoroughly before you deploy it correctly, if you want your system to boot successfully!
+**NOTE**: Read and follow the install instruction carefully and thoroughly before you deploy the EFI folder if you want your system to boot successfully!
 
 |:warning: Issues related to macOS (beyond my control)|
 |:----------------------------------------------------|
@@ -34,7 +33,7 @@ macOS Monterey requires [Intel HD4000 Patcher](https://github.com/chris1111/Patc
 <details>
 <summary><strong>EFI Folder Content (OpenCore)</strong></summary>
 
-### EFI Folder Structure
+### EFI Folder Structure (OpenCore)
 
 ```
 EFI
@@ -113,7 +112,7 @@ EFI
 | Audio               | Realtek ALC269VC Rev.3 (Layout-id:`40`)       |
 | Ethernet            | Intel(r) 82579LM Gigabit Network Connection   |
 | WIFI+BT             | Broadcom BCM94352HMB DW1550, 802.11 a/b/g/n/ac|
-| Docking Station    | Lenovo ThinkPad 4338 Mini Dock plus Series 3  |
+| Docking Station     | Lenovo ThinkPad 4338 Mini Dock plus Series 3  |
 
 [**ThinkPad T530 User Guide (PDF)**](https://download.lenovo.com/ibmdl/pub/pc/pccbbs/mobiles_pdf/t530_t530i_w530_ug_en.pdf)
 </details>
@@ -144,9 +143,12 @@ Open the `config.plist` and do the following:
 	-  For Intel i5, macOS 10.13 to 10.15: `MacBookPro10,2`
 
 2. Adjust `csr-active-config` according to the macOS version you want to use:
-	- For macOS Big Sur/Monterey: `67080000`(0x867)
-	- For macOS Mojave/Catalina (10.14/10.15): `FF070000`(0x7FF)
-	- For macOSHigh Sierra (10.13): `FF030000` (0x3FF)
+	- For macOS Monterey: `EF0F0000`(0xFEF in Clover)
+	- For macOS Big Sur: `67080000`(0x867)
+	- For macOS Mojave/Catalina: `FF070000`(0x7FF)
+	- For macOSHigh Sierra: `FF030000` (0x3FF)
+	
+	**NOTE**: You need to disable SIP if you use macOS Monteray with patched-in Intel HD 4000 Drivers!
 
 3. Select the correct Framebuffer-Patch for your T530 model. Two display panels exist: `HD+` (WSXGA and FullHD) and `HD` panels. Both are using different identifiers:</br>
 	
@@ -261,17 +263,17 @@ Change the following settings to make your system more secure:
 ### Fixing CPU Power Management 
 1. Open Config
 2. Disable `SSDT-PM.aml` under ACPI > Add
-2. Enable the 2 Patches under ACPI > Delete (`Drop CpuPm` and `Drop Cpu0Ist`)
-3. Save config and reboot
-4. Install [ssdtPRGen](https://github.com/Piker-Alpha/ssdtPRGen.sh)
-5. Open Terminal and type: sudo /Users/YOURUSERNAME/ssdtPRGen.sh
-6. Go to Users/YOURUSERNAME/Library/ssdtPRGen. There you'll find an ssdt.aml
-7. Rename `ssdt.aml` to `SSDT-PM.aml` and replace the one in EFI > OC > ACPI with it
-8. In config, go to ACPI > Add and re-enable `SSDT-PM.aml` if it is disabled.
-9. Disable the two patches from step 2 again.
-10. Save config and reboot. 
+3. Enable the 2 Patches under ACPI > Delete (`Drop CpuPm` and `Drop Cpu0Ist`)
+4. Save config and reboot
+5. Install [ssdtPRGen](https://github.com/Piker-Alpha/ssdtPRGen.sh)
+6. Open Terminal and type: sudo /Users/YOURUSERNAME/ssdtPRGen.sh
+7. Go to Users/YOURUSERNAME/Library/ssdtPRGen. There you'll find an ssdt.aml
+8. Rename `ssdt.aml` to `SSDT-PM.aml` and replace the one in EFI > OC > ACPI with it
+9. In config, go to ACPI > Add and re-enable `SSDT-PM.aml` if it is disabled.
+10. Disable the two patches from step 2 again.
+11. Save config and reboot. 
 
-CPU Power Management should work fine after that. Optionally, you can install Intel Power Gadget to check if the CPU runs within it's specs.
+CPU Power Management should work fine after that. Optionally, you can install [Intel Power Gadget](https://www.intel.com/content/www/us/en/developer/articles/tool/power-gadget.html) to check if the CPU runs within specs. You don't need SMCProcessor and SMCSuperIO kexts if you use Intel Power Gadgets, btw.
 
 **NOTEs**: 
 
