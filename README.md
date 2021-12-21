@@ -26,7 +26,6 @@ The configs contained in this repo are configured DSDT-less. This means, besides
 
 |:warning: Issues related to macOS (beyond my control)|
 |:----------------------------------------------------|
-**macOS Catalina**: Don't install Secruity Update 2021-007! It breaks the GL Driver of the HD4000 iGPU. Workaround: reinstall macOS 10.15.7 (19H4) and [Security Update 2021-006](https://support.apple.com/kb/DL2085).
 **macOS Monterey**: requires [Intel HD4000 Patcher](https://github.com/chris1111/Patch-HD4000-Monterey) to get graphics acceleration working
 [Bluetooth issues](https://dortania.github.io/OpenCore-Install-Guide/extras/monterey.html#bluetooth) on legacy Broadcom and Intel cards.
 
