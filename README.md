@@ -136,9 +136,11 @@ Open the `config.plist` and do the following:
 
 1. Set `SystemProductName` according to the CPU and the macOS version you want to use: 
 	-  For Intel i5/i7, macOS 12: `MacBookPro10,1` or `MacBookPro10,2`
-	-  For Intel i5/i7, macOS 11 `MacBookPro11,4`
+	-  For Intel i5/i7, macOS 11.3+: `MacBookPro10,1` or `MacBookPro10,2`
 	-  For Intel i7, macOS 10.13 to 10.15: `MacBookPro10,1` (Recommended combo)
 	-  For Intel i5, macOS 10.13 to 10.15: `MacBookPro10,2`
+	
+	**NOTE**: This config uses special Boooter and Kernel Patched in OpenCore which allow using the correct SMBIOS for Ivy Bridge CPUs on macOS 11.3 and newer (Darwin Kernel 20.4+) whch wouldn't be posible otherwise. If you are using macOS Big Sur lower than 11.3, you need to use `MacBookPro11,X` instead, since the patches won't work with earlier versions of Big Sur.
 
 2. Adjust `csr-active-config` according to the macOS version you want to use:
 	- For macOS Monterey: `EF0F0000`(0xFEF in Clover)
