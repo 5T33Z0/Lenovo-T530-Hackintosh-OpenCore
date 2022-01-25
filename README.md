@@ -1,12 +1,12 @@
 # Lenovo ThinkPad T530 Hackintosh OpenCore
 
 [![T530](https://img.shields.io/badge/ThinkPad-T530-informational.svg)](https://psref.lenovo.com/syspool/Sys/PDF/withdrawnbook/ThinkPad_T530.pdf)
-[![OpenCore](https://img.shields.io/badge/OpenCore-0.7.7-cyan.svg)](https://github.com/acidanthera/OpenCorePkg/releases/latest)
+[![OpenCore](https://img.shields.io/badge/OpenCore-0.7.8-cyan.svg)](https://github.com/acidanthera/OpenCorePkg/releases/latest)
 [![Clover Version](https://img.shields.io/badge/Clover-r5143-lime.svg)](https://github.com/CloverHackyColor/CloverBootloader/releases)
 [![MacOS Mojave](https://img.shields.io/badge/macOS-10.14.6-white.svg)](https://support.apple.com/kb/SP777?locale=en_US)
 [![MacOS Catalina](https://img.shields.io/badge/macOS-10.15.7-white.svg)](https://www.apple.com/li/macos/catalina/) 
 [![MacOS Big Sur](https://img.shields.io/badge/macOS-11.6-white.svg)](https://www.apple.com/macos/big-sur/)
-[![MacOS Monterey](https://img.shields.io/badge/macOS-12.2_beta-white.svg)](https://www.apple.com/macos/monterey/)
+[![MacOS Monterey](https://img.shields.io/badge/macOS-12.2-white.svg)](https://www.apple.com/macos/monterey/)
 [![release](https://img.shields.io/badge/Download-latest-success.svg)](https://github.com/5T33Z0/Lenovo-T530-Hackinosh-OpenCore/releases/latest)
 ![](https://raw.githubusercontent.com/5T33Z0/Lenovo-T530-Hackinosh-OpenCore/main/Pics/BootPicker_alt2.png)
 
