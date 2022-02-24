@@ -375,5 +375,4 @@ macOS locks the optical drive sometimes so that you can't open it with the physi
 - daliansky for [OC Little](https://github.com/5T33Z0/OC-Little-Translated) ACPI Hotpatch Collection
 - [RealKiro](https://github.com/RealKiro/Hackintosh) for Clover EFI with ACPI Patches for referencing
 - [banhbaoxamlan](https://github.com/banhbaoxamlan/X230-Hackintosh) for ACPI files to fix the post-sleep pulsing LED issue.
-- Pavo-IM for [OC-Gen-X](https://github.com/Pavo-IM/OC-Gen-X)
 - jsassu20 for [MacDown](https://macdown.uranusjr.com/) Markdown Editor
