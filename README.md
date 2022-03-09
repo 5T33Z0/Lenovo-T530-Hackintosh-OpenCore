@@ -1,7 +1,7 @@
 # Lenovo ThinkPad T530 Hackintosh OpenCore
 
 [![T530](https://img.shields.io/badge/ThinkPad-T530-informational.svg)](https://psref.lenovo.com/syspool/Sys/PDF/withdrawnbook/ThinkPad_T530.pdf)
-[![OpenCore](https://img.shields.io/badge/OpenCore-0.7.9-cyan.svg)](https://github.com/acidanthera/OpenCorePkg/releases/latest)
+[![OpenCore](https://img.shields.io/badge/OpenCore-0.8.0-cyan.svg)](https://github.com/acidanthera/OpenCorePkg/releases/latest)
 [![Clover Version](https://img.shields.io/badge/Clover-r5145-lime.svg)](https://github.com/CloverHackyColor/CloverBootloader/releases)
 [![MacOS Mojave](https://img.shields.io/badge/macOS-10.14.6-white.svg)](https://support.apple.com/kb/SP777?locale=en_US)
 [![MacOS Catalina](https://img.shields.io/badge/macOS-10.15.7-white.svg)](https://www.apple.com/li/macos/catalina/) 
