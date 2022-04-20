@@ -72,6 +72,7 @@ EFI
     │   ├── ECEnabler.kext
     │   ├── IntelMausi.kext
     │   ├── Lilu.kext
+    │   ├── RestrictEvents.kext
     │   ├── SMCBatteryManager.kext
     │   ├── VirtualSMC.kext
     │   ├── VoodooPS2Controller.kext
@@ -178,6 +179,7 @@ Open the `config.plist` and do the following:
 	- [**IntelBluetoothFirmware**](https://github.com/OpenIntelWireless/IntelBluetoothFirmware): Kext for Intel Bluetooth Cards. Use instead of `BrcmPatchRam` and Plugins if you don't use a Broadcom BT Card
 	- [**NoTouchID**](https://github.com/al3xtjames/NoTouchID): only required for macOS 10.13 and 10.14 so the boot process won't stall while looking for a Touch ID sensor.
 	- [**Feature Unlock**](https://github.com/acidanthera/FeatureUnlock): Unlocks additional features like Sidecar, NighShift, Airplay to Mac, Universal Control and Content Caching. Under macOS Monterey, Content Caching also requires `-allow_assetcache` boot-arg.
+	- [**RestictEvents.kext**](https://github.com/acidanthera/RestrictEvents): Combined with boot-arg `revpatch=diskread,memtab`, it enables "Memory" tab in "About this Mac" section and disables "Uninitialized Disk" warning in Finder (for macOS 10.14 and older).
 
 7. **Backlight Brightness Level tweaks** (optional): 
   - Set boot-arg `applbkl=1` for reasonable maximum brightness level controlled by `WhateverGreen`. 
