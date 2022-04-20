@@ -104,13 +104,13 @@ EFI
 | ------------------: | :-------------------------------------------- |
 | Model               | Lenovo ThinkPad T530, Model# 2429-62G         |
 | BIOS Version        | 2.77, unlocked with 1vyRain                   |
-| Processor           | Intel(r) Core i7 3630QM                       |
+| Processor           | Intel Core i7 3630QM                          |
 | Memory              | 16GB Samsung DDR3 1600MHz, Dual-Channel       |
 | Hard Disk           | Samsung 840 Evo 250GB                         |
-| Integrated Graphics | Intel(r) HD Graphics 4000                     |
+| Integrated Graphics | Intel HD Graphics 4000                        |
 | Display             | 15.6" HD+ TFT Display (1600x900 px)           |
 | Audio               | Realtek ALC269VC Rev.3 (Layout-id:`40`)       |
-| Ethernet            | Intel(r) 82579LM Gigabit Network Connection   |
+| Ethernet            | Intel 82579LM Gigabit Network Connection      |
 | WIFI+BT             | Broadcom BCM94352HMB DW1550, 802.11 a/b/g/n/ac|
 | Docking Station     | Lenovo ThinkPad 4338 Mini Dock plus Series 3  |
 
