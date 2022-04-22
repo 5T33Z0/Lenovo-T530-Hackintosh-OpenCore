@@ -184,6 +184,14 @@ Open the `config.plist` and do the following:
 7. **Backlight Brightness Level tweaks** (optional): 
   - Set boot-arg `applbkl=1` for reasonable maximum brightness level controlled by `WhateverGreen`. 
   - Set boot-arg `applbkl=0` for increased maximum brightness as defined in `SSDT-PNLF.aml`
+
+#### About used boot arguments
+- `-gux_defer_usb2`: Causes XHC to defer control of the USB2 ports and their devices to one of the EHC controllers on the PCH (South-Bridge). This option can usually also be configured in the BIOS for the Intel 7 series chipsets.
+- `brcmfx-country=#a`: Contry Code for Wifi (`#a` = generic). For details check the documentaion for AirportBrcmFixup.
+- `gfxrst=1`: to prefer drawing Apple logo at 2nd boot stage instead of framebuffer copying &rarr; Smoother the transition from the progress bar to desktop when an extermal monitor is attached.
+- `#revpatch=diskread,memtab`: For `RestrictEvents.kext`. `diskread` disables warnings about unsupported diskformat in macOS 10.14 and older. `memtab` adds `Memory` tab to "About this Mac" section. Move `RestrictEvents.kext` from "off" to "other" folder AND Remove leading `#` to enable boot-arg.
+- `#-no_compat_check`: For installing/booting macOS Big Sur and newer without having to change the SMBIOS. Remove leading `#` to enable the boot-arg. Note that installing system updates via the software update will not be possible when using this.
+  
 </details>
 <details>
 <summary><strong>EFI Handling</strong></summary>
