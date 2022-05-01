@@ -253,19 +253,22 @@ Open the `config.plist` and do the following:
 
 **Coming from macOS**: If you already have access to macOS, you can either download macOS from the App Store or use [**ANYmacOS**](https://www.sl-soft.de/en/anymacos/) instead. It's a hassle-free app than can download any macOS from High Sierra up to Monterey and can create an USB Installer as well.
 
-**macOS Monterey**: For installing macOS Monterey, follow the `Monterey Instructions-md` included in the EFI Downloads you find the [Releases](https://github.com/5T33Z0/Lenovo-T530-Hackinosh-OpenCore/releases) Section.
+**macOS Monterey**: For installing macOS Monterey, follow the `Monterey Instructions-md` included in the EFI Downloads you find the [**Releases**](https://github.com/5T33Z0/Lenovo-T530-Hackinosh-OpenCore/releases) Section.
 </details>
 
 ## POST-INSTALL
 <details>
 <summary><strong>Strengthen Security</strong></summary>
-Change the following settings to make your system more secure:
 
-- Change UEFI > APFS: `MinDate` and `MinVersion` from `-1` (disabled) to the correct values for the macOS version you are using. A list with the correct values for macOS High Sierra up to Big Sur can be found [here](https://github.com/acidanthera/OpenCorePkg/blob/master/Include/Acidanthera/Library/OcApfsLib.h).</br>
+Once your system is up and running you may want to change the following settings to make your system more secure:
 
-	**BACKGROUND**: OpenCore 0.7.2 introduced a new security feature which prevents loading the APFS driver if it does not match a specific Date and Version. If these values are left at their default `0`, your macOS partition will not show up in the Boot Picker unless macOS Big Sur or newer is installed since the APFS driver will not be loaded. For ease of use (and since I don't know which macOS you will be using) I've deactivated this feature. If you plan to setup a multiboot system running various iterations of macOS you probably should leave it at `-1`. Otherwise you won't be able to boot older OSes.
+- Enable System Integrity Protection (SIP): change `csr-active-config` to `00000000`
+- Under `UEFI/APFS`, change `MinDate` and `MinVersion` from `-1` (disabled) to the correct values for the macOS version you are using. A list with the correct values for can be found [here](https://github.com/5T33Z0/OC-Little-Translated/tree/main/A_Config_Tips_and_Tricks#mindateminversion-settings-for-the-apfs-driver).
 
-**NOTE**: You should test this setting first, booting from a USB Stick since it can prevent the system from booting.
+**IMPORTANT**: 
+
+- **SIP**: If you're planning to install macOS Monterey, SIP needs to be disabled! Because installing the graphics drivers with Intel HD 4000 Patcher breaks macOS securiity seal so therefore boot will crash if SIP is enabled!
+- **MinDate/MinVersion**: you should keep a working backup of your EFI folder on a FAT32 formatted USB flash drive before changing these settings, because if they are wrong, the APFS driver won't load and you won't see your macOS drive(s)!
 </details>
 <details>
 <summary><strong>Fixing CPU Power Management</strong></summary>
@@ -330,12 +333,11 @@ If you have issues with sleep, run the following commands in Terminal:
 <summary><strong>Fixing Command and Option Keys</strong></summary>
 
 ### Fixing Command and Option Keys positions
-Prior to version 0.7.4 of my OpenCore EFI Folder, the [**Command**] and [**Option**] keys were set to "swapped" in the `info.plist` of `VoodooPS2Keyboard.kext` by default. So in macOS, the [**WINDOWS**] key got bound to the [**Option**] function and the [**ALT**] Key got bound to the [**Command**] function which just felt weird. Therefore, users had to swap these Keys back around in the System Settings so everything worked as expected again.
+Prior to version 0.7.4 of my OpenCore EFI Folder, the **[Command]** and **[Option]** keys were set to "swapped" in the `info.plist` of `VoodooPS2Keyboard.kext` by default. So in macOS, the **[WINDOWS]** key was bound to the **[Option]** function and the **[ALT]** Key was bound to the **[Command]** function which felt weird. Therefore, users had to swap these Keys back around in the System Settings so everything worked as expected.
 
 Since then, I've undone the key swap inside the `VoodooPS2Keyboard.kext` plugin so that the Key bindings are working as expected out of the box. So if you are updating from 0.7.3 or lower to 0.7.4, reset the Keyboard Modifier Keys back to Default in System Settings > Keyboard to so everything is back to normal.
 
-If the "</>" and "^" Keys are switched you could try changing "Use ISO layout keyboard" from false to true in the `info.plist` of the `VoodooPS2Keyboard.kext` (resides inside of `VoodooPS2Controller.kext` as a Plugin). 
-
+If the "<", ">" and "^" Keys are switched/reversed, change `Use ISO layout keyboard` from `false` to `true` in the `info.plist` of `VoodooPS2Keyboard.kext`. 
 </details>
 <details>
 <summary><strong>Changing Themes</strong></summary>
@@ -354,11 +356,10 @@ To revert these changes, enter `Acidanthera\GoldenGate` as `PickerVariant` and c
 <summary><strong>Adding `Eject` Button to the Menu bar</strong></summary>
 
 ### Eject Button 
-macOS locks the optical drive sometimes so that you can't open it with the physical eject button – even if no media is present. To fix this you have 2 Options.
+macOS locks the optical drive sometimes so that you can't open it with the physical eject button – even if no media is present. To fix this you have 2 options:
 
-- Option 1: Adding an Eject Button to the Menu Bar
-	- Go to `System > Library > CoreService > Menu Extras` and double-click on `Eject.menu`. This adds an Eject Button to the Menu Bar.
-- Option 2: Press and hold the `INS` button (right below the Power Button) until the Eject Icon appears on the screen and the CD tray opens.
+- **Option 1**: Go to `System > Library > CoreService > Menu Extras` and double-click on `Eject.menu`. This adds an Eject button Icon to the Menu Bar.
+- **Option 2**: Press and hold the `INS` button (right below the Power Button) until the Eject Icon appears on the screen and the CD tray opens.
 </details>
 
 ## CPU BENCHMARK
