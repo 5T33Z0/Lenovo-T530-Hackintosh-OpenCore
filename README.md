@@ -251,9 +251,9 @@ Open the `config.plist` and do the following:
 ### Installing macOS
 **Coming from Windows/Linux**: If you are on Windows or Linux, follow the guide provided by [Dortania](https://dortania.github.io/OpenCore-Install-Guide/installer-guide/#making-the-installer). **NOTE**: No support from my end for issues related to UBS Installers created in Windows or Linux!
 
-**Coming from macOS**: If you already have access macOS, you can either download macOS from the App Store or use [**ANYmacOS**](https://www.sl-soft.de/en/anymacos/) instead. It's a hassle-free app than can download any macOS from High Sierra up to Monterey and can create an USB Installer as well.
+**Coming from macOS**: If you already have access to macOS, you can either download macOS from the App Store or use [**ANYmacOS**](https://www.sl-soft.de/en/anymacos/) instead. It's a hassle-free app than can download any macOS from High Sierra up to Monterey and can create an USB Installer as well.
 
-**macOS Monterey**: For installing macOS Monterey follow the `Monterey Instructions-md` included in the EFI Downloads you find the [Releases](https://github.com/5T33Z0/Lenovo-T530-Hackinosh-OpenCore/releases) Section.
+**macOS Monterey**: For installing macOS Monterey, follow the `Monterey Instructions-md` included in the EFI Downloads you find the [Releases](https://github.com/5T33Z0/Lenovo-T530-Hackinosh-OpenCore/releases) Section.
 </details>
 
 ## POST-INSTALL
