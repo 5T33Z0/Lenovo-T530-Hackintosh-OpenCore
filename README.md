@@ -95,6 +95,7 @@ EFI
 | Component           | Details                                       |
 | ------------------: | :-------------------------------------------- |
 | Model               | Lenovo ThinkPad T530, Model# 2429-62G         |
+| Chipset             | [Intel QM77 Express](https://www.intel.com/content/dam/www/public/us/en/documents/datasheets/7-series-chipset-pch-datasheet.pdf)
 | BIOS Version        | 2.77, unlocked with 1vyRain                   |
 | Processor           | Intel Core i7 3630QM                          |
 | Memory              | 16GB Samsung DDR3 1600MHz, Dual-Channel       |
