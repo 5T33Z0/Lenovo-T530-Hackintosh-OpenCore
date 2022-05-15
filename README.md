@@ -4,15 +4,15 @@
 
 ## ABOUT
 
-OpenCore and Clover EFI Folders for running macOS 10.13 to 12 on a Lenovo ThinkPad T530. They utilize the new `ECEnabler.kext` which enables battery status read-outs without the need for additional Battery Patches. The OpenCore EFI also includes the latest Booter and Kernel patches which make use of macOS Monterey's virtualization capabilities (VMM) to spoof a fake Board-ID. This allows installing and running macOS 12 with the `MacBookPro10,1` SMBIOS for Ivy Bridge CPUs which wouldn't be possible otherwise. So you can enjoy the benefits of optimal CPU Power Management and System Updates. If you want to know how these patches work, [read this](https://github.com/5T33Z0/OC-Little-Translated/tree/main/09_Board-ID_VMM-Spoof).
+OpenCore and Clover EFI Folders for running macOS 10.13 to 12.4+ on a Lenovo ThinkPad T530. They utilize the new `ECEnabler.kext` which enables battery status read-outs without the need for additional Battery Patches. The OpenCore EFI includes the latest Booter and Kernel patches which make use of macOS Monterey's virtualization capabilities (VMM) to spoof a fake Board-ID. This allows installing and running macOS Monterey with the `MacBookPro10,1` SMBIOS for Ivy Bridge CPUs which wouldn't be possible otherwise. So you can enjoy the benefits of optimal CPU Power Management and System Updates as well. If you want to know how these patches work, [read this](https://github.com/5T33Z0/OC-Little-Translated/tree/main/09_Board-ID_VMM-Spoof).
 
 ## DSDT-less config
 
-The configs contained in this repo are configured DSDT-less. This means, besides Settings and Kexts they are solely based on Binary Renames and ACPI Hotpatches (SSDTs) – they don't use a patched DSDT – just like it is supposed to be done nowadays. So instead of replacing the *whole* system DSDT by a patched one during boot, only things which need fixing are addressed and patched-in on the fly (hence the term "hot-patching"). The benefits of this approach are:
+The configs contained in this repo are configured DSDT-less. This means, they don't use a patched DSDT – just like it is supposed to be done nowadays. Everything is patched live using binary renames and ACPI Hotpatches (SSDTs). So instead of replacing the *whole* system DSDT by a patched one during boot, only things which need fixing are addressed and patched-in on the fly (hence the term "hot-patching"). The benefits of this approach are:
 
 - Hotpatching is cleaner, more precise and independent of the installed BIOS version since it only addresses specific areas of ACPI tables which need patching.
-- Overall, the system boots faster, runs smoother and snappier than using a patched DSDT.
 - Issues which might occur with newer macOS versions can be addressed and resolved easier by modifying or adding specific SSDTs without having to update and export the whole patched DSDT again.
+- The system boots faster, runs smoother and performance is better compared to using a patched DSDT.
 
 **NOTE**: Read and follow the install instruction carefully and thoroughly before you deploy the EFI folder if you want your system to boot successfully!
 
@@ -32,11 +32,12 @@ EFI
 │   └── BOOTx64.efi
 └── OC
     ├── ACPI
+    │   ├── SSDT-AC.aml (optional, cosmetic)
     │   ├── SSDT-ALS0.aml
     │   ├── SSDT-BAT1-Disable.aml
     │   ├── SSDT-EXT4.aml
     │   ├── SSDT-EXT5.aml
-    │   ├── SSDT-FWHD.aml
+    │   ├── SSDT-FWHD.aml (optional, cosmetic)
     │   ├── SSDT-HPET.aml
     │   ├── SSDT-LID.aml
     │   ├── SSDT-NBCF.aml
@@ -71,7 +72,7 @@ EFI
     │   ├── VoodooSDHC.kext
     │   └── WhateverGreen.kext
     ├── OpenCore.efi
-    ├── Resources (NOTE: removed files of sub-folders from tree to reduce clutter)
+    ├── Resources (NOTE: shows sub-folders only, no files)
     │   ├── Font
     │   ├── Image
     │   │   └── Acidanthera
@@ -80,6 +81,8 @@ EFI
     │   │   │   └── Syrah
     │   │   └── Blackosx
     │   │   │   └── BsxM1
+    │   │   └── velickovicdj
+    │   │   │   └── EnterTwilight
     │   │   └── Label
     ├── Tools
     │   └── CleanNvram.efi
@@ -112,9 +115,9 @@ EFI
 <details>
 <summary><strong>Incompatible Components</strong></summary>
 
-### Incompatible Hardware
-- [ ] NVIDIA Optimus GPU is not supported by macOS and must be disabled in BIOS - otherwise no boot!
-- [ ] Fingerprint Reader - model not supported by macOS
+### macOS-incompatible Components
+- [ ] NVIDIA Optimus GPU must be disabled in BIOS - otherwise no boot!
+- [ ] Fingerprint Reader
 - [ ] VGA Port – not supported since macOS Mountain Lion: [Intel HD Graphics VGA Support](https://github.com/acidanthera/WhateverGreen/blob/master/Manual/FAQ.IntelHD.en.md#vga-support)
 </details>
 
