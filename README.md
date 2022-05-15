@@ -8,7 +8,7 @@ OpenCore and Clover EFI Folders for running macOS 10.13 to 12.4+ on a Lenovo Thi
 
 ## DSDT-less config
 
-The configs contained in this repo are configured DSDT-less. This means, they don't use a patched DSDT – just like it is supposed to be done nowadays. Everything is patched live using binary renames and ACPI Hotpatches (SSDTs). So instead of replacing the *whole* system DSDT by a patched one during boot, only things which need fixing are addressed and patched-in on the fly (hence the term "hot-patching"). The benefits of this approach are:
+The configs contained in this repo are configured DSDT-less. This means, they don't use a patched DSDT. Everything is patched live using binary renames and ACPI Hotpatches (SSDTs). So instead of replacing the *whole* system DSDT by a patched one during boot, only things which need fixing are addressed and patched-in on the fly (hence the term "hot-patching")  – just like it is supposed to be done nowadays. The benefits of this approach are:
 
 - Hotpatching is cleaner, more precise and independent of the installed BIOS version since it only addresses specific areas of ACPI tables which need patching.
 - Issues which might occur with newer macOS versions can be addressed and resolved easier by modifying or adding specific SSDTs without having to update and export the whole patched DSDT again.
