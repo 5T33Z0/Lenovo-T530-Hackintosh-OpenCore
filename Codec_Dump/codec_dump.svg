@@ -8,34 +8,6 @@
  viewBox="0.00 0.00 2631.09 1359.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 <g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 1355)">
 <polygon fill="white" stroke="transparent" points="-4,4 -4,-1355 2627.09,-1355 2627.09,4 -4,4"/>
-<g id="clust1" class="cluster">
-<title>cluster&#45;nid&#45;02</title>
-<polygon fill="none" stroke="#cccccc" points="776.94,-1149 776.94,-1219 1224.89,-1219 1224.89,-1149 776.94,-1149"/>
-</g>
-<g id="clust2" class="cluster">
-<title>cluster&#45;nid&#45;03</title>
-<polygon fill="none" stroke="#cccccc" points="776.94,-1010 776.94,-1080 1224.89,-1080 1224.89,-1010 776.94,-1010"/>
-</g>
-<g id="clust5" class="cluster">
-<title>cluster&#45;nid&#45;06</title>
-<polygon fill="none" stroke="#cccccc" points="8,-1043 8,-1113 154.11,-1113 154.11,-1043 8,-1043"/>
-</g>
-<g id="clust7" class="cluster">
-<title>cluster&#45;nid&#45;08</title>
-<polygon fill="none" stroke="#cccccc" points="2202.46,-608 2202.46,-678 2615.09,-678 2615.09,-608 2202.46,-608"/>
-</g>
-<g id="clust8" class="cluster">
-<title>cluster&#45;nid&#45;09</title>
-<polygon fill="none" stroke="#cccccc" points="2202.46,-196 2202.46,-266 2615.09,-266 2615.09,-196 2202.46,-196"/>
-</g>
-<g id="clust10" class="cluster">
-<title>cluster&#45;nid&#45;0b</title>
-<polygon fill="none" stroke="#cccccc" points="731.11,-684 731.11,-1002 1239.53,-1002 1239.53,-684 731.11,-684"/>
-</g>
-<g id="clust11" class="cluster">
-<title>cluster&#45;nid&#45;0c</title>
-<polygon fill="none" stroke="#cccccc" points="1468.89,-986 1468.89,-1112 1947.96,-1112 1947.96,-986 1468.89,-986"/>
-</g>
 <g id="clust12" class="cluster">
 <title>cluster&#45;nid&#45;0d</title>
 <polygon fill="none" stroke="#cccccc" points="1468.89,-852 1468.89,-978 1947.96,-978 1947.96,-852 1468.89,-852"/>
@@ -108,11 +80,39 @@
 <title>cluster&#45;nid&#45;23</title>
 <polygon fill="none" stroke="#cccccc" points="1468.89,-462 1468.89,-844 1947.96,-844 1947.96,-462 1468.89,-462"/>
 </g>
+<g id="clust1" class="cluster">
+<title>cluster&#45;nid&#45;02</title>
+<polygon fill="none" stroke="#cccccc" points="776.94,-1149 776.94,-1219 1224.89,-1219 1224.89,-1149 776.94,-1149"/>
+</g>
+<g id="clust2" class="cluster">
+<title>cluster&#45;nid&#45;03</title>
+<polygon fill="none" stroke="#cccccc" points="776.94,-1010 776.94,-1080 1224.89,-1080 1224.89,-1010 776.94,-1010"/>
+</g>
+<g id="clust5" class="cluster">
+<title>cluster&#45;nid&#45;06</title>
+<polygon fill="none" stroke="#cccccc" points="8,-1043 8,-1113 154.11,-1113 154.11,-1043 8,-1043"/>
+</g>
+<g id="clust7" class="cluster">
+<title>cluster&#45;nid&#45;08</title>
+<polygon fill="none" stroke="#cccccc" points="2202.46,-607 2202.46,-677 2615.09,-677 2615.09,-607 2202.46,-607"/>
+</g>
+<g id="clust8" class="cluster">
+<title>cluster&#45;nid&#45;09</title>
+<polygon fill="none" stroke="#cccccc" points="2202.46,-196 2202.46,-266 2615.09,-266 2615.09,-196 2202.46,-196"/>
+</g>
+<g id="clust10" class="cluster">
+<title>cluster&#45;nid&#45;0b</title>
+<polygon fill="none" stroke="#cccccc" points="731.11,-684 731.11,-1002 1239.53,-1002 1239.53,-684 731.11,-684"/>
+</g>
+<g id="clust11" class="cluster">
+<title>cluster&#45;nid&#45;0c</title>
+<polygon fill="none" stroke="#cccccc" points="1468.89,-986 1468.89,-1112 1947.96,-1112 1947.96,-986 1468.89,-986"/>
+</g>
 <!-- nid&#45;02 -->
 <g id="node1" class="node">
 <title>nid&#45;02</title>
 <ellipse fill="none" stroke="blue" cx="821" cy="-1184" rx="36.12" ry="26.74"/>
-<text text-anchor="middle" x="821" y="-1187.8" font-family="Times,serif" font-size="14.00">0x02</text>
+<text text-anchor="middle" x="821" y="-1187.8" font-family="Times,serif" font-size="14.00">2</text>
 <text text-anchor="middle" x="821" y="-1172.8" font-family="Times,serif" font-size="14.00">Stereo</text>
 </g>
 <!-- nid&#45;02&#45;ampout -->
@@ -130,7 +130,7 @@
 <g id="node24" class="node">
 <title>nid&#45;0c&#45;ampin&#45;2</title>
 <polygon fill="none" stroke="#0000ff" points="1640.57,-1081 1517.89,-1104 1517.89,-1058 1640.57,-1081"/>
-<text text-anchor="middle" x="1558.79" y="-1077.3" font-family="Times,serif" font-size="14.00">0 (0x02)</text>
+<text text-anchor="middle" x="1558.79" y="-1077.3" font-family="Times,serif" font-size="14.00">0 (2)</text>
 </g>
 <!-- nid&#45;02&#45;ampout&#45;&gt;nid&#45;0c&#45;ampin&#45;2 -->
 <g id="edge19" class="edge">
@@ -142,7 +142,7 @@
 <g id="node30" class="node">
 <title>nid&#45;0f&#45;ampin&#45;2</title>
 <polygon fill="none" stroke="#0000ff" points="1640.57,-1215 1517.89,-1238 1517.89,-1192 1640.57,-1215"/>
-<text text-anchor="middle" x="1558.79" y="-1211.3" font-family="Times,serif" font-size="14.00">0 (0x02)</text>
+<text text-anchor="middle" x="1558.79" y="-1211.3" font-family="Times,serif" font-size="14.00">0 (2)</text>
 </g>
 <!-- nid&#45;02&#45;ampout&#45;&gt;nid&#45;0f&#45;ampin&#45;2 -->
 <g id="edge27" class="edge">
@@ -154,7 +154,7 @@
 <g id="node3" class="node">
 <title>nid&#45;03</title>
 <ellipse fill="none" stroke="blue" cx="821" cy="-1045" rx="36.12" ry="26.74"/>
-<text text-anchor="middle" x="821" y="-1048.8" font-family="Times,serif" font-size="14.00">0x03</text>
+<text text-anchor="middle" x="821" y="-1048.8" font-family="Times,serif" font-size="14.00">3</text>
 <text text-anchor="middle" x="821" y="-1033.8" font-family="Times,serif" font-size="14.00">Stereo</text>
 </g>
 <!-- nid&#45;03&#45;ampout -->
@@ -172,7 +172,7 @@
 <g id="node27" class="node">
 <title>nid&#45;0d&#45;ampin&#45;3</title>
 <polygon fill="none" stroke="#0000ff" points="1640.57,-947 1517.89,-970 1517.89,-924 1640.57,-947"/>
-<text text-anchor="middle" x="1558.79" y="-943.3" font-family="Times,serif" font-size="14.00">0 (0x03)</text>
+<text text-anchor="middle" x="1558.79" y="-943.3" font-family="Times,serif" font-size="14.00">0 (3)</text>
 </g>
 <!-- nid&#45;03&#45;ampout&#45;&gt;nid&#45;0d&#45;ampin&#45;3 -->
 <g id="edge23" class="edge">
@@ -184,14 +184,14 @@
 <g id="node5" class="node">
 <title>nid&#45;06</title>
 <ellipse fill="none" stroke="blue" cx="81.05" cy="-1078" rx="65.11" ry="26.74"/>
-<text text-anchor="middle" x="81.05" y="-1081.8" font-family="Times,serif" font-size="14.00">0x06</text>
+<text text-anchor="middle" x="81.05" y="-1081.8" font-family="Times,serif" font-size="14.00">6</text>
 <text text-anchor="middle" x="81.05" y="-1066.8" font-family="Times,serif" font-size="14.00">Stereo Digital</text>
 </g>
 <!-- nid&#45;1e&#45;in -->
 <g id="node48" class="node">
 <title>nid&#45;1e&#45;in</title>
 <polygon fill="none" stroke="green" points="523.11,-1112 362.11,-1112 362.11,-1044 523.11,-1044 523.11,-1112"/>
-<text text-anchor="middle" x="442.61" y="-1096.8" font-family="Times,serif" font-size="14.00">0x1e</text>
+<text text-anchor="middle" x="442.61" y="-1096.8" font-family="Times,serif" font-size="14.00">30</text>
 <text text-anchor="middle" x="442.61" y="-1081.8" font-family="Times,serif" font-size="14.00">[N/A] Speaker at Ext Rear</text>
 <text text-anchor="middle" x="442.61" y="-1066.8" font-family="Times,serif" font-size="14.00">Stereo Digital</text>
 <text text-anchor="middle" x="442.61" y="-1051.8" font-family="Times,serif" font-size="14.00">OUT Detect</text>
@@ -205,39 +205,39 @@
 <!-- nid&#45;08 -->
 <g id="node6" class="node">
 <title>nid&#45;08</title>
-<ellipse fill="none" stroke="red" cx="2571.02" cy="-643" rx="36.12" ry="26.74"/>
-<text text-anchor="middle" x="2571.02" y="-646.8" font-family="Times,serif" font-size="14.00">0x08</text>
-<text text-anchor="middle" x="2571.02" y="-631.8" font-family="Times,serif" font-size="14.00">Stereo</text>
+<ellipse fill="none" stroke="red" cx="2571.02" cy="-642" rx="36.12" ry="26.74"/>
+<text text-anchor="middle" x="2571.02" y="-645.8" font-family="Times,serif" font-size="14.00">8</text>
+<text text-anchor="middle" x="2571.02" y="-630.8" font-family="Times,serif" font-size="14.00">Stereo</text>
 </g>
 <!-- nid&#45;08&#45;ampin -->
 <g id="node7" class="node">
 <title>nid&#45;08&#45;ampin</title>
-<polygon fill="none" stroke="#c8c8c8" points="2264.46,-643 2223.96,-661 2223.96,-625 2264.46,-643"/>
+<polygon fill="none" stroke="#c8c8c8" points="2264.46,-642 2223.96,-660 2223.96,-624 2264.46,-642"/>
 </g>
 <!-- nid&#45;08&#45;ampin&#45;&gt;nid&#45;08 -->
 <g id="edge3" class="edge">
 <title>nid&#45;08&#45;ampin&#45;&gt;nid&#45;08</title>
-<path fill="none" stroke="#c8c8c8" d="M2264.48,-643C2322.06,-643 2460.62,-643 2529.6,-643"/>
-<polygon fill="#c8c8c8" stroke="#c8c8c8" points="2529.84,-644.75 2534.84,-643 2529.84,-641.25 2529.84,-644.75"/>
+<path fill="none" stroke="#c8c8c8" d="M2264.48,-642C2322.06,-642 2460.62,-642 2529.6,-642"/>
+<polygon fill="#c8c8c8" stroke="#c8c8c8" points="2529.84,-643.75 2534.84,-642 2529.84,-640.25 2529.84,-643.75"/>
 </g>
 <!-- nid&#45;23 -->
 <g id="node8" class="node">
 <title>nid&#45;23</title>
-<polygon fill="none" stroke="black" points="1940.1,-643 1919.21,-674.05 1877.43,-674.05 1856.54,-643 1877.43,-611.95 1919.21,-611.95 1940.1,-643"/>
-<text text-anchor="middle" x="1898.32" y="-646.8" font-family="Times,serif" font-size="14.00">0x23</text>
-<text text-anchor="middle" x="1898.32" y="-631.8" font-family="Times,serif" font-size="14.00">Stereo</text>
+<polygon fill="none" stroke="black" points="1940.1,-642 1919.21,-673.05 1877.43,-673.05 1856.54,-642 1877.43,-610.95 1919.21,-610.95 1940.1,-642"/>
+<text text-anchor="middle" x="1898.32" y="-645.8" font-family="Times,serif" font-size="14.00">35</text>
+<text text-anchor="middle" x="1898.32" y="-630.8" font-family="Times,serif" font-size="14.00">Stereo</text>
 </g>
 <!-- nid&#45;23&#45;&gt;nid&#45;08&#45;ampin -->
 <g id="edge4" class="edge">
 <title>nid&#45;23&#45;&gt;nid&#45;08&#45;ampin</title>
-<path fill="none" stroke="#333333" d="M1939.99,-643C2011.42,-643 2157.21,-643 2213.54,-643"/>
-<polygon fill="#333333" stroke="#333333" points="2213.85,-646.5 2223.85,-643 2213.85,-639.5 2213.85,-646.5"/>
+<path fill="none" stroke="#333333" d="M1939.99,-642C2011.42,-642 2157.21,-642 2213.54,-642"/>
+<polygon fill="#333333" stroke="#333333" points="2213.85,-645.5 2223.85,-642 2213.85,-638.5 2213.85,-645.5"/>
 </g>
 <!-- nid&#45;09 -->
 <g id="node9" class="node">
 <title>nid&#45;09</title>
 <ellipse fill="none" stroke="red" cx="2571.02" cy="-231" rx="36.12" ry="26.74"/>
-<text text-anchor="middle" x="2571.02" y="-234.8" font-family="Times,serif" font-size="14.00">0x09</text>
+<text text-anchor="middle" x="2571.02" y="-234.8" font-family="Times,serif" font-size="14.00">9</text>
 <text text-anchor="middle" x="2571.02" y="-219.8" font-family="Times,serif" font-size="14.00">Stereo</text>
 </g>
 <!-- nid&#45;09&#45;ampin -->
@@ -255,7 +255,7 @@
 <g id="node11" class="node">
 <title>nid&#45;22</title>
 <polygon fill="none" stroke="black" points="1940.1,-231 1919.21,-262.05 1877.43,-262.05 1856.54,-231 1877.43,-199.95 1919.21,-199.95 1940.1,-231"/>
-<text text-anchor="middle" x="1898.32" y="-234.8" font-family="Times,serif" font-size="14.00">0x22</text>
+<text text-anchor="middle" x="1898.32" y="-234.8" font-family="Times,serif" font-size="14.00">34</text>
 <text text-anchor="middle" x="1898.32" y="-219.8" font-family="Times,serif" font-size="14.00">Stereo</text>
 </g>
 <!-- nid&#45;22&#45;&gt;nid&#45;09&#45;ampin -->
@@ -268,14 +268,14 @@
 <g id="node12" class="node">
 <title>nid&#45;0b</title>
 <polygon fill="none" stroke="black" points="1231.68,-843 1210.78,-874.05 1169,-874.05 1148.11,-843 1169,-811.95 1210.78,-811.95 1231.68,-843"/>
-<text text-anchor="middle" x="1189.89" y="-846.8" font-family="Times,serif" font-size="14.00">0x0b</text>
+<text text-anchor="middle" x="1189.89" y="-846.8" font-family="Times,serif" font-size="14.00">11</text>
 <text text-anchor="middle" x="1189.89" y="-831.8" font-family="Times,serif" font-size="14.00">Stereo</text>
 </g>
 <!-- nid&#45;0c&#45;ampin&#45;11 -->
 <g id="node25" class="node">
 <title>nid&#45;0c&#45;ampin&#45;11</title>
 <polygon fill="none" stroke="#c8c8c8" points="1640.57,-1017 1517.89,-1040 1517.89,-994 1640.57,-1017"/>
-<text text-anchor="middle" x="1558.79" y="-1013.3" font-family="Times,serif" font-size="14.00">1 (0x0b)</text>
+<text text-anchor="middle" x="1558.79" y="-1013.3" font-family="Times,serif" font-size="14.00">1 (11)</text>
 </g>
 <!-- nid&#45;0b&#45;&gt;nid&#45;0c&#45;ampin&#45;11 -->
 <g id="edge20" class="edge">
@@ -287,7 +287,7 @@
 <g id="node28" class="node">
 <title>nid&#45;0d&#45;ampin&#45;11</title>
 <polygon fill="none" stroke="#c8c8c8" points="1640.57,-883 1517.89,-906 1517.89,-860 1640.57,-883"/>
-<text text-anchor="middle" x="1558.79" y="-879.3" font-family="Times,serif" font-size="14.00">1 (0x0b)</text>
+<text text-anchor="middle" x="1558.79" y="-879.3" font-family="Times,serif" font-size="14.00">1 (11)</text>
 </g>
 <!-- nid&#45;0b&#45;&gt;nid&#45;0d&#45;ampin&#45;11 -->
 <g id="edge24" class="edge">
@@ -299,7 +299,7 @@
 <g id="node31" class="node">
 <title>nid&#45;0f&#45;ampin&#45;11</title>
 <polygon fill="none" stroke="#c8c8c8" points="1640.57,-1151 1517.89,-1174 1517.89,-1128 1640.57,-1151"/>
-<text text-anchor="middle" x="1558.79" y="-1147.3" font-family="Times,serif" font-size="14.00">1 (0x0b)</text>
+<text text-anchor="middle" x="1558.79" y="-1147.3" font-family="Times,serif" font-size="14.00">1 (11)</text>
 </g>
 <!-- nid&#45;0b&#45;&gt;nid&#45;0f&#45;ampin&#45;11 -->
 <g id="edge28" class="edge">
@@ -311,7 +311,7 @@
 <g id="node54" class="node">
 <title>nid&#45;22&#45;ampin&#45;11</title>
 <polygon fill="none" stroke="#c8c8c8" points="1640.57,-423 1517.89,-446 1517.89,-400 1640.57,-423"/>
-<text text-anchor="middle" x="1558.79" y="-419.3" font-family="Times,serif" font-size="14.00">5 (0x0b)</text>
+<text text-anchor="middle" x="1558.79" y="-419.3" font-family="Times,serif" font-size="14.00">5 (11)</text>
 </g>
 <!-- nid&#45;0b&#45;&gt;nid&#45;22&#45;ampin&#45;11 -->
 <g id="edge63" class="edge">
@@ -323,7 +323,7 @@
 <g id="node61" class="node">
 <title>nid&#45;23&#45;ampin&#45;11</title>
 <polygon fill="none" stroke="#c8c8c8" points="1640.57,-813 1517.89,-836 1517.89,-790 1640.57,-813"/>
-<text text-anchor="middle" x="1558.79" y="-809.3" font-family="Times,serif" font-size="14.00">5 (0x0b)</text>
+<text text-anchor="middle" x="1558.79" y="-809.3" font-family="Times,serif" font-size="14.00">5 (11)</text>
 </g>
 <!-- nid&#45;0b&#45;&gt;nid&#45;23&#45;ampin&#45;11 -->
 <g id="edge76" class="edge">
@@ -335,7 +335,7 @@
 <g id="node13" class="node">
 <title>nid&#45;0b&#45;ampin&#45;24</title>
 <polygon fill="none" stroke="#c8c8c8" points="902.79,-779 780.11,-802 780.11,-756 902.79,-779"/>
-<text text-anchor="middle" x="821" y="-775.3" font-family="Times,serif" font-size="14.00">0 (0x18)</text>
+<text text-anchor="middle" x="821" y="-775.3" font-family="Times,serif" font-size="14.00">0 (24)</text>
 </g>
 <!-- nid&#45;0b&#45;ampin&#45;24&#45;&gt;nid&#45;0b -->
 <g id="edge7" class="edge">
@@ -347,7 +347,7 @@
 <g id="node14" class="node">
 <title>nid&#45;0b&#45;ampin&#45;25</title>
 <polygon fill="none" stroke="#c8c8c8" points="902.79,-843 780.11,-866 780.11,-820 902.79,-843"/>
-<text text-anchor="middle" x="821" y="-839.3" font-family="Times,serif" font-size="14.00">1 (0x19)</text>
+<text text-anchor="middle" x="821" y="-839.3" font-family="Times,serif" font-size="14.00">1 (25)</text>
 </g>
 <!-- nid&#45;0b&#45;ampin&#45;25&#45;&gt;nid&#45;0b -->
 <g id="edge8" class="edge">
@@ -359,7 +359,7 @@
 <g id="node15" class="node">
 <title>nid&#45;0b&#45;ampin&#45;26</title>
 <polygon fill="none" stroke="#c8c8c8" points="901.69,-971 780.66,-994 780.66,-948 901.69,-971"/>
-<text text-anchor="middle" x="821" y="-967.3" font-family="Times,serif" font-size="14.00">2 (0x1a)</text>
+<text text-anchor="middle" x="821" y="-967.3" font-family="Times,serif" font-size="14.00">2 (26)</text>
 </g>
 <!-- nid&#45;0b&#45;ampin&#45;26&#45;&gt;nid&#45;0b -->
 <g id="edge9" class="edge">
@@ -371,7 +371,7 @@
 <g id="node16" class="node">
 <title>nid&#45;0b&#45;ampin&#45;27</title>
 <polygon fill="none" stroke="#c8c8c8" points="902.79,-715 780.11,-738 780.11,-692 902.79,-715"/>
-<text text-anchor="middle" x="821" y="-711.3" font-family="Times,serif" font-size="14.00">3 (0x1b)</text>
+<text text-anchor="middle" x="821" y="-711.3" font-family="Times,serif" font-size="14.00">3 (27)</text>
 </g>
 <!-- nid&#45;0b&#45;ampin&#45;27&#45;&gt;nid&#45;0b -->
 <g id="edge10" class="edge">
@@ -383,7 +383,7 @@
 <g id="node17" class="node">
 <title>nid&#45;0b&#45;ampin&#45;29</title>
 <polygon fill="none" stroke="#c8c8c8" points="902.79,-907 780.11,-930 780.11,-884 902.79,-907"/>
-<text text-anchor="middle" x="821" y="-903.3" font-family="Times,serif" font-size="14.00">4 (0x1d)</text>
+<text text-anchor="middle" x="821" y="-903.3" font-family="Times,serif" font-size="14.00">4 (29)</text>
 </g>
 <!-- nid&#45;0b&#45;ampin&#45;29&#45;&gt;nid&#45;0b -->
 <g id="edge11" class="edge">
@@ -395,7 +395,7 @@
 <g id="node18" class="node">
 <title>nid&#45;18&#45;out</title>
 <polygon fill="none" stroke="green" points="511.61,-492 373.61,-492 373.61,-424 511.61,-424 511.61,-492"/>
-<text text-anchor="middle" x="442.61" y="-476.8" font-family="Times,serif" font-size="14.00">0x18</text>
+<text text-anchor="middle" x="442.61" y="-476.8" font-family="Times,serif" font-size="14.00">24</text>
 <text text-anchor="middle" x="442.61" y="-461.8" font-family="Times,serif" font-size="14.00">[Jack] Mic at Ext Left</text>
 <text text-anchor="middle" x="442.61" y="-446.8" font-family="Times,serif" font-size="14.00">Stereo</text>
 <text text-anchor="middle" x="442.61" y="-431.8" font-family="Times,serif" font-size="14.00">IN OUT Detect</text>
@@ -410,7 +410,7 @@
 <g id="node49" class="node">
 <title>nid&#45;22&#45;ampin&#45;24</title>
 <polygon fill="none" stroke="#c8c8c8" points="1640.57,-103 1517.89,-126 1517.89,-80 1640.57,-103"/>
-<text text-anchor="middle" x="1558.79" y="-99.3" font-family="Times,serif" font-size="14.00">0 (0x18)</text>
+<text text-anchor="middle" x="1558.79" y="-99.3" font-family="Times,serif" font-size="14.00">0 (24)</text>
 </g>
 <!-- nid&#45;18&#45;out&#45;&gt;nid&#45;22&#45;ampin&#45;24 -->
 <g id="edge58" class="edge">
@@ -422,7 +422,7 @@
 <g id="node56" class="node">
 <title>nid&#45;23&#45;ampin&#45;24</title>
 <polygon fill="none" stroke="#c8c8c8" points="1640.57,-557 1517.89,-580 1517.89,-534 1640.57,-557"/>
-<text text-anchor="middle" x="1558.79" y="-553.3" font-family="Times,serif" font-size="14.00">0 (0x18)</text>
+<text text-anchor="middle" x="1558.79" y="-553.3" font-family="Times,serif" font-size="14.00">0 (24)</text>
 </g>
 <!-- nid&#45;18&#45;out&#45;&gt;nid&#45;23&#45;ampin&#45;24 -->
 <g id="edge71" class="edge">
@@ -434,7 +434,7 @@
 <g id="node19" class="node">
 <title>nid&#45;19&#45;out</title>
 <polygon fill="none" stroke="green" points="523.11,-584 362.11,-584 362.11,-516 523.11,-516 523.11,-584"/>
-<text text-anchor="middle" x="442.61" y="-568.8" font-family="Times,serif" font-size="14.00">0x19</text>
+<text text-anchor="middle" x="442.61" y="-568.8" font-family="Times,serif" font-size="14.00">25</text>
 <text text-anchor="middle" x="442.61" y="-553.8" font-family="Times,serif" font-size="14.00">[N/A] Speaker at Ext Rear</text>
 <text text-anchor="middle" x="442.61" y="-538.8" font-family="Times,serif" font-size="14.00">Stereo</text>
 <text text-anchor="middle" x="442.61" y="-523.8" font-family="Times,serif" font-size="14.00">IN OUT Detect</text>
@@ -449,7 +449,7 @@
 <g id="node50" class="node">
 <title>nid&#45;22&#45;ampin&#45;25</title>
 <polygon fill="none" stroke="#c8c8c8" points="1640.57,-167 1517.89,-190 1517.89,-144 1640.57,-167"/>
-<text text-anchor="middle" x="1558.79" y="-163.3" font-family="Times,serif" font-size="14.00">1 (0x19)</text>
+<text text-anchor="middle" x="1558.79" y="-163.3" font-family="Times,serif" font-size="14.00">1 (25)</text>
 </g>
 <!-- nid&#45;19&#45;out&#45;&gt;nid&#45;22&#45;ampin&#45;25 -->
 <g id="edge59" class="edge">
@@ -461,7 +461,7 @@
 <g id="node57" class="node">
 <title>nid&#45;23&#45;ampin&#45;25</title>
 <polygon fill="none" stroke="#c8c8c8" points="1640.57,-621 1517.89,-644 1517.89,-598 1640.57,-621"/>
-<text text-anchor="middle" x="1558.79" y="-617.3" font-family="Times,serif" font-size="14.00">1 (0x19)</text>
+<text text-anchor="middle" x="1558.79" y="-617.3" font-family="Times,serif" font-size="14.00">1 (25)</text>
 </g>
 <!-- nid&#45;19&#45;out&#45;&gt;nid&#45;23&#45;ampin&#45;25 -->
 <g id="edge72" class="edge">
@@ -473,7 +473,7 @@
 <g id="node20" class="node">
 <title>nid&#45;1a&#45;out</title>
 <polygon fill="none" stroke="green" points="523.11,-768 362.11,-768 362.11,-700 523.11,-700 523.11,-768"/>
-<text text-anchor="middle" x="442.61" y="-752.8" font-family="Times,serif" font-size="14.00">0x1a</text>
+<text text-anchor="middle" x="442.61" y="-752.8" font-family="Times,serif" font-size="14.00">26</text>
 <text text-anchor="middle" x="442.61" y="-737.8" font-family="Times,serif" font-size="14.00">[N/A] Speaker at Ext Rear</text>
 <text text-anchor="middle" x="442.61" y="-722.8" font-family="Times,serif" font-size="14.00">Stereo</text>
 <text text-anchor="middle" x="442.61" y="-707.8" font-family="Times,serif" font-size="14.00">IN OUT HP Detect</text>
@@ -488,7 +488,7 @@
 <g id="node51" class="node">
 <title>nid&#45;22&#45;ampin&#45;26</title>
 <polygon fill="none" stroke="#c8c8c8" points="1639.47,-359 1518.44,-382 1518.44,-336 1639.47,-359"/>
-<text text-anchor="middle" x="1558.79" y="-355.3" font-family="Times,serif" font-size="14.00">2 (0x1a)</text>
+<text text-anchor="middle" x="1558.79" y="-355.3" font-family="Times,serif" font-size="14.00">2 (26)</text>
 </g>
 <!-- nid&#45;1a&#45;out&#45;&gt;nid&#45;22&#45;ampin&#45;26 -->
 <g id="edge60" class="edge">
@@ -500,7 +500,7 @@
 <g id="node58" class="node">
 <title>nid&#45;23&#45;ampin&#45;26</title>
 <polygon fill="none" stroke="#c8c8c8" points="1639.47,-749 1518.44,-772 1518.44,-726 1639.47,-749"/>
-<text text-anchor="middle" x="1558.79" y="-745.3" font-family="Times,serif" font-size="14.00">2 (0x1a)</text>
+<text text-anchor="middle" x="1558.79" y="-745.3" font-family="Times,serif" font-size="14.00">2 (26)</text>
 </g>
 <!-- nid&#45;1a&#45;out&#45;&gt;nid&#45;23&#45;ampin&#45;26 -->
 <g id="edge73" class="edge">
@@ -512,7 +512,7 @@
 <g id="node21" class="node">
 <title>nid&#45;1b&#45;out</title>
 <polygon fill="none" stroke="green" points="523.11,-400 362.11,-400 362.11,-332 523.11,-332 523.11,-400"/>
-<text text-anchor="middle" x="442.61" y="-384.8" font-family="Times,serif" font-size="14.00">0x1b</text>
+<text text-anchor="middle" x="442.61" y="-384.8" font-family="Times,serif" font-size="14.00">27</text>
 <text text-anchor="middle" x="442.61" y="-369.8" font-family="Times,serif" font-size="14.00">[N/A] Speaker at Ext Rear</text>
 <text text-anchor="middle" x="442.61" y="-354.8" font-family="Times,serif" font-size="14.00">Stereo</text>
 <text text-anchor="middle" x="442.61" y="-339.8" font-family="Times,serif" font-size="14.00">IN OUT Detect</text>
@@ -527,19 +527,19 @@
 <g id="node52" class="node">
 <title>nid&#45;22&#45;ampin&#45;27</title>
 <polygon fill="none" stroke="#c8c8c8" points="1640.57,-39 1517.89,-62 1517.89,-16 1640.57,-39"/>
-<text text-anchor="middle" x="1558.79" y="-35.3" font-family="Times,serif" font-size="14.00">3 (0x1b)</text>
+<text text-anchor="middle" x="1558.79" y="-35.3" font-family="Times,serif" font-size="14.00">3 (27)</text>
 </g>
 <!-- nid&#45;1b&#45;out&#45;&gt;nid&#45;22&#45;ampin&#45;27 -->
 <g id="edge61" class="edge">
 <title>nid&#45;1b&#45;out&#45;&gt;nid&#45;22&#45;ampin&#45;27</title>
-<path fill="none" stroke="#333333" d="M468.27,-331.84C513,-272.97 613.8,-153.86 731.11,-103 1003.72,15.19 1374.15,-15.6 1507.43,-31.97"/>
-<polygon fill="#333333" stroke="#333333" points="1507.37,-35.49 1517.73,-33.26 1508.25,-28.54 1507.37,-35.49"/>
+<path fill="none" stroke="#333333" d="M468.24,-331.69C512.91,-272.58 613.62,-152.99 731.11,-102 1003.65,16.27 1374.12,-15.22 1507.42,-31.86"/>
+<polygon fill="#333333" stroke="#333333" points="1507.36,-35.38 1517.73,-33.18 1508.25,-28.44 1507.36,-35.38"/>
 </g>
 <!-- nid&#45;23&#45;ampin&#45;27 -->
 <g id="node59" class="node">
 <title>nid&#45;23&#45;ampin&#45;27</title>
 <polygon fill="none" stroke="#c8c8c8" points="1640.57,-493 1517.89,-516 1517.89,-470 1640.57,-493"/>
-<text text-anchor="middle" x="1558.79" y="-489.3" font-family="Times,serif" font-size="14.00">3 (0x1b)</text>
+<text text-anchor="middle" x="1558.79" y="-489.3" font-family="Times,serif" font-size="14.00">3 (27)</text>
 </g>
 <!-- nid&#45;1b&#45;out&#45;&gt;nid&#45;23&#45;ampin&#45;27 -->
 <g id="edge74" class="edge">
@@ -551,7 +551,7 @@
 <g id="node22" class="node">
 <title>nid&#45;1d&#45;out</title>
 <polygon fill="none" stroke="green" points="522.11,-676 363.11,-676 363.11,-608 522.11,-608 522.11,-676"/>
-<text text-anchor="middle" x="442.61" y="-660.8" font-family="Times,serif" font-size="14.00">0x1d</text>
+<text text-anchor="middle" x="442.61" y="-660.8" font-family="Times,serif" font-size="14.00">29</text>
 <text text-anchor="middle" x="442.61" y="-645.8" font-family="Times,serif" font-size="14.00">[N/A] Speaker at Ext N/A</text>
 <text text-anchor="middle" x="442.61" y="-630.8" font-family="Times,serif" font-size="14.00">Mono</text>
 <text text-anchor="middle" x="442.61" y="-615.8" font-family="Times,serif" font-size="14.00">IN</text>
@@ -566,7 +566,7 @@
 <g id="node53" class="node">
 <title>nid&#45;22&#45;ampin&#45;29</title>
 <polygon fill="none" stroke="#c8c8c8" points="1640.57,-295 1517.89,-318 1517.89,-272 1640.57,-295"/>
-<text text-anchor="middle" x="1558.79" y="-291.3" font-family="Times,serif" font-size="14.00">4 (0x1d)</text>
+<text text-anchor="middle" x="1558.79" y="-291.3" font-family="Times,serif" font-size="14.00">4 (29)</text>
 </g>
 <!-- nid&#45;1d&#45;out&#45;&gt;nid&#45;22&#45;ampin&#45;29 -->
 <g id="edge62" class="edge">
@@ -578,7 +578,7 @@
 <g id="node60" class="node">
 <title>nid&#45;23&#45;ampin&#45;29</title>
 <polygon fill="none" stroke="#c8c8c8" points="1640.57,-685 1517.89,-708 1517.89,-662 1640.57,-685"/>
-<text text-anchor="middle" x="1558.79" y="-681.3" font-family="Times,serif" font-size="14.00">4 (0x1d)</text>
+<text text-anchor="middle" x="1558.79" y="-681.3" font-family="Times,serif" font-size="14.00">4 (29)</text>
 </g>
 <!-- nid&#45;1d&#45;out&#45;&gt;nid&#45;23&#45;ampin&#45;29 -->
 <g id="edge75" class="edge">
@@ -590,14 +590,14 @@
 <g id="node23" class="node">
 <title>nid&#45;0c</title>
 <polygon fill="none" stroke="black" points="1940.1,-1025 1919.21,-1056.05 1877.43,-1056.05 1856.54,-1025 1877.43,-993.95 1919.21,-993.95 1940.1,-1025"/>
-<text text-anchor="middle" x="1898.32" y="-1028.8" font-family="Times,serif" font-size="14.00">0x0c</text>
+<text text-anchor="middle" x="1898.32" y="-1028.8" font-family="Times,serif" font-size="14.00">12</text>
 <text text-anchor="middle" x="1898.32" y="-1013.8" font-family="Times,serif" font-size="14.00">Stereo</text>
 </g>
 <!-- nid&#45;14&#45;in -->
 <g id="node33" class="node">
 <title>nid&#45;14&#45;in</title>
 <polygon fill="none" stroke="green" points="2318.96,-783 2155.96,-783 2155.96,-715 2318.96,-715 2318.96,-783"/>
-<text text-anchor="middle" x="2237.46" y="-767.8" font-family="Times,serif" font-size="14.00">0x14</text>
+<text text-anchor="middle" x="2237.46" y="-767.8" font-family="Times,serif" font-size="14.00">20</text>
 <text text-anchor="middle" x="2237.46" y="-752.8" font-family="Times,serif" font-size="14.00">[Fixed] Speaker at Int N/A</text>
 <text text-anchor="middle" x="2237.46" y="-737.8" font-family="Times,serif" font-size="14.00">Stereo</text>
 <text text-anchor="middle" x="2237.46" y="-722.8" font-family="Times,serif" font-size="14.00">OUT EAPD Detect</text>
@@ -612,7 +612,7 @@
 <g id="node34" class="node">
 <title>nid&#45;15&#45;in</title>
 <polygon fill="none" stroke="green" points="2315.46,-1243 2159.46,-1243 2159.46,-1175 2315.46,-1175 2315.46,-1243"/>
-<text text-anchor="middle" x="2237.46" y="-1227.8" font-family="Times,serif" font-size="14.00">0x15</text>
+<text text-anchor="middle" x="2237.46" y="-1227.8" font-family="Times,serif" font-size="14.00">21</text>
 <text text-anchor="middle" x="2237.46" y="-1212.8" font-family="Times,serif" font-size="14.00">[Jack] HP Out at Ext Left</text>
 <text text-anchor="middle" x="2237.46" y="-1197.8" font-family="Times,serif" font-size="14.00">Stereo</text>
 <text text-anchor="middle" x="2237.46" y="-1182.8" font-family="Times,serif" font-size="14.00">OUT HP EAPD Detect</text>
@@ -627,7 +627,7 @@
 <g id="node36" class="node">
 <title>nid&#45;18&#45;in</title>
 <polygon fill="none" stroke="green" points="2306.46,-1151 2168.46,-1151 2168.46,-1083 2306.46,-1083 2306.46,-1151"/>
-<text text-anchor="middle" x="2237.46" y="-1135.8" font-family="Times,serif" font-size="14.00">0x18</text>
+<text text-anchor="middle" x="2237.46" y="-1135.8" font-family="Times,serif" font-size="14.00">24</text>
 <text text-anchor="middle" x="2237.46" y="-1120.8" font-family="Times,serif" font-size="14.00">[Jack] Mic at Ext Left</text>
 <text text-anchor="middle" x="2237.46" y="-1105.8" font-family="Times,serif" font-size="14.00">Stereo</text>
 <text text-anchor="middle" x="2237.46" y="-1090.8" font-family="Times,serif" font-size="14.00">IN OUT Detect</text>
@@ -642,7 +642,7 @@
 <g id="node39" class="node">
 <title>nid&#45;19&#45;in</title>
 <polygon fill="none" stroke="green" points="2317.96,-1059 2156.96,-1059 2156.96,-991 2317.96,-991 2317.96,-1059"/>
-<text text-anchor="middle" x="2237.46" y="-1043.8" font-family="Times,serif" font-size="14.00">0x19</text>
+<text text-anchor="middle" x="2237.46" y="-1043.8" font-family="Times,serif" font-size="14.00">25</text>
 <text text-anchor="middle" x="2237.46" y="-1028.8" font-family="Times,serif" font-size="14.00">[N/A] Speaker at Ext Rear</text>
 <text text-anchor="middle" x="2237.46" y="-1013.8" font-family="Times,serif" font-size="14.00">Stereo</text>
 <text text-anchor="middle" x="2237.46" y="-998.8" font-family="Times,serif" font-size="14.00">IN OUT Detect</text>
@@ -657,7 +657,7 @@
 <g id="node42" class="node">
 <title>nid&#45;1a&#45;in</title>
 <polygon fill="none" stroke="green" points="2317.96,-967 2156.96,-967 2156.96,-899 2317.96,-899 2317.96,-967"/>
-<text text-anchor="middle" x="2237.46" y="-951.8" font-family="Times,serif" font-size="14.00">0x1a</text>
+<text text-anchor="middle" x="2237.46" y="-951.8" font-family="Times,serif" font-size="14.00">26</text>
 <text text-anchor="middle" x="2237.46" y="-936.8" font-family="Times,serif" font-size="14.00">[N/A] Speaker at Ext Rear</text>
 <text text-anchor="middle" x="2237.46" y="-921.8" font-family="Times,serif" font-size="14.00">Stereo</text>
 <text text-anchor="middle" x="2237.46" y="-906.8" font-family="Times,serif" font-size="14.00">IN OUT HP Detect</text>
@@ -672,7 +672,7 @@
 <g id="node45" class="node">
 <title>nid&#45;1b&#45;in</title>
 <polygon fill="none" stroke="green" points="2317.96,-875 2156.96,-875 2156.96,-807 2317.96,-807 2317.96,-875"/>
-<text text-anchor="middle" x="2237.46" y="-859.8" font-family="Times,serif" font-size="14.00">0x1b</text>
+<text text-anchor="middle" x="2237.46" y="-859.8" font-family="Times,serif" font-size="14.00">27</text>
 <text text-anchor="middle" x="2237.46" y="-844.8" font-family="Times,serif" font-size="14.00">[N/A] Speaker at Ext Rear</text>
 <text text-anchor="middle" x="2237.46" y="-829.8" font-family="Times,serif" font-size="14.00">Stereo</text>
 <text text-anchor="middle" x="2237.46" y="-814.8" font-family="Times,serif" font-size="14.00">IN OUT Detect</text>
@@ -699,7 +699,7 @@
 <g id="node26" class="node">
 <title>nid&#45;0d</title>
 <polygon fill="none" stroke="black" points="1940.1,-936 1919.21,-967.05 1877.43,-967.05 1856.54,-936 1877.43,-904.95 1919.21,-904.95 1940.1,-936"/>
-<text text-anchor="middle" x="1898.32" y="-939.8" font-family="Times,serif" font-size="14.00">0x0d</text>
+<text text-anchor="middle" x="1898.32" y="-939.8" font-family="Times,serif" font-size="14.00">13</text>
 <text text-anchor="middle" x="1898.32" y="-924.8" font-family="Times,serif" font-size="14.00">Stereo</text>
 </g>
 <!-- nid&#45;0d&#45;&gt;nid&#45;14&#45;in -->
@@ -754,14 +754,14 @@
 <g id="node29" class="node">
 <title>nid&#45;0f</title>
 <polygon fill="none" stroke="black" points="1938.97,-1207 1918.65,-1238.05 1877.99,-1238.05 1857.67,-1207 1877.99,-1175.95 1918.65,-1175.95 1938.97,-1207"/>
-<text text-anchor="middle" x="1898.32" y="-1210.8" font-family="Times,serif" font-size="14.00">0x0f</text>
+<text text-anchor="middle" x="1898.32" y="-1210.8" font-family="Times,serif" font-size="14.00">15</text>
 <text text-anchor="middle" x="1898.32" y="-1195.8" font-family="Times,serif" font-size="14.00">Mono</text>
 </g>
 <!-- nid&#45;17&#45;in -->
 <g id="node35" class="node">
 <title>nid&#45;17&#45;in</title>
 <polygon fill="none" stroke="green" points="2317.96,-1335 2156.96,-1335 2156.96,-1267 2317.96,-1267 2317.96,-1335"/>
-<text text-anchor="middle" x="2237.46" y="-1319.8" font-family="Times,serif" font-size="14.00">0x17</text>
+<text text-anchor="middle" x="2237.46" y="-1319.8" font-family="Times,serif" font-size="14.00">23</text>
 <text text-anchor="middle" x="2237.46" y="-1304.8" font-family="Times,serif" font-size="14.00">[N/A] Speaker at Ext Rear</text>
 <text text-anchor="middle" x="2237.46" y="-1289.8" font-family="Times,serif" font-size="14.00">Mono</text>
 <text text-anchor="middle" x="2237.46" y="-1274.8" font-family="Times,serif" font-size="14.00">OUT</text>
@@ -788,7 +788,7 @@
 <g id="node32" class="node">
 <title>nid&#45;12&#45;out</title>
 <polygon fill="none" stroke="green" points="1260.89,-265 1118.89,-265 1118.89,-197 1260.89,-197 1260.89,-265"/>
-<text text-anchor="middle" x="1189.89" y="-249.8" font-family="Times,serif" font-size="14.00">0x12</text>
+<text text-anchor="middle" x="1189.89" y="-249.8" font-family="Times,serif" font-size="14.00">18</text>
 <text text-anchor="middle" x="1189.89" y="-234.8" font-family="Times,serif" font-size="14.00">[Fixed] Mic at Int N/A</text>
 <text text-anchor="middle" x="1189.89" y="-219.8" font-family="Times,serif" font-size="14.00">Stereo</text>
 <text text-anchor="middle" x="1189.89" y="-204.8" font-family="Times,serif" font-size="14.00">IN</text>
@@ -797,7 +797,7 @@
 <g id="node55" class="node">
 <title>nid&#45;22&#45;ampin&#45;18</title>
 <polygon fill="none" stroke="#0000ff" points="1640.57,-231 1517.89,-254 1517.89,-208 1640.57,-231"/>
-<text text-anchor="middle" x="1558.79" y="-227.3" font-family="Times,serif" font-size="14.00">6 (0x12)</text>
+<text text-anchor="middle" x="1558.79" y="-227.3" font-family="Times,serif" font-size="14.00">6 (18)</text>
 </g>
 <!-- nid&#45;12&#45;out&#45;&gt;nid&#45;22&#45;ampin&#45;18 -->
 <g id="edge64" class="edge">
@@ -938,38 +938,38 @@
 <!-- nid&#45;23&#45;ampin&#45;24&#45;&gt;nid&#45;23 -->
 <g id="edge65" class="edge">
 <title>nid&#45;23&#45;ampin&#45;24&#45;&gt;nid&#45;23</title>
-<path fill="none" stroke="#c8c8c8" d="M1594.32,-565.8C1657.28,-581.84 1790.39,-615.76 1857.24,-632.79"/>
-<polygon fill="#c8c8c8" stroke="#c8c8c8" points="1857.05,-634.55 1862.33,-634.08 1857.91,-631.15 1857.05,-634.55"/>
+<path fill="none" stroke="#c8c8c8" d="M1594.32,-565.7C1657.28,-581.55 1790.39,-615.07 1857.24,-631.91"/>
+<polygon fill="#c8c8c8" stroke="#c8c8c8" points="1857.05,-633.66 1862.33,-633.19 1857.91,-630.27 1857.05,-633.66"/>
 </g>
 <!-- nid&#45;23&#45;ampin&#45;25&#45;&gt;nid&#45;23 -->
 <g id="edge66" class="edge">
 <title>nid&#45;23&#45;ampin&#45;25&#45;&gt;nid&#45;23</title>
-<path fill="none" stroke="#c8c8c8" d="M1619.74,-624.91C1686.49,-629.26 1792.84,-636.19 1852.66,-640.09"/>
-<polygon fill="#c8c8c8" stroke="#c8c8c8" points="1852.85,-641.85 1857.95,-640.43 1853.07,-638.36 1852.85,-641.85"/>
+<path fill="none" stroke="#c8c8c8" d="M1620.52,-624.78C1687.4,-628.94 1793.33,-635.53 1852.88,-639.24"/>
+<polygon fill="#c8c8c8" stroke="#c8c8c8" points="1853.04,-641 1858.14,-639.56 1853.26,-637.51 1853.04,-641"/>
 </g>
 <!-- nid&#45;23&#45;ampin&#45;26&#45;&gt;nid&#45;23 -->
 <g id="edge67" class="edge">
 <title>nid&#45;23&#45;ampin&#45;26&#45;&gt;nid&#45;23</title>
-<path fill="none" stroke="#c8c8c8" d="M1590.04,-739.5C1651.38,-720.23 1790.36,-676.59 1858.37,-655.23"/>
-<polygon fill="#c8c8c8" stroke="#c8c8c8" points="1859.29,-656.78 1863.54,-653.61 1858.24,-653.44 1859.29,-656.78"/>
+<path fill="none" stroke="#c8c8c8" d="M1589.74,-739.5C1651.03,-720.07 1790.69,-675.8 1858.69,-654.25"/>
+<polygon fill="#c8c8c8" stroke="#c8c8c8" points="1859.22,-655.91 1863.46,-652.73 1858.17,-652.58 1859.22,-655.91"/>
 </g>
 <!-- nid&#45;23&#45;ampin&#45;27&#45;&gt;nid&#45;23 -->
 <g id="edge68" class="edge">
 <title>nid&#45;23&#45;ampin&#45;27&#45;&gt;nid&#45;23</title>
-<path fill="none" stroke="#c8c8c8" d="M1586.53,-503.16C1602.36,-509.28 1622.76,-517.34 1640.68,-525 1720.41,-559.07 1812.42,-602.36 1861.72,-625.89"/>
-<polygon fill="#c8c8c8" stroke="#c8c8c8" points="1861.09,-627.53 1866.35,-628.1 1862.6,-624.37 1861.09,-627.53"/>
+<path fill="none" stroke="#c8c8c8" d="M1586.52,-503.18C1602.35,-509.31 1622.75,-517.37 1640.68,-525 1720.34,-558.89 1812.38,-601.77 1861.7,-625.06"/>
+<polygon fill="#c8c8c8" stroke="#c8c8c8" points="1861.07,-626.7 1866.34,-627.26 1862.56,-623.54 1861.07,-626.7"/>
 </g>
 <!-- nid&#45;23&#45;ampin&#45;29&#45;&gt;nid&#45;23 -->
 <g id="edge69" class="edge">
 <title>nid&#45;23&#45;ampin&#45;29&#45;&gt;nid&#45;23</title>
-<path fill="none" stroke="#c8c8c8" d="M1608.51,-678.94C1674.56,-670.72 1791.49,-656.17 1854.41,-648.34"/>
-<polygon fill="#c8c8c8" stroke="#c8c8c8" points="1854.83,-650.05 1859.58,-647.7 1854.4,-646.58 1854.83,-650.05"/>
+<path fill="none" stroke="#c8c8c8" d="M1608.15,-678.84C1674.1,-670.44 1791.26,-655.51 1854.3,-647.48"/>
+<polygon fill="#c8c8c8" stroke="#c8c8c8" points="1854.75,-649.19 1859.49,-646.82 1854.31,-645.72 1854.75,-649.19"/>
 </g>
 <!-- nid&#45;23&#45;ampin&#45;11&#45;&gt;nid&#45;23 -->
 <g id="edge70" class="edge">
 <title>nid&#45;23&#45;ampin&#45;11&#45;&gt;nid&#45;23</title>
-<path fill="none" stroke="#c8c8c8" d="M1587.46,-802.97C1603.24,-797.02 1623.28,-789.08 1640.68,-781 1722.45,-743 1814.78,-691.01 1863.31,-662.94"/>
-<polygon fill="#c8c8c8" stroke="#c8c8c8" points="1864.42,-664.32 1867.87,-660.3 1862.66,-661.29 1864.42,-664.32"/>
+<path fill="none" stroke="#c8c8c8" d="M1587.47,-802.99C1603.25,-797.05 1623.3,-789.11 1640.68,-781 1722.53,-742.81 1814.82,-690.41 1863.33,-662.11"/>
+<polygon fill="#c8c8c8" stroke="#c8c8c8" points="1864.45,-663.48 1867.89,-659.45 1862.69,-660.46 1864.45,-663.48"/>
 </g>
 </g>
 </svg>
