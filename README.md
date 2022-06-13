@@ -20,6 +20,7 @@ The configs contained in this repo are configured DSDT-less. This means, they do
 |:----------------------------------------------------|
 **macOS Monterey**: requires [Intel HD4000 Patcher](https://github.com/chris1111/Patch-HD4000-Monterey) to get graphics acceleration working
 [Bluetooth issues](https://dortania.github.io/OpenCore-Install-Guide/extras/monterey.html#bluetooth) on legacy Broadcom and Intel cards.
+Managed to install macOS Ventura. No graphics acceleration yet. Guide will follow.
 
 <details>
 <summary><strong>EFI Folder Content (OpenCore)</strong></summary>
