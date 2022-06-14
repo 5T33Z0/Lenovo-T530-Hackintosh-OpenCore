@@ -281,14 +281,13 @@ Once your system is up and running you may want to change the following settings
 
 CPU Power Management should work fine after that. Optionally, you can install [Intel Power Gadget](https://www.intel.com/content/www/us/en/developer/articles/tool/power-gadget.html) to check if the CPU runs within specs. You don't need SMCProcessor and SMCSuperIO kexts if you use Intel Power Gadgets, btw.
 
-**NOTEs**: 
+**NOTES**: 
 
 - Only necessary if you use a different CPU than i7 3630QM
 - You can add modifiers to the terminal command for building SSDT-PM. For example, you can drop the low frequency from the default 1200 MHz to 900 MHz in 100 MHz increments, but no lower than that. Otherwise the system crashes during boot. I suggests you experiment with the modifiers a bit.
 - If you feel really confident and enthusiastic you could also re-enable XCPM. But in my experience the machine does not perform as good. You can [follow this guide](https://github.com/5T33Z0/Lenovo-T530-Hackinosh-OpenCore/tree/main/Enable%20XCPM) if you're so inclined.<br>
 - If you are running macOS Big Sur or Monterey, you can achieve better thermals (with a lot less fan activity) if you define the System as `MacBookPro10,1` instead of `MacBookPro11,1` (Big Sur) or `MacBookPro11,4` (Monterey). But then you also need to add the boot-arg `-no_compat_check`. Otherwise your system won't boot since macOS Monterey is not supposed to run on anything older than MacBookPro11,4. The downside of using `-no_compat_check` is that you won't be able to download System Updates directly (use ANYmacOS instead). But in my opinion, using `MacBookPro10,1` makes much more sense because the system is more power efficient and silent since the idle Frequency is around 800 mHz lower.
 - Since Big Sur requires `MacBookPro11,1` to boot and Monterey `MacBookPro11,4`, `ssdtPRGen` fails to generate SSDT-PM, because it relies on Board-IDs containing data for Plugin-Type 0. As a workaround, you can either:
-
 	- use `SSDTTime` to generate a `SSDT-PLUG.aml` **or** 
 	- use `MacBookPro10,1` but add `-no_compat_check` to `boot-args`.
 
