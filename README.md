@@ -6,7 +6,7 @@
 
 - [ABOUT](#about)
   - [DSDT-less config](#dsdt-less-config)
-  - [EFI Folder Structure (OpenCore)](#efi-folder-structure-opencore)
+  - [EFI Folder Content (OpenCore)](#efi-folder-content-opencore)
 - [HARDWARE SPECS](#hardware-specs)
   - [macOS-incompatible Components](#macos-incompatible-components)
 - [INSTALLATION](#installation)
@@ -44,10 +44,10 @@ The config contained in this repo is DSDT-less. This means, it doesn't use a pat
 
 **NOTE**: Read and follow the install instruction carefully and thoroughly before you deploy the EFI folder if you want your system to boot successfully!
 
-<details>
-<summary><strong>EFI Folder Content (OpenCore)</strong></summary>
+### EFI Folder Content (OpenCore)
 
-### EFI Folder Structure (OpenCore)
+<details>
+<summary><strong>Click to reveal</strong></summary>
 
 ```
 EFI
@@ -205,6 +205,10 @@ Open the `config.plist` and do the following:
 - Select macOS to boot.
 
 ### BIOS Settings
+
+<details>
+<summary><strong>Click to reveal</strong></summary>
+
 **Latest BIOS Version:** `2.77`
 [**DOWNLOAD**](https://pcsupport.lenovo.com/us/en/products/laptops-and-netbooks/thinkpad-t-series-laptops/thinkpad-t530/downloads/ds029246?clickid=RhAUWZ1-exyLRCuwUx0Mo3ELUkERY-RmHTlwSg0&Program=3786&pid=269814&acid=ww%3Aaffiliate%3A74clty&cid=de%3Aaffiliate%3Axg02ds)
 
@@ -240,6 +244,7 @@ Open the `config.plist` and do the following:
 * CSM Support: `Disabled`
 * Boot Mode: `Quick`
 * Boot Order Lock: `Enabled` Enable this *after* you've set-up the order of the Boot Drives. This prohibits `WindowsBootManager` from taking over the first slot of the boot drives.
+</details>
 
 ### Installing macOS
 **Coming from Windows/Linux**: If you are on Windows or Linux, follow the guide provided by [Dortania](https://dortania.github.io/OpenCore-Install-Guide/installer-guide/#making-the-installer). **NOTE**: No support from my end for issues related to UBS Installers created in Windows or Linux!
