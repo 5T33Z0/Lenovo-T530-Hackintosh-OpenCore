@@ -115,7 +115,6 @@ EFI
 </details>
 
 ## HARDWARE SPECS
-### ThinkPad T530 Specs 
 | Component           | Details                                       |
 | ------------------: | :-------------------------------------------- |
 | Model               | Lenovo ThinkPad T530, Model# 2429-62G         |
