@@ -143,23 +143,19 @@ Please read the explanations in the following sections carefully and follow the 
 
 Open the `config.plist` and do the following:
 
-**IMPORTANT**: You can skip steps 1 and 2 on macOS Monterey &rarr; the new Board ID skip and VMM patches enable native SMBIOS support for your CPU. No need to use a newer one which was not written for Ivy Bridge CPUs: either use `MacBookPro9,x` or `MacbookPro10,x` and macOS Monterey will boot and install updates via Software Update.
-
 1. Set `SystemProductName` according to the CPU and the macOS version you want to use: 
-	-  For Intel i5/i7, macOS 12: `MacBookPro10,1` or `MacBookPro10,2`
-	-  For Intel i5/i7, macOS 11.3+: `MacBookPro10,1` or `MacBookPro10,2`
-	-  For Intel i7, macOS 10.13 to 10.15: `MacBookPro10,1` (Recommended combo)
-	-  For Intel i5, macOS 10.13 to 10.15: `MacBookPro10,2`
+	-  For Intel i5/i7, macOS 12: `MacBookPro10,1` (i7) or `MacBookPro10,2` (i5)
+	-  For Intel i5/i7, macOS 11.3+: `MacBookPro10,1` (i7) or `MacBookPro10,2` (i5)
+	-  For Intel i5/i7, macOS 10.13 to 10.15: `MacBookPro10,1` (i7), `MacBookPro10,2` (i5)
 	
-	**NOTE**: This config uses special Boooter and Kernel Patched in OpenCore which allow using the correct SMBIOS for Ivy Bridge CPUs on macOS 11.3 and newer (Darwin Kernel 20.4+) whch wouldn't be posible otherwise. If you are using macOS Big Sur lower than 11.3, you need to use `MacBookPro11,X` instead, since the patches won't work with earlier versions of Big Sur.
-
+	**NOTE**: My config uses special Boooter and Kernel Patches from OpenCore Legacy Patcher which allow using the correct SMBIOS for Ivy Bridge CPUs on macOS 11.3 and newer (Darwin Kernel 20.4+) so native Power Management as well as System Updates are working which wouldn't be posible otherwise past macOS Catalina.
+	
 2. Adjust `csr-active-config` according to the macOS version you want to use:
-	- For macOS Monterey: `EF0F0000`(0xFEF in Clover)
-	- For macOS Big Sur: `67080000`(0x867)
+	- For macOS Big Sur to Monterey: `67080000`(0x867)
 	- For macOS Mojave/Catalina: `FF070000`(0x7FF)
 	- For macOSHigh Sierra: `FF030000` (0x3FF)
 	
-	**NOTE**: You need to disable SIP if you use macOS Monteray with patched-in Intel HD 4000 Drivers!
+	**NOTE**: You have to disable SIP if you use macOS Monteray with patched-in Intel HD 4000 Drivers!
 
 3. Select the correct Framebuffer-Patch for your T530 model. Two display panels exist: `HD+` (WSXGA and FullHD) and `HD` panels. Both are using different identifiers:</br>
 	
@@ -270,7 +266,7 @@ Once your system is up and running you may want to change the following settings
 1. Open config.plist
 2. Disable `SSDT-PM.aml` under ACPI/Add
 3. Enable the 2 Patches under ACPI/Delete (`Drop CpuPm` and `Drop Cpu0Ist`)
-4. Save config and reboot
+4. Save the config and reboot
 5. Install [ssdtPRGen](https://github.com/Piker-Alpha/ssdtPRGen.sh)
 6. Open Terminal and type: sudo /Users/YOURUSERNAME/ssdtPRGen.sh
 7. Go to Users/YOURUSERNAME/Library/ssdtPRGen. There you'll find an ssdt.aml
@@ -286,29 +282,6 @@ CPU Power Management should work fine after that. Optionally, you can install [I
 - Only necessary if you use a different CPU than i7 3630QM
 - You can add modifiers to the terminal command for building SSDT-PM. For example, you can drop the low frequency from the default 1200 MHz to 900 MHz in 100 MHz increments, but no lower than that. Otherwise the system crashes during boot. I suggests you experiment with the modifiers a bit.
 - If you feel really confident and enthusiastic you could also re-enable XCPM. But in my experience the machine does not perform as good. You can [follow this guide](https://github.com/5T33Z0/Lenovo-T530-Hackinosh-OpenCore/tree/main/Enable%20XCPM) if you're so inclined.<br>
-- If you are running macOS Big Sur or Monterey, you can achieve better thermals (with a lot less fan activity) if you define the System as `MacBookPro10,1` instead of `MacBookPro11,1` (Big Sur) or `MacBookPro11,4` (Monterey). But then you also need to add the boot-arg `-no_compat_check`. Otherwise your system won't boot since macOS Monterey is not supposed to run on anything older than MacBookPro11,4. The downside of using `-no_compat_check` is that you won't be able to download System Updates directly (use ANYmacOS instead). But in my opinion, using `MacBookPro10,1` makes much more sense because the system is more power efficient and silent since the idle Frequency is around 800 mHz lower.
-- Since Big Sur requires `MacBookPro11,1` to boot and Monterey `MacBookPro11,4`, `ssdtPRGen` fails to generate SSDT-PM, because it relies on Board-IDs containing data for Plugin-Type 0. As a workaround, you can either:
-	- use `SSDTTime` to generate a `SSDT-PLUG.aml` **or** 
-	- use `MacBookPro10,1` but add `-no_compat_check` to `boot-args`.
-
-**Advantages** of using `MacBookPro10,1` with `-no_compat_check` are:
-
-- You can boot Big Sur **and** use ssdtPRGen. 
-- The CPU runs at lower clock speeds in idle since this SMBIOS was written for Ivy Bridge, while 11,x was written for Haswell CPUs. Therefore the CPU produces less heat and the machine runs quieter.
-- Another benefit of using `MacBookPro10,1` is that you get the correct P-States and C-States for your CPU from ssdtPRGen.
-
-**Disadvantage** of using `MacBookPro10,1`: you won't be able to install System Updates because you won't be notified about them. But there's a simple **workaround**:
-
-  - Change `SystemProductName` back to `MacBookPro11,4`
-  - Set `csr-active-config` to `EF0F0000`
-  - Disable `-no_compat_check` boot-arg (add a '#' in front of it)
-  - Reboot
-  - Reset NVRAM
-  - Boot macOS
-  - Check for and install Updates
-  - After the Updates are installed, revert to SMBIOS `MacBookPro10,1`
-  - re-enable `-no_compat_check` boot-arg 
-  - Reboot
 
 ### Fixing SLeep issues
 If you have issues with sleep, run the following commands in Terminal:
@@ -318,7 +291,7 @@ If you have issues with sleep, run the following commands in Terminal:
 	sudo touch /var/vm/sleepimage
 	sudo chflags uchg /var/vm/sleepimage
 
-### Fixing Command and Option Keys positions
+### Swapping Command ⌘ and Option ⌥ Keys
 Prior to version 0.7.4 of my OpenCore EFI Folder, the **[Command]** and **[Option]** keys were set to "swapped" in the `info.plist` of `VoodooPS2Keyboard.kext` by default. So in macOS, the **[WINDOWS]** key was bound to the **[Option]** function and the **[ALT]** Key was bound to the **[Command]** function which felt weird. Therefore, users had to swap these Keys back around in the System Settings so everything worked as expected.
 
 Since then, I've undone the key swap inside the `VoodooPS2Keyboard.kext` plugin so that the Key bindings are working as expected out of the box. So if you are updating from 0.7.3 or lower to 0.7.4, reset the Keyboard Modifier Keys back to Default in System Settings > Keyboard to so everything is back to normal.
