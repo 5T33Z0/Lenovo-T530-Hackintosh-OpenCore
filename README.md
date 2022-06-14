@@ -2,6 +2,29 @@
 
 [![T530](https://img.shields.io/badge/ThinkPad-T530-informational.svg)](https://psref.lenovo.com/syspool/Sys/PDF/withdrawnbook/ThinkPad_T530.pdf) [![OpenCore](https://img.shields.io/badge/OpenCore-0.8.1-cyan.svg)](https://github.com/acidanthera/OpenCorePkg/releases/latest) [![Clover Version](https://img.shields.io/badge/Clover-r5146-lime.svg)](https://github.com/CloverHackyColor/CloverBootloader/releases) [![MacOS Catalina](https://img.shields.io/badge/macOS-10.15.7-white.svg)](https://www.apple.com/li/macos/catalina/) [![MacOS Big Sur](https://img.shields.io/badge/macOS-11.6.6-white.svg)](https://www.apple.com/macos/big-sur/) [![MacOS Monterey](https://img.shields.io/badge/macOS-12.4-white.svg)](https://www.apple.com/macos/monterey/) [![release](https://img.shields.io/badge/Download-latest-success.svg)](https://github.com/5T33Z0/Lenovo-T530-Hackinosh-OpenCore/releases/latest) ![](https://raw.githubusercontent.com/5T33Z0/Lenovo-T530-Hackinosh-OpenCore/main/Pics/BootPicker_alt2.png)
 
+**TABLE of CONTENTS**
+- [Lenovo ThinkPad T530 Hackintosh OpenCore](#lenovo-thinkpad-t530-hackintosh-opencore)
+  - [ABOUT](#about)
+  - [DSDT-less config](#dsdt-less-config)
+    - [EFI Folder Structure (OpenCore)](#efi-folder-structure-opencore)
+  - [HARDWARE SPECS](#hardware-specs)
+    - [ThinkPad T530 Specs](#thinkpad-t530-specs)
+    - [macOS-incompatible Components](#macos-incompatible-components)
+  - [INSTALLATION](#installation)
+    - [Preparing the config.plist](#preparing-the-configplist)
+      - [About used boot arguments](#about-used-boot-arguments)
+    - [EFI How To](#efi-how-to)
+    - [BIOS Settings](#bios-settings)
+    - [Installing macOS](#installing-macos)
+  - [POST-INSTALL](#post-install)
+    - [Fixing CPU Power Management](#fixing-cpu-power-management)
+    - [Fixing SLeep issues](#fixing-sleep-issues)
+    - [Fixing Command and Option Keys positions](#fixing-command-and-option-keys-positions)
+    - [Changing Themes](#changing-themes)
+    - [Eject Button](#eject-button)
+  - [CPU BENCHMARK](#cpu-benchmark)
+  - [CREDITS and THANK YOUs](#credits-and-thank-yous)
+
 ## ABOUT
 
 OpenCore and Clover EFI Folders for running macOS 10.13 to 12.4+ on a Lenovo ThinkPad T530. They utilize the new `ECEnabler.kext` which enables battery status read-outs without the need for additional Battery Patches. The OpenCore EFI includes the latest Booter and Kernel patches which make use of macOS Monterey's virtualization capabilities (VMM) to spoof a fake Board-ID. This allows installing and running macOS Monterey with the `MacBookPro10,1` SMBIOS for Ivy Bridge CPUs which wouldn't be possible otherwise. So you can enjoy the benefits of optimal CPU Power Management and System Updates as well. If you want to know how these patches work, [read this](https://github.com/5T33Z0/OC-Little-Translated/tree/main/09_Board-ID_VMM-Spoof).
