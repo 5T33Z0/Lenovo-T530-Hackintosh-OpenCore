@@ -1,6 +1,6 @@
 # Lenovo ThinkPad T530 Hackintosh OpenCore
 
-[![T530](https://img.shields.io/badge/ThinkPad-T530-informational.svg)](https://psref.lenovo.com/syspool/Sys/PDF/withdrawnbook/ThinkPad_T530.pdf) [![OpenCore](https://img.shields.io/badge/OpenCore-0.8.1-cyan.svg)](https://github.com/acidanthera/OpenCorePkg/releases/latest) [![Clover Version](https://img.shields.io/badge/Clover-r5146-lime.svg)](https://github.com/CloverHackyColor/CloverBootloader/releases) [![MacOS Catalina](https://img.shields.io/badge/macOS-10.15.7-white.svg)](https://www.apple.com/li/macos/catalina/) [![MacOS Big Sur](https://img.shields.io/badge/macOS-11.6.6-white.svg)](https://www.apple.com/macos/big-sur/) [![MacOS Monterey](https://img.shields.io/badge/macOS-12.4-white.svg)](https://www.apple.com/macos/monterey/) [![release](https://img.shields.io/badge/Download-latest-success.svg)](https://github.com/5T33Z0/Lenovo-T530-Hackinosh-OpenCore/releases/latest) ![](https://raw.githubusercontent.com/5T33Z0/Lenovo-T530-Hackinosh-OpenCore/main/Pics/BootPicker_alt2.png)
+[![T530](https://img.shields.io/badge/ThinkPad-T530-informational.svg)](https://psref.lenovo.com/syspool/Sys/PDF/withdrawnbook/ThinkPad_T530.pdf) [![OpenCore](https://img.shields.io/badge/OpenCore-0.8.1-cyan.svg)](https://github.com/acidanthera/OpenCorePkg/releases/latest) [![Clover Version](https://img.shields.io/badge/Clover-r5146-lime.svg)](https://github.com/CloverHackyColor/CloverBootloader/releases) [![MacOS Catalina](https://img.shields.io/badge/macOS-10.15.7-white.svg)](https://www.apple.com/li/macos/catalina/) [![MacOS Big Sur](https://img.shields.io/badge/macOS-11.6.7-white.svg)](https://www.apple.com/macos/big-sur/) [![MacOS Monterey](https://img.shields.io/badge/macOS-12.5-white.svg)](https://www.apple.com/macos/monterey/) [![release](https://img.shields.io/badge/Download-latest-success.svg)](https://github.com/5T33Z0/Lenovo-T530-Hackinosh-OpenCore/releases/latest) ![](https://raw.githubusercontent.com/5T33Z0/Lenovo-T530-Hackinosh-OpenCore/main/Pics/BootPicker_alt2.png)
 
 **TABLE of CONTENTS**
 
@@ -26,7 +26,7 @@
 
 ## ABOUT
 
-OpenCore and Clover EFI Folders for running macOS 10.13 to 12.4+ on a Lenovo ThinkPad T530. They utilize the new `ECEnabler.kext` which enables battery status read-outs without the need for additional Battery Patches. The OpenCore EFI includes the latest Booter and Kernel patches which make use of macOS Monterey's virtualization capabilities (VMM) to spoof a fake Board-ID. This allows installing and running macOS Monterey with the `MacBookPro10,1` SMBIOS for Ivy Bridge CPUs which wouldn't be possible otherwise. So you can enjoy the benefits of optimal CPU Power Management and System Updates as well. If you want to know how these patches work, [read this](https://github.com/5T33Z0/OC-Little-Translated/tree/main/09_Board-ID_VMM-Spoof).
+OpenCore and Clover EFI Folders for running macOS 10.13 to 12.4+ on a Lenovo ThinkPad T530. They utilize the new `ECEnabler.kext` which enables battery status read-outs without the need for additional Battery Patches. The OpenCore EFI includes the latest Booter and Kernel patches which make use of macOSes virtualization capabilities (VMM) to spoof a fake Board-ID. This allows installing and running macOS Big Sur and Monterey with SMBIOS `MacBookPro10,1`for Ivy Bridge CPUs which wouldn't be possible otherwise. So you can enjoy the benefits of optimal CPU Power Management and System Updates as well. If you want to know how these patches work, [read this](https://github.com/5T33Z0/OC-Little-Translated/tree/main/09_Board-ID_VMM-Spoof).
 
 |:warning: Issues related to macOS (beyond my control)|
 |:----------------------------------------------------|
@@ -36,10 +36,10 @@ Managed to install macOS Ventura ([Proof](https://github.com/5T33Z0/Lenovo-T530-
 
 ### DSDT-less config
 
-The configs contained in this repo are configured DSDT-less. This means, they don't use a patched DSDT. Everything is patched live using binary renames and ACPI Hotpatches (SSDTs). So instead of replacing the *whole* system DSDT by a patched one during boot, only things which need fixing are addressed and patched-in on the fly (hence the term "hot-patching")  – just like it is supposed to be done nowadays. The benefits of this approach are:
+The config contained in this repo is DSDT-less. This means, it doesn't use a patched DSDT. Everything is patched live using binary renames and ACPI Hotpatches (SSDTs). So instead of replacing the *whole* system DSDT by a patched one during boot, only things which need fixing are addressed and patched-in on the fly (hence the term "hot-patching")  – just like it is supposed to be done nowadays. The benefits of this approach are:
 
 - Hotpatching is cleaner, more precise and independent of the installed BIOS version since it only addresses specific areas of ACPI tables which need patching.
-- Issues which might occur with newer macOS versions can be addressed and resolved easier by modifying or adding specific SSDTs without having to update and export the whole patched DSDT again.
+- Issues which might occur with newer macOS versions can be addressed and resolved easier by modifying or adding SSDTs without having to update and export the whole patched DSDT again.
 - The system boots faster, runs smoother and performance is better compared to using a patched DSDT.
 
 **NOTE**: Read and follow the install instruction carefully and thoroughly before you deploy the EFI folder if you want your system to boot successfully!
@@ -190,11 +190,10 @@ Open the `config.plist` and do the following:
   - Set boot-arg `applbkl=1` for reasonable maximum brightness level controlled by `WhateverGreen`. 
   - Set boot-arg `applbkl=0` for increased maximum brightness as defined in `SSDT-PNLF.aml`
 
-#### About used boot arguments
-- `brcmfx-country=#a`: Contry Code for Wifi (`#a` = generic). For details check the documentaion for AirportBrcmFixup.
-- `gfxrst=1`: to prefer drawing Apple logo at 2nd boot stage instead of framebuffer copying &rarr; Smoother the transition from the progress bar to desktop when an external monitor is attached.
-- `#revpatch=diskread,memtab`: For `RestrictEvents.kext`. `diskread` disables "Uninitialized Disk" warning in macOS 10.14 and older. `memtab` adds `Memory` tab to "About this Mac" section. Enable `RestrictEvents.kext` and Remove the leading `#` from the boot-arg to make it work.
-- `#-no_compat_check`: For installing/booting macOS Big Sur and newer without having to change the SMBIOS. Remove leading `#` to enable the boot-arg. Note that installing system updates via the software update will not be possible when using this.
+#### Used boot arguments
+- `brcmfx-country=#a`: Wifi Country Code (`#a` = generic). For details check the documentaion for [AirportBrcmFixup](https://github.com/acidanthera/AirportBrcmFixup).
+- `gfxrst=1`: Draws Apple logo at 2nd boot stage instead of framebuffer copying &rarr; Smoothens transition from the progress bar to the Login Screen/Desktop when an external monitor is attached.
+- `#revpatch=diskread,memtab`: For `RestrictEvents.kext`. `diskread` disables "Uninitialized Disk" warning in macOS 10.14 and older. `memtab` adds `Memory` tab to "About this Mac" section. Enable `RestrictEvents.kext` and Remove the `#` from the boot-arg to enable it.
 
 ### EFI How To
 - Download the EFI Folder from the [Releases](https://github.com/5T33Z0/Lenovo-T530-Hackintosh-OpenCore/releases) section on the right and unpack it
@@ -203,8 +202,7 @@ Open the `config.plist` and do the following:
 - Replace EFI Folder
 - Restart
 - :warning: Perform a NVRAM Reset (in Bootpicker, hit Space Bar to reveal Tools)
-- Reboot
-- Select macOS to boot. It's currently configured for running macOS Mojave up to Monterey. You can research a suitable/matching SMBIOS for your CPU on everymac.com.
+- Select macOS to boot.
 
 ### BIOS Settings
 **Latest BIOS Version:** `2.77`
@@ -317,8 +315,7 @@ macOS locks the optical drive sometimes so that you can't open it with the physi
 
 ## CPU BENCHMARK
 
-![Screenshot](https://raw.githubusercontent.com/5T33Z0/Lenovo-T530-Hackinosh-OpenCore/main/Pics/benchmark_latest.png)</br>
-[Benchmark Results](https://browser.geekbench.com/v5/cpu/9553877)
+![Screenshot](https://raw.githubusercontent.com/5T33Z0/Lenovo-T530-Hackinosh-OpenCore/main/Pics/benchmark_latest.png)</br>[Benchmark Results](https://browser.geekbench.com/v5/cpu/9553877)
 
 ## CREDITS and THANK YOUs
 
