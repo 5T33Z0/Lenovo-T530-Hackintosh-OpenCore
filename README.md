@@ -201,14 +201,14 @@ Open the `config.plist` and do the following:
 - `#-no_compat_check`: For installing/booting macOS Big Sur and newer without having to change the SMBIOS. Remove leading `#` to enable the boot-arg. Note that installing system updates via the software update will not be possible when using this.
 
 ### EFI How To
-0. Download the EFI Folder from the `Releases` Section on the right and unpack it
-1. Open config.plist and follow the instructions given in the "Preparation" Section
-2. Mount the EFI
-3. Replace EFI Folder
-4. Restart
-5. **IMPORTANT**: Perform a NVRAM Reset (in Bootpicker, hit Space Bar to reveal Tools)
-6. Reboot
-7. Select macOS to boot. It's currently configured for running macOS Mojave up to Monterey. You can research a suitable/matching SMBIOS for your CPU on everymac.com.
+- Download the EFI Folder from the [Releases](https://github.com/5T33Z0/Lenovo-T530-Hackintosh-OpenCore/releases) section on the right and unpack it
+- Open config.plist and follow the instructions given in the "Preparation" Section
+- Mount the EFI
+- Replace EFI Folder
+- Restart
+- :warning: Perform a NVRAM Reset (in Bootpicker, hit Space Bar to reveal Tools)
+- Reboot
+- Select macOS to boot. It's currently configured for running macOS Mojave up to Monterey. You can research a suitable/matching SMBIOS for your CPU on everymac.com.
 
 ### BIOS Settings
 **Latest BIOS Version:** `2.77`
@@ -267,9 +267,9 @@ Once your system is up and running you may want to change the following settings
 - **MinDate/MinVersion**: you should keep a working backup of your EFI folder on a FAT32 formatted USB flash drive before changing these settings, because if they are wrong, the APFS driver won't load and you won't see your macOS drive(s)!
 
 ### Fixing CPU Power Management 
-1. Open Config
-2. Disable `SSDT-PM.aml` under ACPI > Add
-3. Enable the 2 Patches under ACPI > Delete (`Drop CpuPm` and `Drop Cpu0Ist`)
+1. Open config.plist
+2. Disable `SSDT-PM.aml` under ACPI/Add
+3. Enable the 2 Patches under ACPI/Delete (`Drop CpuPm` and `Drop Cpu0Ist`)
 4. Save config and reboot
 5. Install [ssdtPRGen](https://github.com/Piker-Alpha/ssdtPRGen.sh)
 6. Open Terminal and type: sudo /Users/YOURUSERNAME/ssdtPRGen.sh
