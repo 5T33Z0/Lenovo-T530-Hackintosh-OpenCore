@@ -115,9 +115,6 @@ EFI
 </details>
 
 ## HARDWARE SPECS
-<details>
-<summary><strong>ThinkPad Model</strong></summary>
-
 ### ThinkPad T530 Specs 
 | Component           | Details                                       |
 | ------------------: | :-------------------------------------------- |
@@ -135,9 +132,6 @@ EFI
 | Docking Station     | Lenovo ThinkPad 4338 Mini Dock plus Series 3  |
 
 [**ThinkPad T530 User Guide (PDF)**](https://download.lenovo.com/ibmdl/pub/pc/pccbbs/mobiles_pdf/t530_t530i_w530_ug_en.pdf)
-</details>
-<details>
-<summary><strong>Incompatible Components</strong></summary>
 
 ### macOS-incompatible Components
 - [ ] NVIDIA Optimus GPU must be disabled in BIOS - otherwise no boot!
@@ -146,9 +140,6 @@ EFI
 </details>
 
 ## INSTALLATION
-<details>
-<summary><strong>Preparation: Dos and Don'ts</strong></summary>
-
 ### Preparing the config.plist
 Please read the explanations in the following sections carefully and follow the given instructions. In order to boot macOS with this EFI successfully, adjustments to the `config.plist` may be necessary according to the used hardware and macOS version you want to use. 
 
@@ -210,10 +201,6 @@ Open the `config.plist` and do the following:
 - `gfxrst=1`: to prefer drawing Apple logo at 2nd boot stage instead of framebuffer copying &rarr; Smoother the transition from the progress bar to desktop when an external monitor is attached.
 - `#revpatch=diskread,memtab`: For `RestrictEvents.kext`. `diskread` disables "Uninitialized Disk" warning in macOS 10.14 and older. `memtab` adds `Memory` tab to "About this Mac" section. Enable `RestrictEvents.kext` and Remove the leading `#` from the boot-arg to make it work.
 - `#-no_compat_check`: For installing/booting macOS Big Sur and newer without having to change the SMBIOS. Remove leading `#` to enable the boot-arg. Note that installing system updates via the software update will not be possible when using this.
-  
-</details>
-<details>
-<summary><strong>EFI Handling</strong></summary>
 
 ### EFI How To
 0. Download the EFI Folder from the `Releases` Section on the right and unpack it
@@ -224,9 +211,6 @@ Open the `config.plist` and do the following:
 5. **IMPORTANT**: Perform a NVRAM Reset (in Bootpicker, hit Space Bar to reveal Tools)
 6. Reboot
 7. Select macOS to boot. It's currently configured for running macOS Mojave up to Monterey. You can research a suitable/matching SMBIOS for your CPU on everymac.com.
-</details>
-<details>
-<summary><strong>BIOS Settings</strong></summary>
 
 ### BIOS Settings
 **Latest BIOS Version:** `2.77`
@@ -264,9 +248,6 @@ Open the `config.plist` and do the following:
 * CSM Support: `Disabled`
 * Boot Mode: `Quick`
 * Boot Order Lock: `Enabled` Enable this *after* you've set-up the order of the Boot Drives. This prohibits `WindowsBootManager` from taking over the first slot of the boot drives.
-</details>
-<details>
-<summary><strong>How to install macOS</strong></summary>
 
 ### Installing macOS
 **Coming from Windows/Linux**: If you are on Windows or Linux, follow the guide provided by [Dortania](https://dortania.github.io/OpenCore-Install-Guide/installer-guide/#making-the-installer). **NOTE**: No support from my end for issues related to UBS Installers created in Windows or Linux!
@@ -277,9 +258,6 @@ Open the `config.plist` and do the following:
 </details>
 
 ## POST-INSTALL
-<details>
-<summary><strong>Strengthen Security</strong></summary>
-
 Once your system is up and running you may want to change the following settings to make your system more secure:
 
 - Enable System Integrity Protection (SIP): change `csr-active-config` to `00000000`
@@ -289,9 +267,6 @@ Once your system is up and running you may want to change the following settings
 
 - **SIP**: If you're planning to install macOS Monterey, SIP needs to be disabled! Because installing the graphics drivers with Intel HD 4000 Patcher breaks macOS securiity seal so therefore boot will crash if SIP is enabled!
 - **MinDate/MinVersion**: you should keep a working backup of your EFI folder on a FAT32 formatted USB flash drive before changing these settings, because if they are wrong, the APFS driver won't load and you won't see your macOS drive(s)!
-</details>
-<details>
-<summary><strong>Fixing CPU Power Management</strong></summary>
 
 ### Fixing CPU Power Management 
 1. Open Config
@@ -337,9 +312,6 @@ CPU Power Management should work fine after that. Optionally, you can install [I
   - After the Updates are installed, revert to SMBIOS `MacBookPro10,1`
   - re-enable `-no_compat_check` boot-arg 
   - Reboot
-</details>
-<details>
-<summary><strong>Fixing Sleep Issues</strong></summary>
 
 ### Fixing SLeep issues
 If you have issues with sleep, run the following commands in Terminal:
@@ -348,9 +320,6 @@ If you have issues with sleep, run the following commands in Terminal:
 	sudo rm /var/vm/sleepimage
 	sudo touch /var/vm/sleepimage
 	sudo chflags uchg /var/vm/sleepimage
-</details>
-<details>
-<summary><strong>Fixing Command and Option Keys</strong></summary>
 
 ### Fixing Command and Option Keys positions
 Prior to version 0.7.4 of my OpenCore EFI Folder, the **[Command]** and **[Option]** keys were set to "swapped" in the `info.plist` of `VoodooPS2Keyboard.kext` by default. So in macOS, the **[WINDOWS]** key was bound to the **[Option]** function and the **[ALT]** Key was bound to the **[Command]** function which felt weird. Therefore, users had to swap these Keys back around in the System Settings so everything worked as expected.
@@ -358,9 +327,6 @@ Prior to version 0.7.4 of my OpenCore EFI Folder, the **[Command]** and **[Optio
 Since then, I've undone the key swap inside the `VoodooPS2Keyboard.kext` plugin so that the Key bindings are working as expected out of the box. So if you are updating from 0.7.3 or lower to 0.7.4, reset the Keyboard Modifier Keys back to Default in System Settings > Keyboard to so everything is back to normal.
 
 If the "<", ">" and "^" Keys are switched/reversed, change `Use ISO layout keyboard` from `false` to `true` in the `info.plist` of `VoodooPS2Keyboard.kext`. 
-</details>
-<details>
-<summary><strong>Changing Themes</strong></summary>
 
 ### Changing Themes
 Besides the 3 default themes by Acidanthera included in the OpenCore package, I've added an additional theme by Blackosx called BsxM1 which is set as default. To change the theme to something else, do the following: 
@@ -371,9 +337,6 @@ Besides the 3 default themes by Acidanthera included in the OpenCore package, I'
 - Save `config.plist` and reboot to apply the theme.
 
 To revert these changes, enter `Acidanthera\GoldenGate` as `PickerVariant` and change the Flavour for the NVRAM Reset Tool back to `Auto`.
-</details>
-<details>
-<summary><strong>Adding `Eject` Button to the Menu bar</strong></summary>
 
 ### Eject Button 
 macOS locks the optical drive sometimes so that you can't open it with the physical eject button – even if no media is present. To fix this you have 2 options:
