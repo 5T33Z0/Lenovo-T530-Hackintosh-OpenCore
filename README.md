@@ -5,7 +5,7 @@ Lenovo ThinkPad T530 Hackintosh OpenCore
 **TABLE of CONTENTS**
 
 - [ABOUT](#about)
-- [DSDT-less config](#dsdt-less-config)
+  - [DSDT-less config](#dsdt-less-config)
   - [EFI Folder Structure (OpenCore)](#efi-folder-structure-opencore)
 - [HARDWARE SPECS](#hardware-specs)
   - [ThinkPad T530 Specs](#thinkpad-t530-specs)
@@ -25,17 +25,17 @@ Lenovo ThinkPad T530 Hackintosh OpenCore
 - [CPU BENCHMARK](#cpu-benchmark)
 - [CREDITS and THANK YOUs](#credits-and-thank-yous)
 
+## ABOUT
+
+OpenCore and Clover EFI Folders for running macOS 10.13 to 12.4+ on a Lenovo ThinkPad T530. They utilize the new `ECEnabler.kext` which enables battery status read-outs without the need for additional Battery Patches. The OpenCore EFI includes the latest Booter and Kernel patches which make use of macOS Monterey's virtualization capabilities (VMM) to spoof a fake Board-ID. This allows installing and running macOS Monterey with the `MacBookPro10,1` SMBIOS for Ivy Bridge CPUs which wouldn't be possible otherwise. So you can enjoy the benefits of optimal CPU Power Management and System Updates as well. If you want to know how these patches work, [read this](https://github.com/5T33Z0/OC-Little-Translated/tree/main/09_Board-ID_VMM-Spoof).
+
 |:warning: Issues related to macOS (beyond my control)|
 |:----------------------------------------------------|
 **macOS Monterey**: requires [Intel HD4000 Patcher](https://github.com/chris1111/Patch-HD4000-Monterey) to get graphics acceleration working
 [Bluetooth issues](https://dortania.github.io/OpenCore-Install-Guide/extras/monterey.html#bluetooth) on legacy Broadcom and Intel cards.
 Managed to install macOS Ventura ([Proof](https://github.com/5T33Z0/Lenovo-T530-Hackintosh-OpenCore/blob/main/Pics/Ventura_Proof.png)). No graphics acceleration yet. Guide will follow.
 
-## ABOUT
-
-OpenCore and Clover EFI Folders for running macOS 10.13 to 12.4+ on a Lenovo ThinkPad T530. They utilize the new `ECEnabler.kext` which enables battery status read-outs without the need for additional Battery Patches. The OpenCore EFI includes the latest Booter and Kernel patches which make use of macOS Monterey's virtualization capabilities (VMM) to spoof a fake Board-ID. This allows installing and running macOS Monterey with the `MacBookPro10,1` SMBIOS for Ivy Bridge CPUs which wouldn't be possible otherwise. So you can enjoy the benefits of optimal CPU Power Management and System Updates as well. If you want to know how these patches work, [read this](https://github.com/5T33Z0/OC-Little-Translated/tree/main/09_Board-ID_VMM-Spoof).
-
-## DSDT-less config
+### DSDT-less config
 
 The configs contained in this repo are configured DSDT-less. This means, they don't use a patched DSDT. Everything is patched live using binary renames and ACPI Hotpatches (SSDTs). So instead of replacing the *whole* system DSDT by a patched one during boot, only things which need fixing are addressed and patched-in on the fly (hence the term "hot-patching")  – just like it is supposed to be done nowadays. The benefits of this approach are:
 
