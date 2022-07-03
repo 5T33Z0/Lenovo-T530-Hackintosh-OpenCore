@@ -31,7 +31,7 @@ OpenCore and Clover EFI Folders for running macOS 10.13 to 12.5+ on a Lenovo Thi
 The OpenCore EFI also includes the latest Booter and Kernel patches which make use of macOSes virtualization capabilities (VMM) to spoof a special Board-ID which allows installing and running macOS Big Sur and Monterey with SMBIOS `MacBookPro10,1`for Ivy Bridge CPUs. With this, you can enjoy the benefits of optimal CPU Power Management *and* System Updates which wouldn't be possible when using the well-known`-no_compat_chack` boot arg. If you want to know how these patches work, [read this](https://github.com/5T33Z0/OC-Little-Translated/tree/main/09_Board-ID_VMM-Spoof).
 
 ### Extra: Docking Station Audio Working 
-As a special and unique feature, I created my own AppleALC Layout-ID which supports the Lenovo Mini Dock 3 Type 4337 and 4338 Docking Stations. It uses Layout-ID 39. Don't update AppleALC.kext or you lose the Layout, since it hasn't been integrated into the AppleALC source code yet (the Layout-ID has been submitted for approval, though). Once it's approved, you can update AppleALC as usual.
+Another special and unique feature: I created my own AppleALC Layout-ID which supports the Lenovo Mini Dock 3 Type 4337 and 4338 Docking Stations. It uses Layout-ID 39. Don't update AppleALC.kext or you lose the Layout, since it hasn't been integrated into the AppleALC source code yet (the Layout-ID has been submitted for approval, though). Once it's approved, you can update AppleALC as usual.
 
 |:warning: Issues related to macOS (beyond my control)|
 |:----------------------------------------------------|
