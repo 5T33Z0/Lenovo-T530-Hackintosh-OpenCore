@@ -168,7 +168,7 @@ Open the `config.plist` and do the following:
 	- Disable the `PciRoot(0x0)/Pci(0x2,0x0)` by placing `#` in front of it.
 	- Next, enable `#PciRoot(0x0)/Pci(0x2,0x0) 1366x768 px` by deleting the leading `#` and the description ` 1366x768 px`, so that it looks this: `PciRoot(0x0)/Pci(0x2,0x0)`.
 	
-	**HINT**: If your screen turns off during boot, you are using the wrong Framebuffer-Patch!
+	:bulb: **HINT**: If your screen turns off during boot, you are using the wrong Framebuffer-Patch!
 
 4. **CPU**: The `SSDT-PM.aml` inside the ACPI Folder is for an **Intel i7 3630QM**. If you use a different CPU model, disable it for now and create your own using `ssdtPRGen` in Post-Install. (See 'Fixing CPU Power Management' in the 'Post-Install Section')
 
@@ -286,13 +286,17 @@ CPU Power Management should work fine after that. Optionally, you can install [I
 - You can add modifiers to the terminal command for building SSDT-PM. For example, you can drop the low frequency from the default 1200 MHz to 900 MHz in 100 MHz increments, but no lower than that. Otherwise the system crashes during boot. I suggests you experiment with the modifiers a bit.
 - If you feel really confident and enthusiastic you could also re-enable XCPM. But in my experience the machine does not perform as good. You can [follow this guide](https://github.com/5T33Z0/Lenovo-T530-Hackinosh-OpenCore/tree/main/Enable%20XCPM) if you're so inclined.<br>
 
-### Fixing SLeep issues
+### Fixing Sleep issues
 If you have issues with sleep, run the following commands in Terminal:
 
 	sudo pmset hibernatemode 0
 	sudo rm /var/vm/sleepimage
 	sudo touch /var/vm/sleepimage
 	sudo chflags uchg /var/vm/sleepimage
+
+**NOTES**
+- In my tests,fixing the sleepimage actually prohibited the machine from entering sleep. You can use Kext Updater to undo the changes. It might work with Hackintool as well but I am not sure.
+- To exit from Sleep you can press a Mous button. But to wake from Hibernation, you have to press the `Fn` key or the Power Button.
 
 ### Swapping Command ⌘ and Option ⌥ Keys
 Prior to version 0.7.4 of my OpenCore EFI Folder, the **[Command]** and **[Option]** keys were set to "swapped" in the `info.plist` of `VoodooPS2Keyboard.kext` by default. So in macOS, the **[WINDOWS]** key was bound to the **[Option]** function and the **[ALT]** Key was bound to the **[Command]** function which felt weird. Therefore, users had to swap these Keys back around in the System Settings so everything worked as expected.
