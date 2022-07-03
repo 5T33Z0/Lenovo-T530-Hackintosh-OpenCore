@@ -26,13 +26,18 @@
 
 ## ABOUT
 
-OpenCore and Clover EFI Folders for running macOS 10.13 to 12.4+ on a Lenovo ThinkPad T530. They utilize the new `ECEnabler.kext` which enables battery status read-outs without the need for additional Battery Patches. The OpenCore EFI includes the latest Booter and Kernel patches which make use of macOSes virtualization capabilities (VMM) to spoof a fake Board-ID. This allows installing and running macOS Big Sur and Monterey with SMBIOS `MacBookPro10,1`for Ivy Bridge CPUs which wouldn't be possible otherwise. So you can enjoy the benefits of optimal CPU Power Management and System Updates as well. If you want to know how these patches work, [read this](https://github.com/5T33Z0/OC-Little-Translated/tree/main/09_Board-ID_VMM-Spoof).
+OpenCore and Clover EFI Folders for running macOS 10.13 to 12.5+ on a Lenovo ThinkPad T530. They utilize the new `ECEnabler.kext` which enables battery status read-outs without the need for additional Battery Patches. 
+
+The OpenCore EFI also includes the latest Booter and Kernel patches which make use of macOSes virtualization capabilities (VMM) to spoof a special Board-ID which allows installing and running macOS Big Sur and Monterey with SMBIOS `MacBookPro10,1`for Ivy Bridge CPUs. With this, you can enjoy the benefits of optimal CPU Power Management *and* System Updates which wouldn't be possible when using the well-known`-no_compat_chack` boot arg. If you want to know how these patches work, [read this](https://github.com/5T33Z0/OC-Little-Translated/tree/main/09_Board-ID_VMM-Spoof).
+
+### Extra: Docking Station Audio Working 
+As a special and unique feature, I created my own AppleALC Layout-ID which supports the Lenovo Mini Dock 3 Type 4337 and 4338 Docking Stations. It uses Layout-ID 39. Don't update AppleALC.kext or you lose the Layout, since it hasn't been integrated into the AppleALC source code yet (the Layout-ID has been submitted for approval, though). Once it's approved, you can update AppleALC as usual.
 
 |:warning: Issues related to macOS (beyond my control)|
 |:----------------------------------------------------|
 **macOS Monterey**: requires [Intel HD4000 Patcher](https://github.com/chris1111/Patch-HD4000-Monterey) to get graphics acceleration working
 [Bluetooth issues](https://dortania.github.io/OpenCore-Install-Guide/extras/monterey.html#bluetooth) on legacy Broadcom and Intel cards.
-Managed to install macOS Ventura ([Proof](https://github.com/5T33Z0/Lenovo-T530-Hackintosh-OpenCore/blob/main/Pics/Ventura_Proof.png)). No graphics acceleration yet. Guide will follow.
+Managed to install macOS Ventura ([Proof](https://github.com/5T33Z0/Lenovo-T530-Hackintosh-OpenCore/blob/main/Pics/Ventura_Proof.png)). No graphics acceleration yet.
 
 ### DSDT-less config
 
