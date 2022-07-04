@@ -35,8 +35,8 @@ The OpenCore EFI also includes the latest Booter and Kernel patches which make u
 ### Extra: Docking Station Audio Working 
 Another special and unique feature: I created my own AppleALC Layout-ID which supports the Lenovo Mini Dock 3 Type 4337 and 4338 Docking Stations. It uses Layout-ID 39. Don't update AppleALC.kext or you lose the Layout, since it hasn't been integrated into the AppleALC source code yet (the Layout-ID has been submitted for approval, though). Once it's approved, you can update AppleALC as usual.
 
-|:warning: Issues related to macOS (beyond my control)|
-|:----------------------------------------------------|
+|:warning: Issues related to macOS 12 and newer |
+|:----------------------------------------------|
 **macOS Monterey**: requires [Intel HD4000 Patcher](https://github.com/chris1111/Patch-HD4000-Monterey) to get graphics acceleration working
 [Bluetooth issues](https://dortania.github.io/OpenCore-Install-Guide/extras/monterey.html#bluetooth) on legacy Broadcom and Intel cards.
 Managed to install macOS Ventura ([Proof](https://github.com/5T33Z0/Lenovo-T530-Hackintosh-OpenCore/blob/main/Pics/Ventura_Proof.png)). No graphics acceleration yet.
