@@ -159,7 +159,8 @@ Open the `config.plist` and do the following:
 	
 2. Adjust `csr-active-config` according to the macOS version you want to use:
 	- For macOS Big Sur to Monterey: `67080000`(0x867)
-	- For macOS Mojave/Catalina: `FF070000`(0x7FF)
+	- For running Intel HD Patcher in Monterey: `FE0F0000` (0xFEF)
+	- For macOS Mojave/Catalina: `EF070000`(0x7EF)
 	- For macOSHigh Sierra: `FF030000` (0x3FF)
 	
 	**NOTE**: You have to disable SIP if you use macOS Monteray with patched-in Intel HD 4000 Drivers!
