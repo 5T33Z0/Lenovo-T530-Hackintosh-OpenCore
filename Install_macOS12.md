@@ -3,11 +3,12 @@
 ## I. Requirements
 
 - macOS Monterey. Download it with [ANYmacOS](https://www.sl-soft.de/anymacos/)
-- [OpenCore Legacy Patcher (OCLP)](https://github.com/dortania/OpenCore-Legacy-Patcher/releases) &rarr; Click on Assets and download "OpenCore-Patcher-GUI-App". We'll use it in Post-Install only to re-install the missin drivers for the Intel HD4000 on-board graphics. 
+- [OpenCore Legacy Patcher (OCLP)](https://github.com/dortania/OpenCore-Legacy-Patcher/releases) &rarr; Click on Assets and download "OpenCore-Patcher-GUI-App". We'll use it in Post-Install only to re-install the missing drivers for the Intel HD4000 on-board graphics. 
 - USB Installer for clean install (optional)
-- My EFI Folder, SMBIOS: `MacBookPro10,1` 
+- My EFI Folder
+- SMBIOS: `MacBookPro10,1` 
 
-That's right, you can use a SMBIOS which supports Ivy Bridge CPUs with this config since it includes special Booter and Kernel Patches which will force `kern.hv_vmm_present` to always return `True`. With `hv_vmm_present` returning `True`, both `OSInstallerSetupInternal` and `SoftwareUpdateCore` will set the Board-ID to `VMM-x86_64` while the rest of the OS will continue with the original Board-ID. 
+That's right, you can use an SMBIOS which supports Ivy Bridge CPUs with this config because it includes special Booter and Kernel Patches which will force `kern.hv_vmm_present` to always return `True`. With `hv_vmm_present` returning `True`, both `OSInstallerSetupInternal` and `SoftwareUpdateCore` will set the Board-ID to `VMM-x86_64` while the rest of the OS will continue with the original Board-ID. 
 
 In other words, these patches make macOS Monterey believe that it is running in a Virtual Machine which in return will use a different Board-ID (`VMM-x86_64`) internally, while the rest of the system will use `MacBookPro10,1`. This way, macOS Monterey can be installed, booted and updated on this otherwise unsupported system. Check my [VMM spoofing guide](https://github.com/5T33Z0/OC-Little-Translated/tree/main/09_Board-ID_VMM-Spoof) to find out more about this.
 
@@ -22,7 +23,7 @@ In other words, these patches make macOS Monterey believe that it is running in 
 - Download OCLP
 - Mount your EFI Partition
 - Paste in my EFI Folder and edit the `config.plist`:
-	- Change SMBIOS to `MacBookPro10,1` (should be set by default)
+	- Generate SMBIOS date for `MacBookPro10,1` (Core i7) or `MacBookPro10,2` (Core i5)
 	- Change `csr-active-config` to: `EF0F0000` (a must to install the Intel HD4000 Drivers)
 - Run the "Install macOS Monterey" App you've downloaded with ANYmacOS
 - There will be a few reboots
@@ -41,10 +42,10 @@ If you want to create a USB Installer, you can use ANYmacOS as well or this Term
 
 After the USB installer has been created, do the following:
 
-- Copy the OpenCore-Patcher App to the USB Installer (and OCAT or your plist Editor of choise as well)
+- Copy the OpenCore-Patcher App to the USB Installer (and OCAT or your plist Editor of choice as well)
 - Mount EFI Partition of the USB flash drive
 - Paste in my EFI Folder and edit the `config.plist`:
-	- Change SMBIOS to `MacBookPro10,1` (should be set already)
+	- Generate SMBIOS date for `MacBookPro10,1` (Core i7) or `MacBookPro10,2` (Core i5)
 	- Change `csr-active-config` to: `EF0F0000` (a must to install the Intel HD400 Drivers)
 - Reboot from USB flash drive 
 - Once you see the Install dialog go to Utilities and run Disk Utility to format the SSD or APFS Container you want to use.
@@ -56,7 +57,7 @@ Continue with "Installation (Phase 2)".
 
 ### 2. Install Intel HD4000 Drivers
 
-Once you reach the set-up assistant (where you set language, time zone, etc), you will notice that the system feels super sluggish – that's normal because it is running in VESA mode without graphics accelleration, since the friendly guys at Apple removed the Intel HD 4000 drivers. 
+Once you reach the set-up assistant (where you set language, time zone, etc), you will notice that the system feels super sluggish – that's normal because it is running in VESA mode without graphics acceleration, since the friendly guys at Apple removed the Intel HD 4000 drivers. 
 
 To install them, do the following:
 
@@ -73,7 +74,7 @@ Graphics Acceleration should work now and the system should feel as usual again 
 ## III. OCLP and System Updates
 The major advantage of using OCLP over the previously used Chris1111s HD4000 Patcher is that it remains on the system even after installing System Updates. After an update, it detects that the graphics drivers are missing and asks you, if you want to to patch them in again:</br>![Notify](https://user-images.githubusercontent.com/76865553/181934588-82703d56-1ffc-471c-ba26-e3f59bb8dec6.png)
 
-You just click on "Okay" and the drivers will be re-installedn. After the obligatory reboot, everything will be back to normal.
+You just click on "Okay" and the drivers will be re-installed. After the obligatory reboot, everything will be back to normal.
 
 ## Notes
 - Patching in drivers on the system partition breaks its security seal. This affects System Updates.
