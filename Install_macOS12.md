@@ -71,9 +71,9 @@ To install them, do the following:
 Graphics Acceleration should work now and the system should feel as usual again and you can continue with the Post-Install process as described in the Repo.
 
 ## III. OCLP and System Updates
-The major advantage of using OCLP over the previously used Chris1111s HD4000 Patcher is that it remains on the system even after installing System Updates. After an update, it detects that the graphics drivers are missing and asks you, if you want to to patch them in again:</br>![](/Users/5t33z0/Desktop/Notify.png)
+The major advantage of using OCLP over the previously used Chris1111s HD4000 Patcher is that it remains on the system even after installing System Updates. After an update, it detects that the graphics drivers are missing and asks you, if you want to to patch them in again:</br>![Notify](https://user-images.githubusercontent.com/76865553/181934588-82703d56-1ffc-471c-ba26-e3f59bb8dec6.png)
 
-You just click on "Okay" and the drivers will be re-installedn. After the obligatory reboot everything will be back to normal.
+You just click on "Okay" and the drivers will be re-installedn. After the obligatory reboot, everything will be back to normal.
 
 ## Notes
 - Patching in drivers on the system partition breaks its security seal. This affects System Updates.
