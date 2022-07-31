@@ -340,6 +340,7 @@ macOS locks the optical drive sometimes so that you can't open it with the physi
 - Acidanthera and Team for [OpenCore Bootloader](https://github.com/acidanthera/OpenCorePkg), OCLP and additional Kexts
 - Dortania for [OpenCore Install Guide](https://dortania.github.io/OpenCore-Install-Guide)
 - SergeySlice for [Clover Bootloader](https://github.com/CloverHackyColor/CloverBootloader)
+- Chris1111 for [Patch-HD4000-Monterey](https://github.com/chris1111/Patch-HD4000-Monterey)
 - 1Revenger1 for [ECEnabler](https://github.com/1Revenger1/ECEnabler)
 - [ic005k](https://github.com/ic005k/) for OpenCore Auxiliary Tools and PlistEDPlus
 - Mackie100 for [Clover Configurator](https://mackie100projects.altervista.org/download-clover-configurator/)

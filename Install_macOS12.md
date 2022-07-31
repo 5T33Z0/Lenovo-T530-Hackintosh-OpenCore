@@ -2,11 +2,11 @@
 
 ## I. Requirements
 
-- macOS Monterey. Download it with [ANYmacOS](https://www.sl-soft.de/anymacos/)
+- macOS Monterey. Either download it through Sytsem Updates, from the App Store or with [ANYmacOS](https://www.sl-soft.de/anymacos/)
 - [OpenCore Legacy Patcher (OCLP)](https://github.com/dortania/OpenCore-Legacy-Patcher/releases) &rarr; Click on Assets and download "OpenCore-Patcher-GUI-App". We'll use it in Post-Install only to re-install the missing drivers for the Intel HD4000 on-board graphics. 
 - USB Installer for clean install (optional)
 - My EFI Folder
-- SMBIOS: `MacBookPro10,1` 
+- **SMBIOS**: `MacBookPro10,1` (for Core i7 CPUs) or `MacBookPro10,2` (for i5)
 
 That's right, you can use an SMBIOS which supports Ivy Bridge CPUs with this config because it includes special Booter and Kernel Patches which will force `kern.hv_vmm_present` to always return `True`. With `hv_vmm_present` returning `True`, both `OSInstallerSetupInternal` and `SoftwareUpdateCore` will set the Board-ID to `VMM-x86_64` while the rest of the OS will continue with the original Board-ID. 
 
@@ -59,10 +59,10 @@ Continue with "Installation (Phase 2)".
 
 Once you reach the set-up assistant (where you set language, time zone, etc), you will notice that the system feels super sluggish – that's normal because it is running in VESA mode without graphics acceleration, since the friendly guys at Apple removed the Intel HD 4000 drivers. 
 
-To install them, do the following:
+To bring them back, do the following:
 
-- Copy the OpenCore-Patcher App from you USB Installer to the Desktop
-- Double-click to run it 
+- Copy the OpenCore Patcher App from you USB Installer to the Desktop
+- Double-click it to run it 
 - In the OpenCore Legacy Patcher menu, select "Post Install Root Patch":</br>![menu](https://user-images.githubusercontent.com/76865553/181920348-21a3abad-311f-49c6-b4d9-25e6560b6150.png)
 - Next, click on "Start Root Patching":</br>![menu2](https://user-images.githubusercontent.com/76865553/181920368-bdfff312-6390-40a5-9af8-8331569fbe17.png)
 - The App has to relaunch with Admin Roots. Click Yes:</br>![yes](https://user-images.githubusercontent.com/76865553/181920381-2b6a4194-60c3-472e-81bb-c5478e3298f9.png)
@@ -77,8 +77,8 @@ The major advantage of using OCLP over the previously used Chris1111s HD4000 Pat
 You just click on "Okay" and the drivers will be re-installed. After the obligatory reboot, everything will be back to normal.
 
 ## Notes
-- Patching in drivers on the system partition breaks its security seal. This affects System Updates.
-- Every time a System Update is available, the FULL Installer (about 12 GB) will be downloaded.
+- Installing drivers on the system partition breaks its security seal. This affects System Updates: every time a System Update is available, the FULL Installer (about 12 GB) will be downloaded.
+- After each Systm Update, the Drivers have to be re-installed. OCLP should take care of it.
 
 ## Credits
 - Acidanthera for OpenCore, OCLP and numerous Kexts
