@@ -79,8 +79,10 @@ You just click on "Okay" and the drivers will be re-installed. After the obligat
 ## Notes
 - Installing drivers on the system partition breaks its security seal. This affects System Updates: every time a System Update is available, the FULL Installer (about 12 GB) will be downloaded.
 - After each Systm Update, the Drivers have to be re-installed. OCLP should take care of it.
+- In cases where using OCLP causes issues, you try [Patch-HD4000-Monterey](https://github.com/chris1111/Patch-HD4000-Monterey) instead.
 
 ## Credits
 - Acidanthera for OpenCore, OCLP and numerous Kexts
+- Chris1111 for Patch-HD4000-Monterey
 - IC005K for OCAT
 - Sascha77 for ANYmacOS
