@@ -67,7 +67,7 @@ To bring them back, do the following:
 - Next, click on "Start Root Patching":</br>![menu2](https://user-images.githubusercontent.com/76865553/181920368-bdfff312-6390-40a5-9af8-8331569fbe17.png)
 - The App has to relaunch with Admin Roots. Click Yes:</br>![yes](https://user-images.githubusercontent.com/76865553/181920381-2b6a4194-60c3-472e-81bb-c5478e3298f9.png)
 - You will have to enter your Admin Password and then the installation will begin:</br>![Install](https://user-images.githubusercontent.com/76865553/181920398-38ddf7c5-0dfd-428e-9d7a-5646010d3c08.png)
-- Once. it's donw you have to reboot and Graphics acceleration will work:</br>![2048](https://user-images.githubusercontent.com/76865553/181920410-28cc08d2-0bcd-4868-b30d-112caec7206d.png)
+- Once it's done you have to reboot and Graphics acceleration will work:</br>![2048](https://user-images.githubusercontent.com/76865553/181920410-28cc08d2-0bcd-4868-b30d-112caec7206d.png)
 
 Graphics Acceleration should work now and the system should feel as usual again and you can continue with the Post-Install process as described in the Repo.
 
@@ -78,7 +78,7 @@ You just click on "Okay" and the drivers will be re-installed. After the obligat
 
 ## Notes
 - Installing drivers on the system partition breaks its security seal. This affects System Updates: every time a System Update is available, the FULL Installer (about 12 GB) will be downloaded.
-- After each Systm Update, the Drivers have to be re-installed. OCLP should take care of it.
+- After each System Update, the Drivers have to be re-installed. OCLP should take care of it.
 - In cases where using OCLP causes issues, you try [Patch-HD4000-Monterey](https://github.com/chris1111/Patch-HD4000-Monterey) instead.
 
 ## Credits
