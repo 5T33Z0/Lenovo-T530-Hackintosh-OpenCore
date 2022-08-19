@@ -131,7 +131,7 @@ EFI
 | Hard Disk           | Samsung 840 Evo 250GB                         |
 | Integrated Graphics | Intel HD Graphics 4000                        |
 | Display             | 15.6" HD+ TFT Display (1600x900 px)           |
-| Audio               | Realtek ALC269VC Rev.3 (Layout-id:`40`)       |
+| Audio               | Realtek ALC269VC Rev.3 (Layout-id:`39`)       |
 | Ethernet            | Intel 82579LM Gigabit Network Connection      |
 | WIFI+BT             | Broadcom BCM94352HMB DW1550, 802.11 a/b/g/n/ac|
 | Docking Station     | Lenovo ThinkPad 4338 Mini Dock plus Series 3  |
