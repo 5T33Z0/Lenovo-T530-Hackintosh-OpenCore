@@ -62,27 +62,24 @@ EFI
 │   └── BOOTx64.efi
 └── OC
     ├── ACPI
-    │   ├── SSDT-AC.aml (optional, cosmetic)
     │   ├── SSDT-ALS0.aml
     │   ├── SSDT-BAT1-Disable.aml
     │   ├── SSDT-EXT4.aml
     │   ├── SSDT-EXT5.aml
-    │   ├── SSDT-FWHD.aml (optional, cosmetic)
     │   ├── SSDT-HPET.aml
-    │   ├── SSDT-LID.aml
     │   ├── SSDT-NBCF.aml
     │   ├── SSDT-PM.aml
     │   ├── SSDT-PNLF.aml
+    │   ├── SSDT-PRW0.aml
     │   ├── SSDT-PTSWAKTTS.aml
     │   ├── SSDT-PWRB.aml
-    │   ├── SSDT-SBUS-MCHC.aml
-    │   ├── SSDT-Sleep_PRW-0D6D.aml
-    │   ├── SSDT-XDSM.aml
-    │   └── SSDT-XOSI.aml
+    │   └── SSDT-SBUS-MCHC.aml
     ├── Drivers
+    │   ├── AudioDXE.efi
     │   ├── HfsPlus.efi
     │   ├── OpenCanopy.efi
-    │   └── OpenRuntime.efi
+    │   ├── OpenRuntime.efi
+    │   └── ResetNvramEntry.efi
     ├── Kexts
     │   ├── AirportBrcmFixup.kext
     │   ├── AppleALC.kext
