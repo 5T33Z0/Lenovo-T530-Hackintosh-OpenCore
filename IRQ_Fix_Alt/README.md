@@ -1,6 +1,15 @@
 # Alternate IRQ Fix
 If you don't wnat to use SSDTTime to generate `SSDT-HPET`.
 
+## Preparations
+If present, disable/delete the following:
+
+- Disable `SSDT-HPET`
+- Disable ACPI Patches:
+	- change _CRS to XCRS, pair with SSDT-HPET
+	- RTC IRQ 8 Patch
+	- TIMR IRQ 0 Patch 
+
 ## Instructions
 
 - Add SSDTs:
