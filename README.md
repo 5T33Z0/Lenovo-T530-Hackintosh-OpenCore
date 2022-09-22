@@ -141,7 +141,7 @@ EFI
 
 ## INSTALLATION
 ### Preparing the config.plist
-Please read the explanations in the following sections carefully and follow the given instructions. In order to boot macOS with this EFI successfully, adjustments to the `config.plist` may be necessary according to the used hardware and macOS version you want to use. 
+Please read the explanations in the following sections carefully and follow the given instructions. In order to boot macOS with this EFI successfully, adjustments to the `config.plist` may be necessary to adapt the config to the used T530 model and macOS version you want to install/run. 
 
 Open the `config.plist` and do the following:
 
@@ -173,7 +173,7 @@ Open the `config.plist` and do the following:
 	
 	:bulb: **HINT**: If your screen turns off during boot, you are using the wrong Framebuffer-Patch!
 
-4. **CPU**: The `SSDT-PM.aml` inside the ACPI Folder is for an **Intel i7 3630QM**. If you use a different CPU model, disable it for now and create your own using `ssdtPRGen` in Post-Install. (See 'Fixing CPU Power Management' in the 'Post-Install' Section).
+4. **CPU**: The `SSDT-PM.aml` inside the ACPI Folder is for an **Intel i7 3630QM**. If your T530 has a different CPU model, disable it for now and create your own using `ssdtPRGen` in Post-Install. (See 'Fixing CPU Power Management' in the 'Post-Install' Section).
 
 5. **Digital Audio**: If you need digital Audio over HDMI/DP, disable/delete key `No-hda-gfx` from the Audio Device `PciRoot(0x0)/Pci(0x1B,0x0)`.
 
