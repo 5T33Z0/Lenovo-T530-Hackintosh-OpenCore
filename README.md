@@ -278,8 +278,8 @@ Once your system is up and running you may want to change the following settings
 5. Install [ssdtPRGen](https://github.com/Piker-Alpha/ssdtPRGen.sh)
 6. Open Terminal and type: sudo /Users/YOURUSERNAME/ssdtPRGen.sh
 7. Go to Users/YOURUSERNAME/Library/ssdtPRGen. There you'll find an ssdt.aml
-8. Rename `ssdt.aml` to `SSDT-PM.aml` and replace the one in EFI > OC > ACPI with it
-9. In config, go to ACPI > Add and re-enable `SSDT-PM.aml` if it is disabled.
+8. Rename `ssdt.aml` to `SSDT-PM.aml` and replace the one in `EFI/OC/ACPI` with it
+9. In config, go to `ACPI/Add` and re-enable `SSDT-PM.aml` if it is disabled.
 10. Disable the two patches from step 2 again.
 11. Save config and reboot. 
 
@@ -314,18 +314,23 @@ If the "<", ">" and "^" Keys are switched/reversed, change `Use ISO layout keybo
 Besides the 3 default themes by Acidanthera included in the OpenCore package, I've added an additional theme by Blackosx called BsxM1 which is set as default. To change the theme to something else, do the following: 
 
 - Open `config.plist` in OpenCore Auxiliary Tools
-- Go to Misc > Boot 
+- Go to `Misc/Boot` 
 - Select a different theme from the dropdown menu in `PickerVariant`
 - Save `config.plist` and reboot to apply the theme.
 
-To revert these changes, enter `Acidanthera\GoldenGate` as `PickerVariant` and change the Flavour for the NVRAM Reset Tool back to `Auto`.
+To revert these changes, enter `Acidanthera\GoldenGate` as `PickerVariant` and change the Flavor for the NVRAM Reset Tool back to `Auto`.
 
 ### Eject Button 
 macOS locks the optical drive sometimes so that you can't open it with the physical eject button – even if no media is present. To fix this you have 2 options:
 
-- **Option 1**: Go to `System > Library > CoreService > Menu Extras` and double-click on `Eject.menu`. This adds an Eject button Icon to the Menu Bar.
+- **Option 1**: Go to `System/Library/CoreServices/Menu Extras` and double-click on `Eject.menu`. This adds an Eject button Icon to the Menu Bar.
 - **Option 2**: Press and hold the `INS` button (right below the Power Button) until the Eject Icon appears on the screen and the CD tray opens.
 </details>
+
+### Workaround for Apple Music crashing in macOS Catalina
+I've noticed that Apple Music crashes on boot when running the latest version of macOS Catalina (10.15.7) – it's working fine in Big Sur and newer, though. I am sure this is not a config issue, because: a) all other apps work as expected, b) since I know Apple Music was working on earlier builds of Catalina and c) I've seen unresolved issue reports on Apple Support Forums. 
+
+As a workaaround, you can use [Retroactive](https://github.com/cormiertyshawn895/Retroactive) to install and run older versions of iTunes (11.4 worked for me).
 
 ## CPU BENCHMARK
 
