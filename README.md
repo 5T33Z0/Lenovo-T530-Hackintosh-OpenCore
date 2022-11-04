@@ -1,11 +1,12 @@
 # Lenovo ThinkPad T530 Hackintosh OpenCore
 
-[![T530](https://img.shields.io/badge/ThinkPad-T530-informational.svg)](https://psref.lenovo.com/syspool/Sys/PDF/withdrawnbook/ThinkPad_T530.pdf) [![OpenCore](https://img.shields.io/badge/OpenCore-0.8.4-cyan.svg)](https://github.com/acidanthera/OpenCorePkg/releases/latest) [![Clover Version](https://img.shields.io/badge/Clover-r5149-lime.svg)](https://github.com/CloverHackyColor/CloverBootloader/releases) [![MacOS Catalina](https://img.shields.io/badge/macOS-10.15.7-white.svg)](https://www.apple.com/li/macos/catalina/) [![MacOS Big Sur](https://img.shields.io/badge/macOS-11.7-white.svg)](https://www.apple.com/macos/big-sur/) [![MacOS Monterey](https://img.shields.io/badge/macOS-12.6-white.svg)](https://www.apple.com/macos/monterey/) [![release](https://img.shields.io/badge/Download-latest-success.svg)](https://github.com/5T33Z0/Lenovo-T530-Hackinosh-OpenCore/releases/latest) ![](https://raw.githubusercontent.com/5T33Z0/Lenovo-T530-Hackinosh-OpenCore/main/Pics/BootPicker_alt2.png)
+[![T530](https://img.shields.io/badge/ThinkPad-T530-informational.svg)](https://psref.lenovo.com/syspool/Sys/PDF/withdrawnbook/ThinkPad_T530.pdf) [![OpenCore](https://img.shields.io/badge/OpenCore-0.8.4-cyan.svg)](https://github.com/acidanthera/OpenCorePkg/releases/latest) [![Clover Version](https://img.shields.io/badge/Clover-r5149-lime.svg)](https://github.com/CloverHackyColor/CloverBootloader/releases) [![MacOS Catalina](https://img.shields.io/badge/macOS-10.15.7-white.svg)](https://www.apple.com/li/macos/catalina/) [![MacOS Big Sur](https://img.shields.io/badge/macOS-11.7-white.svg)](https://www.apple.com/macos/big-sur/) [![MacOS Monterey](https://img.shields.io/badge/macOS-12.6.1-white.svg)](https://www.apple.com/macos/monterey/) [![release](https://img.shields.io/badge/Download-latest-success.svg)](https://github.com/5T33Z0/Lenovo-T530-Hackinosh-OpenCore/releases/latest) ![](https://raw.githubusercontent.com/5T33Z0/Lenovo-T530-Hackinosh-OpenCore/main/Pics/BootPicker_alt2.png)
 
 <details>
 <summary><strong>TABLE of CONTENTS</strong> (click to reveal)</summary>
 
 - [ABOUT](#about)
+  - [Extra: Docking Station Audio Working](#extra-docking-station-audio-working)
   - [DSDT-less config](#dsdt-less-config)
   - [EFI Folder Content (OpenCore)](#efi-folder-content-opencore)
 - [HARDWARE SPECS](#hardware-specs)
@@ -18,10 +19,11 @@
   - [Installing macOS](#installing-macos)
 - [POST-INSTALL](#post-install)
   - [Fixing CPU Power Management](#fixing-cpu-power-management)
-  - [Fixing SLeep issues](#fixing-sleep-issues)
-  - [Fixing Command and Option Keys positions](#fixing-command-and-option-keys-positions)
+  - [Fixing Sleep issues](#fixing-sleep-issues)
+  - [Swapping Command ⌘ and Option ⌥ Keys](#swapping-command--and-option--keys)
   - [Changing Themes](#changing-themes)
   - [Eject Button](#eject-button)
+  - [Workaround for Apple Music crashing in macOS Catalina](#workaround-for-apple-music-crashing-in-macos-catalina)
 - [CPU BENCHMARK](#cpu-benchmark)
 - [CREDITS and THANK YOUs](#credits-and-thank-yous)
 </details>
@@ -143,24 +145,9 @@ EFI
 ### Preparing the config.plist
 Please read the explanations in the following sections carefully and follow the given instructions. In order to boot macOS with this EFI successfully, adjustments to the `config.plist` may be necessary to adapt the config to the used T530 model and macOS version you want to install/run. 
 
-Open the `config.plist` and do the following:
+Open the `config.plist` and adjust the following settings depending on your system:
 
-1. Set `SystemProductName` according to the CPU and the macOS version you want to use: 
-	-  For Intel i5/i7, macOS 12: `MacBookPro10,1` (i7) or `MacBookPro10,2` (i5)
-	-  For Intel i5/i7, macOS 11.3+: `MacBookPro10,1` (i7) or `MacBookPro10,2` (i5)
-	-  For Intel i5/i7, macOS 10.13 to 10.15: `MacBookPro10,1` (i7), `MacBookPro10,2` (i5)
-	
-	**NOTE**: My config uses special Boooter and Kernel Patches from OpenCore Legacy Patcher which allow using the correct SMBIOS for Ivy Bridge CPUs on macOS 11.3 and newer (Darwin Kernel 20.4+) so native Power Management as well as System Updates are working which wouldn't be posible otherwise past macOS Catalina.
-	
-2. Adjust `csr-active-config` according to the macOS version you want to use:
-	- For macOS Big Sur to Monterey: `67080000`(0x867)
-	- For running Intel HD Patcher in Monterey: `FE0F0000` (0xFEF)
-	- For macOS Mojave/Catalina: `EF070000`(0x7EF)
-	- For macOSHigh Sierra: `FF030000` (0x3FF)
-	
-	**NOTE**: You have to disable SIP if you use macOS Monteray with patched-in Intel HD 4000 Drivers!
-
-3. Select the correct Framebuffer-Patch for your T530 model. Two display panels exist: `HD+` (WSXGA and FullHD) and `HD` panels. Both are using different identifiers:</br>
+1. In `DeviceProperties`, select the correct Framebuffer-Patch for your T530 model. Two display panels exist: `HD+` (WSXGA and FullHD) and `HD` panels. Both are using different identifiers:</br>
 	
 	`AAPL,ig-platform-id 04006601` = `HD+` = FullHD. Resolution: ≥ 1600x900 px. (**Default**)</br>
 	`AAPL,ig-platform-id 03006601` = `HD` = SD. Resolution: ≤ 1366x768 px</br>
@@ -172,19 +159,35 @@ Open the `config.plist` and do the following:
 	- Next, enable `#PciRoot(0x0)/Pci(0x2,0x0) 1366x768 px` by deleting the leading `#` and the description ` 1366x768 px`, so that it looks this: `PciRoot(0x0)/Pci(0x2,0x0)`.
 	
 	:bulb: **HINT**: If your screen turns off during boot, you are using the wrong Framebuffer-Patch!
+	
+2. **Digital Audio**: If you need digital Audio over HDMI/DP, disable/delete `No-hda-gfx` from the Audio Device `PciRoot(0x0)/Pci(0x1B,0x0)`.
 
-4. **CPU**: The `SSDT-PM.aml` inside the ACPI Folder is for an **Intel i7 3630QM**. If your T530 has a different CPU model, disable it for now and create your own using `ssdtPRGen` in Post-Install. (See 'Fixing CPU Power Management' in the 'Post-Install' Section).
+3. Under `NVRAM/Add/7C436110-AB2A-4BBB-A880-FE41995C9F82`, adjust `csr-active-config` according to the macOS version you want to use:
+	- For macOS Big Sur to Monterey: `67080000`(0x867)
+	- For running Intel HD Patcher in Monterey: `FE0F0000` (0xFEF)
+	- For macOS Mojave/Catalina: `EF070000`(0x7EF)
+	- For macOSHigh Sierra: `FF030000` (0x3FF)
+	
+	**NOTE**: Disabling SIP is mandatory if you want to run macOS Monterey in order to install and use patched-in Intel HD 4000 Drivers!
 
-5. **Digital Audio**: If you need digital Audio over HDMI/DP, disable/delete key `No-hda-gfx` from the Audio Device `PciRoot(0x0)/Pci(0x1B,0x0)`.
+4. Under `SystemProductName`, select the correct SMBIOS for your CPU: 
+	-  For Intel i7: `MacBookPro10,1`
+	-  For Intel i5: `MacBookPro10,2`
+	
+	**NOTE**: My config uses the Booter and Kernel Patches from OpenCore Legacy Patcher which allow using the correct SMBIOS for Ivy Bridge CPUs on macOS 11.3 and newer (Darwin Kernel 20.4+) so native Power Management and System Updates are working which wouldn't be possible otherwise past macOS Catalina.
 
-6. **WiFi/Bluetooth** (Read carefully!)
-	- I use a 3rd Party WiFi/BT Card with a Broadcom Chip
-	- 3rd Party WiFi/BT Cards require the `1vyrain` Jailbreak to unlock the BIOS which disables the WiFi Whitelist (not necessary if the 3rd party card is whitelisted).
-	- I use `BrcmFirmwareData.kext` for Bluetooth which can be injected by OpenCore and Clover. Alternatively, you could use `BrcmFirmwareRepo.kext` instead. But it needs to be installed into System/Library/Extensions since it cannot be injected by Bootloaders. It's supposed to be more efficient than BrcmFirmwareData.kext, but it also takes more effort to install and update.
-	- If you use a WiFi/BT Card from a different vendor than Broadcom, remove BluetoolFixup and the "Brcm…" Kexts, add the Kext(s) required for your card to your kext folder and `config.plist` before trying to boot from this EFI!
-	- If you use the stock Intel(r) WiFi/Bluetooth Card, it may work with the OpenIntelWireless kext. Check [OpenIntelWireless](https://github.com/OpenIntelWireless) to find out if your card is supported (yet). If so, remove the BluetoolFixup and Brcm Kexts, add the required Kext(s) card to your kext folder and `config.plist` before trying to boot from this EFI!
+4. **CPU**: The `SSDT-PM.aml` table inside the ACPI Folder is for an **Intel i7 3630QM**. If your T530 has a different CPU model, disable it for now and create your own using `ssdtPRGen` in Post-Install. See [Fixing CPU Power Management](#fixing-cpu-power-Management) for instructions.
 
-7. **Alternative/Optional Kexts**:
+5. **WiFi and Bluetooth** (Read carefully!)
+	- **Case 1: Intel Wifi/BT Card**. If you have a the stock configuration with an Intel WiFi/Bluetooth card, it may work with the [**OpenIntelWireless**](https://github.com/OpenIntelWireless) kexts. 
+		- Check the compatibility list to find out if your card is supported. 
+		- Remove the BluetoolFixup and Brcm Kexts, add the required Kexts for your Intel card to `EFI/OC/Kexts` folder and `config.plist` before attempting to boot from this EFI!
+	- **Case 2: 3rd Party WiFi/BT Cards**. These require the `1vyrain` Jailbreak to unlock the BIOS to disable the WiFi Whitelist (not required if the 3rd party card is whitelisted).
+		- I use a 3rd Party WiFi/BT Card by Broadcom so my setup requires `AirportBrcmFixup` for WiFi and `BrcmPatchRAM` and additional satellite kexts for Bluetooth. Read the comments in the config for details.
+		- `BrcmFirmwareData.kext` is used to inject firmwares of Broadcom devices. Alternatively, you could use `BrcmFirmwareRepo.kext` which is more efficient but it needs to be installed into `System/Library/Extensions` directly since it cannot be injected by Bootloaders.
+		- If you use a WiFi/BT Card from a different vendor than Intel or Broadcom, remove BluetoolFixup and the the "Brcm…" Kexts and add the required Kext(s) for your card to the kext folder and `config.plist` before deploying the EFI folder.
+
+6. **Alternative/Optional Kexts**:
 	- [**itlwm**](https://github.com/OpenIntelWireless/itlwm): Kext for Intel WiFi Cards. Use instead of `AirportBrcmFixup`if you don't use a Broadcom WiFi Card
 	- [**IntelBluetoothFirmware**](https://github.com/OpenIntelWireless/IntelBluetoothFirmware): Kext for Intel Bluetooth Cards. Use instead of `BrcmPatchRam` and Plugins if you don't use a Broadcom BT Card
 	- [**NoTouchID**](https://github.com/al3xtjames/NoTouchID): only required for macOS 10.13 and 10.14 so the boot process won't stall while looking for a Touch ID sensor.
@@ -195,8 +198,8 @@ Open the `config.plist` and do the following:
   - Set boot-arg `applbkl=1` for reasonable maximum brightness level controlled by `WhateverGreen`. 
   - Set boot-arg `applbkl=0` for increased maximum brightness as defined in `SSDT-PNLF.aml`
 
-#### Used boot arguments
-- `brcmfx-country=#a`: Wifi Country Code (`#a` = generic). For details check the documentaion for [AirportBrcmFixup](https://github.com/acidanthera/AirportBrcmFixup).
+#### About used boot arguments
+- `brcmfx-country=#a`: Wifi Country Code (`#a` = generic). For details check the documentation for [AirportBrcmFixup](https://github.com/acidanthera/AirportBrcmFixup).
 - `gfxrst=1`: Draws Apple logo at 2nd boot stage instead of framebuffer copying &rarr; Smoothens transition from the progress bar to the Login Screen/Desktop when an external monitor is attached.
 - `#revpatch=diskread,memtab`: For `RestrictEvents.kext`. `diskread` disables "Uninitialized Disk" warning in macOS 10.14 and older. `memtab` adds `Memory` tab to "About this Mac" section. Enable `RestrictEvents.kext` and remove the `#` from the boot-arg to enable it.
 
