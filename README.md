@@ -2,8 +2,7 @@
 
 [![T530](https://img.shields.io/badge/ThinkPad-T530-informational.svg)](https://psref.lenovo.com/syspool/Sys/PDF/withdrawnbook/ThinkPad_T530.pdf) [![OpenCore](https://img.shields.io/badge/OpenCore-0.8.6-cyan.svg)](https://github.com/acidanthera/OpenCorePkg/releases/latest) [![Clover Version](https://img.shields.io/badge/Clover-r5150-lime.svg)](https://github.com/CloverHackyColor/CloverBootloader/releases) [![MacOS Catalina](https://img.shields.io/badge/macOS-10.15.7-white.svg)](https://www.apple.com/li/macos/catalina/) [![MacOS Big Sur](https://img.shields.io/badge/macOS-11.7-white.svg)](https://www.apple.com/macos/big-sur/) [![MacOS Monterey](https://img.shields.io/badge/macOS-12.6.1-white.svg)](https://www.apple.com/macos/monterey/) [![release](https://img.shields.io/badge/Download-latest-success.svg)](https://github.com/5T33Z0/Lenovo-T530-Hackinosh-OpenCore/releases/latest) ![](https://raw.githubusercontent.com/5T33Z0/Lenovo-T530-Hackinosh-OpenCore/main/Pics/BootPicker_alt2.png)
 
-<details>
-<summary><strong>TABLE of CONTENTS</strong> (click to reveal)</summary>
+**TABLE of CONTENTS**
 
 - [ABOUT](#about)
   - [Extra: Docking Station Audio Working](#extra-docking-station-audio-working)
@@ -26,7 +25,6 @@
   - [Workaround for Apple Music crashing in macOS Catalina](#workaround-for-apple-music-crashing-in-macos-catalina)
 - [CPU BENCHMARK](#cpu-benchmark)
 - [CREDITS and THANK YOUs](#credits-and-thank-yous)
-</details>
 
 ## ABOUT
 
@@ -53,7 +51,7 @@ The config contained in this repo is DSDT-less. This means, it doesn't use a pat
 
 ### EFI Folder Content (OpenCore)
 
-details
+<details>
 <summary><strong>Click to reveal</strong></summary>
 
 ```
