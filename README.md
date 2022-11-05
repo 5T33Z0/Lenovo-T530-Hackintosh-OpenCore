@@ -53,7 +53,7 @@ The config contained in this repo is DSDT-less. This means, it doesn't use a pat
 
 ### EFI Folder Content (OpenCore)
 
-<details>
+details
 <summary><strong>Click to reveal</strong></summary>
 
 ```
@@ -73,13 +73,15 @@ EFI
     │   ├── SSDT-PRW0.aml
     │   ├── SSDT-PTSWAKTTS.aml
     │   ├── SSDT-PWRB.aml
-    │   └── SSDT-SBUS-MCHC.aml
+    │   ├── SSDT-SBUS-MCHC.amlSSDT-TEMPToFans.aml
+    │   └── SSDT-TEMPToFans.aml
     ├── Drivers
-    │   ├── AudioDXE.efi
+    │   ├── AudioDXE.efi (disabled)
     │   ├── HfsPlus.efi
     │   ├── OpenCanopy.efi
     │   ├── OpenRuntime.efi
-    │   └── ResetNvramEntry.efi
+    │   ├── ResetNvramEntry.efi
+    │   └── ToggleSipEntry.efi
     ├── Kexts
     │   ├── AirportBrcmFixup.kext
     │   ├── AppleALC.kext
@@ -101,18 +103,16 @@ EFI
     ├── OpenCore.efi
     ├── Resources (NOTE: shows sub-folders only, no files)
     │   ├── Font
-    │   ├── Image
-    │   │   └── Acidanthera
-    │   │   │   ├── Chardonnay
-    │   │   │   ├── GoldenGate
-    │   │   │   └── Syrah
-    │   │   └── Blackosx
-    │   │   │   └── BsxM1
-    │   │   └── velickovicdj
-    │   │   │   └── EnterTwilight
-    │   │   └── Label
-    ├── Tools
-    │   └── CleanNvram.efi
+    │   └── Image
+    │       └── Acidanthera
+    │       │   ├── Chardonnay
+    │       │   ├── GoldenGate
+    │       │   └── Syrah
+    │       └── Blackosx
+    │       │   └── BsxM1
+    │       └── velickovicdj
+    │       │   └── EnterTwilight
+    │       └── Label
     └── config.plist
 ```
 </details>
