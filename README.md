@@ -128,7 +128,9 @@ EFI
 | Display             | 15.6" HD+ TFT Display (1600x900 px)           |
 | Audio               | Realtek ALC269VC Rev.3 (Layout-id:`39`)       |
 | Ethernet            | Intel 82579LM Gigabit Network Connection      |
-| WIFI+BT             | Broadcom BCM94352HMB DW1550, 802.11 a/b/g/n/ac|
+| WiFi and Bluetooth  | Broadcom BCM94352HMB DW1550, 802.11 a/b/g/n/ac|
+| Multicard Reader    | Ricoh 4-in-1 reader (MMC, SD, SDHC, SDXC)     |
+| ExpressCard/34 slot | disabled                                      |
 | Docking Station     | Lenovo ThinkPad 4338 Mini Dock plus Series 3  |
 
 [**ThinkPad T530 User Guide (PDF)**](https://download.lenovo.com/ibmdl/pub/pc/pccbbs/mobiles_pdf/t530_t530i_w530_ug_en.pdf)
