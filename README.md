@@ -5,7 +5,7 @@
 **TABLE of CONTENTS**
 
 - [ABOUT](#about)
-  - [Extra: Docking Station Audio Working](#extra-docking-station-audio-working)
+  - [Audio Working on Docking Stations](#audio-working-on-docking-stations)
   - [DSDT-less config](#dsdt-less-config)
   - [EFI Folder Content (OpenCore)](#efi-folder-content-opencore)
 - [HARDWARE SPECS](#hardware-specs)
@@ -32,7 +32,7 @@ OpenCore and Clover EFI Folders for running macOS 10.13 to 12.5+ on a Lenovo Thi
 
 The OpenCore EFI also includes the latest Booter and Kernel patches which make use of macOSes virtualization capabilities (VMM) to spoof a special Board-ID which allows installing and running macOS Big Sur and Monterey with SMBIOS `MacBookPro10,1`for Ivy Bridge CPUs. With this, you can enjoy the benefits of optimal CPU Power Management *and* System Updates which wouldn't be possible when using the well-known`-no_compat_chack` boot arg. If you want to know how these patches work, [read this](https://github.com/5T33Z0/OC-Little-Translated/tree/main/09_Board-ID_VMM-Spoof).
 
-### Extra: Docking Station Audio Working 
+### Audio Working on Docking Stations 
 I created my own AppleALC Layout-ID which supports the Lenovo Mini Dock 3 Type 4337 and 4338 Docking Stations. It uses Layout-ID 39 and has been integrated into AppleALC since [version 1.7.3](https://github.com/acidanthera/AppleALC/releases/tag/1.7.3)
 
 |:warning: Issues related to macOS 12|
@@ -297,14 +297,33 @@ CPU Power Management should work fine after that. Optionally, you can install [I
 ### Fixing Sleep issues
 If you have issues with sleep, run the following commands in Terminal:
 
-	sudo pmset hibernatemode 0
-	sudo rm /var/vm/sleepimage
-	sudo touch /var/vm/sleepimage
-	sudo chflags uchg /var/vm/sleepimage
+```
+sudo pmset hibernatemode 0
+sudo rm /var/vm/sleepimage
+sudo touch /var/vm/sleepimage
+sudo chflags uchg /var/vm/sleepimage
+```
+
+**Other Settings**:
+
+If the system still wakes from sleep on its own, check the wake reason. Enter:
+
+```
+pmset -g log | grep -e "Sleep.*due to" -e "Wake.*due to"
+```
+
+If the wake reason is related to `RTC (Alarm)`, do the following:
+
+- Enter System Setings
+- Open Energy Settings
+- Disable Wake on LAN
+- Disable Power Nap
+- In Bluetoth Settings, Advanced Option…
+- Disable the 3rd entry about Allowing Bluetooth device to exit sleep
 
 **NOTES**
-- In my tests,fixing the sleepimage actually prohibited the machine from entering sleep. You can use Kext Updater to undo the changes. It might work with Hackintool as well but I am not sure.
-- To exit from Sleep you can press a Mous button. But to wake from Hibernation, you have to press the `Fn` key or the Power Button.
+- In my tests, fixing the sleepimage actually prohibited the machine from entering sleep on its own. You can use Hackintool to revert the settings.
+- To exit from Sleep you can press a Mouse button. But to wake from Hibernation, you have to press the `Fn` key or the `Power Button`.
 
 ### Swapping Command ⌘ and Option ⌥ Keys
 Prior to version 0.7.4 of my OpenCore EFI Folder, the **[Command]** and **[Option]** keys were set to "swapped" in the `info.plist` of `VoodooPS2Keyboard.kext` by default. So in macOS, the **[WINDOWS]** key was bound to the **[Option]** function and the **[ALT]** Key was bound to the **[Command]** function which felt weird. Therefore, users had to swap these Keys back around in the System Settings so everything worked as expected.
