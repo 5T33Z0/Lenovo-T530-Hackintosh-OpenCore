@@ -1,13 +1,13 @@
 ## Enabling Battery Status Indicator on the Lenovo T530
 
-Although the Battery Status Indicator is already working in both my Clover and OpenCore EFIs, this is for documenting how to enable it otherwise – just in case you want to use a different method for enabling it.
+Although the Battery Status Indicator is already working in both my Clover and OpenCore EFIs, this is for documenting how to enable it via ACPI.
 
 To enable the battery status indictaor in macOS, two methods exist (use either or):
 
-- **Method 1**: Using `ECEnabler.kext` (new method)
-- **Method 2**: Using a combinatiion of Binary Renames and `SSDT-BATTERY.aml` (old method)
+- **Method 1**: Using `ECEnabler.kext` (new, and currently used method)
+- **Method 2**: Using a combination of Binary Renames and `SSDT-BATTERY.aml` (old method)
 
-Since the current set-up of my EFI uses `ECENabler.kext` there's not much to cover here since the kext takes care of everything. Therefore this section focuses on the old method as a fallback – just in case the Kext stops working in the furture.
+Since the current set-up of my EFI uses `ECENabler.kext`, there's not much to cover here since the kext takes care of everything. Therefore this section focuses on the old method as a fallback – just in case the Kext may stop working in the furture.
 
 ### Method 1: Using `ECEnabler.kext` 
 
