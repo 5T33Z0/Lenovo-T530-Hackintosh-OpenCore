@@ -1,5 +1,5 @@
 # Alternate IRQ Fix
-If you don't wnat to use SSDTTime to generate `SSDT-HPET`.
+If you don't want to use SSDTTime to generate `SSDT-HPET`, you can use this instead.
 
 ## Preparations
 If present, disable/delete the following:
@@ -11,7 +11,6 @@ If present, disable/delete the following:
 	- TIMR IRQ 0 Patch 
 
 ## Instructions
-
 - Add SSDTs:
 	- `SSDT-HPET_RTC_TIMR-Fix.aml` 
 	- `SSDT-IPIC.aml`
