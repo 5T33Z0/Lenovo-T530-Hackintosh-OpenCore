@@ -325,6 +325,13 @@ If the wake reason is related to `RTC (Alarm)`, do the following:
 - In my tests, fixing the sleepimage actually prohibited the machine from entering sleep on its own. You can use Hackintool to revert the settings.
 - To exit from Sleep you can press a Mouse button. But to wake from Hibernation, you have to press the `Fn` key or the `Power Button`.
 
+### Reducing boot time
+- In `UEFI/Drivers`, disable `ConnectDrivers`. This reduces the timeout between the LENOVO logo and the BootPicker by 5 to 8 seconds.
+
+:warning: **CAUTION**: 
+- With `ConnectDrivers` disabled, the boot chime cannot be played back since the `AudioDXE.efi` is not loaded. 
+- Before installing macOS from USB flash drive, `ConnectDrivers` needs to be re-enabled, otherwise you won't see the flash drive in the bootpicker.
+
 ### Swapping Command ⌘ and Option ⌥ Keys
 Prior to version 0.7.4 of my OpenCore EFI Folder, the **[Command]** and **[Option]** keys were set to "swapped" in the `info.plist` of `VoodooPS2Keyboard.kext` by default. So in macOS, the **[WINDOWS]** key was bound to the **[Option]** function and the **[ALT]** Key was bound to the **[Command]** function which felt weird. Therefore, users had to swap these Keys back around in the System Settings so everything worked as expected.
 
