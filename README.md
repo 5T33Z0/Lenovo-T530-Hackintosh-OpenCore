@@ -27,12 +27,11 @@
 - [CREDITS and THANK YOUs](#credits-and-thank-yous)
 
 ## ABOUT
-
 OpenCore and Clover EFI Folders for running macOS 10.13 to 12.5+ on a Lenovo ThinkPad T530. They utilize the new `ECEnabler.kext` which enables battery status read-outs without the need for additional Battery Patches. 
 
 The OpenCore EFI also includes the latest Booter and Kernel patches which make use of macOSes virtualization capabilities (VMM) to spoof a special Board-ID which allows installing and running macOS Big Sur and Monterey with SMBIOS `MacBookPro10,1`for Ivy Bridge CPUs. With this, you can enjoy the benefits of optimal CPU Power Management *and* System Updates which wouldn't be possible when using the well-known`-no_compat_chack` boot arg. If you want to know how these patches work, [read this](https://github.com/5T33Z0/OC-Little-Translated/tree/main/09_Board-ID_VMM-Spoof).
 
-Any requests about macOS Ventura will be closed without response! Why? Because although it's possible to install macOS Ventura (with a lot of effort), Intel HD 4000 drivers can't ever be installed which makes the system useless!
+Any requests about macOS Ventura will be ignored! Why? Because installing Ventura on Ivy Bridge is a hassle on it's own, performance is bad and HD 4000 drivers [don't work properly](https://github.com/dortania/OpenCore-Legacy-Patcher/issues/1008).
 
 ### Audio Working on Docking Stations 
 I created my own AppleALC Layout-ID which supports the Lenovo Mini Dock 3 Type 4337 and 4338 Docking Stations. It uses Layout-ID 39 and has been integrated into AppleALC since [version 1.7.3](https://github.com/acidanthera/AppleALC/releases/tag/1.7.3)
