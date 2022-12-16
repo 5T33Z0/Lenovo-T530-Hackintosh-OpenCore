@@ -358,7 +358,7 @@ macOS locks the optical drive sometimes so that you can't open it with the physi
 </details>
 
 ### Workaround for Apple Music crashing in macOS Catalina
-I've noticed that Apple Music crashes on boot when running the latest version of macOS Catalina (10.15.7) – it's working fine in Big Sur and newer, though. I am sure this is not a config issue, because: a) all other apps work as expected, b) since I know Apple Music was working on earlier builds of Catalina and c) I've seen unresolved issue reports on Apple Support Forums. 
+I've noticed that Apple Music crashes when running the latest version of macOS Catalina (10.15.7) – it's working fine in Big Sur and newer, though. I am sure this is not a config issue, because: a) all other apps work as expected, b) since I know Apple Music was working on earlier builds of Catalina and c) I've seen unresolved issue reports on Apple Support Forums. 
 
 As a workaround, you can use [Retroactive](https://github.com/cormiertyshawn895/Retroactive) to install and run older versions of iTunes (11.4 worked for me).
 
