@@ -164,7 +164,7 @@ Open the `config.plist` and adjust the following settings depending on your syst
 2. **Digital Audio**: If you need digital Audio over HDMI/DP, disable/delete `No-hda-gfx` from the Audio Device `PciRoot(0x0)/Pci(0x1B,0x0)`.
 
 3. Under `NVRAM/Add/7C436110-AB2A-4BBB-A880-FE41995C9F82`, adjust `csr-active-config` according to the macOS version you want to use:
-	- For macOS Big Sur to Monterey: `67080000`(0x867)
+	- For macOS Big Sur to Ventura: `67080000`(0x867)
 	- For running Intel HD Patcher in Monterey: `FE0F0000` (0xFEF)
 	- For macOS Mojave/Catalina: `EF070000`(0x7EF)
 	- For macOSHigh Sierra: `FF030000` (0x3FF)
