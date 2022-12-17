@@ -36,9 +36,9 @@ Any requests about macOS Ventura will be ignored! Why? Because installing Ventur
 ### Audio Working on Docking Stations 
 I created my own AppleALC Layout-ID which supports the Lenovo Mini Dock 3 Type 4337 and 4338 Docking Stations. It uses Layout-ID 39 and has been integrated into AppleALC since [version 1.7.3](https://github.com/acidanthera/AppleALC/releases/tag/1.7.3)
 
-|:warning: Issues related to macOS 12|
-|:-----------------------------------|
-|**macOS Monterey**: requires [**Intel HD4000 Patcher**](https://github.com/chris1111/Patch-HD4000-Monterey) or [**OCLP**](https://github.com/dortania/Opencore-Legacy-Patcher) to enable graphics acceleration
+|:warning: Issues related to macOS 12+|
+|:------------------------------------|
+|**macOS Monterey and newer**: requires [**OCLP**](https://github.com/dortania/Opencore-Legacy-Patcher) to enable graphics acceleration
 
 ### DSDT-less config
 
