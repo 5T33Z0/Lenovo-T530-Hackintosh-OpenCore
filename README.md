@@ -31,8 +31,6 @@ OpenCore and Clover EFI Folders for running macOS 10.13 to 13.1+ on a Lenovo Thi
 
 The OpenCore EFI also includes the latest Booter and Kernel patches which make use of macOSes virtualization capabilities (VMM) to spoof a special Board-ID which allows installing and running macOS Big Sur and Monterey with SMBIOS `MacBookPro10,1`for Ivy Bridge CPUs. With this, you can enjoy the benefits of optimal CPU Power Management *and* System Updates which wouldn't be possible when using the well-known`-no_compat_chack` boot arg. If you want to know how these patches work, [read this](https://github.com/5T33Z0/OC-Little-Translated/tree/main/09_Board-ID_VMM-Spoof).
 
-Any requests about macOS Ventura will be ignored! Why? Because installing Ventura on Ivy Bridge is a hassle on it's own, performance is bad and HD 4000 drivers [don't work properly](https://github.com/dortania/OpenCore-Legacy-Patcher/issues/1008).
-
 ### Audio Working on Docking Stations 
 I created my own AppleALC Layout-ID which supports the Lenovo Mini Dock 3 Type 4337 and 4338 Docking Stations. It uses Layout-ID 39 and has been integrated into AppleALC since [version 1.7.3](https://github.com/acidanthera/AppleALC/releases/tag/1.7.3)
 
@@ -90,6 +88,7 @@ EFI
     │   ├── BrcmPatchRAM2.kext
     │   ├── BrcmPatchRAM3.kext
     │   ├── BrightnessKeys.kext
+    │   ├── CryptexFixup.kext
     │   ├── ECEnabler.kext
     │   ├── IntelMausi.kext
     │   ├── Lilu.kext
@@ -200,6 +199,7 @@ Open the `config.plist` and adjust the following settings depending on your syst
   - Set boot-arg `applbkl=0` for increased maximum brightness as defined in `SSDT-PNLF.aml`
 
 #### About used boot arguments
+- `amfi_get_out_of_my_way=1`: Required to be able to install Intel HD 4000 drivers in macOS Ventura
 - `brcmfx-country=#a`: Wifi Country Code (`#a` = generic). For details check the documentation for [AirportBrcmFixup](https://github.com/acidanthera/AirportBrcmFixup).
 - `gfxrst=1`: Draws Apple logo at 2nd boot stage instead of framebuffer copying &rarr; Smoothens transition from the progress bar to the Login Screen/Desktop when an external monitor is attached.
 - `#revpatch=diskread,memtab`: For `RestrictEvents.kext`. `diskread` disables "Uninitialized Disk" warning in macOS 10.14 and older. `memtab` adds `Memory` tab to "About this Mac" section. Enable `RestrictEvents.kext` and remove the `#` from the boot-arg to enable it.
