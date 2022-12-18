@@ -7,9 +7,9 @@
 - [ABOUT](#about)
   - [Audio Working on Docking Stations](#audio-working-on-docking-stations)
   - [DSDT-less config](#dsdt-less-config)
-  - [EFI Folder Content (OpenCore)](#efi-folder-content-opencore)
 - [HARDWARE SPECS](#hardware-specs)
   - [macOS-incompatible Components](#macos-incompatible-components)
+- [EFI Folder Content (OpenCore)](#efi-folder-content-opencore)
 - [INSTALLATION](#installation)
   - [Preparing the config.plist](#preparing-the-configplist)
     - [About used boot arguments](#about-used-boot-arguments)
@@ -19,6 +19,7 @@
 - [POST-INSTALL](#post-install)
   - [Fixing CPU Power Management](#fixing-cpu-power-management)
   - [Fixing Sleep issues](#fixing-sleep-issues)
+  - [Reducing boot time](#reducing-boot-time)
   - [Swapping Command ⌘ and Option ⌥ Keys](#swapping-command--and-option--keys)
   - [Changing Themes](#changing-themes)
   - [Eject Button](#eject-button)
@@ -48,7 +49,32 @@ The config contained in this repo is DSDT-less. This means, it doesn't use a pat
 
 **NOTE**: Read and follow the install instruction carefully and thoroughly before you deploy the EFI folder if you want your system to boot successfully!
 
-### EFI Folder Content (OpenCore)
+## HARDWARE SPECS
+| Component           | Details                                       |
+| ------------------: | :-------------------------------------------- |
+| Model               | Lenovo ThinkPad T530, Model# 2429-62G         |
+| Chipset             | [Intel QM77 Express](https://www.intel.com/content/dam/www/public/us/en/documents/datasheets/7-series-chipset-pch-datasheet.pdf)
+| BIOS Version        | 2.77, unlocked with 1vyRain                   |
+| Processor           | Intel Core i7 3630QM                          |
+| Memory              | 16GB Samsung DDR3 1600MHz, Dual-Channel       |
+| Hard Disk           | Samsung 840 Evo 250GB                         |
+| Integrated Graphics | Intel HD Graphics 4000                        |
+| Display             | 15.6" HD+ TFT Display (1600x900 px)           |
+| Audio               | Realtek ALC269VC Rev.3 (Layout-id:`39`)       |
+| Ethernet            | Intel 82579LM Gigabit Network Connection      |
+| WiFi and Bluetooth  | Broadcom BCM94352HMB DW1550, 802.11 a/b/g/n/ac|
+| Multicard Reader    | Ricoh 4-in-1 reader (MMC, SD, SDHC, SDXC)     |
+| ExpressCard/34 slot | disabled                                      |
+| Docking Station     | Lenovo ThinkPad 4338 Mini Dock plus Series 3  |
+
+[**ThinkPad T530 User Guide (PDF)**](https://download.lenovo.com/ibmdl/pub/pc/pccbbs/mobiles_pdf/t530_t530i_w530_ug_en.pdf)
+
+### macOS-incompatible Components
+- [ ] NVIDIA Optimus GPU must be disabled in BIOS - otherwise no boot!
+- [ ] Fingerprint Reader
+- [ ] VGA Port – not supported since macOS Mountain Lion: [Intel HD Graphics VGA Support](https://github.com/acidanthera/WhateverGreen/blob/master/Manual/FAQ.IntelHD.en.md#vga-support)
+
+## EFI Folder Content (OpenCore)
 
 <details>
 <summary><strong>Click to reveal</strong></summary>
@@ -70,7 +96,7 @@ EFI
     │   ├── SSDT-PRW0.aml
     │   ├── SSDT-PTSWAKTTS.aml
     │   ├── SSDT-PWRB.aml
-    │   ├── SSDT-SBUS-MCHC.amlSSDT-TEMPToFans.aml
+    │   ├── SSDT-SBUS-MCHC.aml
     │   └── SSDT-TEMPToFans.aml
     ├── Drivers
     │   ├── AudioDXE.efi (disabled)
@@ -115,48 +141,23 @@ EFI
 ```
 </details>
 
-## HARDWARE SPECS
-| Component           | Details                                       |
-| ------------------: | :-------------------------------------------- |
-| Model               | Lenovo ThinkPad T530, Model# 2429-62G         |
-| Chipset             | [Intel QM77 Express](https://www.intel.com/content/dam/www/public/us/en/documents/datasheets/7-series-chipset-pch-datasheet.pdf)
-| BIOS Version        | 2.77, unlocked with 1vyRain                   |
-| Processor           | Intel Core i7 3630QM                          |
-| Memory              | 16GB Samsung DDR3 1600MHz, Dual-Channel       |
-| Hard Disk           | Samsung 840 Evo 250GB                         |
-| Integrated Graphics | Intel HD Graphics 4000                        |
-| Display             | 15.6" HD+ TFT Display (1600x900 px)           |
-| Audio               | Realtek ALC269VC Rev.3 (Layout-id:`39`)       |
-| Ethernet            | Intel 82579LM Gigabit Network Connection      |
-| WiFi and Bluetooth  | Broadcom BCM94352HMB DW1550, 802.11 a/b/g/n/ac|
-| Multicard Reader    | Ricoh 4-in-1 reader (MMC, SD, SDHC, SDXC)     |
-| ExpressCard/34 slot | disabled                                      |
-| Docking Station     | Lenovo ThinkPad 4338 Mini Dock plus Series 3  |
-
-[**ThinkPad T530 User Guide (PDF)**](https://download.lenovo.com/ibmdl/pub/pc/pccbbs/mobiles_pdf/t530_t530i_w530_ug_en.pdf)
-
-### macOS-incompatible Components
-- [ ] NVIDIA Optimus GPU must be disabled in BIOS - otherwise no boot!
-- [ ] Fingerprint Reader
-- [ ] VGA Port – not supported since macOS Mountain Lion: [Intel HD Graphics VGA Support](https://github.com/acidanthera/WhateverGreen/blob/master/Manual/FAQ.IntelHD.en.md#vga-support)
-</details>
-
 ## INSTALLATION
+
 ### Preparing the config.plist
-Please read the explanations in the following sections carefully and follow the given instructions. In order to boot macOS with this EFI successfully, adjustments to the `config.plist` may be necessary to adapt the config to the used T530 model and macOS version you want to install/run. 
+Please read the explanations in the following sections carefully and follow the given instructions. In order to boot macOS with this EFI successfully, adjustments to the `config.plist` and used kexts may be necessary to adapt the config to your  T530 model and the macOS version you want to install/run. 
 
 Open the `config.plist` and adjust the following settings depending on your system:
 
-1. In `DeviceProperties`, select the correct Framebuffer-Patch for your T530 model. Two display panels exist: `HD+` (WSXGA and FullHD) and `HD` panels. Both are using different identifiers:</br>
+1. Set your display panel. In `DeviceProperties`, select the correct Framebuffer-Patch for your T530 model. Two types of display panels exist for this model: `HD+` (WSXGA and FullHD) and `HD` panels. Both are using different identifiers:</br>
 	
 	`AAPL,ig-platform-id 04006601` = `HD+` = FullHD. Resolution: ≥ 1600x900 px. (**Default**)</br>
 	`AAPL,ig-platform-id 03006601` = `HD` = SD. Resolution: ≤ 1366x768 px</br>
 	
-	If your T530 Model uses an SD Panel, do the following;
+	If your T530 Model uses an `SD` Panel, do the following;
 	 
 	- Go to `DeviceProperties` 
 	- Disable the `PciRoot(0x0)/Pci(0x2,0x0)` by placing `#` in front of it.
-	- Next, enable `#PciRoot(0x0)/Pci(0x2,0x0) 1366x768 px` by deleting the leading `#` and the description ` 1366x768 px`, so that it looks this: `PciRoot(0x0)/Pci(0x2,0x0)`.
+	- Enable `#PciRoot(0x0)/Pci(0x2,0x0) 1366x768 px` by deleting the leading `#` and the description ` 1366x768 px`, so that it looks this: `PciRoot(0x0)/Pci(0x2,0x0)`.
 	
 	:bulb: **HINT**: If your screen turns off during boot, you are using the wrong Framebuffer-Patch!
 	
@@ -168,7 +169,7 @@ Open the `config.plist` and adjust the following settings depending on your syst
 	- For macOS Mojave/Catalina: `EF070000`(0x7EF)
 	- For macOSHigh Sierra: `FF030000` (0x3FF)
 	
-	**NOTE**: Disabling SIP is mandatory if you want to run macOS Monterey in order to install and use patched-in Intel HD 4000 Drivers!
+	**NOTE**: Disabling SIP is mandatory if you want to run macOS Monterey or newer in order to install and use patched-in Intel HD 4000 Drivers!
 
 4. Under `SystemProductName`, select the correct SMBIOS for your CPU: 
 	-  For Intel i7: `MacBookPro10,1`
@@ -181,11 +182,13 @@ Open the `config.plist` and adjust the following settings depending on your syst
 5. **WiFi and Bluetooth** (Read carefully!)
 	- **Case 1: Intel Wifi/BT Card**. If you have a the stock configuration with an Intel WiFi/Bluetooth card, it may work with the [**OpenIntelWireless**](https://github.com/OpenIntelWireless) kexts. 
 		- Check the compatibility list to find out if your card is supported. 
-		- Remove the BluetoolFixup and Brcm Kexts, add the required Kexts for your Intel card to `EFI/OC/Kexts` folder and `config.plist` before attempting to boot from this EFI!
+		- Remove `BluetoolFixup` and `Brcm` Kexts
+		- Add the required Kexts for your Intel card to `EFI/OC/Kexts` folder and `config.plist` before attempting to boot with this EFI!
 	- **Case 2: 3rd Party WiFi/BT Cards**. These require the `1vyrain` Jailbreak to unlock the BIOS to disable the WiFi Whitelist (not required if the 3rd party card is whitelisted).
-		- I use a 3rd Party WiFi/BT Card by Broadcom so my setup requires `AirportBrcmFixup` for WiFi and `BrcmPatchRAM` and additional satellite kexts for Bluetooth. Read the comments in the config for details.
-		- `BrcmFirmwareData.kext` is used to inject firmwares of Broadcom devices. Alternatively, you could use `BrcmFirmwareRepo.kext` which is more efficient but it needs to be installed into `System/Library/Extensions` directly since it cannot be injected by Bootloaders.
-		- If you use a WiFi/BT Card from a different vendor than Intel or Broadcom, remove BluetoolFixup and the the "Brcm…" Kexts and add the required Kext(s) for your card to the kext folder and `config.plist` before deploying the EFI folder.
+		- I use a WiFi/BT Card by Broadcom, so my setup requires `AirportBrcmFixup` for WiFi and `BrcmPatchRAM` and additional satellite kexts for Bluetooth. Read the comments in the config for details.
+		- `BrcmFirmwareData.kext` is used to inject firmwares of Broadcom devices. Alternatively, you can use `BrcmFirmwareRepo.kext` which is more efficient but needs to be installed into `System/Library/Extensions` since it cannot be injected by Bootloaders.
+		- If you use a WiFi/BT Card from a different vendor than Intel or Broadcom, remove BluetoolFixup and the the Brcm Kexts 
+		- Add the Kext(s) required for your card to the kext folder and `config.plist` before deploying the EFI folder!
 
 6. **Alternative/Optional Kexts**:
 	- [**itlwm**](https://github.com/OpenIntelWireless/itlwm): Kext for Intel WiFi Cards. Use instead of `AirportBrcmFixup`if you don't use a Broadcom WiFi Card
@@ -199,10 +202,10 @@ Open the `config.plist` and adjust the following settings depending on your syst
   - Set boot-arg `applbkl=0` for increased maximum brightness as defined in `SSDT-PNLF.aml`
 
 #### About used boot arguments
-- `amfi_get_out_of_my_way=1`: Required to be able to install Intel HD 4000 drivers in macOS Ventura
+- `amfi_get_out_of_my_way=1`: Required to be able to install Intel HD 4000 drivers in macOS Ventura using OCLP.
 - `brcmfx-country=#a`: Wifi Country Code (`#a` = generic). For details check the documentation for [AirportBrcmFixup](https://github.com/acidanthera/AirportBrcmFixup).
 - `gfxrst=1`: Draws Apple logo at 2nd boot stage instead of framebuffer copying &rarr; Smoothens transition from the progress bar to the Login Screen/Desktop when an external monitor is attached.
-- `#revpatch=diskread,memtab`: For `RestrictEvents.kext`. `diskread` disables "Uninitialized Disk" warning in macOS 10.14 and older. `memtab` adds `Memory` tab to "About this Mac" section. Enable `RestrictEvents.kext` and remove the `#` from the boot-arg to enable it.
+- `#revpatch=diskread,memtab`: For `RestrictEvents.kext` (disabled). `diskread` disables "Uninitialized Disk" warning in macOS 10.14 and older. `memtab` adds `Memory` tab to "About this Mac" section. Enable `RestrictEvents.kext` and remove the `#` from the boot-arg to enable it.
 
 ### EFI How To
 - Download the EFI Folder from the [Releases](https://github.com/5T33Z0/Lenovo-T530-Hackintosh-OpenCore/releases) section on the right and unpack it
@@ -237,7 +240,7 @@ Open the `config.plist` and adjust the following settings depending on your syst
 * UEFI BIOS Update Options > Flash BIOS Updating by End-Users: `Enabled`
 * UEFI BIOS Update Options > Secure Rollback Prevention: `Enabled`
 * Memory Protection: `Enabled`
-* Virtualization > Intel (R) Virtualization Technology: `Enabled` (Relevant for Windows only, disabled in macOS via `DisableIOMapper` Quirk)
+* Virtualization > Intel (R) Virtualization Technology: `Enabled` (Relevant for Windows only, can be disabled in macOS via the `DisableIOMapper` Quirk)
 * I/O Port Access (`Disable` the following devices/features):
 	* Wireless WAN
 	* ExpressCard Slot
@@ -252,7 +255,7 @@ Open the `config.plist` and adjust the following settings depending on your syst
 * UEFI/Legacy Boot: `UEFI only`
 * CSM Support: `Disabled`
 * Boot Mode: `Quick`
-* Boot Order Lock: `Enabled` Enable this *after* you've set-up the order of the Boot Drives. This prohibits `WindowsBootManager` from taking over the first slot of the boot drives.
+* Boot Order Lock: `Enabled` Enable this *after* you've set-up the order of the Boot Drives. This prevents `WindowsBootManager` from taking over the first slot of the boot drives. This way, you don't need to enable the `LauncherOption` in OpenCore!
 </details>
 
 ### Installing macOS
@@ -260,13 +263,13 @@ Open the `config.plist` and adjust the following settings depending on your syst
 
 **Coming from macOS**: If you already have access to macOS, you can either download macOS from the App Store or use [**ANYmacOS**](https://www.sl-soft.de/en/anymacos/) instead. It's a hassle-free app than can download any macOS from High Sierra up to Monterey and can create an USB Installer as well.
 
-**macOS Monterey**: For installing macOS Monterey, follow the `Monterey Instructions-md` included in the EFI Downloads you find the [**Releases**](https://github.com/5T33Z0/Lenovo-T530-Hackinosh-OpenCore/releases) Section.
+**macOS Monterey+**: For installing macOS Monterey or newer, follow the Install Instructions included in the EFI Download located in the [**Releases**](https://github.com/5T33Z0/Lenovo-T530-Hackinosh-OpenCore/releases) section.
 </details>
 
 ## POST-INSTALL
 Once your system is up and running you may want to change the following settings to make your system more secure:
 
-- Enable System Integrity Protection (SIP): change `csr-active-config` to `00000000`
+- Enable System Integrity Protection (SIP): change `csr-active-config` to `00000000` (SIP needs to stay disabled in macOS 12+)
 - Under `UEFI/APFS`, change `MinDate` and `MinVersion` from `-1` (disabled) to the correct values for the macOS version you are using. A list with the correct values for can be found [here](https://github.com/5T33Z0/OC-Little-Translated/tree/main/A_Config_Tips_and_Tricks#mindateminversion-settings-for-the-apfs-driver).
 
 **IMPORTANT**: 
@@ -275,19 +278,22 @@ Once your system is up and running you may want to change the following settings
 - **MinDate/MinVersion**: you should keep a working backup of your EFI folder on a FAT32 formatted USB flash drive before changing these settings, because if they are wrong, the APFS driver won't load and you won't see your macOS drive(s)!
 
 ### Fixing CPU Power Management 
-1. Open config.plist
-2. Disable `SSDT-PM.aml` under ACPI/Add
-3. Enable the 2 Patches under ACPI/Delete (`Drop CpuPm` and `Drop Cpu0Ist`)
+1. Open your `config.plist`
+2. In `ACPI/Add`, disabled `SSDT-PM`
+3. In `ACPI/Delete`, enable the 2 patches `Drop CpuPm` and `Drop Cpu0Ist`
 4. Save the config and reboot
-5. Install [ssdtPRGen](https://github.com/Piker-Alpha/ssdtPRGen.sh)
-6. Open Terminal and type: sudo /Users/YOURUSERNAME/ssdtPRGen.sh
-7. Go to Users/YOURUSERNAME/Library/ssdtPRGen. There you'll find an ssdt.aml
-8. Rename `ssdt.aml` to `SSDT-PM.aml` and replace the one in `EFI/OC/ACPI` with it
-9. In config, go to `ACPI/Add` and re-enable `SSDT-PM.aml` if it is disabled.
-10. Disable the two patches from step 2 again.
-11. Save config and reboot. 
+5. Open Terminal
+6. Enter the following command to download the ssdtPRGen Script: `curl -o ~/ssdtPRGen.sh https://raw.githubusercontent.com/Piker-Alpha/ssdtPRGen.sh/Beta/ssdtPRGen.sh`
+7. To make the scrip executable, enter: `chmod +x ~/ssdtPRGen.sh`
+8. Run the script: `sudo ~/ssdtPRGen.sh`
+9. The generated `SSDT.aml` will be located under `/Users/YOURUSERNAME/Library/ssdtPRGen`
+10. Rename `ssdt.aml` to `SSDT-PM.aml` and copy ist
+11. Paste it into `EFI/OC/ACPI`, replacing the existing file.
+12. In config, go to `ACPI/Add` and re-enable `SSDT-PM.aml` if it is disabled
+13. Disable the two patches from step 3 again
+14. Save config and reboot
 
-CPU Power Management should work fine after that. Optionally, you can install [Intel Power Gadget](https://www.intel.com/content/www/us/en/developer/articles/tool/power-gadget.html) to check if the CPU runs within specs. You don't need SMCProcessor and SMCSuperIO kexts if you use Intel Power Gadgets, btw.
+CPU Power Management should work fine after that. Optionally, you can install [Intel Power Gadget](https://www.intel.com/content/www/us/en/developer/articles/tool/power-gadget.html) to check if the CPU runs within specs. You don't need SMCProcessor and SMCSuperIO kexts to monitor the CPU if you use Intel Power Gadget, btw.
 
 **NOTES**: 
 
@@ -315,12 +321,11 @@ pmset -g log | grep -e "Sleep.*due to" -e "Wake.*due to"
 
 If the wake reason is related to `RTC (Alarm)`, do the following:
 
-- Enter System Setings
+- Enter System Settings
 - Open Energy Settings
-- Disable Wake on LAN
-- Disable Power Nap
-- In Bluetoth Settings, Advanced Option…
-- Disable the 3rd entry about Allowing Bluetooth device to exit sleep
+- Disable "Wake on LAN"
+- Disable "Power Nap"
+- In Bluetooth Settings, "Advanced Options…" disable the 3rd entry about allowing Bluetooth device to exit sleep
 
 **NOTES**
 - In my tests, fixing the sleepimage actually prohibited the machine from entering sleep on its own. You can use Hackintool to revert the settings.
@@ -331,7 +336,7 @@ If the wake reason is related to `RTC (Alarm)`, do the following:
 
 :warning: **CAUTION**: 
 - With `ConnectDrivers` disabled, the boot chime cannot be played back since the `AudioDXE.efi` is not loaded. 
-- Before installing macOS from USB flash drive, `ConnectDrivers` needs to be re-enabled, otherwise you won't see the flash drive in the bootpicker.
+- Before installing macOS from a USB flash drive, `ConnectDrivers` needs to be re-enabled, otherwise you won't see the flash drive in the bootpicker.
 
 ### Swapping Command ⌘ and Option ⌥ Keys
 Prior to version 0.7.4 of my OpenCore EFI Folder, the **[Command]** and **[Option]** keys were set to "swapped" in the `info.plist` of `VoodooPS2Keyboard.kext` by default. So in macOS, the **[WINDOWS]** key was bound to the **[Option]** function and the **[ALT]** Key was bound to the **[Command]** function which felt weird. Therefore, users had to swap these Keys back around in the System Settings so everything worked as expected.
