@@ -287,8 +287,8 @@ Once your system is up and running you may want to change the following settings
 7. To make the scrip executable, enter: `chmod +x ~/ssdtPRGen.sh`
 8. Run the script: `sudo ~/ssdtPRGen.sh`
 9. The generated `SSDT.aml` will be located under `/Users/YOURUSERNAME/Library/ssdtPRGen`
-10. Rename `ssdt.aml` to `SSDT-PM.aml` and copy ist
-11. Paste it into `EFI/OC/ACPI`, replacing the existing file.
+10. Rename `ssdt.aml` to `SSDT-PM.aml` and copy it
+11. Paste it into `EFI/OC/ACPI`, replacing the existing file
 12. In config, go to `ACPI/Add` and re-enable `SSDT-PM.aml` if it is disabled
 13. Disable the two patches from step 3 again
 14. Save config and reboot
