@@ -279,7 +279,7 @@ Once your system is up and running you may want to change the following settings
 
 ### Fixing CPU Power Management 
 1. Open your `config.plist`
-2. In `ACPI/Add`, disabled `SSDT-PM`
+2. In `ACPI/Add`, disable `SSDT-PM`
 3. In `ACPI/Delete`, enable the 2 patches `Drop CpuPm` and `Drop Cpu0Ist`
 4. Save the config and reboot
 5. Open Terminal
@@ -298,6 +298,7 @@ CPU Power Management should work fine after that. Optionally, you can install [I
 **NOTES**: 
 
 - Only necessary if you use a different CPU than i7 3630QM
+- CPU Power Management doesn't work correctly in Ventura (no Turbo states). Probably because the legacy `ACPI_SMC_PlatformPlugin` has been dropped. Needs further investigation.
 - You can add modifiers to the terminal command for building SSDT-PM. For example, you can drop the low frequency from the default 1200 MHz to 900 MHz in 100 MHz increments, but no lower than that. Otherwise the system crashes during boot. I suggests you experiment with the modifiers a bit.
 - If you feel really confident and enthusiastic you could also re-enable XCPM. But in my experience the machine does not perform as good. You can [follow this guide](https://github.com/5T33Z0/Lenovo-T530-Hackinosh-OpenCore/tree/main/Enable%20XCPM) if you're so inclined.<br>
 
