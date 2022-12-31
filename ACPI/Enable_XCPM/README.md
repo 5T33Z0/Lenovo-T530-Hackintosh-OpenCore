@@ -78,4 +78,3 @@ Since macOS Big Sur and Monterey require an SMBIOS witch support Plugin-Type 1 t
 **Disadvantages** of using an Ivy Bridge SMBIOS with `-no_compat_check`: You won't be able to install System Updates because you won't be notified about them, but theres a simple workaround. 
 
 **Workaround**: [**Enable board-id VMM spoof**](https://github.com/5T33Z0/OC-Little-Translated/tree/main/09_Board-ID_VMM-Spoof). This allows using the recommended SMBIOS for Ivy Bridge CPUs for optimal CPU Power Management, running macOS Monterey as well as installing macOS Updates.
-
