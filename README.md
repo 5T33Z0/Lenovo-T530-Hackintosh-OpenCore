@@ -89,22 +89,21 @@ EFI
     │   ├── SSDT-BAT1-Disable.aml
     │   ├── SSDT-EXT4.aml
     │   ├── SSDT-EXT5.aml
-    │   ├── SSDT-HPET.aml
+    │   ├── SSDT-IRQ_FIXES
     │   ├── SSDT-NBCF.aml
-    │   ├── SSDT-PM.aml
     │   ├── SSDT-PNLF.aml
     │   ├── SSDT-PRW0.aml
     │   ├── SSDT-PTSWAKTTS.aml
     │   ├── SSDT-PWRB.aml
     │   ├── SSDT-SBUS-MCHC.aml
-    │   └── SSDT-TEMPToFans.aml
+    │   ├── SSDT-TEMPToFans.aml
+    │   └── SSDT-XCPM.aml
     ├── Drivers
     │   ├── AudioDXE.efi (disabled)
     │   ├── HfsPlus.efi
     │   ├── OpenCanopy.efi
     │   ├── OpenRuntime.efi
-    │   ├── ResetNvramEntry.efi
-    │   └── ToggleSipEntry.efi
+    │   └── ResetNvramEntry.efi
     ├── Kexts
     │   ├── AirportBrcmFixup.kext
     │   ├── AppleALC.kext
