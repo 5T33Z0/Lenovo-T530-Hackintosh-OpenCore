@@ -4,20 +4,21 @@
 
 **TABLE of CONTENTS**
 
-- [ABOUT](#about)
+- [About](#about)
   - [Audio Working on Docking Stations](#audio-working-on-docking-stations)
   - [DSDT-less config](#dsdt-less-config)
-- [HARDWARE SPECS](#hardware-specs)
+- [Hardware Specs](#hardware-specs)
   - [macOS-incompatible Components](#macos-incompatible-components)
 - [EFI Folder Content (OpenCore)](#efi-folder-content-opencore)
-- [INSTALLATION](#installation)
+- [Deployment](#deployment)
   - [Preparing the `config.plist`](#preparing-the-configplist)
     - [About used boot arguments and NVRAM variables](#about-used-boot-arguments-and-nvram-variables)
   - [EFI How To](#efi-how-to)
   - [BIOS Settings](#bios-settings)
   - [Installing macOS](#installing-macos)
-- [POST-INSTALL](#post-install)
+- [Post-Install](#post-install)
   - [Fixing CPU Power Management](#fixing-cpu-power-management)
+  - [Re-Enabling ACPI Power Management in macOS Ventura](#re-enabling-acpi-power-management-in-macos-ventura)
   - [Fixing Sleep issues](#fixing-sleep-issues)
   - [Reducing boot time](#reducing-boot-time)
   - [Swapping Command ⌘ and Option ⌥ Keys](#swapping-command--and-option--keys)
@@ -27,7 +28,7 @@
 - [CPU BENCHMARK](#cpu-benchmark)
 - [CREDITS and THANK YOUs](#credits-and-thank-yous)
 
-## ABOUT
+## About
 OpenCore and Clover EFI Folders for running macOS 10.13 to 13.1+ on a Lenovo ThinkPad T530. They utilize the new `ECEnabler.kext` which enables battery status read-outs without the need for additional Battery Patches. 
 
 The OpenCore EFI also includes the latest Booter and Kernel patches which make use of macOSes virtualization capabilities (VMM) to spoof a special Board-ID which allows installing and running macOS Big Sur and Monterey with SMBIOS `MacBookPro10,1`for Ivy Bridge CPUs. With this, you can enjoy the benefits of optimal CPU Power Management *and* System Updates which wouldn't be possible when using the well-known`-no_compat_chack` boot arg. If you want to know how these patches work, [read this](https://github.com/5T33Z0/OC-Little-Translated/tree/main/09_Board-ID_VMM-Spoof).
@@ -49,7 +50,7 @@ The config contained in this repo is DSDT-less. This means, it doesn't use a pat
 
 **NOTE**: Read and follow the install instruction carefully and thoroughly before you deploy the EFI folder if you want your system to boot successfully!
 
-## HARDWARE SPECS
+## Hardware Specs
 | Component           | Details                                       |
 | ------------------: | :-------------------------------------------- |
 | Model               | Lenovo ThinkPad T530, Model# 2429-62G         |
@@ -140,11 +141,10 @@ EFI
 ```
 </details>
 
-## INSTALLATION
-
-### Preparing the `config.plist`
+## Deployment
 Please read the following explanations carefully and follow the given instructions. In order to boot macOS with this EFI successfully, adjustments to the `config.plist` and used kexts may be necessary to adapt the config to your T530 model and the macOS version you want to install/run. 
 
+### Preparing the `config.plist`
 Open the `config.plist` and adjust the following settings depending on your system:
 
 1. Set your display panel. In `DeviceProperties`, select the correct Framebuffer-Patch for your T530 model. Two types of display panels exist for this model: `HD+` (WSXGA and FullHD) and `HD` panels. Both are using different identifiers:</br>
@@ -271,7 +271,7 @@ Open the `config.plist` and adjust the following settings depending on your syst
 **macOS Monterey+**: For installing macOS Monterey or newer, follow the Install Instructions included in the EFI Download located in the [**Releases**](https://github.com/5T33Z0/Lenovo-T530-Hackinosh-OpenCore/releases) section.
 </details>
 
-## POST-INSTALL
+## Post-Install
 Once your system is up and running you may want to change the following settings to make your system more secure:
 
 - Enable System Integrity Protection (SIP): change `csr-active-config` to `00000000` (SIP needs to stay disabled in macOS 12+)
@@ -279,7 +279,7 @@ Once your system is up and running you may want to change the following settings
 
 **IMPORTANT**: 
 
-- **SIP**: If you're planning to install macOS Monterey, SIP needs to be disabled! Because installing the graphics drivers with Intel HD 4000 Patcher breaks macOS securiity seal so therefore boot will crash if SIP is enabled!
+- **SIP**: If you're planning to install macOS Monterey, SIP needs to be disabled! Because installing the graphics drivers with Intel HD 4000 Patcher breaks macOS security seal so therefore boot will crash if SIP is enabled!
 - **MinDate/MinVersion**: you should keep a working backup of your EFI folder on a FAT32 formatted USB flash drive before changing these settings, because if they are wrong, the APFS driver won't load and you won't see your macOS drive(s)!
 
 ### Fixing CPU Power Management 
@@ -305,7 +305,30 @@ CPU Power Management should work fine after that. Optionally, you can install [I
 - Only necessary if you use a different CPU than i7 3630QM
 - CPU Power Management doesn't work correctly in Ventura (no Turbo states). Probably because the legacy `ACPI_SMC_PlatformPlugin` has been dropped. Needs further investigation.
 - You can add modifiers to the terminal command for building SSDT-PM. For example, you can drop the low frequency from the default 1200 MHz to 900 MHz in 100 MHz increments, but no lower than that. Otherwise the system crashes during boot. I suggests you experiment with the modifiers a bit.
-- If you feel really confident and enthusiastic you could also re-enable XCPM. But in my experience the machine does not perform as good. You can [follow this guide](https://github.com/5T33Z0/Lenovo-T530-Hackinosh-OpenCore/tree/main/Enable%20XCPM) if you're so inclined.<br>
+- If you feel really confident and enthusiastic you could also re-enable XCPM. But in my experience the machine does not perform as good. You can [follow this guide](https://github.com/5T33Z0/Lenovo-T530-Hackinosh-OpenCore/tree/main/Enable%20XCPM) if you're so inclined.
+
+### Re-Enabling ACPI Power Management in macOS Ventura
+With the release of macOS Ventura, Apple removed the actual `ACPI_SMC_PlatformPlugin` *binary* from the `ACPI_SMC_PlatformPlugin.kext` itself, rendering `SSDT-PM` generated for 'plugin-type' 0 useless, since the plugin is missing. By default the X86PlazformPlugin by default now. Therefore, CPU Power Management won't work correctly (Turbo states won't work).
+
+So when switching to macOS Ventura, you either have to force-enable XCPM by enabling the corresponding Kernel Patch contained in my config or inject kexts to re-enable ACPI CPU Power Management (Plugin-Type 0) instead. The latter is recommended, since ACPI CPU Power Management just works better on Ivy Bridge than XCPM. 
+
+In order to re-enable ACPI CPU Power Management on macOS Ventura, you need:
+
+- My latest OpenCore EFI folder release
+- A BIOS where CFG lock can be disabled so the **MSR 0x2E** are **unlocked**. This is mandatory since the `AppleCpuPmCfgLock` Quirk doesn't seem to work on all systems when injecting the required kexts into macOS Ventura, causing kernel panics (as discussed [here](https://github.com/5T33Z0/Lenovo-T530-Hackintosh-OpenCore/issues/31#issuecomment-1368409836)). So flashing a custom BIOS is required if your BIOS doesn't provide an option to disable CFG lock. Since I am using 1vyrain, CFG lock is already disabled so I don't need `AppleCpuPmCfgLock` to boot.
+- Add [Kexts from OpenCore Legacy Patcher](https://github.com/dortania/OpenCore-Legacy-Patcher/tree/main/payloads/Kexts/Misc):
+	- `AppleIntelCPUPowerManagement.kext` (set `MinKernel` to 22.0.0)
+	- `AppleIntelCPUPowerManagementClient.kext` (set `MinKernel` to 22.0.0)
+- Disable Kernel/Patch: `XCPM` Kernel Patch `_xcpm_bootstrap` 
+- Disable Kernel/Quirks: `AppleXcmpCfgLock` and `AppleXcpmExtraMsrs` 
+- Save and reboot
+
+Once the 2 Kexts are injected, ACPI Power Management will work in Ventura and you can use your `SSDT-PM` like before. For tests, enter in Terminal:
+
+```shell
+sysctl machdep.xcpm.mode
+```
+The output should be `0`, indicating that the `X86PlatformPlugin` is not loaded.
 
 ### Fixing Sleep issues
 If you have issues with sleep, run the following commands in Terminal:
@@ -324,7 +347,6 @@ If the system still wakes from sleep on its own, check the wake reason. Enter:
 ```
 pmset -g log | grep -e "Sleep.*due to" -e "Wake.*due to"
 ```
-
 If the wake reason is related to `RTC (Alarm)`, do the following:
 
 - Enter System Settings
