@@ -308,7 +308,7 @@ CPU Power Management should work fine after that. Optionally, you can install [I
 - If you feel really confident and enthusiastic you could also re-enable XCPM. But in my experience the machine does not perform as good. You can [follow this guide](https://github.com/5T33Z0/Lenovo-T530-Hackinosh-OpenCore/tree/main/Enable%20XCPM) if you're so inclined.
 
 ### Re-Enabling ACPI Power Management in macOS Ventura
-With the release of macOS Ventura, Apple removed the actual `ACPI_SMC_PlatformPlugin` *binary* from the `ACPI_SMC_PlatformPlugin.kext` itself, rendering `SSDT-PM` generated for 'plugin-type' 0 useless, since the plugin is missing. By default the X86PlazformPlugin by default now. Therefore, CPU Power Management won't work correctly (Turbo states won't work).
+With the release of macOS Ventura, Apple removed the actual `ACPI_SMC_PlatformPlugin` *binary* from the `ACPI_SMC_PlatformPlugin.kext` itself, rendering `SSDT-PM` generated for 'plugin-type' 0 useless, since the plugin is missing. Instead, the `X86PlaformPlugin` is loader by default now. Therefore, CPU Power Management won't work correctly (no Turbo states).
 
 So when switching to macOS Ventura, you either have to force-enable XCPM by enabling the corresponding Kernel Patch contained in my config or inject kexts to re-enable ACPI CPU Power Management (Plugin-Type 0) instead. The latter is recommended, since ACPI CPU Power Management just works better on Ivy Bridge than XCPM. 
 
