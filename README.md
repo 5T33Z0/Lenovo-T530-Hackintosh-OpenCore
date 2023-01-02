@@ -11,8 +11,8 @@
   - [macOS-incompatible Components](#macos-incompatible-components)
 - [EFI Folder Content (OpenCore)](#efi-folder-content-opencore)
 - [INSTALLATION](#installation)
-  - [Preparing the config.plist](#preparing-the-configplist)
-    - [About used boot arguments](#about-used-boot-arguments)
+  - [Preparing the `config.plist`](#preparing-the-configplist)
+    - [About used boot arguments and NVRAM variables](#about-used-boot-arguments-and-nvram-variables)
   - [EFI How To](#efi-how-to)
   - [BIOS Settings](#bios-settings)
   - [Installing macOS](#installing-macos)
@@ -142,8 +142,8 @@ EFI
 
 ## INSTALLATION
 
-### Preparing the config.plist
-Please read the explanations in the following sections carefully and follow the given instructions. In order to boot macOS with this EFI successfully, adjustments to the `config.plist` and used kexts may be necessary to adapt the config to your  T530 model and the macOS version you want to install/run. 
+### Preparing the `config.plist`
+Please read the following explanations carefully and follow the given instructions. In order to boot macOS with this EFI successfully, adjustments to the `config.plist` and used kexts may be necessary to adapt the config to your T530 model and the macOS version you want to install/run. 
 
 Open the `config.plist` and adjust the following settings depending on your system:
 
@@ -163,48 +163,54 @@ Open the `config.plist` and adjust the following settings depending on your syst
 2. **Digital Audio**: If you need digital Audio over HDMI/DP, disable/delete `No-hda-gfx` from the Audio Device `PciRoot(0x0)/Pci(0x1B,0x0)`.
 
 3. Under `NVRAM/Add/7C436110-AB2A-4BBB-A880-FE41995C9F82`, adjust `csr-active-config` according to the macOS version you want to use:
-	- For macOS Big Sur to Ventura: `67080000`(0x867)
-	- For running Intel HD Patcher in Monterey: `FE0F0000` (0xFEF)
+	- For macOS Big Sur and newer: `67080000`(0x867)
 	- For macOS Mojave/Catalina: `EF070000`(0x7EF)
 	- For macOSHigh Sierra: `FF030000` (0x3FF)
 	
-	**NOTE**: Disabling SIP is mandatory if you want to run macOS Monterey or newer in order to install and use patched-in Intel HD 4000 Drivers!
+	**NOTE**: Disabling SIP is mandatory if you want to run macOS Monterey or newer in order to install and load Intel HD 4000 Drivers! If you have issues running OCLP in Post, set `csr-active-config` to  `FE0F0000` (0xFEF).
 
 4. Under `SystemProductName`, select the correct SMBIOS for your CPU: 
 	-  For Intel i7: `MacBookPro10,1`
 	-  For Intel i5: `MacBookPro10,2`
 	
-	**NOTE**: My config uses the Booter and Kernel Patches from OpenCore Legacy Patcher which allow using the correct SMBIOS for Ivy Bridge CPUs on macOS 11.3 and newer (Darwin Kernel 20.4+) so native Power Management and System Updates are working which wouldn't be possible otherwise past macOS Catalina.
+	**NOTE**: My config contains the Booter and Kernel Patches from OpenCore Legacy Patcher which allow using the correct SMBIOS for Ivy Bridge CPUs on macOS 11.3 and newer (Darwin Kernel 20.4+), so native Power Management and System Updates are working which wouldn't be possible otherwise past macOS Catalina.
 
-4. **CPU**: The `SSDT-PM.aml` table inside the ACPI Folder is for an **Intel i7 3630QM**. If your T530 has a different CPU model, disable it for now and create your own using `ssdtPRGen` in Post-Install. See [Fixing CPU Power Management](#fixing-cpu-power-Management) for instructions.
+5. **CPU**: The `SSDT-PM.aml` table inside the ACPI Folder is for an **Intel i7 3630QM**. If your T530 has a different CPU model, disable it for now and create your own using `ssdtPRGen` in Post-Install. See [Fixing CPU Power Management](#fixing-cpu-power-Management) for instructions.
 
-5. **WiFi and Bluetooth** (Read carefully!)
+6. **WiFi and Bluetooth** (Read carefully!)
 	- **Case 1: Intel Wifi/BT Card**. If you have a the stock configuration with an Intel WiFi/Bluetooth card, it may work with the [**OpenIntelWireless**](https://github.com/OpenIntelWireless) kexts. 
 		- Check the compatibility list to find out if your card is supported. 
 		- Remove `BluetoolFixup` and `Brcm` Kexts
 		- Add the required Kexts for your Intel card to `EFI/OC/Kexts` folder and `config.plist` before attempting to boot with this EFI!
-	- **Case 2: 3rd Party WiFi/BT Cards**. These require the `1vyrain` Jailbreak to unlock the BIOS to disable the WiFi Whitelist (not required if the 3rd party card is whitelisted).
+	- **Case 2: 3rd Party WiFi/BT Cards**. These require the [**1vyrain**](https://1vyra.in/) jailbreak to unlock the BIOS to disable the WiFi Whitelist (not required if the 3rd party card is whitelisted).
 		- I use a WiFi/BT Card by Broadcom, so my setup requires `AirportBrcmFixup` for WiFi and `BrcmPatchRAM` and additional satellite kexts for Bluetooth. Read the comments in the config for details.
-		- `BrcmFirmwareData.kext` is used to inject firmwares of Broadcom devices. Alternatively, you can use `BrcmFirmwareRepo.kext` which is more efficient but needs to be installed into `System/Library/Extensions` since it cannot be injected by Bootloaders.
+		- `BrcmFirmwareData.kext` is used to inject firmwares for Broadcom devices. Alternatively, you can use `BrcmFirmwareRepo.kext` which is more efficient but needs to be installed into `System/Library/Extensions` since it cannot be injected by Bootloaders.
 		- If you use a WiFi/BT Card from a different vendor than Intel or Broadcom, remove BluetoolFixup and the the Brcm Kexts 
 		- Add the Kext(s) required for your card to the kext folder and `config.plist` before deploying the EFI folder!
 
-6. **Alternative/Optional Kexts**:
+7. **Kernel/Quirks**: If you are using a custom BIOS like 1vyrain, CFG lock will be disabled. In this case, you can disable the `AppleCpuPmCfgLock` Quirk. To figure out if the MSR 0xE2 register is unlocked, add `ControlMsrE2.efi` to `EFI/OC/Tools` and your config.plist (under `Misc/Tools`) and run it from the BootPicker.
+
+8. **Alternative/Optional Kexts**:
 	- [**itlwm**](https://github.com/OpenIntelWireless/itlwm): Kext for Intel WiFi Cards. Use instead of `AirportBrcmFixup`if you don't use a Broadcom WiFi Card
 	- [**IntelBluetoothFirmware**](https://github.com/OpenIntelWireless/IntelBluetoothFirmware): Kext for Intel Bluetooth Cards. Use instead of `BrcmPatchRam` and Plugins if you don't use a Broadcom BT Card
 	- [**NoTouchID**](https://github.com/al3xtjames/NoTouchID): only required for macOS 10.13 and 10.14 so the boot process won't stall while looking for a Touch ID sensor.
 	- [**Feature Unlock**](https://github.com/acidanthera/FeatureUnlock): Unlocks additional features like Sidecar, NighShift, Airplay to Mac, Universal Control and Content Caching. Under macOS Monterey, Content Caching also requires `-allow_assetcache` boot-arg.
-	- [**RestictEvents.kext**](https://github.com/acidanthera/RestrictEvents): Combined with boot-arg `revpatch=diskread,memtab`, it enables "Memory" tab in "About this Mac" section and disables "Uninitialized Disk" warning in Finder (for macOS 10.14 and older).
+	- [**RestictEvents.kext**](https://github.com/acidanthera/RestrictEvents): Combined with boot-arg `revpatch=diskread,memtab`, it enables "Memory" tab in "About this Mac" section and disables "Uninitialized Disk" warning in Finder (for macOS 10.14 and older). Loads automatically for Kernel 20.4 (Big Sur 11.3 and newer) to enable a special board-id for virtual machines which allows installing updates which wouldn't be possible otherwise with the `MacBookPro10,X` SMBIOS.
 
-8. **Backlight Brightness Level tweaks** (optional): 
+9. **Backlight Brightness Level tweaks** (optional): 
   - Set boot-arg `applbkl=1` for reasonable maximum brightness level controlled by `WhateverGreen`. 
   - Set boot-arg `applbkl=0` for increased maximum brightness as defined in `SSDT-PNLF.aml`
 
-#### About used boot arguments
-- `amfi_get_out_of_my_way=1`: Required to be able to install Intel HD 4000 drivers in macOS Ventura using OCLP.
-- `brcmfx-country=#a`: Wifi Country Code (`#a` = generic). For details check the documentation for [AirportBrcmFixup](https://github.com/acidanthera/AirportBrcmFixup).
-- `gfxrst=1`: Draws Apple logo at 2nd boot stage instead of framebuffer copying &rarr; Smoothens transition from the progress bar to the Login Screen/Desktop when an external monitor is attached.
-- `#revpatch=diskread,memtab`: For `RestrictEvents.kext` (disabled). `diskread` disables "Uninitialized Disk" warning in macOS 10.14 and older. `memtab` adds `Memory` tab to "About this Mac" section. Enable `RestrictEvents.kext` and remove the `#` from the boot-arg to enable it.
+#### About used boot arguments and NVRAM variables
+- **Boot-args:**
+	- `brcmfx-country=#a`: Wifi Country Code (`#a` = generic). For details check the documentation for [AirportBrcmFixup](https://github.com/acidanthera/AirportBrcmFixup).
+	- `gfxrst=1`: Draws Apple logo at 2nd boot stage instead of framebuffer copying &rarr; Smoothens transition from the progress bar to the Login Screen/Desktop when an external monitor is attached.
+	- `#revpatch=diskread,memtab`: For `RestrictEvents.kext` (disabled). `diskread` disables "Uninitialized Disk" warning in macOS 10.14 and older. `memtab` adds `Memory` tab to "About this Mac" section. Enable `RestrictEvents.kext` and remove the `#` from the boot-arg to enable it.
+	- `ipc_control_port_options=0`: Fixes issues with electron-based Apps like Discord in Monterey and newer when the level of SIP.
+- **NVRAM variables**
+	- OCLP Settings `-allow_amfi`: Does the same as boot-arg `amfi_get_out_of_my_way=1` but only when OCLP App is running &rarr; Required to be able to install Intel HD 4000 drivers in macOS Ventura using OCLP in Post-Install.
+	- `revblock:media` &rarr; Blocks `mediaanalysisd` on Ventura+ (for Metal 1 GPUs). Required so Apps like Firefox don't crash. Requires RestrictEvents.kext
+	- `revpatch:sbvmm` &rarr; Forces VMM SB model, allowing OTA updates for unsupported models on macOS 11.3 and newer. Requires RestrictEvents.kext
 
 ### EFI How To
 - Download the EFI Folder from the [Releases](https://github.com/5T33Z0/Lenovo-T530-Hackintosh-OpenCore/releases) section on the right and unpack it
@@ -212,7 +218,7 @@ Open the `config.plist` and adjust the following settings depending on your syst
 - Mount the EFI
 - Replace EFI Folder
 - Restart
-- :warning: Perform a NVRAM Reset (in Bootpicker, hit Space Bar to reveal Tools)
+- :warning: Perform a NVRAM Reset (in BootPicker, hit Space Bar to reveal Tools)
 - Select macOS to boot.
 
 ### BIOS Settings
