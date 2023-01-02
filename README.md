@@ -25,8 +25,8 @@
   - [Changing Themes](#changing-themes)
   - [Eject Button](#eject-button)
   - [Workaround for Apple Music crashing in macOS Catalina](#workaround-for-apple-music-crashing-in-macos-catalina)
-- [CPU BENCHMARK](#cpu-benchmark)
-- [CREDITS and THANK YOUs](#credits-and-thank-yous)
+- [CPU Benchmark](#cpu-benchmark)
+- [Credits and Thank Yous](#credits-and-thank-yous)
 
 ## About
 OpenCore and Clover EFI Folders for running macOS 10.13 to 13.1+ on a Lenovo ThinkPad T530. They utilize the new `ECEnabler.kext` which enables battery status read-outs without the need for additional Battery Patches. 
@@ -395,11 +395,11 @@ I've noticed that Apple Music crashes when running the latest version of macOS C
 
 As a workaround, you can use [Retroactive](https://github.com/cormiertyshawn895/Retroactive) to install and run older versions of iTunes (11.4 worked for me).
 
-## CPU BENCHMARK
+## CPU Benchmark
 
 ![Screenshot](https://raw.githubusercontent.com/5T33Z0/Lenovo-T530-Hackinosh-OpenCore/main/Pics/benchmark_latest.png)</br>[Benchmark Results](https://browser.geekbench.com/v5/cpu/9553877)
 
-## CREDITS and THANK YOUs
+## Credits and Thank Yous
 
 - George Kushnir for [1vyrain Jailbreak](https://github.com/n4ru/1vyrain) to remove WLAN whitelist from BIOS
 - Acidanthera and Team for [OpenCore Bootloader](https://github.com/acidanthera/OpenCorePkg), OCLP and additional Kexts
