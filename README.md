@@ -145,7 +145,7 @@ EFI
 Please read the following explanations carefully and follow the given instructions. In order to boot macOS with this EFI successfully, adjustments to the `config.plist` and used kexts may be necessary to adapt the config to your T530 model and the macOS version you want to install/run. 
 
 ### Preparing the `config.plist`
-Open the `config.plist` and adjust the following settings depending on your system:
+Download the EFI Folder from the [Releases](https://github.com/5T33Z0/Lenovo-T530-Hackintosh-OpenCore/releases) section and unpack it. Open the `config.plist` and adjust the following settings depending on your system:
 
 1. Set your display panel. In `DeviceProperties`, select the correct Framebuffer-Patch for your T530 model. Two types of display panels exist for this model: `HD+` (WSXGA and FullHD) and `HD` panels. Both are using different identifiers:</br>
 	
@@ -169,7 +169,7 @@ Open the `config.plist` and adjust the following settings depending on your syst
 	
 	**NOTE**: Disabling SIP is mandatory if you want to run macOS Monterey or newer in order to install and load Intel HD 4000 Drivers! If you have issues running OCLP in Post, set `csr-active-config` to  `FE0F0000` (0xFEF).
 
-4. Under `SystemProductName`, select the correct SMBIOS for your CPU: 
+4. **SMBIOS**: Under `SystemProductName`, select the correct SMBIOS for your CPU and generate a serial, etc. for it.
 	-  For Intel i7: `MacBookPro10,1`
 	-  For Intel i5: `MacBookPro10,2`
 	
@@ -213,13 +213,12 @@ Open the `config.plist` and adjust the following settings depending on your syst
 	- `revpatch:sbvmm` &rarr; Forces VMM SB model, allowing OTA updates for unsupported models on macOS 11.3 and newer. Requires RestrictEvents.kext
 
 ### EFI How To
-- Download the EFI Folder from the [Releases](https://github.com/5T33Z0/Lenovo-T530-Hackintosh-OpenCore/releases) section on the right and unpack it
-- Open config.plist and follow the instructions given in the "Preparation" Section
-- Mount the EFI
-- Replace EFI Folder
+Once you're done adjusting the `config.plist`, mount your system's ESP and do the following:
+
+- (Re)place the EFI Folder
 - Restart
-- :warning: Perform a NVRAM Reset (in BootPicker, hit Space Bar to reveal Tools)
-- Select macOS to boot.
+- Perform an NVRAM Reset (in BootPicker, hit Space Bar to reveal the tool)
+- Select macOS to boot
 
 ### BIOS Settings
 
