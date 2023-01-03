@@ -319,7 +319,7 @@ In order to re-enable ACPI CPU Power Management on macOS Ventura, you need:
 - Add [Kexts from OpenCore Legacy Patcher](https://github.com/dortania/OpenCore-Legacy-Patcher/tree/main/payloads/Kexts/Misc):
 	- `AppleIntelCPUPowerManagement.kext` (set `MinKernel` to 22.0.0)
 	- `AppleIntelCPUPowerManagementClient.kext` (set `MinKernel` to 22.0.0)
-- Disable Kernel/Patch: `XCPM` Kernel Patch `_xcpm_bootstrap` 
+- Disable Kernel/Patch: `_xcpm_bootstrap` 
 - Disable Kernel/Quirks: `AppleXcmpCfgLock` and `AppleXcpmExtraMsrs` 
 - Save and reboot
 
@@ -339,7 +339,6 @@ sudo rm /var/vm/sleepimage
 sudo touch /var/vm/sleepimage
 sudo chflags uchg /var/vm/sleepimage
 ```
-
 **Other Settings**:
 
 If the system still wakes from sleep on its own, check the wake reason. Enter:
