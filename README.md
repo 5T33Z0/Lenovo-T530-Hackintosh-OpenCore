@@ -148,12 +148,13 @@ Please read the following explanations carefully and follow the given instructio
 Download the EFI Folder from the [Releases](https://github.com/5T33Z0/Lenovo-T530-Hackintosh-OpenCore/releases) section and unpack it. Open the `config.plist` and adjust the following settings depending on your system:
 
 1. **ACPI** Section:
-	- Disable `SSDT-PM.aml` (unless you have an i7 3630QM as well). Generate your own with ssdtPRGen as explained [here](https://github.com/5T33Z0/OC-Little-Translated/tree/main/01_Adding_missing_Devices_and_enabling_Features/CPU_Power_Management/CPU_Power_Management_(Legacy))
+	- Disable `SSDT-PM.aml` (unless you have an i7 3630QM as well). Generate your own with ssdtPRGen in Post-Install.
 
 2. **Booter** Section:
 	- The entries in the MMIO Whitelist are memory regions used by *my* firmware. Since I don't know if these are used by all T530 BIOSes, I disabled them and the corresponding `DevirtualiseMmio` Quirk
 	- To figure out which one(s) your system use(s), you can follow this [guide](https://github.com/5T33Z0/OC-Little-Translated/tree/main/12_MMIO_Whitelist)
 	- This is not a necessity, just some fine-tuning. 
+
 3. **DeviceProperties**: Enable the correct Framebuffer-Patch for the display panel. Two types of display panels exist for the T530: `HD+` and `HD` panels using different AAPL,ig-platform-ids and resolutions:</br>
 	
 	`AAPL,ig-platform-id 04006601` = `HD+` = WSXGA and FullHD FullHD. Resolution: ≥ 1600x900 px. (**Default**)</br>
@@ -288,22 +289,26 @@ Once your system is up and running you may want to change the following settings
 - **MinDate/MinVersion**: you should keep a working backup of your EFI folder on a FAT32 formatted USB flash drive before changing these settings, because if they are wrong, the APFS driver won't load and you won't see your macOS drive(s)!
 
 ### Fixing CPU Power Management 
-1. Open your `config.plist`
-2. In `ACPI/Add`, disable `SSDT-PM`
-3. In `ACPI/Delete`, enable the 2 patches `Drop CpuPm` and `Drop Cpu0Ist`
-4. Save the config and reboot
-5. Open Terminal
-6. Enter the following command to download the ssdtPRGen Script: `curl -o ~/ssdtPRGen.sh https://raw.githubusercontent.com/Piker-Alpha/ssdtPRGen.sh/Beta/ssdtPRGen.sh`
-7. To make the scrip executable, enter: `chmod +x ~/ssdtPRGen.sh`
-8. Run the script: `sudo ~/ssdtPRGen.sh`
-9. The generated `SSDT.aml` will be located under `~/Library/ssdtPRGen`
-10. Rename `ssdt.aml` to `SSDT-PM.aml` and copy it
-11. Paste it into `EFI/OC/ACPI`, replacing the existing file
-12. In config, go to `ACPI/Add` and re-enable `SSDT-PM.aml` if it is disabled
-13. Disable the two patches from step 3 again
-14. Save config and reboot
+
+1. Mount your EFI
+2. Open your `config.plist`
+3. In `ACPI/Add`, disable `SSDT-PM`
+4. In `ACPI/Delete`, enable the rules to `Drop CpuPm` and `Drop Cpu0Ist`
+5. Save the config and reboot
+6. Open Terminal
+7. Enter the following command to download ssdtPRGen: `curl -o ~/ssdtPRGen.sh https://raw.githubusercontent.com/Piker-Alpha/ssdtPRGen.sh/Beta/ssdtPRGen.sh`
+8. To make the scrip executable, enter: `chmod +x ~/ssdtPRGen.sh`
+9. Run the script: `sudo ~/ssdtPRGen.sh`
+10. The generated `ssdt.aml` will be located under `~/Library/ssdtPRGen`
+11. Rename it to `SSDT-PM.aml` and copy it
+12. Paste it into `EFI/OC/ACPI`, replacing the existing file
+13. In config, go to `ACPI/Add` and re-enable `SSDT-PM.aml` if it is disabled
+14. Disable the two patches from step 3 again
+16. Save the config and reboot
 
 CPU Power Management should work fine after that. Optionally, you can install [Intel Power Gadget](https://www.intel.com/content/www/us/en/developer/articles/tool/power-gadget.html) to check if the CPU runs within specs. You don't need SMCProcessor and SMCSuperIO kexts to monitor the CPU if you use Intel Power Gadget, btw.
+
+You can also use overrides to the command to change the low frequency mode for example, as explained [here](https://github.com/5T33Z0/OC-Little-Translated/tree/main/01_Adding_missing_Devices_and_enabling_Features/CPU_Power_Management/CPU_Power_Management_(Legacy)).
 
 **NOTES**: 
 
