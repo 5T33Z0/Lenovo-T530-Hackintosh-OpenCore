@@ -148,7 +148,7 @@ Please read the following explanations carefully and follow the given instructio
 Download the EFI Folder from the [Releases](https://github.com/5T33Z0/Lenovo-T530-Hackintosh-OpenCore/releases) section and unpack it. Open the `config.plist` and adjust the following settings depending on your system:
 
 1. **ACPI** Section:
-	- Disable `SSDT-PM.aml` (unless you have an i7 3630QM as well). Generate your own with ssdtPRGen in Post-Install.
+	- Disable `SSDT-PM.aml` (unless you have an i7 3630QM as well). Generate your own with ssdtPRGen in Post-Install. See [Fixing CPU Power Management](#fixing-cpu-power-Management) for instructions.
 
 2. **Booter** Section:
 	- The entries in the MMIO Whitelist are memory regions used by *my* firmware. Since I don't know if these are used by all T530 BIOSes, I disabled them and the corresponding `DevirtualiseMmio` Quirk
@@ -168,22 +168,22 @@ Download the EFI Folder from the [Releases](https://github.com/5T33Z0/Lenovo-T53
 	
 	:bulb: **HINT**: If your screen turns off during boot, you are using the wrong Framebuffer-Patch!
 	
-4. **Digital Audio**: If you need digital Audio over HDMI/DP, disable/delete `No-hda-gfx` from the Audio Device `PciRoot(0x0)/Pci(0x1B,0x0)`.
+4. **Audio**: 
+	- If you need digital Audio over HDMI/DP, disable/delete `No-hda-gfx` from the Audio Device Properties in `PciRoot(0x0)/Pci(0x1B,0x0)`.
+	- My EFI contains a custom build of `AppleALC.kext` which only contains layouts `18` and `39` (default) and therefore only is 95 KB in size (instead of 3.6 MB). If you are using a Dockingstation, leave it at `39`. If you don't, you can change it to `18`.
 
 5. Under `NVRAM/Add/7C436110-AB2A-4BBB-A880-FE41995C9F82`, adjust `csr-active-config` according to the macOS version you want to use:
 	- For macOS Big Sur and newer: `67080000`(0x867)
 	- For macOS Mojave/Catalina: `EF070000`(0x7EF)
 	- For macOSHigh Sierra: `FF030000` (0x3FF)
 	
-	**NOTE**: Disabling SIP is mandatory if you want to run macOS Monterey or newer in order to install and load Intel HD 4000 Drivers! If you have issues running OCLP in Post, set `csr-active-config` to  `FE0F0000` (0xFEF).
+	**NOTE**: Disabling SIP is mandatory if you want to run macOS Monterey or newer in order to install and load Intel HD 4000 Drivers! If you have issues running OCLP in Post, set `csr-active-config` to `FE0F0000` (0xFEF).
 
 6. **SMBIOS**: Under `SystemProductName`, select the correct SMBIOS for your CPU and generate a serial, etc. for it.
 	-  For Intel i7: `MacBookPro10,1`
 	-  For Intel i5: `MacBookPro10,2`
 	
 	**NOTE**: My config contains the Booter and Kernel Patches from OpenCore Legacy Patcher which allow using the correct SMBIOS for Ivy Bridge CPUs on macOS 11.3 and newer (Darwin Kernel 20.4+), so native Power Management and System Updates are working which wouldn't be possible otherwise past macOS Catalina.
-
-6. **CPU**: The `SSDT-PM.aml` table inside the ACPI Folder is for an **Intel i7 3630QM**. If your T530 has a different CPU model, disable it for now and create your own using `ssdtPRGen` in Post-Install. See [Fixing CPU Power Management](#fixing-cpu-power-Management) for instructions.
 
 7. **WiFi and Bluetooth** (Read carefully!)
 	- **Case 1: Intel Wifi/BT Card**. If you have a the stock configuration with an Intel WiFi/Bluetooth card, it may work with the [**OpenIntelWireless**](https://github.com/OpenIntelWireless) kexts. 
