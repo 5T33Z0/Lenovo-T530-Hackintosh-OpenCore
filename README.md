@@ -12,7 +12,7 @@
 - [EFI Folder Content (OpenCore)](#efi-folder-content-opencore)
 - [Deployment](#deployment)
   - [Preparing the `config.plist`](#preparing-the-configplist)
-    - [About used boot arguments and NVRAM variables](#about-used-boot-arguments-and-nvram-variables)
+    - [Used boot arguments and NVRAM variables](#used-boot-arguments-and-nvram-variables)
   - [EFI How To](#efi-how-to)
   - [BIOS Settings](#bios-settings)
   - [Installing macOS](#installing-macos)
@@ -147,61 +147,68 @@ Please read the following explanations carefully and follow the given instructio
 ### Preparing the `config.plist`
 Download the EFI Folder from the [Releases](https://github.com/5T33Z0/Lenovo-T530-Hackintosh-OpenCore/releases) section and unpack it. Open the `config.plist` and adjust the following settings depending on your system:
 
-1. Set your display panel. In `DeviceProperties`, select the correct Framebuffer-Patch for your T530 model. Two types of display panels exist for this model: `HD+` (WSXGA and FullHD) and `HD` panels. Both are using different identifiers:</br>
+1. **ACPI** Section:
+	- Disable `SSDT-PM.aml` (unless you have an i7 3630QM as well). Generate your own with ssdtPRGen as explained [here](https://github.com/5T33Z0/OC-Little-Translated/tree/main/01_Adding_missing_Devices_and_enabling_Features/CPU_Power_Management/CPU_Power_Management_(Legacy))
+
+2. **Booter** Section:
+	- The entries in the MMIO Whitelist are memory regions used by *my* firmware. Since I don't know if these are used by all T530 BIOSes, I disabled them and the corresponding `DevirtualiseMmio` Quirk
+	- To figure out which one(s) your system use(s), you can follow this [guide](https://github.com/5T33Z0/OC-Little-Translated/tree/main/12_MMIO_Whitelist)
+	- This is not a necessity, just some fine-tuning. 
+3. **DeviceProperties**: Enable the correct Framebuffer-Patch for the display panel. Two types of display panels exist for the T530: `HD+` and `HD` panels using different AAPL,ig-platform-ids and resolutions:</br>
 	
-	`AAPL,ig-platform-id 04006601` = `HD+` = FullHD. Resolution: ≥ 1600x900 px. (**Default**)</br>
+	`AAPL,ig-platform-id 04006601` = `HD+` = WSXGA and FullHD FullHD. Resolution: ≥ 1600x900 px. (**Default**)</br>
 	`AAPL,ig-platform-id 03006601` = `HD` = SD. Resolution: ≤ 1366x768 px</br>
 	
-	If your T530 Model uses an `SD` Panel, do the following;
+	If your T530 has an SD panel, do the following;
 	 
 	- Go to `DeviceProperties` 
 	- Disable the `PciRoot(0x0)/Pci(0x2,0x0)` by placing `#` in front of it.
-	- Enable `#PciRoot(0x0)/Pci(0x2,0x0) 1366x768 px` by deleting the leading `#` and the description ` 1366x768 px`, so that it looks this: `PciRoot(0x0)/Pci(0x2,0x0)`.
+	- Enable `#PciRoot(0x0)/Pci(0x2,0x0) 1366x768 px` by deleting the leading `#` and the description `1366x768 px`, so that it looks this: `PciRoot(0x0)/Pci(0x2,0x0)`.
 	
 	:bulb: **HINT**: If your screen turns off during boot, you are using the wrong Framebuffer-Patch!
 	
-2. **Digital Audio**: If you need digital Audio over HDMI/DP, disable/delete `No-hda-gfx` from the Audio Device `PciRoot(0x0)/Pci(0x1B,0x0)`.
+4. **Digital Audio**: If you need digital Audio over HDMI/DP, disable/delete `No-hda-gfx` from the Audio Device `PciRoot(0x0)/Pci(0x1B,0x0)`.
 
-3. Under `NVRAM/Add/7C436110-AB2A-4BBB-A880-FE41995C9F82`, adjust `csr-active-config` according to the macOS version you want to use:
+5. Under `NVRAM/Add/7C436110-AB2A-4BBB-A880-FE41995C9F82`, adjust `csr-active-config` according to the macOS version you want to use:
 	- For macOS Big Sur and newer: `67080000`(0x867)
 	- For macOS Mojave/Catalina: `EF070000`(0x7EF)
 	- For macOSHigh Sierra: `FF030000` (0x3FF)
 	
 	**NOTE**: Disabling SIP is mandatory if you want to run macOS Monterey or newer in order to install and load Intel HD 4000 Drivers! If you have issues running OCLP in Post, set `csr-active-config` to  `FE0F0000` (0xFEF).
 
-4. **SMBIOS**: Under `SystemProductName`, select the correct SMBIOS for your CPU and generate a serial, etc. for it.
+6. **SMBIOS**: Under `SystemProductName`, select the correct SMBIOS for your CPU and generate a serial, etc. for it.
 	-  For Intel i7: `MacBookPro10,1`
 	-  For Intel i5: `MacBookPro10,2`
 	
 	**NOTE**: My config contains the Booter and Kernel Patches from OpenCore Legacy Patcher which allow using the correct SMBIOS for Ivy Bridge CPUs on macOS 11.3 and newer (Darwin Kernel 20.4+), so native Power Management and System Updates are working which wouldn't be possible otherwise past macOS Catalina.
 
-5. **CPU**: The `SSDT-PM.aml` table inside the ACPI Folder is for an **Intel i7 3630QM**. If your T530 has a different CPU model, disable it for now and create your own using `ssdtPRGen` in Post-Install. See [Fixing CPU Power Management](#fixing-cpu-power-Management) for instructions.
+6. **CPU**: The `SSDT-PM.aml` table inside the ACPI Folder is for an **Intel i7 3630QM**. If your T530 has a different CPU model, disable it for now and create your own using `ssdtPRGen` in Post-Install. See [Fixing CPU Power Management](#fixing-cpu-power-Management) for instructions.
 
-6. **WiFi and Bluetooth** (Read carefully!)
+7. **WiFi and Bluetooth** (Read carefully!)
 	- **Case 1: Intel Wifi/BT Card**. If you have a the stock configuration with an Intel WiFi/Bluetooth card, it may work with the [**OpenIntelWireless**](https://github.com/OpenIntelWireless) kexts. 
 		- Check the compatibility list to find out if your card is supported. 
 		- Remove `BluetoolFixup` and `Brcm` Kexts
 		- Add the required Kexts for your Intel card to `EFI/OC/Kexts` folder and `config.plist` before attempting to boot with this EFI!
 	- **Case 2: 3rd Party WiFi/BT Cards**. These require the [**1vyrain**](https://1vyra.in/) jailbreak to unlock the BIOS to disable the WiFi Whitelist (not required if the 3rd party card is whitelisted).
 		- I use a WiFi/BT Card by Broadcom, so my setup requires `AirportBrcmFixup` for WiFi and `BrcmPatchRAM` and additional satellite kexts for Bluetooth. Read the comments in the config for details.
-		- `BrcmFirmwareData.kext` is used to inject firmwares for Broadcom devices. Alternatively, you can use `BrcmFirmwareRepo.kext` which is more efficient but needs to be installed into `System/Library/Extensions` since it cannot be injected by Bootloaders.
+		- `BrcmFirmwareData.kext` is used for injecting firmwares for Broadcom devices. Alternatively, you can use `BrcmFirmwareRepo.kext` which is more efficient but needs to be installed into `System/Library/Extensions` since it cannot be injected by Bootloaders.
 		- If you use a WiFi/BT Card from a different vendor than Intel or Broadcom, remove BluetoolFixup and the the Brcm Kexts 
 		- Add the Kext(s) required for your card to the kext folder and `config.plist` before deploying the EFI folder!
 
-7. **Kernel/Quirks**: If you are using a custom BIOS like 1vyrain, CFG lock will be disabled. In this case, you can disable the `AppleCpuPmCfgLock` Quirk. To figure out if the MSR 0xE2 register is unlocked, add `ControlMsrE2.efi` to `EFI/OC/Tools` and your config.plist (under `Misc/Tools`) and run it from the BootPicker.
+8. **Kernel/Quirks**: If you are using a custom BIOS like 1vyrain, CFG lock will be disabled. In this case, you can disable the `AppleCpuPmCfgLock` Quirk. To figure out if the MSR 0xE2 register is unlocked, add `ControlMsrE2.efi` to `EFI/OC/Tools` and your config.plist (under `Misc/Tools`) and run it from the BootPicker.
 
-8. **Alternative/Optional Kexts**:
+9. **Alternative/Optional Kexts**:
 	- [**itlwm**](https://github.com/OpenIntelWireless/itlwm): Kext for Intel WiFi Cards. Use instead of `AirportBrcmFixup`if you don't use a Broadcom WiFi Card
 	- [**IntelBluetoothFirmware**](https://github.com/OpenIntelWireless/IntelBluetoothFirmware): Kext for Intel Bluetooth Cards. Use instead of `BrcmPatchRam` and Plugins if you don't use a Broadcom BT Card
 	- [**NoTouchID**](https://github.com/al3xtjames/NoTouchID): only required for macOS 10.13 and 10.14 so the boot process won't stall while looking for a Touch ID sensor.
 	- [**Feature Unlock**](https://github.com/acidanthera/FeatureUnlock): Unlocks additional features like Sidecar, NighShift, Airplay to Mac, Universal Control and Content Caching. Under macOS Monterey, Content Caching also requires `-allow_assetcache` boot-arg.
 	- [**RestictEvents.kext**](https://github.com/acidanthera/RestrictEvents): Combined with boot-arg `revpatch=diskread,memtab`, it enables "Memory" tab in "About this Mac" section and disables "Uninitialized Disk" warning in Finder (for macOS 10.14 and older). Loads automatically for Kernel 20.4 (Big Sur 11.3 and newer) to enable a special board-id for virtual machines which allows installing updates which wouldn't be possible otherwise with the `MacBookPro10,X` SMBIOS.
 
-9. **Backlight Brightness Level tweaks** (optional): 
+10. **Backlight Brightness Level tweaks** (optional): 
   - Set boot-arg `applbkl=1` for reasonable maximum brightness level controlled by `WhateverGreen`. 
   - Set boot-arg `applbkl=0` for increased maximum brightness as defined in `SSDT-PNLF.aml`
 
-#### About used boot arguments and NVRAM variables
+#### Used boot arguments and NVRAM variables
 - **Boot-args:**
 	- `brcmfx-country=#a`: Wifi Country Code (`#a` = generic). For details check the documentation for [AirportBrcmFixup](https://github.com/acidanthera/AirportBrcmFixup).
 	- `gfxrst=1`: Draws Apple logo at 2nd boot stage instead of framebuffer copying &rarr; Smoothens transition from the progress bar to the Login Screen/Desktop when an external monitor is attached.
@@ -268,7 +275,6 @@ Once you're done adjusting the `config.plist`, mount your system's ESP and do th
 **Coming from macOS**: If you already have access to macOS, you can either download macOS from the App Store or use [**ANYmacOS**](https://www.sl-soft.de/en/anymacos/) instead. It's a hassle-free app than can download any macOS from High Sierra up to Ventura and can create an USB Installer as well.
 
 **macOS Monterey+**: For installing macOS Monterey or newer, follow the Install Instructions included in the EFI Download located in the [**Releases**](https://github.com/5T33Z0/Lenovo-T530-Hackinosh-OpenCore/releases) section.
-</details>
 
 ## Post-Install
 Once your system is up and running you may want to change the following settings to make your system more secure:
@@ -290,7 +296,7 @@ Once your system is up and running you may want to change the following settings
 6. Enter the following command to download the ssdtPRGen Script: `curl -o ~/ssdtPRGen.sh https://raw.githubusercontent.com/Piker-Alpha/ssdtPRGen.sh/Beta/ssdtPRGen.sh`
 7. To make the scrip executable, enter: `chmod +x ~/ssdtPRGen.sh`
 8. Run the script: `sudo ~/ssdtPRGen.sh`
-9. The generated `SSDT.aml` will be located under `/Users/YOURUSERNAME/Library/ssdtPRGen`
+9. The generated `SSDT.aml` will be located under `~/Library/ssdtPRGen`
 10. Rename `ssdt.aml` to `SSDT-PM.aml` and copy it
 11. Paste it into `EFI/OC/ACPI`, replacing the existing file
 12. In config, go to `ACPI/Add` and re-enable `SSDT-PM.aml` if it is disabled
