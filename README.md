@@ -41,7 +41,6 @@ The OpenCore EFI also includes the latest Booter and Kernel patches which make u
 I created my own AppleALC Layout-ID which supports the Lenovo Mini Dock 3 Type 4337 and 4338 Docking Stations. It uses **Layout-ID 39** and has been integrated into AppleALC since [version 1.7.3](https://github.com/acidanthera/AppleALC/releases/tag/1.7.3)
 
 ### DSDT-less config
-
 The config contained in this repo is DSDT-less. This means, it doesn't use a patched DSDT. Everything is patched live using binary renames and ACPI Hotpatches (SSDTs). So instead of replacing the *whole* system DSDT by a patched one during boot, only things which need fixing are addressed and patched-in on the fly (hence the term "hot-patching")  – just like it is supposed to be done nowadays. The benefits of this approach are:
 
 - Hotpatching is cleaner, more precise and independent of the installed BIOS version since it only addresses specific areas of ACPI tables which need patching.
@@ -108,6 +107,8 @@ EFI
     ├── Kexts
     │   ├── AirportBrcmFixup.kext
     │   ├── AppleALC.kext
+    │   ├── AppleIntelCPUPowerManagement.kext
+    │   ├── AppleIntelCPUPowerManagementClient.kext
     │   ├── BlueToolFixup.kext
     │   ├── BrcmBluetoothInjector.kext
     │   ├── BrcmFirmwareData.kext
@@ -145,7 +146,9 @@ EFI
 Please read the following explanations carefully and follow the given instructions. In order to boot macOS with this EFI successfully, adjustments to the `config.plist` and used kexts may be necessary to adapt the config to your T530 model and the macOS version you want to install/run. 
 
 ### Preparing the `config.plist`
-Download the EFI Folder from the [Releases](https://github.com/5T33Z0/Lenovo-T530-Hackintosh-OpenCore/releases) section and unpack it. Open the `config.plist` and adjust the following settings depending on your system:
+Download the EFI Folder from the [Releases](https://github.com/5T33Z0/Lenovo-T530-Hackintosh-OpenCore/releases) section and unpack it. Make sure to check the included `Changelog.md` as well, since it also contains useful explanations. 
+
+Open the `config.plist` and adjust the following settings depending on your system:
 
 1. **ACPI** Section:
 	- Disable `SSDT-PM.aml` (unless you have an i7 3630QM as well). Generate your own with ssdtPRGen in Post-Install. See [Fixing CPU Power Management](#fixing-cpu-power-Management) for instructions.
@@ -289,7 +292,6 @@ Once your system is up and running you may want to change the following settings
 - **MinDate/MinVersion**: you should keep a working backup of your EFI folder on a FAT32 formatted USB flash drive before changing these settings, because if they are wrong, the APFS driver won't load and you won't see your macOS drive(s)!
 
 ### Fixing CPU Power Management 
-
 1. Mount your EFI
 2. Open your `config.plist`
 3. In `ACPI/Add`, disable `SSDT-PM`
