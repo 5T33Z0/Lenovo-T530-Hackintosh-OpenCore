@@ -26,14 +26,15 @@ Normally, you would not be able to run Monterey with a MacBookPro10,X SMBIOS whi
 <details>
 <summary><strong>Option 1: Updating an existing Install</strong></summary>
 
-**Option 1**: Updating an existing macOS Monterey Installation
+**Option 1**: Upgrading from macOS 11
 
 - Download OCLP
 - Mount your EFI Partition
 - Paste in my EFI Folder and edit the `config.plist`:
 	- Generate SMBIOS date for `MacBookPro10,1` (Core i7) or `MacBookPro10,2` (Core i5)
 	- Change `csr-active-config` to: `EF0F0000` (a must to install the Intel HD4000 Drivers)
-- Run the "Install macOS Monterey" App you've downloaded with ANYmacOS
+- Download macOS Monterey via App Store, System Updates or the OCLP App
+- Run the "Install macOS Monterey" App
 - There will be a few reboots
 - Boot from the new macOS Partition until it's no longer present in the Boot Picker
 
@@ -46,7 +47,7 @@ Continue with Step 2.
 
 To create a USB Installer, you can use OCLP:
 
-- Create a new Partition on your HDD/SSD or use a separate disk (at least 60 GB in size)
+- Create a new Partition or Volume on your HDD/SSD (at least 60 GB in size) or use a separate disk 
 - Attach an empty USB flash drive for creating the installer (16 GB+)
 - Run OCLP and follow the [**instructions**](https://dortania.github.io/OpenCore-Legacy-Patcher/INSTALLER.html#creating-the-installer) to create the USB Installer
 - Once the USB Installer has been created, do the following:
