@@ -173,7 +173,11 @@ Open the `config.plist` and adjust the following settings depending on your syst
 	
 4. **Audio**: 
 	- If you need digital Audio over HDMI/DP, disable/delete `No-hda-gfx` from the Audio Device Properties in `PciRoot(0x0)/Pci(0x1B,0x0)`.
-	- My EFI contains a custom build of `AppleALC.kext` which only contains layouts `18` and `39` (default) and therefore only is 95 KB in size (instead of 3.6 MB). If you are using a Dockingstation, leave it at `39`. If you don't, you can change it to `18`.
+	- My EFI contains a custom build of `AppleALC.kext` which only contains layouts `18` and `39` (default) and therefore only is 95 KB in size (instead of 3.6 MB). If you are using a Dockingstation, leave it at `39`. If you don't, change it to `18`.
+	- If you want the bootchime to playback, do the following:
+		- Under `UEFI/Drivers`, enable `AudioDxe.efi`
+		- Under `EUFI/Audio`, enable `AudioSupport`
+		- Make sure `ConnectDrivers` is enabled
 
 5. Under `NVRAM/Add/7C436110-AB2A-4BBB-A880-FE41995C9F82`, adjust `csr-active-config` according to the macOS version you want to use:
 	- For macOS Big Sur and newer: `67080000`(0x867)
