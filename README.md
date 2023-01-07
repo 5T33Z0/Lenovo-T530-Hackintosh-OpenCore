@@ -221,11 +221,11 @@ Open the `config.plist` and adjust the following settings depending on your syst
 	- `brcmfx-country=#a`: Wifi Country Code (`#a` = generic). For details check the documentation for [AirportBrcmFixup](https://github.com/acidanthera/AirportBrcmFixup).
 	- `gfxrst=1`: Draws Apple logo at 2nd boot stage instead of framebuffer copying &rarr; Smoothens transition from the progress bar to the Login Screen/Desktop when an external monitor is attached.
 	- `#revpatch=diskread,memtab`: For `RestrictEvents.kext` (disabled). `diskread` disables "Uninitialized Disk" warning in macOS 10.14 and older. `memtab` adds `Memory` tab to "About this Mac" section. Enable `RestrictEvents.kext` and remove the `#` from the boot-arg to enable it.
-	- `ipc_control_port_options=0`: Fixes issues with electron-based Apps like Discord in Monterey and newer when the level of SIP.
+	- `ipc_control_port_options=0`: Fixes issues with electron-based Apps like Discord in Monterey and newer when SIP is lowered.
 - **NVRAM variables**
 	- OCLP Settings `-allow_amfi`: Does the same as boot-arg `amfi_get_out_of_my_way=1` but only when OCLP App is running &rarr; Required to be able to install Intel HD 4000 drivers in macOS Ventura using OCLP in Post-Install.
 	- `revblock:media` &rarr; Blocks `mediaanalysisd` on Ventura+ (for Metal 1 GPUs). Required so Apps like Firefox don't crash. Requires RestrictEvents.kext
-	- `revpatch:sbvmm` &rarr; Forces VMM SB model, allowing OTA updates for unsupported models on macOS 11.3 and newer. Requires RestrictEvents.kext
+	- `revpatch:sbvmm` &rarr; Forces VMM SB model, allowing OTA updates for unsupported models on macOS 11.3 and newer. Requires `RestrictEvents.kext`
 
 ### EFI How To
 Once you're done adjusting the `config.plist`, mount your system's ESP and do the following:
