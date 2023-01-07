@@ -182,7 +182,7 @@ Open the `config.plist` and adjust the following settings depending on your syst
 5. Under `NVRAM/Add/7C436110-AB2A-4BBB-A880-FE41995C9F82`, adjust `csr-active-config` according to the macOS version you want to use:
 	- For macOS Big Sur and newer: `67080000`(0x867)
 	- For macOS Mojave/Catalina: `EF070000`(0x7EF)
-	- For macOSHigh Sierra: `FF030000` (0x3FF)
+	- For macOS High Sierra: `FF030000` (0x3FF)
 	
 	**NOTE**: Disabling SIP is mandatory if you want to run macOS Monterey or newer in order to install and load Intel HD 4000 Drivers! If you have issues running OCLP in Post, set `csr-active-config` to `FE0F0000` (0xFEF).
 
