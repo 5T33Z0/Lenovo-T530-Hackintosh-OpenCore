@@ -278,11 +278,11 @@ Once you're done adjusting the `config.plist`, mount your system's ESP and do th
 </details>
 
 ### Installing macOS
-**Coming from Windows/Linux**: If you are on Windows or Linux, follow the guide provided by [Dortania](https://dortania.github.io/OpenCore-Install-Guide/installer-guide/#making-the-installer). 
+**Coming from Windows/Linux**: Follow the installation guide by [**Dortania**](https://dortania.github.io/OpenCore-Install-Guide/installer-guide/#making-the-installer). 
 
 **NOTE**: No support from my end for issues related to UBS Installers created in Windows or Linux!
 
-**Coming from macOS**: If you already have access to macOS, you can either download macOS from the App Store, with [OCLP](https://github.com/dortania/OpenCore-Legacy-Patcher) or with [**ANYmacOS**](https://www.sl-soft.de/en/anymacos/). Both than can download any macOS from High Sierra up to Ventura and can create an USB Installer as well.
+**Coming from macOS**: If you already have access to macOS, you can either download macOS from the App Store, with [**OCLP**](https://github.com/dortania/OpenCore-Legacy-Patcher) or with [**ANYmacOS**](https://www.sl-soft.de/en/anymacos/). Both than can download any macOS from High Sierra up to Ventura and can create an USB Installer as well.
 
 Install instruction for Big Sur and newer covering different scenarios can be found [**here**](https://github.com/dortania/OpenCore-Legacy-Patcher)
 
