@@ -327,19 +327,18 @@ You can also use overrides to the command to change the low frequency mode for e
 **NOTES**: 
 
 - Only necessary if you use a different CPU than i7 3630QM
-- CPU Power Management didn't work correctly in Ventura (no Turbo states), because the legacy `ACPI_SMC_PlatformPlugin` _binary_ itself (previousl located under System/Library/Extensions/IOPlatformPluginFamily.kext/Contents/PlugIns/ACPI_SMC_PlatformPlugin.kext/Contents/MacOS/) has been removed from the kext by Apple. Power Managent has been fixed now by re-injecting the AppleintelCPUPowerManagement kext via OpenCore/Clover.
 - You can add modifiers to the terminal command for building SSDT-PM. For example, you can drop the low frequency from the default 1200 MHz to 900 MHz in 100 MHz increments, but no lower than that. Otherwise the system crashes during boot. I suggests you experiment with the modifiers a bit.
 - If you feel really confident and enthusiastic you could also re-enable XCPM. But in my experience the machine does not perform as good. You can [follow this guide](https://github.com/5T33Z0/Lenovo-T530-Hackinosh-OpenCore/tree/main/Enable%20XCPM) if you're so inclined.
 
 ### Re-Enabling ACPI Power Management in macOS Ventura
-With the release of macOS Ventura, Apple removed the actual `ACPI_SMC_PlatformPlugin` *binary* from the `ACPI_SMC_PlatformPlugin.kext` itself, rendering `SSDT-PM` generated for 'plugin-type' 0 useless, since the plugin is missing. Instead, the `X86PlaformPlugin` is loaded by default now. Therefore, CPU Power Management won't work correctly (no Turbo states).
+With the release of macOS Ventura, Apple removed the actual `ACPI_SMC_PlatformPlugin` *binary* from the `ACPI_SMC_PlatformPlugin.kext` itself (previously located under System/Library/Extensions/IOPlatformPluginFamily.kext/Contents/PlugIns/ACPI_SMC_PlatformPlugin.kext/Contents/MacOS/), rendering `SSDT-PM` generated for 'plugin-type' 0 useless, since the plugin binary is missing. Instead, the `X86PlaformPlugin` is loaded by default now. Therefore, CPU Power Management won't work correctly (no Turbo states).
 
 So when switching to macOS Ventura, you either have to force-enable XCPM by enabling the corresponding Kernel Patch contained in my config or inject kexts to re-enable ACPI CPU Power Management (Plugin-Type 0) instead. The latter is recommended, since ACPI CPU Power Management just works better on Ivy Bridge than XCPM. 
 
-In order to re-enable ACPI CPU Power Management on macOS Ventura, you need:
+In order to re-enable and use ACPI CPU Power Management on macOS Ventura, you need to (my current EFI folder is already configured to use Plugin-Type 0 already, so you don't worry about it):
 
 - My latest OpenCore EFI folder release
-- A BIOS where CFG lock can be disabled so the **MSR 0x2E** are **unlocked**. This is mandatory since the `AppleCpuPmCfgLock` Quirk doesn't seem to work on all systems when injecting the required kexts into macOS Ventura, causing kernel panics (as discussed [here](https://github.com/5T33Z0/Lenovo-T530-Hackintosh-OpenCore/issues/31#issuecomment-1368409836)). So flashing a custom BIOS is required if your BIOS doesn't provide an option to disable CFG lock. Since I am using 1vyrain, CFG lock is already disabled so I don't need `AppleCpuPmCfgLock` to boot.
+- A BIOS where CFG lock can be disabled so the **MSR 0x2E** are **unlocked**. This is mandatory since the `AppleCpuPmCfgLock` Quirk doesn't seem to work on all systems when injecting the required kexts into macOS Ventura, causing kernel panics (as discussed [here](https://github.com/5T33Z0/Lenovo-T530-Hackintosh-OpenCore/issues/31#issuecomment-1368409836)). So flashing a custom BIOS is required if your BIOS doesn't provide an option to disable CFG lock – otherwise you have to stick with XCPM enabled. Since I am using 1vyrain, CFG lock is already disabled in the firmware so I don't require `AppleCpuPmCfgLock` to boot.
 - Add [Kexts from OpenCore Legacy Patcher](https://github.com/dortania/OpenCore-Legacy-Patcher/tree/main/payloads/Kexts/Misc):
 	- `AppleIntelCPUPowerManagement.kext` (set `MinKernel` to 22.0.0)
 	- `AppleIntelCPUPowerManagementClient.kext` (set `MinKernel` to 22.0.0)
@@ -352,8 +351,8 @@ Once the 2 Kexts are injected, ACPI Power Management will work in Ventura and yo
 ```shell
 sysctl machdep.xcpm.mode
 ```
-The output should be `0`, indicating that the `X86PlatformPlugin` is not loaded.
-
+The output should be `0`, indicating that the `X86PlatformPlugin` is not loaded, which is good in this case.
+ 
 ### Fixing Sleep issues
 If you have issues with sleep, run the following commands in Terminal:
 
