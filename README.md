@@ -37,6 +37,7 @@ The OpenCore EFI also includes the latest Booter and Kernel patches which make u
 |:warning: Issues related to macOS 12+|
 |:------------------------------------|
 |**macOS Monterey and newer**: requires [**OCLP**](https://github.com/dortania/Opencore-Legacy-Patcher) to enable graphics acceleration
+| **macOS Ventura**: requires a custom BIOS with CFG Lock disabled in Firmware (not just the `AppleCpuPmCfgLock` Quirk) to re-enable ACPI CPU Power Management!
 
 ### Audio Working on Docking Stations 
 I created my own AppleALC Layout-ID which supports the Lenovo Mini Dock 3 Type 4337 and 4338 Docking Stations. It uses **Layout-ID 39** and has been integrated into AppleALC since [version 1.7.3](https://github.com/acidanthera/AppleALC/releases/tag/1.7.3)
