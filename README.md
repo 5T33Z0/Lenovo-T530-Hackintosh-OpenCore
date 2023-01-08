@@ -289,7 +289,7 @@ Once you're done adjusting the `config.plist`, mount your system's ESP and do th
 Install instruction for Big Sur and newer covering different scenarios can be found [**here**](https://github.com/dortania/OpenCore-Legacy-Patcher)
 
 #### Recommended macOS version
-Up until recently, my recommendation was macOS Catalin. But after the last updates, Apple Music didn't work any more and I couldn't fix since the issue seems to be os-related.
+Up until recently, my recommendation was macOS Catalina. But after the last updates, Apple Music didn't work any more and I couldn't fix since the issue seems to be os-related.
 
 While testing my own instructions for upgrading from macOS Catalina (or older) to Big Sur, I noticed that Big Sure feels snappier and more responsive overall (although benchmakrs are slightly lower) and has no issues with Apple Music, so Big Sur is my new recommendation.
 
