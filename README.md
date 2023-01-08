@@ -222,7 +222,7 @@ Open the `config.plist` and adjust the following settings depending on your syst
 	- `brcmfx-country=#a`: Wifi Country Code (`#a` = generic). For details check the documentation for [AirportBrcmFixup](https://github.com/acidanthera/AirportBrcmFixup).
 	- `gfxrst=1`: Draws Apple logo at 2nd boot stage instead of framebuffer copying &rarr; Smoothens transition from the progress bar to the Login Screen/Desktop when an external monitor is attached.
 	- `#revpatch=diskread,memtab`: For `RestrictEvents.kext` (disabled). `diskread` disables "Uninitialized Disk" warning in macOS 10.14 and older. `memtab` adds `Memory` tab to "About this Mac" section. Enable `RestrictEvents.kext` and remove the `#` from the boot-arg to enable it.
-	- `ipc_control_port_options=0`: Fixes issues with electron-based Apps like Discord in Monterey and newer when SIP is lowered.
+	- `ipc_control_port_options=0`: Fixes issues with electron-based Apps like Discord in macOS Monterey and newer when SIP is lowered.
 - **NVRAM variables**
 	- OCLP Settings `-allow_amfi`: Does the same as boot-arg `amfi_get_out_of_my_way=1` but only when OCLP App is running &rarr; Required to be able to install Intel HD 4000 drivers in macOS Ventura using OCLP in Post-Install.
 	- `revblock:media` &rarr; Blocks `mediaanalysisd` on Ventura+ (for Metal 1 GPUs). Required so Apps like Firefox don't crash. Requires RestrictEvents.kext
@@ -288,14 +288,14 @@ Once you're done adjusting the `config.plist`, mount your system's ESP and do th
 Install instruction for Big Sur and newer covering different scenarios can be found [**here**](https://github.com/dortania/OpenCore-Legacy-Patcher)
 
 #### Recommended macOS version
-Up until recently, my recommendation macOS was Catalin. But after the last updates, Apple Music didn't work any more and I couldn't fix ist since it seems to be os-related in general.
+Up until recently, my recommendation was macOS Catalin. But after the last updates, Apple Music didn't work any more and I couldn't fix since the issue seems to be os-related.
 
-While testing a my own instructions for upgrading from macOS Catalina (or older) to Big Sur, I noticed that Big Sure feels snappier and more responsive overall (although benchmakrs are slightly lower) and has no issues with Apple Music, so Big Sur is my new recommendation.
+While testing my own instructions for upgrading from macOS Catalina (or older) to Big Sur, I noticed that Big Sure feels snappier and more responsive overall (although benchmakrs are slightly lower) and has no issues with Apple Music, so Big Sur is my new recommendation.
 
 ## Post-Install
 Once your system is up and running you may want to change the following settings to make your system more secure:
 
-- Enable System Integrity Protection (SIP): change `csr-active-config` to `00000000` (SIP needs to stay disabled in macOS 12+)
+- Enable System Integrity Protection (SIP): change `csr-active-config` to `00000000` (macOS ≤ 11.x only!)
 - Under `UEFI/APFS`, change `MinDate` and `MinVersion` from `-1` (disabled) to the correct values for the macOS version you are using. A list with the correct values for can be found [here](https://github.com/5T33Z0/OC-Little-Translated/tree/main/A_Config_Tips_and_Tricks#mindateminversion-settings-for-the-apfs-driver).
 
 **IMPORTANT**: 
@@ -328,17 +328,18 @@ You can also use overrides to the command to change the low frequency mode for e
 
 - Only necessary if you use a different CPU than i7 3630QM
 - You can add modifiers to the terminal command for building SSDT-PM. For example, you can drop the low frequency from the default 1200 MHz to 900 MHz in 100 MHz increments, but no lower than that. Otherwise the system crashes during boot. I suggests you experiment with the modifiers a bit.
-- If you feel really confident and enthusiastic you could also re-enable XCPM. But in my experience the machine does not perform as good. You can [follow this guide](https://github.com/5T33Z0/Lenovo-T530-Hackinosh-OpenCore/tree/main/Enable%20XCPM) if you're so inclined.
 
 ### Re-Enabling ACPI Power Management in macOS Ventura
-With the release of macOS Ventura, Apple removed the actual `ACPI_SMC_PlatformPlugin` *binary* from the `ACPI_SMC_PlatformPlugin.kext` itself (previously located under System/Library/Extensions/IOPlatformPluginFamily.kext/Contents/PlugIns/ACPI_SMC_PlatformPlugin.kext/Contents/MacOS/), rendering `SSDT-PM` generated for 'plugin-type' 0 useless, since the plugin binary is missing. Instead, the `X86PlaformPlugin` is loaded by default now. Therefore, CPU Power Management won't work correctly (no Turbo states).
+With the release of macOS Monterey, Apple dropped the Plugin-Type check, so that the X86PlatformPlugin is now loaded by default. For Haswell and newer this is great, since you no longer need `SSDT-PLUG` to enable Plugin-Type `1`. But for Ivy Bridge and older, you now need to tell macOS to use Plugin-Type `0` which is fine since it is set in `SSDT-PM` already, so ACPI CPU Power Management still works in Monterey.
 
-So when switching to macOS Ventura, you either have to force-enable XCPM by enabling the corresponding Kernel Patch contained in my config or inject kexts to re-enable ACPI CPU Power Management (Plugin-Type 0) instead. The latter is recommended, since ACPI CPU Power Management just works better on Ivy Bridge than XCPM. 
+But when Apple released macOS Ventura, they removed the actual `ACPI_SMC_PlatformPlugin` *binary* from the `ACPI_SMC_PlatformPlugin.kext` itself (previously located under S/L/E/IOPlatformPluginFamily.kext/Contents/PlugIns/ACPI_SMC_PlatformPlugin.kext/Contents/MacOS/), rendering `SSDT-PM` generated for 'plugin-type' 0 useless, since the plugin binary is missing and therefore can't be selected. Instead, the `X86PlaformPlugin` is loaded by default now. Therefore, CPU Power Management wouldn't work correctly out of the box (no Turbo states).
 
-In order to re-enable and use ACPI CPU Power Management on macOS Ventura, you need to (my current EFI folder is already configured to use Plugin-Type 0 already, so you don't worry about it):
+So when switching to macOS Ventura, you either have to force-enable XCPM by enabling the corresponding Kernel Patch contained in my config or inject kexts to re-enable ACPI CPU Power Management (Plugin-Type 0) instead. The latter is recommended, since ACPI CPU Power Management just works better on Ivy Bridge than XCPM and my current EFI folders are configured to do so.
 
-- My latest OpenCore EFI folder release
-- A BIOS where CFG lock can be disabled so the **MSR 0x2E** are **unlocked**. This is mandatory since the `AppleCpuPmCfgLock` Quirk doesn't seem to work on all systems when injecting the required kexts into macOS Ventura, causing kernel panics (as discussed [here](https://github.com/5T33Z0/Lenovo-T530-Hackintosh-OpenCore/issues/31#issuecomment-1368409836)). So flashing a custom BIOS is required if your BIOS doesn't provide an option to disable CFG lock – otherwise you have to stick with XCPM enabled. Since I am using 1vyrain, CFG lock is already disabled in the firmware so I don't require `AppleCpuPmCfgLock` to boot.
+In order to re-enable and use ACPI CPU Power Management on macOS Ventura, you need:
+
+- My latest OpenCore EFI folder [release](https://github.com/5T33Z0/Lenovo-T530-Hackintosh-OpenCore/releases)
+- A BIOS where CFG lock can be disabled so the **MSR 0x2E** are **unlocked**. This is mandatory since the `AppleCpuPmCfgLock` Quirk doesn't seem to work on all systems when injecting the required kexts into macOS Ventura, causing kernel panics (as discussed [here](https://github.com/5T33Z0/Lenovo-T530-Hackintosh-OpenCore/issues/31#issuecomment-1368409836)). So flashing a custom BIOS is mandatory if your BIOS doesn't provide an option to disable CFG lock – otherwise you have to [**force-enable XCPM**](https://github.com/5T33Z0/Lenovo-T530-Hackintosh-OpenCore/tree/main/ACPI/Enable_XCPM) instead. Since I am using 1vyrain, CFG lock is already disabled in the firmware so I don't require `AppleCpuPmCfgLock` to boot.
 - Add [Kexts from OpenCore Legacy Patcher](https://github.com/dortania/OpenCore-Legacy-Patcher/tree/main/payloads/Kexts/Misc):
 	- `AppleIntelCPUPowerManagement.kext` (set `MinKernel` to 22.0.0)
 	- `AppleIntelCPUPowerManagementClient.kext` (set `MinKernel` to 22.0.0)
