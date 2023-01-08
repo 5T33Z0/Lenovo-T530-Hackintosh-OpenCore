@@ -1,6 +1,6 @@
 # Lenovo ThinkPad T530 Hackintosh OpenCore
 
-[![T530](https://img.shields.io/badge/ThinkPad-T530-informational.svg)](https://psref.lenovo.com/syspool/Sys/PDF/withdrawnbook/ThinkPad_T530.pdf) [![OpenCore](https://img.shields.io/badge/OpenCore-0.8.8-cyan.svg)](https://github.com/acidanthera/OpenCorePkg/releases/latest) [![Clover Version](https://img.shields.io/badge/Clover-r5150-lime.svg)](https://github.com/CloverHackyColor/CloverBootloader/releases) [![MacOS Catalina](https://img.shields.io/badge/macOS-10.15.7-white.svg)](https://www.apple.com/li/macos/catalina/) [![MacOS Big Sur](https://img.shields.io/badge/macOS-11.7-white.svg)](https://www.apple.com/macos/big-sur/) [![MacOS Monterey](https://img.shields.io/badge/macOS-12.6.2-white.svg)](https://www.apple.com/macos/monterey/) [![macOS Ventura](https://img.shields.io/badge/macOS-13.2-white.svg)](https://www.apple.com/macos/ventura/) [![release](https://img.shields.io/badge/Download-latest-success.svg)](https://github.com/5T33Z0/Lenovo-T530-Hackinosh-OpenCore/releases/latest) ![16123445](https://user-images.githubusercontent.com/76865553/208101604-eb58ec92-2f56-46e2-9ffd-84f9af286415.png)
+[![T530](https://img.shields.io/badge/ThinkPad-T530-informational.svg)](https://psref.lenovo.com/syspool/Sys/PDF/withdrawnbook/ThinkPad_T530.pdf) [![OpenCore](https://img.shields.io/badge/OpenCore-0.8.8-cyan.svg)](https://github.com/acidanthera/OpenCorePkg/releases/latest) [![Clover Version](https://img.shields.io/badge/Clover-r5150-lime.svg)](https://github.com/CloverHackyColor/CloverBootloader/releases) [![MacOS Catalina](https://img.shields.io/badge/macOS-10.15.7-white.svg)](https://www.apple.com/li/macos/catalina/) [![MacOS Big Sur](https://img.shields.io/badge/macOS-11.7.2-white.svg)](https://www.apple.com/macos/big-sur/) [![MacOS Monterey](https://img.shields.io/badge/macOS-12.6.2-white.svg)](https://www.apple.com/macos/monterey/) [![macOS Ventura](https://img.shields.io/badge/macOS-13.2-white.svg)](https://www.apple.com/macos/ventura/) [![release](https://img.shields.io/badge/Download-latest-success.svg)](https://github.com/5T33Z0/Lenovo-T530-Hackinosh-OpenCore/releases/latest) ![16123445](https://user-images.githubusercontent.com/76865553/208101604-eb58ec92-2f56-46e2-9ffd-84f9af286415.png)
 
 **TABLE of CONTENTS**
 
@@ -286,6 +286,11 @@ Once you're done adjusting the `config.plist`, mount your system's ESP and do th
 **Coming from macOS**: If you already have access to macOS, you can either download macOS from the App Store, with [**OCLP**](https://github.com/dortania/OpenCore-Legacy-Patcher) or with [**ANYmacOS**](https://www.sl-soft.de/en/anymacos/). Both than can download any macOS from High Sierra up to Ventura and can create an USB Installer as well.
 
 Install instruction for Big Sur and newer covering different scenarios can be found [**here**](https://github.com/dortania/OpenCore-Legacy-Patcher)
+
+#### Recommended macOS version
+Up until recently, my recommendation macOS was Catalin. But after the last updates, Apple Music didn't work any more and I couldn't fix ist since it seems to be os-related in general.
+
+While testing a my own instructions for upgrading from macOS Catalina (or older) to Big Sur, I noticed that Big Sure feels snappier and more responsive overall (although benchmakrs are slightly lower) and has no issues with Apple Music, so Big Sur is my new recommendation.
 
 ## Post-Install
 Once your system is up and running you may want to change the following settings to make your system more secure:
