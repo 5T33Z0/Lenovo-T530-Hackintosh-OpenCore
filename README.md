@@ -16,9 +16,10 @@
   - [EFI How To](#efi-how-to)
   - [BIOS Settings](#bios-settings)
   - [Installing macOS](#installing-macos)
+    - [Recommended macOS version](#recommended-macos-version)
 - [Post-Install](#post-install)
   - [Fixing CPU Power Management](#fixing-cpu-power-management)
-  - [Re-Enabling ACPI Power Management in macOS Ventura](#re-enabling-acpi-power-management-in-macos-ventura)
+    - [Re-Enabling ACPI Power Management in macOS Ventura](#re-enabling-acpi-power-management-in-macos-ventura)
   - [Fixing Sleep issues](#fixing-sleep-issues)
   - [Reducing boot time](#reducing-boot-time)
   - [Swapping Command ⌘ and Option ⌥ Keys](#swapping-command--and-option--keys)
@@ -329,7 +330,7 @@ You can also use overrides to the command to change the low frequency mode for e
 - Only necessary if you use a different CPU than i7 3630QM
 - You can add modifiers to the terminal command for building SSDT-PM. For example, you can drop the low frequency from the default 1200 MHz to 900 MHz in 100 MHz increments, but no lower than that. Otherwise the system crashes during boot. I suggests you experiment with the modifiers a bit.
 
-### Re-Enabling ACPI Power Management in macOS Ventura
+#### Re-Enabling ACPI Power Management in macOS Ventura
 With the release of macOS Monterey, Apple dropped the Plugin-Type check, so that the X86PlatformPlugin is now loaded by default. For Haswell and newer this is great, since you no longer need `SSDT-PLUG` to enable Plugin-Type `1`. But for Ivy Bridge and older, you now need to tell macOS to use Plugin-Type `0` which is fine since it is set in `SSDT-PM` already, so ACPI CPU Power Management still works in Monterey.
 
 But when Apple released macOS Ventura, they removed the actual `ACPI_SMC_PlatformPlugin` *binary* from the `ACPI_SMC_PlatformPlugin.kext` itself (previously located under S/L/E/IOPlatformPluginFamily.kext/Contents/PlugIns/ACPI_SMC_PlatformPlugin.kext/Contents/MacOS/), rendering `SSDT-PM` generated for 'plugin-type' 0 useless, since the plugin binary is missing and therefore can't be selected. Instead, the `X86PlaformPlugin` is loaded by default now. Therefore, CPU Power Management wouldn't work correctly out of the box (no Turbo states).
