@@ -327,7 +327,7 @@ You can also use overrides to the command to change the low frequency mode for e
 **NOTES**: 
 
 - Only necessary if you use a different CPU than i7 3630QM
-- CPU Power Management doesn't work correctly in Ventura (no Turbo states). Probably because the legacy `ACPI_SMC_PlatformPlugin` has been dropped. Needs further investigation.
+- CPU Power Management didn't work correctly in Ventura (no Turbo states), because the legacy `ACPI_SMC_PlatformPlugin` _binary_ itself (previousl located under System/Library/Extensions/IOPlatformPluginFamily.kext/Contents/PlugIns/ACPI_SMC_PlatformPlugin.kext/Contents/MacOS/) has been removed from the kext by Apple. Power Managent has been fixed now by re-injecting the AppleintelCPUPowerManagement kext via OpenCore/Clover.
 - You can add modifiers to the terminal command for building SSDT-PM. For example, you can drop the low frequency from the default 1200 MHz to 900 MHz in 100 MHz increments, but no lower than that. Otherwise the system crashes during boot. I suggests you experiment with the modifiers a bit.
 - If you feel really confident and enthusiastic you could also re-enable XCPM. But in my experience the machine does not perform as good. You can [follow this guide](https://github.com/5T33Z0/Lenovo-T530-Hackinosh-OpenCore/tree/main/Enable%20XCPM) if you're so inclined.
 
