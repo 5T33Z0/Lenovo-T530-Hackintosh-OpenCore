@@ -206,6 +206,7 @@ Open the `config.plist` and adjust the following settings depending on your syst
 8. **Kernel/Quirks**: If you are using a custom BIOS like 1vyrain, CFG lock will be disabled. In this case, you can disable the `AppleCpuPmCfgLock` Quirk. To figure out if the MSR 0xE2 register is unlocked, add `ControlMsrE2.efi` to `EFI/OC/Tools` and your config.plist (under `Misc/Tools`) and run it from the BootPicker.
 
 9. **Alternative/Optional Kexts**:
+	- **AppleIntelCPUPowerManagement** and **AppleIntelCPUPowerManagementClient** kexts from [**OCLP**](https://github.com/dortania/OpenCore-Legacy-Patcher/tree/main/payloads/Kexts/Misc) &rarr; Needed to re-enable ACPI CPU Power Management on macOS Ventura
 	- [**itlwm**](https://github.com/OpenIntelWireless/itlwm): Kext for Intel WiFi Cards. Use instead of `AirportBrcmFixup`if you don't use a Broadcom WiFi Card
 	- [**IntelBluetoothFirmware**](https://github.com/OpenIntelWireless/IntelBluetoothFirmware): Kext for Intel Bluetooth Cards. Use instead of `BrcmPatchRam` and Plugins if you don't use a Broadcom BT Card
 	- [**NoTouchID**](https://github.com/al3xtjames/NoTouchID): only required for macOS 10.13 and 10.14 so the boot process won't stall while looking for a Touch ID sensor.
