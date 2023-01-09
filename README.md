@@ -145,7 +145,7 @@ EFI
 </details>
 
 ## Deployment
-Please read the following explanations carefully and follow the given instructions. In order to boot macOS with this EFI successfully, adjustments to the `config.plist` and used kexts may be necessary to adapt the config to your T530 model and the macOS version you want to install/run. 
+Please read the following explanations carefully and follow the given instructions. In order to boot macOS with this EFI successfully, adjustments to the `config.plist` and used kexts may be necessary to adapt the config to your T530 model and the macOS version you want to install/run.
 
 ### Preparing the `config.plist`
 Download the EFI Folder from the [Releases](https://github.com/5T33Z0/Lenovo-T530-Hackintosh-OpenCore/releases) section and unpack it. Make sure to check the included `Changelog.md` as well, since it also contains useful explanations. 
@@ -208,7 +208,7 @@ Open the `config.plist` and adjust the following settings depending on your syst
 8. **Kernel/Quirks**: If you are using a custom BIOS like 1vyrain, CFG lock will be disabled. In this case, you can disable the `AppleCpuPmCfgLock` Quirk. To figure out if the MSR 0xE2 register is unlocked, add `ControlMsrE2.efi` to `EFI/OC/Tools` and your config.plist (under `Misc/Tools`) and run it from the BootPicker.
 
 9. **Alternative/Optional Kexts**:
-	- **AppleIntelCPUPowerManagement** and **AppleIntelCPUPowerManagementClient** kexts from [**OCLP**](https://github.com/dortania/OpenCore-Legacy-Patcher/tree/main/payloads/Kexts/Misc) &rarr; Needed to re-enable ACPI CPU Power Management on macOS Ventura
+	- **AppleIntelCPUPowerManagement** and **AppleIntelCPUPowerManagementClient** kexts from [**OCLP**](https://github.com/dortania/OpenCore-Legacy-Patcher/tree/main/payloads/Kexts/Misc) &rarr; Needed to re-enable ACPI CPU Power Management on macOS Ventura. If your CFG Lock is not disabled in BIOS, you need to disable these kexts and force-enable XCPM support instead
 	- [**itlwm**](https://github.com/OpenIntelWireless/itlwm): Kext for Intel WiFi Cards. Use instead of `AirportBrcmFixup`if you don't use a Broadcom WiFi Card
 	- [**IntelBluetoothFirmware**](https://github.com/OpenIntelWireless/IntelBluetoothFirmware): Kext for Intel Bluetooth Cards. Use instead of `BrcmPatchRam` and Plugins if you don't use a Broadcom BT Card
 	- [**NoTouchID**](https://github.com/al3xtjames/NoTouchID): only required for macOS 10.13 and 10.14 so the boot process won't stall while looking for a Touch ID sensor.
@@ -233,10 +233,13 @@ Open the `config.plist` and adjust the following settings depending on your syst
 ### EFI How To
 Once you're done adjusting the `config.plist`, mount your system's ESP and do the following:
 
-- (Re)place the EFI Folder
+- Backup your current EFI folder on a FAT32 formatted USB flash drive and disconnect it
+- Paste in my EFI folder
 - Restart
 - Perform an NVRAM Reset (in BootPicker, hit Space Bar to reveal the tool)
 - Select macOS to boot
+
+The system may crash the first time when booting macOS Ventura. That's normal. I think it's be related to injecting the AppleIntelCPUPowerManagement kexts. After that, it's workinf fine.
 
 ### BIOS Settings
 
