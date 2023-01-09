@@ -10,7 +10,10 @@ Although `XCPM` is supported by Ivy Bridge CPUs natively. But there isn't much i
 
 So that's exactly what we are going to do: re-enable `XCPM` with a kernel patch, 2 kernel quirks and a modified `SSDT-XCPM.aml` or `SSDT-PLUG.aml` to use the `X86PlatformPlugin` (i.e. setting Plugin Type to `1`).
 
-**NOTE:** Enabling `X86PlatformPlugin` for Ivy Bridge CPUs is not recommended – in my experience the CPU performance is worse than using the legacy plugin. This guide only exists to show you that you *can* re-enable it – not that you *should* do it! But when using macOS Monterey and newer it's mandatory since Apple dropped the ACPI_SMC_PlatformPlugin which took care of CPU Power Management on Ivy Bridge and older.
+**NOTES:** 
+
+- Enabling `X86PlatformPlugin` for Ivy Bridge CPUs is not recommended – in my experience the CPU performance is worse than using the legacy plugin. This guide only exists to show you that you *can* re-enable it – not that you *should* do it!
+- In macOS Ventura you need to force-ebnable `XCPM` because Apple removed the actual binary from the `ACPI_SMC_PlatformPlugin` kext so selecting Plugin-Type `0` no longer works. However, if you can disable CFG Lock in BIOS, you can re-inject the necessary kexts for re-enabling ACPI CPU Power Management. But this only works if CFG Lock is disabled, otherwise the system crashes on boot.
 
 ## Requirements:
 
@@ -25,8 +28,8 @@ So that's exactly what we are going to do: re-enable `XCPM` with a kernel patch,
 - Open `config.plist`
 - Under `ACPI/Add`, disable `SSDT-PM.aml` (if present)
 - Under `ACPI/Delete`, enable rules "**Drop CpuPm**" and "**Drop Cpu0Ist**" (copy them over from XCPM_IvyBridge.plist if missing)
-- Under `Kernel/Patch`, enable "XCPM for Ivy Bridge" (copy it over from XCPM_IvyBridge.plist)
-- Optional: Adjust `MinKernel` to only enable XCPM for a specific version of macOS (for example Kernel 21.0.0 for Monterey and newer).
+- Under `Kernel/Patch`, enable "XCPM for Ivy Bridge" (copy it over from XCPM_IvyBridge.plist if missing)
+- Optional: Adjust `MinKernel` to only enable XCPM for a specific version of macOS (for example `21.0.0` for Monterey and newer).
 - Under `Kernel/Quirks`, enable `AppleXcpmCfgLock` and `AppleXcpmExtraMsrs`
 - Save and reboot
 
@@ -40,7 +43,7 @@ If the output is `1`, XCPM is working, if the output is `0`, it is not.
 ### 2. Generate `SSDT-XCPM` for optimizing CPU Power Management
 
 #### Method 1: using ssdtPRGen
-Next, we need to generate a new SSDT-PM with ssdtPRGen for optimzed CPU power management. Since it generatea SSDTs without XCPM support by default, we have to modify the command line in terminal.
+Next, we need to generate a new SSDT with ssdtPRGen for optimzed CPU power management. Since it generatea SSDTs without XCPM support by default, we have to modify the command line in terminal.
 
 - Open Terminal
 - Enter the following command to download the ssdtPRGen Script: `curl -o ~/ssdtPRGen.sh https://raw.githubusercontent.com/Piker-Alpha/ssdtPRGen.sh/Beta/ssdtPRGen.sh`
