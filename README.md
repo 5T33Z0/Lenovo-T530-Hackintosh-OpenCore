@@ -286,7 +286,7 @@ The system may crash the first time when booting macOS Ventura. That's normal. I
 ### Installing macOS
 **Coming from Windows/Linux**: Follow the installation guide by [**Dortania**](https://dortania.github.io/OpenCore-Install-Guide/installer-guide/#making-the-installer). 
 
-**NOTE**: No support from my end for issues related to UBS Installers created in Windows or Linux!
+**NOTE**: No support from my end for issues related to UBS Installers created in Windows or Linux or when using a Virtual Machine!
 
 **Coming from macOS**: If you already have access to macOS, you can either download macOS from the App Store, with [**OCLP**](https://github.com/dortania/OpenCore-Legacy-Patcher) or with [**ANYmacOS**](https://www.sl-soft.de/en/anymacos/). Both than can download any macOS from High Sierra up to Ventura and can create an USB Installer as well.
 
