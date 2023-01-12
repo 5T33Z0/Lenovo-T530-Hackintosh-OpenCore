@@ -18,7 +18,9 @@
 - **SMBIOS**: `MacBookPro10,1` (for Core i7 CPUs) or `MacBookPro10,2` (for i5)
 
 ### Note about SMBIOS
-Normally, you would not be able to run Monterey with a MacBookPro10,X SMBIOS which supports Ivy Bridge CPUs. But this config contains Booter and Kernel patches from OCLP which will force `kern.hv_vmm_present` to always return `True`. With `hv_vmm_present` returning `True`, both `OSInstallerSetupInternal` and `SoftwareUpdateCore` will set the Board-ID to `VMM-x86_64` while the rest of the OS will continue with the Board-ID for MacBookPro10,X. In other words: these patches make macOS Monterey believe that it is running in a Virtual Machine which uses a different Board-ID (`VMM-x86_64`) internally, while the rest of the system will use `MacBookPro10,1`. This way, macOS Monterey can be installed, booted and updated on this otherwise unsupported system. Check my [VMM spoofing guide](https://github.com/5T33Z0/OC-Little-Translated/tree/main/09_Board-ID_VMM-Spoof) for more explanations.
+The board-id skip used in my configuration that allows using the `MacBookPro10,x` SMBIOS with macOS 11.3 or newer requires virtualization technology which got introduced with macOS 11.3. Therefore, you can't simply upgrade from macOS Catalina or older with the `MacBookPro10,X` SMBIOS since the board-id skip doesn't work due to the missing virtualization technology. It only works on a systems running Darwin Kernel 20.4 or newer. In other words: upgrading macOS only works when coming from Big Sur 11.3+ in this case.
+
+So when upgrading from macOS Catalina or older, you need to temporarily switch the SMBIOS to `MacBookPro11,4` in order to be able to install macOS Big Sur or newer.
 
 ## II. macOS Monterey Install Instructions
 

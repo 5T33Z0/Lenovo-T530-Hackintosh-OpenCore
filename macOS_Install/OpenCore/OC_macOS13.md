@@ -19,7 +19,9 @@
 - **SMBIOS**: `MacBookPro10,1` (for Core i7 CPUs) or `MacBookPro10,2` (for i5)
 
 ### Note about SMBIOS
-Normally, you would not be able to run macOS Big Sur and newer with a `MacBookPro10,X` SMBIOS which supports Ivy Bridge CPUs. But my OpenCore config contains Booter Patches from OCLP to skip the board-id check and `RestrictEvents.kext` and additional NVRAM keys which make macOS "believe" that it is running in a Virtual Machine which uses a different Board-ID (`VMM-x86_64`) internally, while the rest of the system will use `MacBookPro10,1`. This way, macOS Monterey and newer can be installed, booted and updated on this otherwise unsupported system. Check my [VMM spoofing guide](https://github.com/5T33Z0/OC-Little-Translated/tree/main/09_Board-ID_VMM-Spoof) for details.
+The board-id skip used in my configuration that allows using the `MacBookPro10,x` SMBIOS with macOS 11.3 or newer requires virtualization technology which got introduced with macOS 11.3. Therefore, you can't simply upgrade from macOS Catalina or older with the `MacBookPro10,X` SMBIOS since the board-id skip doesn't work due to the missing virtualization technology. It only works on a systems running Darwin Kernel 20.4 or newer. In other words: upgrading macOS only works when coming from Big Sur 11.3+ in this case.
+
+So when upgrading from macOS Catalina or older, you need to temporarily switch the SMBIOS to `MacBookPro11,4` in order to be able to install macOS Big Sur or newer.
 
 ## II. macOS Ventura Install Instructions
 Installing macOS Ventura on legacy systems which don't support AVX 2.0 CPU instruction requires OpenCore Legacy Patcher in order to prepare the macOS Ventura Installer so it works on unsupported hardware.
