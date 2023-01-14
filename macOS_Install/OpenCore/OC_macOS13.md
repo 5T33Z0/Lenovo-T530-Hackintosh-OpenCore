@@ -59,11 +59,11 @@ The major advantage of using OCLP over the previously used Chris1111s HD4000 Pat
 
 You just click on "Okay" and the drivers will be re-installed. After the obligatory reboot, everything will be back to normal.
 
-⚠️ You cannot install macOS Security Response Updates (RSR) on pre-Haswell Systems. These kind of update will just fail to install (more info [**here**](https://github.com/dortania/OpenCore-Legacy-Patcher/issues/1019)). 
-
 ## Notes
 - Installing drivers on the system partition breaks its security seal. This affects System Updates: every time a System Update is available, the FULL Installer (about 12 GB) will be downloaded.
 - After each System Update, the Drivers have to be re-installed. OCLP will take care of this.
+- ⚠️ You cannot install macOS Security Response Updates (RSR) on pre-Haswell systems. They will fail to install (more info [**here**](https://github.com/dortania/OpenCore-Legacy-Patcher/issues/1019)). 
+
 
 ## Credits
 - Acidanthera for OpenCore, OCLP and numerous Kexts
