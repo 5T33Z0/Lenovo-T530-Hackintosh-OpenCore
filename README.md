@@ -60,7 +60,7 @@ The config contained in this repo is DSDT-less. This means, it doesn't use a pat
 | Processor           | Intel Core i7 3630QM                          |
 | Memory              | 16GB Samsung DDR3 1600MHz, Dual-Channel       |
 | Hard Disk           | Samsung 840 Evo 250GB                         |
-| Integrated Graphics | Intel HD Graphics 4000                        |
+| Integrated Graphics | Intel HD Graphics 4000, 2048 MB RAM assigned  |
 | Display             | 15.6" HD+ TFT Display (1600x900 px)           |
 | Audio               | Realtek ALC269VC Rev.3 (Layout-id:`39`)       |
 | Ethernet            | Intel 82579LM Gigabit Network Connection      |
