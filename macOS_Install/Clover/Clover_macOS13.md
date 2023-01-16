@@ -16,10 +16,16 @@
 - macOS Ventura. Either download it through System Update, App Store or OCLP.
 - USB Flash Drive (16 GB+) for clean install
 - My EFI Folder
-- **SMBIOS**: `MacBookPro10,1` (for Core i7 CPUs) or `MacBookPro10,2` (for i5)
+- **SMBIOS**:
+	- When coming from macOS Catalina or older: use `MacBookPro14,1` (i7) or `MacBookPro14,2` (i5) for installation (&rarr; see "Note about SMBIOS")
+	- When upgrading from Big Sur 11.3 or newer: stay on `MacBookPro10,1` (i7) or `MacBookPro10,2` (i5)
 
 ### Note about SMBIOS
-Since Clover cannot apply the necessary Booter Patches required for the [Board-ID VMM spoof](https://github.com/5T33Z0/OC-Little-Translated/tree/main/09_Board-ID_VMM-Spoof) to work which allows installing OTA updates on otherwise unsupported hardware, so a different approach is necessary. Instead, `-no_compat_check` is used to skip the board-id check which allows booting Ventura with the `MacBookPro10,x` and `RestrictEvents.kext` with boot-arg `revpatch=sbvmm` is used to enable the `VMM-x86_64` Board-ID, so OTA updates will work.
+The board-id skip used in my configuration that allows using the `MacBookPro10,x` SMBIOS with macOS Big Sur or newer requires virtualization technology which got introduced with macOS 11.3. Therefore, you can't simply upgrade from macOS Catalina or older with the `MacBookPro10,X` SMBIOS since the board-id skip doesn't work due to the missing virtualization technology. It only works on a systems running Darwin Kernel 20.4 or newer. In other words: upgrading macOS only works when coming from Big Sur 11.3+ in this case.
+
+Since Clover cannot apply the necessary Booter Patches required for the [Board-ID VMM spoof](https://github.com/5T33Z0/OC-Little-Translated/tree/main/09_Board-ID_VMM-Spoof) to work which allows installing OTA updates on otherwise unsupported hardware, a different approach is necessary. Instead, `-no_compat_check` is used to skip the board-id check which allows booting macOS Ventura as `MacBookPro10,x` and `RestrictEvents.kext` with boot-arg `revpatch=sbvmm` is used to enable the `VMM-x86_64` Board-ID, so OTA updates will work.
+
+So when upgrading from macOS Catalina or older, you need to temporarily switch the SMBIOS to `MacBookPro14,1` or `MacBookPro14,2` in order to be able to install macOS Ventura. You can revert it back to `MacBooPro10,1` (i7) or `MacBookPro10,2` (i5) once the installation has finished,
 
 ## II. macOS Ventura Install Instructions
 Installing macOS Ventura on legacy systems which don't support AVX 2.0 CPU instruction requires OpenCore Legacy Patcher in order to prepare the macOS Ventura Installer so it works on unsupported hardware.

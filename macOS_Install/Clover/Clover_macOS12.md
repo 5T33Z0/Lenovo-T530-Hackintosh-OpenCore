@@ -16,7 +16,16 @@
 - [**OpenCore Legacy Patcher (OCLP)**](https://github.com/dortania/OpenCore-Legacy-Patcher/releases) &rarr; Click on "Assets" and download "OpenCore-Patcher-GUI-App". We'll need it in Post-Install to re-install the missing drivers for Intel HD4000 on-board graphics. 
 - USB Installer for clean install (optional)
 - My EFI Folder
-- **SMBIOS**: `MacBookPro10,1` (for Core i7 CPUs) or `MacBookPro10,2` (for i5)
+- **SMBIOS**:
+	- When coming from macOS Catalina or older: use `MacBookPro11,4` for installation (&rarr; see "Note about SMBIOS")
+	- When upgrading from Big Sur 11.3 or newer: stay on `MacBookPro10,1` (i7) or `MacBookPro10,2` (i5)
+
+### Note about SMBIOS
+The board-id skip used in my configuration that allows using the `MacBookPro10,x` SMBIOS with Big Sur and newer requires virtualization technology which got introduced with macOS 11.3. Therefore, you can't simply upgrade from macOS Catalina or older with the `MacBookPro10,X` SMBIOS since the board-id skip doesn't work due to the missing virtualization technology. It only works on a systems running Darwin Kernel 20.4 or newer. In other words: upgrading macOS only works when coming from Big Sur 11.3+ in this case.
+
+Since Clover cannot apply the necessary Booter Patches required for the [Board-ID VMM spoof](https://github.com/5T33Z0/OC-Little-Translated/tree/main/09_Board-ID_VMM-Spoof) to work which allows installing OTA updates on otherwise unsupported hardware, a different approach is necessary. Instead, `-no_compat_check` is used to skip the board-id check which allows booting macOS Ventura as `MacBookPro10,x` and `RestrictEvents.kext` with boot-arg `revpatch=sbvmm` is used to enable the `VMM-x86_64` Board-ID, so OTA updates will work.
+
+So when upgrading from macOS Catalina or older, you need to temporarily switch the SMBIOS to `MacBookPro11,4` in order to be able to install macOS Monterey. You can revert it back to `MacBooPro10,1` (i7) or `MacBookPro10,2` (i5) once the installation has finished,
 
 ## II. macOS Monterey Install Instruction
 
