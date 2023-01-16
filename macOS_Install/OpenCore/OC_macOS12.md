@@ -15,12 +15,14 @@
 - [**OpenCore Legacy Patcher (OCLP)**](https://github.com/dortania/OpenCore-Legacy-Patcher/releases) &rarr; Click on Assets and download "OpenCore-Patcher-GUI-App". We'll use it in Post-Install only to re-install the missing drivers for the Intel HD4000 on-board graphics. 
 - USB Installer for clean install (optional)
 - My EFI Folder
-- **SMBIOS**: `MacBookPro10,1` (for Core i7 CPUs) or `MacBookPro10,2` (for i5)
+- **SMBIOS**:
+	- When coming from macOS Catalina or older: use `MacBookPro11,4` for installation (&rarr; see "Note about SMBIOS")
+	- When upgrading from Big Sur 11.3 or newer: stay on `MacBookPro10,1` (i7) or `MacBookPro10,2` (i5)
 
 ### Note about SMBIOS
-The board-id skip used in my configuration that allows using the `MacBookPro10,x` SMBIOS with macOS 11.3 or newer requires virtualization technology which got introduced with macOS 11.3. Therefore, you can't simply upgrade from macOS Catalina or older with the `MacBookPro10,X` SMBIOS since the board-id skip doesn't work due to the missing virtualization technology. It only works on a systems running Darwin Kernel 20.4 or newer. In other words: upgrading macOS only works when coming from Big Sur 11.3+ in this case.
+The board-id skip used in my configuration that allows using the `MacBookPro10,x` SMBIOS with Big Sur and newer requires virtualization technology which got introduced with macOS 11.3. Therefore, you can't simply upgrade from macOS Catalina or older with the `MacBookPro10,X` SMBIOS since the board-id skip doesn't work due to the missing virtualization technology. It only works on a systems running Darwin Kernel 20.4 or newer. In other words: upgrading macOS only works when coming from Big Sur 11.3+ in this case.
 
-So when upgrading from macOS Catalina or older, you need to temporarily switch the SMBIOS to `MacBookPro11,4` in order to be able to install macOS Big Sur or newer.
+So when upgrading from macOS Catalina or older, you need to temporarily switch the SMBIOS to `MacBookPro11,4` in order to be able to install macOS Monterey. You can revert it back to `MacBooPro10,1` (i7) or `MacBookPro10,2` (i5) once the installation has finished.
 
 ## II. macOS Monterey Install Instructions
 
@@ -59,7 +61,7 @@ To create a USB Installer, you can use OCLP:
 	- Adjust the `config.plist` to your needs as explained on my repo.
 	- Generate SMBIOS data for `MacBookPro10,1` (Core i7) or `MacBookPro10,2` (Core i5)
 	- Change `csr-active-config` to: `67080000`. This is a must in order to install the Intel HD4000 Drivers.
-- Reboot from USB flash drive and run "Install macOS Ventura"
+- Reboot from USB flash drive and run "Install macOS Monterey"
 - There will be a few reboots along the way. Boot from the new Install Partition until it's no longer present in the Boot Picker
 - Once the Installation has finished, copy the EFI folder from the USB Installer to the EFI partition on your HDD/SSD.
 

@@ -16,12 +16,14 @@
 - macOS Ventura. Either download it through System Update, App Store or OCLP.
 - USB Flash Drive (16 GB+) for clean install
 - My EFI Folder
-- **SMBIOS**: `MacBookPro10,1` (for Core i7 CPUs) or `MacBookPro10,2` (for i5)
+- **SMBIOS**:
+	- When coming from macOS Catalina or older: use `MacBookPro14,1` (i7) or `MacBookPro14,2` (i5) for installation (&rarr; see "Note about SMBIOS")
+	- When upgrading from Big Sur 11.3 or newer: stay on `MacBookPro10,1` (i7) or `MacBookPro10,2` (i5)
 
 ### Note about SMBIOS
-The board-id skip used in my configuration that allows using the `MacBookPro10,x` SMBIOS with macOS 11.3 or newer requires virtualization technology which got introduced with macOS 11.3. Therefore, you can't simply upgrade from macOS Catalina or older with the `MacBookPro10,X` SMBIOS since the board-id skip doesn't work due to the missing virtualization technology. It only works on a systems running Darwin Kernel 20.4 or newer. In other words: upgrading macOS only works when coming from Big Sur 11.3+ in this case.
+The board-id skip used in my configuration that allows using the `MacBookPro10,x` SMBIOS with macOS Big Sur or newer requires virtualization technology which got introduced with macOS 11.3. Therefore, you can't simply upgrade from macOS Catalina or older with the `MacBookPro10,X` SMBIOS since the board-id skip doesn't work due to the missing virtualization technology. It only works on a systems running Darwin Kernel 20.4 or newer. In other words: upgrading macOS only works when coming from Big Sur 11.3+ in this case.
 
-So when upgrading from macOS Catalina or older, you need to temporarily switch the SMBIOS to `MacBookPro11,4` in order to be able to install macOS Big Sur or newer.
+So when upgrading from macOS Catalina or older, you need to temporarily switch the SMBIOS to `MacBookPro14,1` (i7) or `MacBookPro14,2` (i5) in order to be able to install macOS Big Sur or newer.
 
 ## II. macOS Ventura Install Instructions
 Installing macOS Ventura on legacy systems which don't support AVX 2.0 CPU instruction requires OpenCore Legacy Patcher in order to prepare the macOS Ventura Installer so it works on unsupported hardware.
