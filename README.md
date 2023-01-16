@@ -34,6 +34,8 @@ OpenCore and Clover EFI Folders for running macOS 10.13 to 13.1+ on a Lenovo Thi
 
 The OpenCore EFI also includes the latest Booter and Kernel patches which make use of macOSes virtualization capabilities (VMM) to spoof a special Board-ID which allows installing and running macOS Big Sur and Monterey with SMBIOS `MacBookPro10,1`for Ivy Bridge CPUs. With this, you can enjoy the benefits of optimal CPU Power Management *and* System Updates which wouldn't be possible when using the well-known`-no_compat_chack` boot arg. If you want to know how these patches work, [read this](https://github.com/5T33Z0/OC-Little-Translated/tree/main/09_Board-ID_VMM-Spoof).
 
+:bulb: Although this EFI *might work* with the T430 and the X230, is was not intented for hese ThinkPad models. So don't misuse issue reports for making support requests! I will close such "issues" immediately!
+
 |:warning: Issues related to macOS 12+|
 |:------------------------------------|
 |**macOS Monterey and newer**: requires [**OCLP**](https://github.com/dortania/Opencore-Legacy-Patcher) to enable graphics acceleration
