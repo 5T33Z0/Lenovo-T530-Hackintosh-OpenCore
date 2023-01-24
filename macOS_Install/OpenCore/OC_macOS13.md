@@ -14,7 +14,7 @@
 ## I. Requirements
 - [**OpenCore Legacy Patcher (OCLP)**](https://github.com/dortania/OpenCore-Legacy-Patcher/releases)  &rarr; Click on "Assets" and download "OpenCore-Patcher-GUI-App".
 - macOS Ventura. Either download it through System Update, App Store or OCLP.
-- USB Flash Drive (16 GB+) for clean install
+- USB Flash Drive (16 GB+) for clean install.
 - My EFI Folder
 - **SMBIOS**:
 	- When coming from macOS Catalina or older: use `MacBookPro14,1` (i7) or `MacBookPro14,2` (i5) for installation (&rarr; see "Note about SMBIOS")

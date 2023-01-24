@@ -5,11 +5,11 @@ The board-id skip used in my configuration which allows using the `MacBookPro10,
 So when upgrading from macOS Catalina or older, you need to temporarily switch the SMBIOS to `MacBookPro11,1` in order to be able to install macOS Big Sur or newer.
 
 ## Instructions
-
 - Download macOS Big Sur via the App Store or [**Open Core Legacy Patcher**](https://dortania.github.io/OpenCore-Legacy-Patcher/INSTALLER.html#creating-the-installer)
-- Once that's done, disable Wifi/LAN (flip the physical switch near the USB ports to enable Air Plane Mode – disables all communication). Otherwise you have to generate new Serials, etc.
+- Once that's done, disable Wifi ab LAN (unplug LAN and flip the physical switch near the USB ports to disables all wireless communication). Otherwise you have to generate new Serials, etc.
 - In `config.plist`, change `SystemProductName` to `MacBookPro11,1` – leave the rest as is.
 - Save and Reboot
+- Create a new Volume in Disk Utility if you want to run Big Sur as a separate installation. If you just want to upgrade macOS you can skip this step.
 - Run the Install Big Sur App
 - Once the installation is completed, change `SystemProductName` back to `MacBookPro10.1` (i7) or `MacBookPro10,2` (i5)
 - Save your config and reboot
