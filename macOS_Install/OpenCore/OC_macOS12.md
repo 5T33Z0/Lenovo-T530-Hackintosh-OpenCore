@@ -20,9 +20,9 @@
 	- When upgrading from Big Sur 11.3 or newer: stay on `MacBookPro10,1` (i7) or `MacBookPro10,2` (i5)
 
 ### Note about SMBIOS
-The board-id skip used in my configuration that allows using the `MacBookPro10,x` SMBIOS with Big Sur and newer requires virtualization technology which got introduced with macOS 11.3. Therefore, you can't simply upgrade from macOS Catalina or older with the `MacBookPro10,X` SMBIOS since the board-id skip doesn't work due to the missing virtualization technology. It only works on a systems running Darwin Kernel 20.4 or newer. In other words: upgrading macOS only works when coming from Big Sur 11.3+ in this case.
+The board-id skip included in my configuration which allows using the `MacBookPro10,1` SMBIOS with macOS Big Sur and newer requires virtualization technology which first got introduced with macOS 11.3 (Darwin Kernel 20.4). Therefore, you can't simply upgrade from macOS Catalina or older using the `MacBookPro10,X` SMBIOS since the required virtualization technology to make the board-id skip work isn't present.
 
-So when upgrading from macOS Catalina or older, you need to temporarily switch the SMBIOS to `MacBookPro11,4` in order to be able to install macOS Monterey. You can revert it back to `MacBooPro10,1` (i7) or `MacBookPro10,2` (i5) once the installation has finished.
+So when upgrading from macOS Catalina or older, you need to temporarily switch the SMBIOS to `MacBookPro11,4` in order to be able to install macOS Monterey or newer. You can revert it back to `MacBooPro10,1` (i7) or `MacBookPro10,2` (i5) once the installation has finished.
 
 ## II. macOS Monterey Install Instructions
 

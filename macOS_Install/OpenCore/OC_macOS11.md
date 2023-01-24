@@ -1,10 +1,12 @@
 # Installing macOS Big Sur
 
-The board-id skip used in my configuration which allows using the `MacBookPro10,1` SMBIOS with macOS 11.3 or newer requires virtualization technology which got introduced with macOS 11.3. Therefore, you can't simply upgrade from macOS Catalina or older with the `MacBookPro10,X` SMBIOS since the board-id skip doesn't work due to the missing virtualization technology. It only works on a systems running Darwin Kernel 20.4 or newer. In other words: upgrading macOS only works when coming from Big Sur 11.3+ in this case.
+## Upgrading from macOS Catalina or older
+When upgrading from macOS Catalina or older, you need to temporarily switch the SMBIOS to `MacBookPro11,4` in order to be able to install macOS Big Sur or newer.
 
-So when upgrading from macOS Catalina or older, you need to temporarily switch the SMBIOS to `MacBookPro11,1` in order to be able to install macOS Big Sur or newer.
+### Technical Background
+The board-id skip included in my configuration which allows using the `MacBookPro10,1` SMBIOS with macOS Big Sur and newer requires virtualization technology which first got introduced with macOS 11.3 (Darwin Kernel 20.4). Therefore, you can't simply upgrade from macOS Catalina or older using the `MacBookPro10,X` SMBIOS since the required virtualization technology to make the board-id skip work isn't present. That's why you need to switch the SMBIOS to MBP11,1 (for Monterey) or MBP11,4 (Monterey and Ventura) for upgrading macOS.
 
-## Instructions
+## Install instructions
 - Download macOS Big Sur via the App Store or [**Open Core Legacy Patcher**](https://dortania.github.io/OpenCore-Legacy-Patcher/INSTALLER.html#creating-the-installer)
 - Once that's done, disable Wifi ab LAN (unplug LAN and flip the physical switch near the USB ports to disables all wireless communication). Otherwise you have to generate new Serials, etc.
 - In `config.plist`, change `SystemProductName` to `MacBookPro11,1` – leave the rest as is.
