@@ -32,14 +32,14 @@
 ## About
 OpenCore and Clover EFI Folders for running macOS 10.13 to 13.1+ on a Lenovo ThinkPad T530. They utilize the new `ECEnabler.kext` which enables battery status read-outs without the need for additional Battery Patches. 
 
-The OpenCore EFI also includes the latest Booter and Kernel patches which make use of macOSes virtualization capabilities (VMM) to spoof a special Board-ID which allows installing and running macOS Big Sur and Monterey with SMBIOS `MacBookPro10,1`for Ivy Bridge CPUs. With this, you can enjoy the benefits of optimal CPU Power Management *and* System Updates which wouldn't be possible when using the well-known`-no_compat_chack` boot arg. If you want to know how these patches work, [read this](https://github.com/5T33Z0/OC-Little-Translated/tree/main/09_Board-ID_VMM-Spoof).
+The OpenCore EFI also includes the latest Booter and Kernel patches which make use of macOSes virtualization capabilities (VMM) to spoof a special Board-ID which allows installing and running macOS Big Sur and Monterey with SMBIOS `MacBookPro10,1`for Ivy Bridge CPUs. With this, you can enjoy the benefits of optimal CPU Power Management *and* System Updates which wouldn't be possible when using the well-known `-no_compat_chack` boot arg. If you want to know how these patches work, [read this](https://github.com/5T33Z0/OC-Little-Translated/tree/main/09_Board-ID_VMM-Spoof).
 
 :bulb: Although this EFI *might work* with the T430 and the X230, is was not intented for these ThinkPad models. So don't misuse issue reports for support requests! I will close such "issues" immediately!
 
 |:warning: Issues related to macOS 12+|
 |:------------------------------------|
 |**macOS Monterey and newer**: requires [**OCLP**](https://github.com/dortania/Opencore-Legacy-Patcher) to enable graphics acceleration
-| **macOS Ventura**: </br> • Requires a custom BIOS (like 1vyrain) with CFG Lock disabled in order to re-enable ACPI CPU Power Management. Using the `AppleCpuPmCfgLock` Quirk is not enough! </br> • Don't install macOS 13.3 beta yet. OCLP Root Patches currently don't work (metal-related)!
+| **macOS Ventura**: </br> • Requires a custom BIOS (like 1vyrain) with CFG Lock disabled in order to re-enable ACPI CPU Power Management. Using the `AppleCpuPmCfgLock` Quirk is not enough! </br> • Don't install macOS 13.3 beta yet! OCLP Root Patches currently don't work (metal-related) – the system will get stuck during boot otherwise. In this case you have to boot in safe mode and uninstall them.
 
 ### Audio Working on Docking Stations 
 I created my own AppleALC Layout-ID which supports the Lenovo Mini Dock 3 Type 4337 and 4338 Docking Stations. It uses **Layout-ID 39** and has been integrated into AppleALC since [version 1.7.3](https://github.com/acidanthera/AppleALC/releases/tag/1.7.3)
