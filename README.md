@@ -39,7 +39,7 @@ The OpenCore EFI also includes the latest Booter and Kernel patches which make u
 |:warning: Issues related to macOS 12+|
 |:------------------------------------|
 |**macOS Monterey and newer**: requires [**OCLP**](https://github.com/dortania/Opencore-Legacy-Patcher) to enable graphics acceleration
-| **macOS Ventura**: </br> • Requires a custom BIOS (like 1vyrain) with CFG Lock disabled in order to re-enable ACPI CPU Power Management. Using the `AppleCpuPmCfgLock` Quirk is not enough! </br> • Don't install macOS 13.3 beta yet! OCLP Root Patches currently don't work (metal-related) – the system will get stuck during boot otherwise. In this case you have to boot in safe mode and uninstall them.
+| **macOS Ventura**:<ul><li>Requires a custom BIOS (like 1vyrain) with CFG Lock disabled in order to re-enable ACPI CPU Power Management. Using the `AppleCpuPmCfgLock` Quirk is not enough!<li> Don't install macOS 13.3 beta yet! OCLP Root Patches currently don't work (metal-related) – the system will get stuck during boot otherwise. In this case you have to boot in safe mode and uninstall them.</li>
 
 ### Audio Working on Docking Stations 
 I created my own AppleALC Layout-ID which supports the Lenovo Mini Dock 3 Type 4337 and 4338 Docking Stations. It uses **Layout-ID 39** and has been integrated into AppleALC since [version 1.7.3](https://github.com/acidanthera/AppleALC/releases/tag/1.7.3)
