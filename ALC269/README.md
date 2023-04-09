@@ -3,7 +3,7 @@
 **System**: Lenovo ThinkPad T530 </br>
 **Codec**: Realtek ALC269 </br>
 **Included Layouts**: `18` and `39`</br>
-**Slimmed Kext**: AppleALC v1.8.1 ([**Download**](https://github.com/5T33Z0/Lenovo-T530-Hackintosh-OpenCore/blob/main/ALC269/Resources/AppleALC-1.8.1-RELEASE.zip?raw=true)) (95 kb) </br>
+**Slimmed Kext**: AppleALC v1.8.2 ([**Download**](https://github.com/5T33Z0/Lenovo-T530-Hackintosh-OpenCore/blob/main/ALC269/Resources/AppleALC-1.8.2-RELEASE.zip?raw=true)) (95 kb) </br>
 **Codec Dump**: [**Download**](https://github.com/5T33Z0/Lenovo-T530-Hackintosh-OpenCore/blob/main/ALC269/Resources/ALC269_Dump.zip?raw=true)</br>
 **Resources Folder:** [**Download**](https://github.com/5T33Z0/Lenovo-T530-Hackintosh-OpenCore/blob/main/ALC269/Resources/AppleALC_Resources.zip)
 
