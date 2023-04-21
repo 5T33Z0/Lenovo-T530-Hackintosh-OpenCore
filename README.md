@@ -39,7 +39,7 @@ The OpenCore EFI also includes the latest Booter and Kernel patches which make u
 |:warning: Issues related to macOS 12+|
 |:------------------------------------|
 |**macOS Monterey and newer**: requires [**OCLP**](https://github.com/dortania/Opencore-Legacy-Patcher) to enable graphics acceleration
-| **macOS Ventura**:<ul><li>Requires a custom BIOS (like 1vyrain) with CFG Lock disabled in order to re-enable ACPI CPU Power Management. Using the `AppleCpuPmCfgLock` Quirk is not enough!<li> You can upgrade to macOS 13.4 beta now and use the latest version OpenCore Legacy Patcher (0.6.2) to install the Intel HD4000 drivers.</li>
+| **macOS Ventura**:<ul><li>~~Requires a custom BIOS (like 1vyrain) with CFG Lock disabled in order to re-enable ACPI CPU Power Management becuase the `AppleCpuPmCfgLock` Quirk doesn't work in macOS 13!~~ (Quirk fixed in OC 0.9.2)<li> You can upgrade to macOS 13.4 beta now and use the latest version OpenCore Legacy Patcher (0.6.2) to install the Intel HD4000 drivers.</li>
 
 ### Audio Working on Docking Stations 
 I created my own AppleALC Layout-ID which supports the Lenovo Mini Dock 3 Type 4337 and 4338 Docking Stations. It uses **Layout-ID 39** and has been integrated into AppleALC since [version 1.7.3](https://github.com/acidanthera/AppleALC/releases/tag/1.7.3)
@@ -350,7 +350,8 @@ So when switching to macOS Ventura, you either have to force-enable XCPM by enab
 In order to re-enable and use ACPI CPU Power Management on macOS Ventura, you need:
 
 - My latest OpenCore EFI folder [release](https://github.com/5T33Z0/Lenovo-T530-Hackintosh-OpenCore/releases)
-- A BIOS where the **MSR 0x2E** Register is **unlocked** so CFG Lock is disabled. This is mandatory since the `AppleCpuPmCfgLock` Quirk doesn't work when injecting the required kexts ACPI CPU Power Managemenz into macOS Ventura, causing kernel panics (as discussed [here](https://github.com/5T33Z0/Lenovo-T530-Hackintosh-OpenCore/issues/31#issuecomment-1368409836)). So flashing a custom BIOS is mandatory if your BIOS doesn't provide an option to disable CFG Lock – otherwise you have to [**force-enable XCPM**](https://github.com/5T33Z0/Lenovo-T530-Hackintosh-OpenCore/tree/main/ACPI/Enable_XCPM) instead. Since I am using 1vyrain, CFG Lock is already disabled in the firmware so I don't require `AppleCpuPmCfgLock` to boot.
+- ~~A BIOS where the **MSR 0x2E** Register is **unlocked** so CFG Lock is disabled. This is mandatory since the `AppleCpuPmCfgLock` Quirk doesn't work in macOS Ventura, causing kernel panics (as discussed [here](https://github.com/5T33Z0/Lenovo-T530-Hackintosh-OpenCore/issues/31#issuecomment-1368409836)). So flashing a custom BIOS is mandatory if your BIOS doesn't provide an option to disable CFG Lock – otherwise you have to [**force-enable XCPM**](https://github.com/5T33Z0/Lenovo-T530-Hackintosh-OpenCore/tree/main/ACPI/Enable_XCPM) instead. Since I am using 1vyrain, CFG Lock is already disabled in the firmware so I don't require `AppleCpuPmCfgLock` to boot.~~ Fixed in OpenCore 0.9.2
+- Enable `AppleCpuPmCfgLock` Quirk
 - Add [Kexts from OpenCore Legacy Patcher](https://github.com/dortania/OpenCore-Legacy-Patcher/tree/main/payloads/Kexts/Misc):
 	- `AppleIntelCPUPowerManagement.kext` (set `MinKernel` to 22.0.0)
 	- `AppleIntelCPUPowerManagementClient.kext` (set `MinKernel` to 22.0.0)
