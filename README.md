@@ -208,7 +208,10 @@ Open the `config.plist` and adjust the following settings depending on your syst
 
 8. **Kernel Section** 
 	- **Kernel/Patch**: If you have an [HDD caddy](https://github.com/5T33Z0/Lenovo-T530-Hackintosh-OpenCore/issues/37#issuecomment-1509840983) for the DVD drive bay, you can add this [kernel patch](https://github.com/5T33Z0/Lenovo-T530-Hackintosh-OpenCore/blob/main/Additional_Files/SATA_Hotplug.plist) to your config to enable SATA hot plugging.
-	- **Kernel/Quirks**: If you are using the 1vyrain BIOS for the T530, CFG Lock will be disabled (not the case when using the T430 version, btw). In this case, you can disable the `AppleCpuPmCfgLock` Quirk. To figure out if the MSR 0xE2 register is unlocked, add `ControlMsrE2.efi` to `EFI/OC/Tools` and your config.plist (under `Misc/Tools`) and run it from the BootPicker.
+	- **Kernel/Quirks**: 
+		- Enable `AppleCpuPmCfgLock` if you are using a stock BIOS where CFG Lock is enabled
+		- If you are using a modified BIOS like 1vyrain, CFG Lock will be disabled by default (not a default on the T430). In this case, you can leave the `AppleCpuPmCfgLock` Quirk disabled. 
+		- To figure out if the MSR 0xE2 register is unlocked, add `ControlMsrE2.efi` to `EFI/OC/Tools` and your config.plist (under `Misc/Tools`) and run it from the BootPicker.
 
 9. **Alternative/Optional Kexts**:
 	- **AppleIntelCPUPowerManagement** and **AppleIntelCPUPowerManagementClient** kexts from [**OCLP**](https://github.com/dortania/OpenCore-Legacy-Patcher/tree/main/payloads/Kexts/Misc) &rarr; Needed to re-enable ACPI CPU Power Management on macOS Ventura. If your CFG Lock is not disabled in BIOS, you need to disable these kexts and force-enable XCPM support instead
