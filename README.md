@@ -186,13 +186,13 @@ Open the `config.plist` and adjust the following settings depending on your syst
 5. **SIP**: Under `NVRAM/Add/7C436110-AB2A-4BBB-A880-FE41995C9F82`, adjust `csr-active-config` according to the macOS version you want to use:
 	- For macOS Big Sur and newer: `67080000`(0x867)
 	- For macOS Mojave/Catalina: `EF070000`(0x7EF)
-	- For macOS High Sierra: `FF030000` (0x3FF)
+	- For macOS High Sierra: `FF030000` (0x3FF)</br></br>
 	
-	> **Note**: Disabling SIP is mandatory if you want to run macOS Monterey or newer in order to install and load Intel HD 4000 Drivers! If you have issues running OCLP in Post, set `csr-active-config` to `FE0F0000` (0xFEF).
+	> **Note**: Disabling SIP is mandatory if you want to run macOS Monterey or newer in order to install and load Intel HD 4000 Drivers! If you have issues running OCLP in Post, set `csr-active-config` to `67080000` (default) or `FE0F0000` (almost fully disabled).
 
 6. **SMBIOS**: Under `SystemProductName`, select the correct SMBIOS for your CPU and generate a serial, etc. for it.
 	-  For Intel i7: `MacBookPro10,1`
-	-  For Intel i5: `MacBookPro10,2`
+	-  For Intel i5: `MacBookPro10,2`</br></br>
 	
 	> **Note**: My config contains Booter Patches from OpenCore Legacy Patcher and RestrictEvents kext which allow using the correct SMBIOS for Ivy Bridge CPUs on macOS 11.3 and newer (Darwin Kernel 20.4+), so native Power Management and OTA System Updates are working which wouldn't be possible otherwise past macOS Catalina.
 
