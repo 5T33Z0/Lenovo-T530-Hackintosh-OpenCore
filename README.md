@@ -188,13 +188,13 @@ Open the `config.plist` and adjust the following settings depending on your syst
 	- For macOS Mojave/Catalina: `EF070000`(0x7EF)
 	- For macOS High Sierra: `FF030000` (0x3FF)
 	
-	**NOTE**: Disabling SIP is mandatory if you want to run macOS Monterey or newer in order to install and load Intel HD 4000 Drivers! If you have issues running OCLP in Post, set `csr-active-config` to `FE0F0000` (0xFEF).
+	> **Note**: Disabling SIP is mandatory if you want to run macOS Monterey or newer in order to install and load Intel HD 4000 Drivers! If you have issues running OCLP in Post, set `csr-active-config` to `FE0F0000` (0xFEF).
 
 6. **SMBIOS**: Under `SystemProductName`, select the correct SMBIOS for your CPU and generate a serial, etc. for it.
 	-  For Intel i7: `MacBookPro10,1`
 	-  For Intel i5: `MacBookPro10,2`
 	
-	**NOTE**: My config contains Booter Patches from OpenCore Legacy Patcher and RestrictEvents kext which allow using the correct SMBIOS for Ivy Bridge CPUs on macOS 11.3 and newer (Darwin Kernel 20.4+), so native Power Management and OTA System Updates are working which wouldn't be possible otherwise past macOS Catalina.
+	> **Note**: My config contains Booter Patches from OpenCore Legacy Patcher and RestrictEvents kext which allow using the correct SMBIOS for Ivy Bridge CPUs on macOS 11.3 and newer (Darwin Kernel 20.4+), so native Power Management and OTA System Updates are working which wouldn't be possible otherwise past macOS Catalina.
 
 7. **WiFi and Bluetooth** (Read carefully!)
 	- **Case 1: Intel Wifi/BT Card**. If you have a the stock configuration with an Intel WiFi/Bluetooth card, it may work with the [**OpenIntelWireless**](https://github.com/OpenIntelWireless) kexts. 
@@ -209,9 +209,8 @@ Open the `config.plist` and adjust the following settings depending on your syst
 8. **Kernel Section** 
 	- **Kernel/Patch**: If you have an [HDD caddy](https://github.com/5T33Z0/Lenovo-T530-Hackintosh-OpenCore/issues/37#issuecomment-1509840983) for the DVD drive bay, you can add this [kernel patch](https://github.com/5T33Z0/Lenovo-T530-Hackintosh-OpenCore/blob/main/Additional_Files/SATA_Hotplug.plist) to your config to enable SATA hot plugging.
 	- **Kernel/Quirks**: 
-		- Enable `AppleCpuPmCfgLock` if you are using the stock BIOS where CFG Lock is enabled
-		- If you are using the 1vyrain BIOS, CFG Lock will be disabled by default (not on the T430). In this case, you can leave the `AppleCpuPmCfgLock` Quirk disabled. 
-		- To figure out if the MSR 0xE2 register is unlocked, add `ControlMsrE2.efi` to `EFI/OC/Tools` and your config.plist (under `Misc/Tools`) and run it from the BootPicker.
+		- If you are using the 1vyrain BIOS, CFG Lock will be disabled by default (not on the T430). In this case, you can disable the `AppleCpuPmCfgLock` Quirk. 
+		- To figure out if the `MSR 0xE2` register of your BIOS is unlocked, add `ControlMsrE2.efi` to `EFI/OC/Tools` and your config.plist (under `Misc/Tools`) and run it from the BootPicker. The output should look like this: </br>![CFG Lock Disabled](https://user-images.githubusercontent.com/76865553/210180491-0f48b7b0-ae46-4dda-b110-6703401e2c25.jpg)
 
 9. **Alternative/Optional Kexts**:
 	- **AppleIntelCPUPowerManagement** and **AppleIntelCPUPowerManagementClient** kexts from [**OCLP**](https://github.com/dortania/OpenCore-Legacy-Patcher/tree/main/payloads/Kexts/Misc) &rarr; Needed to re-enable ACPI CPU Power Management on macOS Ventura. If your CFG Lock is not disabled in BIOS, you need to disable these kexts and force-enable XCPM support instead
@@ -292,7 +291,7 @@ The system may crash the first time when booting macOS Ventura. That's normal. I
 ### Installing macOS
 **Coming from Windows/Linux**: Follow the installation guide by [**Dortania**](https://dortania.github.io/OpenCore-Install-Guide/installer-guide/#making-the-installer). 
 
-**NOTE**: No support from my end for issues related to UBS Installers created in Windows or Linux or when using a Virtual Machine!
+> **Note**: No support from my end is provided for issues related to UBS Installers created in Windows or Linux or when using a Virtual Machine!
 
 **Coming from macOS**: If you already have access to macOS, you can either download macOS from the App Store, with [**OCLP**](https://github.com/dortania/OpenCore-Legacy-Patcher) or with [**ANYmacOS**](https://www.sl-soft.de/en/anymacos/). Both than can download any macOS from High Sierra up to Ventura and can create an USB Installer as well.
 
@@ -351,7 +350,7 @@ In order to re-enable and use ACPI CPU Power Management on macOS Ventura, you ne
 
 - My latest OpenCore EFI folder [release](https://github.com/5T33Z0/Lenovo-T530-Hackintosh-OpenCore/releases)
 - ~~A BIOS where the **MSR 0x2E** Register is **unlocked** so CFG Lock is disabled. This is mandatory since the `AppleCpuPmCfgLock` Quirk doesn't work in macOS Ventura, causing kernel panics (as discussed [here](https://github.com/5T33Z0/Lenovo-T530-Hackintosh-OpenCore/issues/31#issuecomment-1368409836)). So flashing a custom BIOS is mandatory if your BIOS doesn't provide an option to disable CFG Lock – otherwise you have to [**force-enable XCPM**](https://github.com/5T33Z0/Lenovo-T530-Hackintosh-OpenCore/tree/main/ACPI/Enable_XCPM) instead. Since I am using 1vyrain, CFG Lock is already disabled in the firmware so I don't require `AppleCpuPmCfgLock` to boot.~~ Fixed in OpenCore 0.9.2
-- Enable `AppleCpuPmCfgLock` Quirk
+- Enable `AppleCpuPmCfgLock` Quirk (enabled by default)
 - Add [Kexts from OpenCore Legacy Patcher](https://github.com/dortania/OpenCore-Legacy-Patcher/tree/main/payloads/Kexts/Misc):
 	- `AppleIntelCPUPowerManagement.kext` (set `MinKernel` to 22.0.0)
 	- `AppleIntelCPUPowerManagementClient.kext` (set `MinKernel` to 22.0.0)
