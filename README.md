@@ -4,45 +4,45 @@
 
 **TABLE of CONTENTS**
 
-- [About](#about)
-  - [Audio Working on Docking Stations](#audio-working-on-docking-stations)
-  - [DSDT-less config](#dsdt-less-config)
-- [Hardware Specs](#hardware-specs)
-  - [macOS-incompatible Components](#macos-incompatible-components)
-- [EFI Folder Content (OpenCore)](#efi-folder-content-opencore)
-- [Deployment](#deployment)
-  - [Preparing the `config.plist`](#preparing-the-configplist)
-    - [Used boot arguments and NVRAM variables](#used-boot-arguments-and-nvram-variables)
-  - [EFI How To](#efi-how-to)
-  - [BIOS Settings](#bios-settings)
-  - [Installing macOS](#installing-macos)
-    - [Recommended macOS version](#recommended-macos-version)
-- [Post-Install](#post-install)
-  - [Fixing CPU Power Management](#fixing-cpu-power-management)
-    - [Re-Enabling ACPI Power Management in macOS Ventura](#re-enabling-acpi-power-management-in-macos-ventura)
-  - [Fixing Sleep issues](#fixing-sleep-issues)
-  - [Reducing boot time](#reducing-boot-time)
-  - [Swapping Command ⌘ and Option ⌥ Keys](#swapping-command--and-option--keys)
-  - [Changing Themes](#changing-themes)
-  - [Eject Button](#eject-button)
-  - [Workaround for Apple Music crashing in macOS Catalina](#workaround-for-apple-music-crashing-in-macos-catalina)
-- [CPU Benchmark](#cpu-benchmark)
-- [Credits and Thank Yous](#credits-and-thank-yous)
+- [Lenovo ThinkPad T530 Hackintosh OpenCore](#lenovo-thinkpad-t530-hackintosh-opencore)
+  - [About](#about)
+    - [Audio Working on Docking Stations](#audio-working-on-docking-stations)
+    - [DSDT-less config](#dsdt-less-config)
+  - [Hardware Specs](#hardware-specs)
+    - [macOS-incompatible Components](#macos-incompatible-components)
+  - [EFI Folder Content (OpenCore)](#efi-folder-content-opencore)
+  - [Deployment](#deployment)
+    - [Preparing the `config.plist`](#preparing-the-configplist)
+      - [Used boot arguments and NVRAM variables](#used-boot-arguments-and-nvram-variables)
+    - [EFI How To](#efi-how-to)
+    - [BIOS Settings](#bios-settings)
+    - [Installing macOS](#installing-macos)
+      - [Recommended macOS version](#recommended-macos-version)
+  - [Post-Install](#post-install)
+    - [Fixing CPU Power Management](#fixing-cpu-power-management)
+      - [Re-Enabling ACPI Power Management in macOS Ventura](#re-enabling-acpi-power-management-in-macos-ventura)
+    - [Fixing Sleep issues](#fixing-sleep-issues)
+    - [Reducing boot time](#reducing-boot-time)
+    - [Swapping Command ⌘ and Option ⌥ Keys](#swapping-command--and-option--keys)
+    - [Changing Themes](#changing-themes)
+    - [Eject Button](#eject-button)
+    - [Workaround for Apple Music crashing in macOS Catalina](#workaround-for-apple-music-crashing-in-macos-catalina)
+  - [CPU Benchmark](#cpu-benchmark)
+  - [Credits and Thank Yous](#credits-and-thank-yous)
 
 ## About
 OpenCore and Clover EFI Folders for running macOS 10.13 to 13.1+ on a Lenovo ThinkPad T530. They utilize the new `ECEnabler.kext` which enables battery status read-outs without the need for additional Battery Patches. 
 
-The OpenCore EFI also includes the latest Booter and Kernel patches which make use of macOSes virtualization capabilities (VMM) to spoof a special Board-ID which allows installing and running macOS Big Sur and Monterey with SMBIOS `MacBookPro10,1` for Ivy Bridge CPUs. With this, you can enjoy the benefits of optimal CPU Power Management *and* System Updates which wouldn't be possible when using the well-known `-no_compat_chack` boot arg. If you want to know how these patches work, [read this](https://github.com/5T33Z0/OC-Little-Translated/tree/main/09_Board-ID_VMM-Spoof).
+The OpenCore EFI also includes the latest Booter and Kernel patches which make use of macOSes virtualization capabilities (VMM) to spoof a special Board-ID which allows installing and running macOS Big Sur and Monterey with SMBIOS `MacBookPro10,1` for Ivy Bridge CPUs. With this, you can enjoy the benefits of optimal CPU Power Management *and* System Updates which wouldn't be possible when using the well-known `-no_compat_check` boot arg. If you want to know how these patches work, [read this](https://github.com/5T33Z0/OC-Little-Translated/tree/main/09_Board-ID_VMM-Spoof).
 
-:bulb: Although this EFI *might work* with the T430 and the X230, is was not intented for these ThinkPad models. So don't misuse issue reports for support requests! I will close such "issues" immediately!
+:bulb: Although this EFI *might work* with the T430 and the X230, is was not intended for these ThinkPad models. So don't misuse issue reports for support requests! I will close such "issues" immediately!
 
-|:warning: Issues related to macOS 12+|
+|> **:Warning:** Issues related to macOS 12+|
 |:------------------------------------|
-|**macOS Monterey and newer**: requires [**OCLP**](https://github.com/dortania/Opencore-Legacy-Patcher) to enable graphics acceleration
-| **macOS Ventura**:<ul><li>~~Requires a custom BIOS (like 1vyrain) with CFG Lock disabled in order to re-enable ACPI CPU Power Management becuase the `AppleCpuPmCfgLock` Quirk doesn't work in macOS 13!~~ (Quirk fixed in OC 0.9.2)<li> You can upgrade to macOS 13.4 beta now and use the latest version OpenCore Legacy Patcher (0.6.2) to install the Intel HD4000 drivers.</li>
+|**macOS Monterey and newer**: requires [**OCLP**](https://github.com/dortania/Opencore-Legacy-Patcher) to re-enable graphics acceleration
 
 ### Audio Working on Docking Stations 
-I created my own AppleALC Layout-ID which supports the Lenovo Mini Dock 3 Type 4337 and 4338 Docking Stations. It uses **Layout-ID 39** and has been integrated into AppleALC since [version 1.7.3](https://github.com/acidanthera/AppleALC/releases/tag/1.7.3)
+I created my own AppleALC Layout-ID which supports the Lenovo Mini Dock 3 Type 4337 and 4338 docking stations. It uses **Layout-ID 39** and has been integrated into AppleALC since [version 1.7.3](https://github.com/acidanthera/AppleALC/releases/tag/1.7.3)
 
 ### DSDT-less config
 The config contained in this repo is DSDT-less. This means, it doesn't use a patched DSDT. Everything is patched live using binary renames and ACPI Hotpatches (SSDTs). So instead of replacing the *whole* system DSDT by a patched one during boot, only things which need fixing are addressed and patched-in on the fly (hence the term "hot-patching")  – just like it is supposed to be done nowadays. The benefits of this approach are:
@@ -93,7 +93,7 @@ EFI
     │   ├── SSDT-BAT1-Disable.aml
     │   ├── SSDT-EXT4.aml
     │   ├── SSDT-EXT5.aml
-    │   ├── SSDT-IRQ_FIXES
+    │   ├── SSDT-IRQ_FIXES.aml
     │   ├── SSDT-NBCF.aml
     │   ├── SSDT-PNLF.aml
     │   ├── SSDT-PRW0.aml
@@ -108,7 +108,7 @@ EFI
     │   ├── OpenCanopy.efi
     │   ├── OpenRuntime.efi
     │   └── ResetNvramEntry.efi
-    ├── Kexts
+    ├── Kexts (loaded based on Min Kernel/Max Kernel settings)
     │   ├── AirportBrcmFixup.kext
     │   ├── AppleALC.kext
     │   ├── AppleIntelCPUPowerManagement.kext
@@ -123,6 +123,7 @@ EFI
     │   ├── ECEnabler.kext
     │   ├── IntelMausi.kext
     │   ├── Lilu.kext
+    │   ├── NoTouchID.kext
     │   ├── RestrictEvents.kext
     │   ├── SMCBatteryManager.kext
     │   ├── VirtualSMC.kext
@@ -177,7 +178,7 @@ Open the `config.plist` and adjust the following settings depending on your syst
 	
 4. **Audio**: 
 	- If you need digital Audio over HDMI/DP, disable/delete `No-hda-gfx` from the Audio Device Properties in `PciRoot(0x0)/Pci(0x1B,0x0)`.
-	- My EFI contains a custom build of `AppleALC.kext` which only contains layouts `18` and `39` (default) and therefore only is 95 KB in size (instead of 3.6 MB). If you are using a Dockingstation, leave it at `39`. If you don't, change it to `18`.
+	- My EFI contains a custom build of `AppleALC.kext` which only contains layouts `18` and `39` (default) and therefore only is 95 KB in size (instead of 3.6 MB). If you are using a docking station, leave it at `39`. If you don't, change it to `18`.
 	- If you want the bootchime to playback, do the following:
 		- Under `UEFI/Drivers`, enable `AudioDxe.efi`
 		- Under `EUFI/Audio`, enable `AudioSupport`
@@ -203,13 +204,13 @@ Open the `config.plist` and adjust the following settings depending on your syst
 		- Add the required Kexts for your Intel card to `EFI/OC/Kexts` folder and `config.plist` before attempting to boot with this EFI!
 	- **Case 2: 3rd Party WiFi/BT Cards**. These require the [**1vyrain**](https://1vyra.in/) jailbreak to unlock the BIOS to disable the WiFi Whitelist (not required if the 3rd party card is whitelisted).
 		- I use a WiFi/BT Card by Broadcom, so my setup requires `AirportBrcmFixup` for WiFi and `BrcmPatchRAM` and additional satellite kexts for Bluetooth. Read the comments in the config for details.
-		- `BrcmFirmwareData.kext` is used for injecting firmwares for Broadcom devices. Alternatively, you can use `BrcmFirmwareRepo.kext` which is more efficient but needs to be installed into `System/Library/Extensions` since it cannot be injected by Bootloaders.
+		- `BrcmFirmwareData.kext` is used for injecting the required firmware for Broadcom devices. Alternatively, you can use `BrcmFirmwareRepo.kext` which is more efficient but needs to be installed into `System/Library/Extensions` since it cannot be injected by Bootloaders.
 		- If you use a WiFi/BT Card from a different vendor than Broadcom, remove BluetoolFixup and the the Brcm Kexts and add the Kext(s) required for your card to the kext folder and `config.plist` before deploying the EFI folder!
 
 8. **Kernel Section** 
 	- **Kernel/Patch**: If you have an [HDD caddy](https://github.com/5T33Z0/Lenovo-T530-Hackintosh-OpenCore/issues/37#issuecomment-1509840983) for the DVD drive bay, you can add this [kernel patch](https://github.com/5T33Z0/Lenovo-T530-Hackintosh-OpenCore/blob/main/Additional_Files/SATA_Hotplug.plist) to your config to enable SATA hot plugging.
 	- **Kernel/Quirks**: 
-		- Enable `AppleCpuPmCfgLock` if you are using a stock BIOS where CFG Lock is enabled
+		- Enable `AppleCpuPmCfgLock` if you are using the stock BIOS where CFG Lock is enabled
 		- If you are using the 1vyrain BIOS, CFG Lock will be disabled by default (not on the T430). In this case, you can leave the `AppleCpuPmCfgLock` Quirk disabled. 
 		- To figure out if the MSR 0xE2 register is unlocked, add `ControlMsrE2.efi` to `EFI/OC/Tools` and your config.plist (under `Misc/Tools`) and run it from the BootPicker.
 
@@ -245,7 +246,7 @@ Once you're done adjusting the `config.plist`, mount your system's ESP and do th
 - Perform an NVRAM Reset (in BootPicker, hit Space Bar to reveal the tool)
 - Select macOS to boot
 
-The system may crash the first time when booting macOS Ventura. That's normal. I think it's be related to injecting the AppleIntelCPUPowerManagement kexts. After that, it's workinf fine.
+The system may crash the first time when booting macOS Ventura. That's normal. I think it's be related to injecting the AppleIntelCPUPowerManagement kexts. After that, it's working fine.
 
 ### BIOS Settings
 
@@ -301,7 +302,7 @@ Install instruction for Big Sur and newer covering different scenarios can be fo
 #### Recommended macOS version
 Up until recently, my recommendation was macOS Catalina. But after the last updates, Apple Music didn't work any more and I couldn't fix since the issue seems to be os-related.
 
-While testing my own instructions for upgrading from macOS Catalina (or older) to Big Sur, I noticed that Big Sure feels snappier and more responsive overall (although benchmakrs are slightly lower) and has no issues with Apple Music, so Big Sur is my new recommendation.
+While testing my own instructions for upgrading from macOS Catalina (or older) to Big Sur, I noticed that Big Sure feels snappier and more responsive overall (although benchmarks are slightly lower) and has no issues with Apple Music, so Big Sur is my new recommendation.
 
 ## Post-Install
 Once your system is up and running you may want to change the following settings to make your system more secure:
