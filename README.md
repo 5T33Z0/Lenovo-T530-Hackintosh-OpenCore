@@ -37,7 +37,7 @@ The OpenCore EFI also includes the latest Booter and Kernel patches which make u
 
 :bulb: Although this EFI *might work* with the T430 and the X230, is was not intended for these ThinkPad models. So don't misuse issue reports for support requests! I will close such "issues" immediately!
 
-|> **:Warning:** Issues related to macOS 12+|
+|:warning: Issues related to macOS 12+|
 |:------------------------------------|
 |**macOS Monterey and newer**: requires [**OCLP**](https://github.com/dortania/Opencore-Legacy-Patcher) to re-enable graphics acceleration
 
