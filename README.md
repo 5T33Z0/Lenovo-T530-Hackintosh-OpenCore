@@ -295,7 +295,7 @@ The system may crash the first time when booting macOS Ventura. That's normal. I
 
 **Coming from macOS**: If you already have access to macOS, you can either download macOS from the App Store, with [**OCLP**](https://github.com/dortania/OpenCore-Legacy-Patcher) or with [**ANYmacOS**](https://www.sl-soft.de/en/anymacos/). Both than can download any macOS from High Sierra up to Ventura and can create an USB Installer as well.
 
-Install instruction for Big Sur and newer covering different scenarios can be found [**here**](https://github.com/dortania/OpenCore-Legacy-Patcher)
+Install instruction for Big Sur and newer covering different scenarios can be found [**here**](https://github.com/5T33Z0/Lenovo-T530-Hackintosh-OpenCore/tree/main/macOS_Install)
 
 #### Recommended macOS version
 Up until recently, my recommendation was macOS Catalina. But after the last updates, Apple Music didn't work any more and I couldn't fix since the issue seems to be os-related.
