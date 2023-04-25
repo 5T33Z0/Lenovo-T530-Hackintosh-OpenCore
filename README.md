@@ -213,7 +213,6 @@ Open the `config.plist` and adjust the following settings depending on your syst
 		- To figure out if the `MSR 0xE2` register of your BIOS is unlocked, add `ControlMsrE2.efi` to `EFI/OC/Tools` and your config.plist (under `Misc/Tools`) and run it from the BootPicker. The output should look like this: </br>![CFG Lock Disabled](https://user-images.githubusercontent.com/76865553/210180491-0f48b7b0-ae46-4dda-b110-6703401e2c25.jpg)
 
 9. **Alternative/Optional Kexts**:
-	- **AppleIntelCPUPowerManagement** and **AppleIntelCPUPowerManagementClient** kexts from [**OCLP**](https://github.com/dortania/OpenCore-Legacy-Patcher/tree/main/payloads/Kexts/Misc) &rarr; Needed to re-enable ACPI CPU Power Management on macOS Ventura. If your CFG Lock is not disabled in BIOS, you need to disable these kexts and force-enable XCPM support instead
 	- [**itlwm**](https://github.com/OpenIntelWireless/itlwm): Kext for Intel WiFi Cards. Use instead of `AirportBrcmFixup`if you don't use a Broadcom WiFi Card
 	- [**IntelBluetoothFirmware**](https://github.com/OpenIntelWireless/IntelBluetoothFirmware): Kext for Intel Bluetooth Cards. Use instead of `BrcmPatchRam` and Plugins if you don't use a Broadcom BT Card
 	- [**NoTouchID**](https://github.com/al3xtjames/NoTouchID): only required for macOS 10.13 and 10.14 so the boot process won't stall while looking for a Touch ID sensor.
@@ -293,9 +292,10 @@ The system may crash the first time when booting macOS Ventura. That's normal. I
 
 > **Note**: No support from my end is provided for issues related to UBS Installers created in Windows or Linux or when using a Virtual Machine!
 
-**Coming from macOS**: If you already have access to macOS, you can either download macOS from the App Store, with [**OCLP**](https://github.com/dortania/OpenCore-Legacy-Patcher) or with [**ANYmacOS**](https://www.sl-soft.de/en/anymacos/). Both than can download any macOS from High Sierra up to Ventura and can create an USB Installer as well.
+**Coming from macOS**: 
 
-Install instruction for Big Sur and newer covering different scenarios can be found [**here**](https://github.com/5T33Z0/Lenovo-T530-Hackintosh-OpenCore/tree/main/macOS_Install)
+- If you already have macOS installed, you can either download macOS from the App Store, with [**OCLP**](https://github.com/dortania/OpenCore-Legacy-Patcher) or with [**ANYmacOS**](https://www.sl-soft.de/en/anymacos/). Both can download macOS and create a USB Installer as well.
+- **IMPORTANT**: When upgrading from macOS Catalina or older to Big Sur and newer, additional preparations are necessary. Follow my install instructions [**here**](https://github.com/5T33Z0/Lenovo-T530-Hackintosh-OpenCore/tree/main/macOS_Install)
 
 #### Recommended macOS version
 Up until recently, my recommendation was macOS Catalina. But after the last updates, Apple Music didn't work any more and I couldn't fix since the issue seems to be os-related.
@@ -340,18 +340,17 @@ You can also use overrides to the command to change the low frequency mode for e
 - You can add modifiers to the terminal command for building SSDT-PM. For example, you can drop the low frequency from the default 1200 MHz to 900 MHz in 100 MHz increments, but no lower than that. Otherwise the system crashes during boot. I suggests you experiment with the modifiers a bit.
 
 #### Re-Enabling ACPI Power Management in macOS Ventura
-With the release of macOS Monterey, Apple dropped the Plugin-Type check, so that the X86PlatformPlugin is now loaded by default. For Haswell and newer this is great, since you no longer need `SSDT-PLUG` to enable Plugin-Type `1`. But for Ivy Bridge and older, you now need to tell macOS to use Plugin-Type `0` which is fine since it is set in `SSDT-PM` already, so ACPI CPU Power Management still works in Monterey.
+With the release of macOS Monterey, Apple dropped the Plugin-Type check for handling CPU Power Management, so that the `X86PlatformPlugin` is now loaded by default. For Haswell and newer CPU families this is great, since you no longer need `SSDT-PLUG` to enable Plugin-Type `1`. But for Ivy Bridge and older, you now need to tell macOS to use Plugin-Type `0` which is fine since it is set in `SSDT-PM` already, so ACPI CPU Power Management still works in Monterey.
 
-But when Apple released macOS Ventura, they removed the actual `ACPI_SMC_PlatformPlugin` *binary* from the `ACPI_SMC_PlatformPlugin.kext` itself (previously located under S/L/E/IOPlatformPluginFamily.kext/Contents/PlugIns/ACPI_SMC_PlatformPlugin.kext/Contents/MacOS/), rendering `SSDT-PM` generated for 'plugin-type' 0 useless, since the plugin binary is missing and therefore can't be selected. Instead, the `X86PlaformPlugin` is loaded by default now. Therefore, CPU Power Management wouldn't work correctly out of the box (no Turbo states).
+But when Apple released macOS Ventura, they removed the actual `ACPI_SMC_PlatformPlugin` *binary* from the `ACPI_SMC_PlatformPlugin.kext` itself (previously located under S/L/E/IOPlatformPluginFamily.kext/Contents/PlugIns/ACPI_SMC_PlatformPlugin.kext/Contents/MacOS/), rendering `SSDT-PM` generated for 'plugin-type' 0 useless, since the plugin binary is missing and therefore can't be utilized. Instead, the `X86PlaformPlugin` is loaded by default now. This results in CPU Power Management not working correctly out of the box (no Turbo states, etc.).
 
 So when switching to macOS Ventura, you either have to force-enable XCPM by enabling the corresponding Kernel Patch contained in my config or inject kexts to re-enable ACPI CPU Power Management (Plugin-Type 0) instead. The latter is recommended, since ACPI CPU Power Management just works better on Ivy Bridge than XCPM and my current EFI folders are configured to do so.
 
-In order to re-enable and use ACPI CPU Power Management on macOS Ventura, you need:
+My EFI is already configured to use ACPI CPU Power Management on macOS Ventura. Anyway, this is how it's done: 
 
-- My latest OpenCore EFI folder [release](https://github.com/5T33Z0/Lenovo-T530-Hackintosh-OpenCore/releases)
-- ~~A BIOS where the **MSR 0x2E** Register is **unlocked** so CFG Lock is disabled. This is mandatory since the `AppleCpuPmCfgLock` Quirk doesn't work in macOS Ventura, causing kernel panics (as discussed [here](https://github.com/5T33Z0/Lenovo-T530-Hackintosh-OpenCore/issues/31#issuecomment-1368409836)). So flashing a custom BIOS is mandatory if your BIOS doesn't provide an option to disable CFG Lock – otherwise you have to [**force-enable XCPM**](https://github.com/5T33Z0/Lenovo-T530-Hackintosh-OpenCore/tree/main/ACPI/Enable_XCPM) instead. Since I am using 1vyrain, CFG Lock is already disabled in the firmware so I don't require `AppleCpuPmCfgLock` to boot.~~ Fixed in OpenCore 0.9.2
-- Enable `AppleCpuPmCfgLock` Quirk (enabled by default)
-- Add [Kexts from OpenCore Legacy Patcher](https://github.com/dortania/OpenCore-Legacy-Patcher/tree/main/payloads/Kexts/Misc):
+- Download my latest OpenCore EFI folder [release](https://github.com/5T33Z0/Lenovo-T530-Hackintosh-OpenCore/releases)
+- Enable `AppleCpuPmCfgLock` Quirk (enabled by default). Not necessary if you have a modded BIOS where CFG Lock is disabled
+- Add [Kexts from OpenCore Legacy Patcher](https://github.com/dortania/OpenCore-Legacy-Patcher/tree/main/payloads/Kexts/Misc) (already present):
 	- `AppleIntelCPUPowerManagement.kext` (set `MinKernel` to 22.0.0)
 	- `AppleIntelCPUPowerManagementClient.kext` (set `MinKernel` to 22.0.0)
 - Disable Kernel/Patch: `_xcpm_bootstrap` 
