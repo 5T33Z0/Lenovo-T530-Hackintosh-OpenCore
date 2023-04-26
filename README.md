@@ -30,9 +30,9 @@
 - [Credits and Thank Yous](#credits-and-thank-yous)
 
 ## About
-OpenCore and Clover EFI Folders for running macOS 10.13 to 13.1+ on a Lenovo ThinkPad T530. They utilize the new `ECEnabler.kext` which enables battery status read-outs without the need for additional Battery Patches. 
+OpenCore and Clover EFI Folders for running macOS 10.13 to 13.1+ on a Lenovo ThinkPad T530. They utilize the new `ECEnabler.kext` which enables battery status read-outs without the need for additional Battery Patches.
 
-The OpenCore EFI also includes the latest Booter and Kernel patches which make use of macOSes virtualization capabilities (VMM) to spoof a special Board-ID which allows installing and running macOS Big Sur and Monterey with SMBIOS `MacBookPro10,1` for Ivy Bridge CPUs. With this, you can enjoy the benefits of optimal CPU Power Management *and* System Updates which wouldn't be possible when using the well-known `-no_compat_check` boot arg. If you want to know how these patches work, [read this](https://github.com/5T33Z0/OC-Little-Translated/tree/main/09_Board-ID_VMM-Spoof).
+The OpenCore EFI also includes the latest Booter and Kernel patches which make use of macOSes virtualization capabilities (VMM) to spoof a special Board-ID which allows installing and running macOS Big Sur and Monterey with SMBIOS `MacBookPro10,1` for Ivy Bridge CPUs, so you can enjoy the benefits of optimal CPU Power Management *and* System Updates which wouldn't be possible when using the `-no_compat_check` boot arg. If you want to know more about how these patches work, [read this](https://github.com/5T33Z0/OC-Little-Translated/tree/main/09_Board-ID_VMM-Spoof).
 
 :bulb: Although this EFI *might work* with the T430 and the X230, is was not intended for these ThinkPad models. So don't misuse issue reports for support requests! I will close such "issues" immediately!
 
@@ -44,13 +44,13 @@ The OpenCore EFI also includes the latest Booter and Kernel patches which make u
 I created my own AppleALC Layout-ID which supports the Lenovo Mini Dock 3 Type 4337 and 4338 docking stations. It uses **Layout-ID 39** and has been integrated into AppleALC since [version 1.7.3](https://github.com/acidanthera/AppleALC/releases/tag/1.7.3)
 
 ### DSDT-less config
-The config contained in this repo is DSDT-less. This means, it doesn't use a patched DSDT. Everything is patched live using binary renames and ACPI Hotpatches (SSDTs). So instead of replacing the *whole* system DSDT by a patched one during boot, only things which need fixing are addressed and patched-in on the fly (hence the term "hot-patching")  – just like it is supposed to be done nowadays. The benefits of this approach are:
+The config contained in this repo is DSDT-less. This means, it doesn't use a patched DSDT. Everything is patched live using ACPI Hotpatches (SSDTs) and a few DSDT patches via binary renames. So instead of replacing the *whole* system DSDT by a patched one during boot, only things which need fixing are addressed and patched-in on the fly (hence the term "hot-patching")  – just like it is supposed to be done nowadays. The benefits of this approach are:
 
 - Hotpatching is cleaner, more precise and independent of the installed BIOS version since it only addresses specific areas of ACPI tables which need patching.
 - Issues which might occur with newer macOS versions can be addressed and resolved easier by modifying or adding SSDTs without having to update and export the whole patched DSDT again.
 - The system boots faster, runs smoother and performance is better compared to using a patched DSDT.
 
-**NOTE**: Read and follow the install instruction carefully and thoroughly before you deploy the EFI folder if you want your system to boot successfully!
+> **Note**: Read and follow the instructions carefully and thoroughly before deploying the EFI folder if you want your system to boot successfully!
 
 ## Hardware Specs
 | Component           | Details                                       |
@@ -150,7 +150,7 @@ EFI
 Please read the following explanations carefully and follow the given instructions. In order to boot macOS with this EFI successfully, adjustments to the `config.plist` and used kexts may be necessary to adapt the config to your T530 model and the macOS version you want to install/run.
 
 ### Preparing the `config.plist`
-Download the EFI Folder from the [Releases](https://github.com/5T33Z0/Lenovo-T530-Hackintosh-OpenCore/releases) section and unpack it. Make sure to check the included `Changelog.md` as well, since it also contains useful explanations. 
+Download the EFI Folder from the [Releases](https://github.com/5T33Z0/Lenovo-T530-Hackintosh-OpenCore/releases) section and unpack it. Make sure to read the included `Changelog.md` as well, since it contains useful explanations. 
 
 Open the `config.plist` and adjust the following settings depending on your system:
 
@@ -178,7 +178,7 @@ Open the `config.plist` and adjust the following settings depending on your syst
 4. **Audio**: 
 	- If you need digital Audio over HDMI/DP, disable/delete `No-hda-gfx` from the Audio Device Properties in `PciRoot(0x0)/Pci(0x1B,0x0)`.
 	- My EFI contains a custom build of `AppleALC.kext` which only contains layouts `18` and `39` (default) and therefore only is 95 KB in size (instead of 3.6 MB). If you are using a docking station, leave it at `39`. If you don't, change it to `18`.
-	- If you want the bootchime to playback, do the following:
+	- **Bootchime**: If you want the bootchime to playback, do the following:
 		- Under `UEFI/Drivers`, enable `AudioDxe.efi`
 		- Under `EUFI/Audio`, enable `AudioSupport`
 		- Make sure `ConnectDrivers` is enabled
@@ -298,9 +298,7 @@ The system may crash the first time when booting macOS Ventura. That's normal. I
 - **IMPORTANT**: When upgrading from macOS Catalina or older to Big Sur and newer, additional preparations are necessary. Follow my install instructions [**here**](https://github.com/5T33Z0/Lenovo-T530-Hackintosh-OpenCore/tree/main/macOS_Install)
 
 #### Recommended macOS version
-Up until recently, my recommendation was macOS Catalina. But after the last updates, Apple Music didn't work any more and I couldn't fix since the issue seems to be os-related.
-
-While testing my own instructions for upgrading from macOS Catalina (or older) to Big Sur, I noticed that Big Sure feels snappier and more responsive overall (although benchmarks are slightly lower) and has no issues with Apple Music, so Big Sur is my new recommendation.
+Up until recently, my recommendation was macOS Catalina. While testing my own instructions for upgrading from macOS Catalina (or older) to Big Sur, I noticed that Big Sur feels snappier and more responsive overall (although benchmarks are slightly lower), so Big Sur is my new recommendation.
 
 ## Post-Install
 Once your system is up and running you may want to change the following settings to make your system more secure:
@@ -396,7 +394,7 @@ If the wake reason is related to `RTC (Alarm)`, do the following:
 - In `UEFI/Drivers`, disable `ConnectDrivers`. This reduces the timeout between the LENOVO logo and the BootPicker by 5 to 8 seconds.
 
 :warning: **CAUTION**: 
-- With `ConnectDrivers` disabled, the boot chime cannot be played back since the `AudioDXE.efi` is not loaded. 
+- With `ConnectDrivers` disabled, the boot chime cannot be played back since `AudioDXE.efi` is not loaded. 
 - Before installing macOS from a USB flash drive, `ConnectDrivers` needs to be re-enabled, otherwise you won't see the flash drive in the BootPicker.
 
 ### Swapping Command ⌘ and Option ⌥ Keys
@@ -422,11 +420,6 @@ macOS locks the optical drive sometimes so that you can't open it with the physi
 - **Option 1**: Go to `System/Library/CoreServices/Menu Extras` and double-click on `Eject.menu`. This adds an Eject button Icon to the Menu Bar.
 - **Option 2**: Press and hold the `INS` button (right below the Power Button) until the Eject Icon appears on the screen and the CD tray opens.
 </details>
-
-### Workaround for Apple Music crashing in macOS Catalina
-I've noticed that Apple Music crashes when running the latest version of macOS Catalina (10.15.7) – it's working fine in Big Sur and newer, though. I am sure this is not a config issue, because: a) all other apps work as expected, b) since I know Apple Music was working on earlier builds of Catalina and c) I've seen unresolved issue reports on Apple Support Forums. 
-
-As a workaround, you can use [Retroactive](https://github.com/cormiertyshawn895/Retroactive) to install and run older versions of iTunes (11.4 worked for me).
 
 ## CPU Benchmark
 
