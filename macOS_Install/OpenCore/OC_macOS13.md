@@ -65,7 +65,7 @@ You just click on "Okay" and the drivers will be re-installed. After the obligat
 
 ## Notes
 - Installing drivers on the system partition breaks its security seal. This affects System Updates: every time a System Update is available, the FULL Installer (about 12 GB) will be downloaded.
-- After each System Update, the Drivers have to be re-installed. OCLP will take care of this.
+- After each System Update, the iGPU drivers have to be re-installed. OCLP will take care of this.
 - ⚠️ You cannot install macOS Security Response Updates (RSR) on pre-Haswell systems. They will fail to install (more info [**here**](https://github.com/dortania/OpenCore-Legacy-Patcher/issues/1019)). 
 
 ## Credits
