@@ -24,7 +24,7 @@
 ### Note about SMBIOS
 The board-id skip included in my configuration which allows using the `MacBookPro10,1` SMBIOS with macOS Big Sur and newer requires virtualization technology which first got introduced with macOS 11.3 (Darwin Kernel 20.4). Therefore, you can't simply upgrade from macOS Catalina or older using the `MacBookPro10,X` SMBIOS since the required virtualization technology to make the board-id skip work isn't present.
 
-So when upgrading from macOS Catalina or older, you need to temporarily switch the SMBIOS to `MacBookPro11,4` in order to be able to install macOS Monterey or newer. You can revert it back to `MacBooPro10,1` (i7) or `MacBookPro10,2` (i5) once the installation has finished.
+So when upgrading from macOS Catalina or older, you need to temporarily switch the SMBIOS to use `MacBookPro14,1` (i7) or `MacBookPro14,2` (i5)  in order to be able to install macOS Ventua. You can revert to `MacBooPro10,1` (i7) or `MacBookPro10,2` (i5) once the installation is completed.
 
 ## II. macOS Ventura Install Instructions
 Installing macOS Ventura on legacy systems which don't support AVX 2.0 CPU instruction requires OpenCore Legacy Patcher in order to prepare the macOS Ventura Installer so it works on unsupported hardware.
@@ -38,11 +38,14 @@ Installing macOS Ventura on legacy systems which don't support AVX 2.0 CPU instr
 	- Mount the EFI Partition of the USB flash drive (using MountEFI or OCAT)
 	- Paste in my EFI Folder 
 	- Adjust the `config.plist` to your needs as explained on my repo.
-	- Generate SMBIOS data for `MacBookPro10,1` (Core i7) or `MacBookPro10,2` (Core i5)
+	- Generate SMBIOS data:
+		- If you are on Bis Sur or newer already: use `MacBookPro10,1` (Core i7) or `MacBookPro10,2` (Core i5)
+		- If you are upgrading from Catalina or older: use `MacBookPro14,1` (i7) or `MacBookPro14,2` (i5) 
 	- Change `csr-active-config` to: `67080000`. This is a must in order to install the Intel HD4000 Drivers.
 - Reboot from USB flash drive and run "Install macOS Ventura"
 - There will be a few reboots along the way. Boot from the new Install Partition until it's no longer present in the Boot Picker
 - Once the Installation has finished, copy the EFI folder from the USB Installer to the EFI partition on your HDD/SSD
+- Revert SMBIOS back to `MacBookPro10,1` (Core i7) or `MacBookPro10,2` (Core i5)
 
 ### 2. Install Intel HD4000 Drivers
 Once you reach the set-up assistant (where you select your language, time zone, etc), you will notice that the system feels super sluggish – that's normal because it is running in VESA mode without graphics acceleration, since the friendly guys at Apple removed the Intel HD 4000 drivers. 
