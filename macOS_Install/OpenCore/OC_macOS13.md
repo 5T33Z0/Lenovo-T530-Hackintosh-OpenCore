@@ -28,7 +28,7 @@ My configuration includes a board-id skip which allows using the `MacBookPro10,1
 Installing macOS Ventura on legacy systems which don't support AVX 2.0 CPU instruction requires OpenCore Legacy Patcher in order to prepare the macOS Ventura Installer so it works on unsupported hardware.
 
 ### 1. Install macOS Ventura (Clean Install)
-- Create a new Partition on your HDD/SSD or use a separate disk (at least 60 GB in size)
+- Create a new Volume on your internal HDD/SSD or use separate internal disk (at least 60 GB in size) for installing macOS – DON'T install it on an external drive!
 - Attach an empty USB flash drive for creating the installer (16 GB+)
 - Run OCLP and follow the [**instructions**](https://dortania.github.io/OpenCore-Legacy-Patcher/INSTALLER.html#creating-the-installer) to create the USB Installer
 - Once the USB Installer has been created, do the following:
