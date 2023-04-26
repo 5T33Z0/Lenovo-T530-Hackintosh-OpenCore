@@ -18,13 +18,11 @@
 - USB Flash Drive (16 GB+) for clean install.
 - My EFI Folder
 - **SMBIOS**:
-	- When coming from macOS Catalina or older: use `MacBookPro14,1` (i7) or `MacBookPro14,2` (i5) for installation (&rarr; see "Note about SMBIOS")
+	- When upgrading from macOS Catalina or older: use `MacBookPro14,1` (i7) or `MacBookPro14,2` (i5) during installation (&rarr; see "Note about SMBIOS")
 	- When upgrading from Big Sur 11.3 or newer: stay on `MacBookPro10,1` (i7) or `MacBookPro10,2` (i5)
 
 ### Note about SMBIOS
-The board-id skip included in my configuration which allows using the `MacBookPro10,1` SMBIOS with macOS Big Sur and newer requires virtualization technology which first got introduced with macOS 11.3 (Darwin Kernel 20.4). Therefore, you can't simply upgrade from macOS Catalina or older using the `MacBookPro10,X` SMBIOS since the required virtualization technology to make the board-id skip work isn't present.
-
-So when upgrading from macOS Catalina or older, you need to temporarily switch the SMBIOS to use `MacBookPro14,1` (i7) or `MacBookPro14,2` (i5)  in order to be able to install macOS Ventua. You can revert to `MacBooPro10,1` (i7) or `MacBookPro10,2` (i5) once the installation is completed.
+My configuration includes a board-id skip which allows using the `MacBookPro10,1` SMBIOS which wouldn't be possible otherwise. It requires vitrtualization technology introduced in macOS macOS Big Sur. Therefore, you can't simply upgrade from macOS Catalina or older using the `MacBookPro10,X` SMBIOS since the required virtualization technology to make the board-id skip work isn't present prior to macOS 11.3 (Darwin Kernel 20.4). So when upgrading from macOS Catalina or older, you need to *temporarily* switch the SMBIOS to use `MacBookPro14,1` (i7) or `MacBookPro14,2` (i5)  in order to be able to install macOS Ventura. You can revert to `MacBooPro10,1` (i7) or `MacBookPro10,2` (i5) once the installation is completed.
 
 ## II. macOS Ventura Install Instructions
 Installing macOS Ventura on legacy systems which don't support AVX 2.0 CPU instruction requires OpenCore Legacy Patcher in order to prepare the macOS Ventura Installer so it works on unsupported hardware.
@@ -39,13 +37,13 @@ Installing macOS Ventura on legacy systems which don't support AVX 2.0 CPU instr
 	- Paste in my EFI Folder 
 	- Adjust the `config.plist` to your needs as explained on my repo.
 	- Generate SMBIOS data:
-		- If you are on Bis Sur or newer already: use `MacBookPro10,1` (Core i7) or `MacBookPro10,2` (Core i5)
-		- If you are upgrading from Catalina or older: use `MacBookPro14,1` (i7) or `MacBookPro14,2` (i5) 
+		- If you are on Big Sur 11.3 or newer already: use `MacBookPro10,1` (Core i7) or `MacBookPro10,2` (Core i5)
+		- If you are upgrading from Catalina or older: use `MacBookPro14,1` (i7) or `MacBookPro14,2` (i5) temporarily
 	- Change `csr-active-config` to: `67080000`. This is a must in order to install the Intel HD4000 Drivers.
 - Reboot from USB flash drive and run "Install macOS Ventura"
 - There will be a few reboots along the way. Boot from the new Install Partition until it's no longer present in the Boot Picker
 - Once the Installation has finished, copy the EFI folder from the USB Installer to the EFI partition on your HDD/SSD
-- Revert SMBIOS back to `MacBookPro10,1` (Core i7) or `MacBookPro10,2` (Core i5)
+- Switch SMBIOS back to `MacBookPro10,1` (Core i7) or `MacBookPro10,2` (Core i5) (generate a new MLB, Serial, etc.)
 
 ### 2. Install Intel HD4000 Drivers
 Once you reach the set-up assistant (where you select your language, time zone, etc), you will notice that the system feels super sluggish – that's normal because it is running in VESA mode without graphics acceleration, since the friendly guys at Apple removed the Intel HD 4000 drivers. 
@@ -69,7 +67,6 @@ You just click on "Okay" and the drivers will be re-installed. After the obligat
 - Installing drivers on the system partition breaks its security seal. This affects System Updates: every time a System Update is available, the FULL Installer (about 12 GB) will be downloaded.
 - After each System Update, the Drivers have to be re-installed. OCLP will take care of this.
 - ⚠️ You cannot install macOS Security Response Updates (RSR) on pre-Haswell systems. They will fail to install (more info [**here**](https://github.com/dortania/OpenCore-Legacy-Patcher/issues/1019)). 
-
 
 ## Credits
 - Acidanthera for OpenCore, OCLP and numerous Kexts
