@@ -3,7 +3,7 @@
 **TABLE of CONTENTS**
 
 - [I. Requirements](#i-requirements)
-	- [Note about SMBIOS](#note-about-smbios)
+	- [Note about SMBIOS](#important-note-about-smbios)
 - [II. macOS Ventura Install Instructions](#ii-macos-ventura-install-instructions)
 	- [1. Install macOS Ventura (Clean Install)](#1-install-macos-ventura-clean-install)
 	- [2. Install Intel HD4000 Drivers](#2-install-intel-hd4000-drivers)
