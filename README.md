@@ -25,7 +25,6 @@
   - [Swapping Command ⌘ and Option ⌥ Keys](#swapping-command--and-option--keys)
   - [Changing Themes](#changing-themes)
   - [Eject Button](#eject-button)
-  - [Workaround for Apple Music crashing in macOS Catalina](#workaround-for-apple-music-crashing-in-macos-catalina)
 - [CPU Benchmark](#cpu-benchmark)
 - [Credits and Thank Yous](#credits-and-thank-yous)
 
