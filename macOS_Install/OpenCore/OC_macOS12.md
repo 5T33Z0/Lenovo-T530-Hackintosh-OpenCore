@@ -1,5 +1,7 @@
 # Installing macOS Monterey on the Lenovo T530 (OpenCore)
 
+**TABLE of CONTENTS**
+
 - [I. Requirements](#i-requirements)
 	- [Important Note about SMBIOS](#important-note-about-smbios)
 - [II. macOS Monterey Install Instructions](#ii-macos-monterey-install-instructions)
