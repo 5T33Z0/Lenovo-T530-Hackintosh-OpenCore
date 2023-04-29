@@ -3,9 +3,9 @@
 **TABLE of CONTENTS**
 
 - [I. Requirements](#i-requirements)
-	- [Note about SMBIOS](#important-note-about-smbios)
+	- [Important Note about SMBIOS](#important-note-about-smbios)
 - [II. macOS Ventura Install Instructions](#ii-macos-ventura-install-instructions)
-	- [1. Install macOS Ventura (Clean Install)](#1-install-macos-ventura-clean-install)
+	- [1. Install macOS Ventura](#1-install-macos-ventura)
 	- [2. Install Intel HD4000 Drivers](#2-install-intel-hd4000-drivers)
 - [III. OCLP and System Updates](#iii-oclp-and-system-updates)
 - [Notes](#notes)
@@ -27,11 +27,11 @@ My configuration includes a board-id skip which allows using the `MacBookPro10,1
 ## II. macOS Ventura Install Instructions
 Installing macOS Ventura on legacy systems which don't support AVX 2.0 CPU instruction requires OpenCore Legacy Patcher in order to prepare the macOS Ventura Installer so it works on unsupported hardware.
 
-### 1. Install macOS Ventura (Clean Install)
+### 1. Install macOS Ventura
 <details>
-<summary><strong>Option 1: Upgrading an existing Install</strong> (macOS 11.3+ only)</summary>
+<summary><strong>Option 1: Upgrading existing installation</strong> (macOS 11.3+ only)</summary>
 
-**Option 1**: Only applicable when upgrading from macOS 11.3+!
+**Option 1**: Only applicable when upgrading from macOS 11.3+. If you are on macOS Catalina or older, use option 2.
 
 - Download OCLP
 - Mount your EFI Partition

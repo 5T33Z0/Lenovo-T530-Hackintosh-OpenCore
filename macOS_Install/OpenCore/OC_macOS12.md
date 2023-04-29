@@ -1,7 +1,7 @@
 # Installing macOS Monterey on the Lenovo T530 (OpenCore)
 
 - [I. Requirements](#i-requirements)
-	- [Note about SMBIOS](#important-note-about-smbios)
+	- [Important Note about SMBIOS](#important-note-about-smbios)
 - [II. macOS Monterey Install Instructions](#ii-macos-monterey-install-instructions)
 	- [1. Install macOS Monterey](#1-install-macos-monterey)
 	- [2. Install Intel HD4000 Drivers](#2-install-intel-hd4000-drivers)
@@ -28,9 +28,9 @@ So when upgrading from macOS Catalina or older, you need to *temporarily* switch
 
 ### 1. Install macOS Monterey
 <details>
-<summary><strong>Option 1: Updating an existing Install</strong> (macOS 11.3+ only)</summary>
+<summary><strong>Option 1: Upgrading existing installation</strong> (macOS 11.3+ only)</summary>
 
-**Option 1**: Only applicable when upgrading from macOS 11.3+!
+**Option 1**: Only applicable when upgrading from macOS 11.3+. If you are on macOS Catalina or older, use option 2.
 
 - Download OCLP
 - Mount your EFI Partition
