@@ -227,7 +227,7 @@ Open the `config.plist` and adjust the following settings depending on your syst
 
 #### Used boot arguments and NVRAM variables
 - **Boot-args:**
-	- `brcmfx-country=#a`: Wifi Country Code (`#a` = generic). For details check the [**AirportBrcmFixup**](https://github.com/acidanthera/AirportBrcmFixup) documentation. Replace the generic country code with the one for your country [**listed here**](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2#Officially_assigned_code_elements). This is mandatory for getting AirDrop to work (which I don't use).
+	- `brcmfx-country=#a`: Wifi Country Code (`#a` = generic). For details check the [**AirportBrcmFixup**](https://github.com/acidanthera/AirportBrcmFixup) documentation. Replace the generic country code with the one for your country [**listed here**](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2#Officially_assigned_code_elements). This is recommended for avoiding connectivity issues getting AirDrop to work properly (which I don't use).
 	- `gfxrst=1`: Draws Apple logo at 2nd boot stage instead of framebuffer copying &rarr; Smoothens transition from the progress bar to the Login Screen/Desktop when an external monitor is attached.
 	- `ipc_control_port_options=0`: Fixes issues with electron-based Apps like Discord in macOS Monterey and newer when SIP is lowered.
 	- `amfi_get_out_of_my_way=0x1`: Disables [Apple Mobile File Integrity](https://eclecticlight.co/2018/12/29/amfi-checking-file-integrity-on-your-mac/). Required to be able to install Intel HD 4000 drivers in macOS 12+ using OpenCore Legacy Patcher (OCLP) in Post-Install. Also required to boot macOS Ventura afterwards. Requires SIP to be disabled.
