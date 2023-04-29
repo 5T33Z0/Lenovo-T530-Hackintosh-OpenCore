@@ -20,7 +20,7 @@ In order to adapt the `config.plist` to your hardware and macOS requirements, ch
 	- `PciRoot(0x0)/Pci(0x1B,0x0)`: If you need digital Audio via HDMI/DP, disable/delete key `No-hda-gfx`.
 - `SMBIOS`: generate a serial for `MacBookPro10,1` (i7) or `MacBookPro10,2` (i5)
 - Adjust `RtVariables/CsrActiveConfig`:
-	- macOS Big Sur and newer → `0x867`
+	- macOS Big Sur and newer → `0x803`
  	- macOS Big Sur and newer → `0xFEF` (Disables even more fetaures, breaks system updates. May be necessary for installing HD4000 Drivers in Post-Install)
  	- macOS Mojave/Catalina → `0x7EF`
 	- macOS High Sierra → `0x3FF`
