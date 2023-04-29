@@ -183,11 +183,11 @@ Open the `config.plist` and adjust the following settings depending on your syst
 		- Make sure `ConnectDrivers` is enabled
 
 5. **SIP**: Under `NVRAM/Add/7C436110-AB2A-4BBB-A880-FE41995C9F82`, adjust `csr-active-config` according to the macOS version you want to use:
-	- For macOS Big Sur and newer: `67080000`(0x867)
+	- For macOS Big Sur and newer: `03080000`(0x803)
 	- For macOS Mojave/Catalina: `EF070000`(0x7EF)
 	- For macOS High Sierra: `FF030000` (0x3FF)</br></br>
 	
-	> **Note**: Disabling SIP is mandatory if you want to run macOS Monterey or newer in order to install and load Intel HD 4000 Drivers! If you have issues running OCLP in Post, set `csr-active-config` to `67080000` (default) or `FE0F0000` (almost fully disabled).
+	> **Note**: Disabling SIP is mandatory if you want to run macOS Monterey or newer in order to install and load Intel HD 4000 Drivers! If you have issues running OCLP in Post, set `csr-active-config` to `03080000` (default) or `FE0F0000` (almost fully disabled).
 
 6. **SMBIOS**: Under `SystemProductName`, select the correct SMBIOS for your CPU and generate a serial, etc. for it.
 	-  For Intel i7: `MacBookPro10,1`
@@ -211,27 +211,34 @@ Open the `config.plist` and adjust the following settings depending on your syst
 		- If you are using the 1vyrain BIOS, CFG Lock will be disabled by default (not on the T430). In this case, you can disable the `AppleCpuPmCfgLock` Quirk. 
 		- To figure out if the `MSR 0xE2` register of your BIOS is unlocked, add `ControlMsrE2.efi` to `EFI/OC/Tools` and your config.plist (under `Misc/Tools`) and run it from the BootPicker. The output should look like this: </br>![CFG Lock Disabled](https://user-images.githubusercontent.com/76865553/210180491-0f48b7b0-ae46-4dda-b110-6703401e2c25.jpg)
 
-9. **Alternative/Optional Kexts**:
+9. **Misc Section**
+	- **Misc/Boot**: `HideAuxiliary` is enabled. This hides additional items like macOS Recovery and resetting NVRAM. You can reveal them by pressing the space bar in BootPicker. If you want all items to show by default, disable `HideAuxiliary`.
+
+10. **Alternative/Optional Kexts**:
 	- [**itlwm**](https://github.com/OpenIntelWireless/itlwm): Kext for Intel WiFi Cards. Use instead of `AirportBrcmFixup`if you don't use a Broadcom WiFi Card
 	- [**IntelBluetoothFirmware**](https://github.com/OpenIntelWireless/IntelBluetoothFirmware): Kext for Intel Bluetooth Cards. Use instead of `BrcmPatchRam` and Plugins if you don't use a Broadcom BT Card
 	- [**NoTouchID**](https://github.com/al3xtjames/NoTouchID): only required for macOS 10.13 and 10.14 so the boot process won't stall while looking for a Touch ID sensor.
 	- [**Feature Unlock**](https://github.com/acidanthera/FeatureUnlock): Unlocks additional features like Sidecar, NighShift, Airplay to Mac, Universal Control and Content Caching. Under macOS Monterey, Content Caching also requires `-allow_assetcache` boot-arg.
 	- [**RestictEvents.kext**](https://github.com/acidanthera/RestrictEvents): Combined with boot-arg `revpatch=diskread,memtab`, it enables "Memory" tab in "About this Mac" section and disables "Uninitialized Disk" warning in Finder (for macOS 10.14 and older). Loads automatically for Kernel 20.4 (Big Sur 11.3 and newer) to enable a special board-id for virtual machines which allows installing system updates which wouldn't be possible otherwise with the `MacBookPro10,X` SMBIOS.
 
-10. **Backlight Brightness Level tweaks** (optional): 
-  - Set boot-arg `applbkl=1` for reasonable maximum brightness level controlled by `WhateverGreen`. 
-  - Set boot-arg `applbkl=0` for increased maximum brightness as defined in `SSDT-PNLF.aml`
+11. **Increase Max Backlight Brightness Level** (optional): 
+
+	- Add boot-arg `applbkl=0` for increased maximum brightness of the display as defined in `SSDT-PNLF.aml` instead of letting Whatevergreen handle it.
 
 #### Used boot arguments and NVRAM variables
 - **Boot-args:**
 	- `brcmfx-country=#a`: Wifi Country Code (`#a` = generic). For details check the documentation for [AirportBrcmFixup](https://github.com/acidanthera/AirportBrcmFixup).
 	- `gfxrst=1`: Draws Apple logo at 2nd boot stage instead of framebuffer copying &rarr; Smoothens transition from the progress bar to the Login Screen/Desktop when an external monitor is attached.
-	- `#revpatch=diskread,memtab`: For `RestrictEvents.kext` (disabled). `diskread` disables "Uninitialized Disk" warning in macOS 10.14 and older. `memtab` adds `Memory` tab to "About this Mac" section. Enable `RestrictEvents.kext` and remove the `#` from the boot-arg to enable it.
 	- `ipc_control_port_options=0`: Fixes issues with electron-based Apps like Discord in macOS Monterey and newer when SIP is lowered.
-- **NVRAM variables**
-	- OCLP Settings `-allow_amfi`: Does the same as boot-arg `amfi_get_out_of_my_way=1` but only when OCLP App is running &rarr; Required to be able to install Intel HD 4000 drivers in macOS Ventura using OCLP in Post-Install.
-	- `revblock:media` &rarr; Blocks `mediaanalysisd` on Ventura+ (for Metal 1 GPUs). Required so Apps like Firefox don't crash. Requires RestrictEvents.kext
-	- `revpatch:sbvmm` &rarr; Forces VMM SB model, allowing OTA updates for unsupported models on macOS 11.3 and newer. Requires `RestrictEvents.kext`
+	- `amfi_get_out_of_my_way=0x1`: Disables Apple Mobile File Integrity. Required to be able to install Intel HD 4000 drivers in macOS 12+ using OpenCore Legacy Patcher (OCLP) in Post-Install. Also required to boot macOS Ventura afterwards. Requires SIP to be disabled.
+- **NVRAM variables**:
+	- OCLP Settings `-allow_amfi`: Does the same as boot-arg `amfi_get_out_of_my_way=0x1` but only when the OpenCore Patcher App is running. Otherwise you can't run the root patcher.
+	- `revblock:media` &rarr; Blocks `mediaanalysisd` on Ventura+ (for Metal 1 GPUs). Required so apps like Firefox don't crash. Requires RestrictEvents.kext
+	- `revpatch`:
+		- `sbvmm` &rarr; Forces VMM SB model, allowing OTA updates for unsupported models on macOS 11.3 and newer. Requires `RestrictEvents.kext`. 
+		- `f16c` &rarr; Resolves CoreGraphics crashing on Ivy Bridge CPUs by disabling f16c instruction set reporting in macOS 13.3 or newer. Requires RestrictEvents.kext.
+		- `diskread` &rarr; Disables "Uninitialized Disk" warning in macOS 10.14 and older. 
+		- `memtab` &rarr; Adds `Memory` tab to "About this Mac" section. Requires RestrictEvents.kext.
 
 ### EFI How To
 Once you're done adjusting the `config.plist`, mount your system's ESP and do the following:
