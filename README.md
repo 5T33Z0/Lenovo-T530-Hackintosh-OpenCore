@@ -233,12 +233,13 @@ Open the `config.plist` and adjust the following settings depending on your syst
 	- `amfi_get_out_of_my_way=0x1`: Disables [Apple Mobile File Integrity](https://eclecticlight.co/2018/12/29/amfi-checking-file-integrity-on-your-mac/). Required to be able to install Intel HD 4000 drivers in macOS 12+ using OpenCore Legacy Patcher (OCLP) in Post-Install. Also required to boot macOS Ventura afterwards. Requires SIP to be disabled.
 - **NVRAM variables**:
 	- OCLP Settings `-allow_amfi`: Does the same as boot-arg `amfi_get_out_of_my_way=0x1` but only when the OpenCore Patcher App is running. Otherwise you can't run the root patcher.
-	- `revblock:media` &rarr; Blocks `mediaanalysisd` on Ventura+ (for Metal 1 GPUs). Required so apps like Firefox don't crash. Requires RestrictEvents.kext
+	- `hbfx-ahbm`: Lets the system hibernate instead of using regular sleep. Requires HibernationFixup.kext. More details [here](https://github.com/5T33Z0/OC-Little-Translated/tree/main/H_Boot-args#hibernationfixup) 
+	- `revblock:media`: Blocks `mediaanalysisd` on Ventura+ (for Metal 1 GPUs). Required so apps like Firefox don't crash. Requires RestrictEvents.kext
 	- `revpatch`:
-		- `sbvmm` &rarr; Forces VMM SB model, allowing OTA updates for unsupported models on macOS 11.3 and newer. Requires `RestrictEvents.kext`. 
-		- `f16c` &rarr; Resolves CoreGraphics crashing on Ivy Bridge CPUs by disabling f16c instruction set reporting in macOS 13.3 or newer. Requires RestrictEvents.kext.
-		- `diskread` &rarr; Disables "Uninitialized Disk" warning in macOS 10.14 and older. 
-		- `memtab` &rarr; Adds `Memory` tab to "About this Mac" section. Requires RestrictEvents.kext.
+		- `sbvmm`: Forces VMM SB model, allowing OTA updates for unsupported models on macOS 11.3 and newer. Requires `RestrictEvents.kext`. 
+		- `f16c`: Resolves CoreGraphics crashing on Ivy Bridge CPUs by disabling f16c instruction set reporting in macOS 13.3 or newer. Requires RestrictEvents.kext.
+		- `diskread`: Disables "Uninitialized Disk" warning in macOS 10.14 and older. 
+		- `memtab`: Adds `Memory` tab to "About this Mac" section. Requires RestrictEvents.kext.
 
 ### EFI How To
 Once you're done adjusting the `config.plist`, mount your system's ESP and do the following:

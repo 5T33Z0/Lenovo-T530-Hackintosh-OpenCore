@@ -28,6 +28,30 @@ My configuration includes a board-id skip which allows using the `MacBookPro10,1
 Installing macOS Ventura on legacy systems which don't support AVX 2.0 CPU instruction requires OpenCore Legacy Patcher in order to prepare the macOS Ventura Installer so it works on unsupported hardware.
 
 ### 1. Install macOS Ventura (Clean Install)
+<details>
+<summary><strong>Option 1: Upgrading an existing Install</strong> (macOS 11.3+ only)</summary>
+
+**Option 1**: Only applicable when upgrading from macOS 11.3+!
+
+- Download OCLP
+- Mount your EFI Partition
+- Paste in my EFI Folder and edit the `config.plist`:
+	- Generate SMBIOS date for `MacBookPro10,1` (Core i7) or `MacBookPro10,2` (Core i5)
+	- Change `csr-active-config` to: `03080000` (a must to install the Intel HD4000 Drivers)
+- Download macOS Monterey via App Store, System Updates or the OCLP App
+- Run the "Install macOS Monterey" App
+- There will be a few reboots
+- Boot from the new macOS Partition until it's no longer present in the Boot Picker
+
+Continue with Step 2.
+</details>
+<details>
+<summary><strong>Option 2: Clean Install</strong> (recommended)</summary>
+
+**Option 2**: Clean Install from USB flash drive (recommended)
+
+To create a USB Installer, you can use OpenCore Legacy Patcher:
+
 - Create a new Volume on your internal HDD/SSD or use separate internal disk (at least 60 GB in size) for installing macOS – DON'T install it on an external drive!
 - Attach an empty USB flash drive for creating the installer (16 GB+)
 - Run OCLP and follow the [**instructions**](https://dortania.github.io/OpenCore-Legacy-Patcher/INSTALLER.html#creating-the-installer) to create the USB Installer
@@ -39,11 +63,14 @@ Installing macOS Ventura on legacy systems which don't support AVX 2.0 CPU instr
 	- Generate SMBIOS data:
 		- If you are on Big Sur 11.3 or newer already: use `MacBookPro10,1` (Core i7) or `MacBookPro10,2` (Core i5)
 		- If you are upgrading from Catalina or older: use `MacBookPro14,1` (i7) or `MacBookPro14,2` (i5) temporarily
-	- Change `csr-active-config` to: `67080000`. This is a must in order to install the Intel HD4000 Drivers.
+	- Change `csr-active-config` to: `03080000`. This is a must in order to install the Intel HD4000 Drivers.
 - Reboot from USB flash drive and run "Install macOS Ventura"
 - There will be a few reboots along the way. Boot from the new Install Partition until it's no longer present in the Boot Picker
 - Once the Installation has finished, copy the EFI folder from the USB Installer to the EFI partition on your HDD/SSD
 - Switch SMBIOS back to `MacBookPro10,1` (Core i7) or `MacBookPro10,2` (Core i5) (generate a new MLB, Serial, etc.)
+
+Continue with Step 2.
+</details>
 
 ### 2. Install Intel HD4000 Drivers
 Once you reach the set-up assistant (where you select your language, time zone, etc), you will notice that the system feels super sluggish – that's normal because it is running in VESA mode without graphics acceleration, since the friendly guys at Apple removed the Intel HD 4000 drivers. 
