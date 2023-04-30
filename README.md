@@ -238,9 +238,7 @@ Open the `config.plist` and adjust the following settings depending on your syst
 	- `revblock:media`: Blocks `mediaanalysisd` on Ventura+ (for Metal 1 GPUs). Required so apps like Firefox don't crash. Requires RestrictEvents.kext
 	- `revpatch`:
 		- `sbvmm`: Forces VMM SB model, allowing OTA updates for unsupported models on macOS 11.3 and newer. Requires `RestrictEvents.kext`. 
-		- `f16c`: Resolves CoreGraphics crashing on Ivy Bridge CPUs by disabling f16c instruction set reporting in macOS 13.3 or newer. Requires RestrictEvents.kext.
-		- `diskread`: Disables "Uninitialized Disk" warning in macOS 10.14 and older. 
-		- `memtab`: Adds `Memory` tab to "About this Mac" section. Requires RestrictEvents.kext.
+		- `memtab`: Adds Memory tab to "About this Mac" section. Requires RestrictEvents.kext.
 
 ### EFI How To
 Once you're done adjusting the `config.plist`, mount your system's ESP and do the following:
