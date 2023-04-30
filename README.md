@@ -20,6 +20,7 @@
 - [Post-Install](#post-install)
   - [Fixing CPU Power Management](#fixing-cpu-power-management)
     - [Re-Enabling ACPI Power Management in macOS Ventura](#re-enabling-acpi-power-management-in-macos-ventura)
+  - [Fixing issues with external Webcams](#fixing-issues-with-external-webcams)
   - [Fixing Sleep issues](#fixing-sleep-issues)
   - [Reducing boot time](#reducing-boot-time)
   - [Swapping Command ⌘ and Option ⌥ Keys](#swapping-command--and-option--keys)
@@ -369,6 +370,12 @@ sysctl machdep.xcpm.mode
 ```
 The output should be `0`, indicating that the `X86PlatformPlugin` is not loaded, which is good in this case.
  
+### Fixing issues with external Webcams
+
+When using my EFI folder for macOS 12 or newer, disabling AMFI is necessary to boot macOS. But disabling MAFI causes prompts to grant special permissions to not appear in 3rd party apps like Zoom, Microsoft Teams, etc. 
+
+There are [several approaches](https://github.com/5T33Z0/Lenovo-T530-Hackintosh-OpenCore/issues/41#issuecomment-1528999560) for fixing this issue.
+
 ### Fixing Sleep issues
 If you have issues with sleep, run the following commands in Terminal:
 
