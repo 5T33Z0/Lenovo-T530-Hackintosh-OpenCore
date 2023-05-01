@@ -18,11 +18,12 @@
   - [Installing macOS](#installing-macos)
     - [Recommended macOS version](#recommended-macos-version)
 - [Post-Install](#post-install)
+  - [Strengthen Security](#strengthen-security)
   - [Fixing CPU Power Management](#fixing-cpu-power-management)
     - [Re-Enabling ACPI Power Management in macOS Ventura](#re-enabling-acpi-power-management-in-macos-ventura)
-  - [Fixing issues with external Webcams](#fixing-issues-with-external-webcams)
   - [Fixing Sleep issues](#fixing-sleep-issues)
   - [Reducing boot time](#reducing-boot-time)
+  - [Fixing issues with external Webcams](#fixing-issues-with-external-webcams)
   - [Swapping Command ⌘ and Option ⌥ Keys](#swapping-command--and-option--keys)
   - [Changing Themes](#changing-themes)
   - [Eject Button](#eject-button)
@@ -310,6 +311,8 @@ The system may crash the first time when booting macOS Ventura. That's normal. I
 Up until recently, my recommendation was macOS Catalina. While testing my own instructions for upgrading from macOS Catalina (or older) to Big Sur, I noticed that Big Sur feels snappier and more responsive overall (although benchmarks are slightly lower), so Big Sur is my new recommendation.
 
 ## Post-Install
+
+### Strengthen Security
 Once your system is up and running you may want to change the following settings to make your system more secure:
 
 - Enable System Integrity Protection (SIP): change `csr-active-config` to `00000000` (macOS ≤ 11.x only!)
@@ -317,33 +320,18 @@ Once your system is up and running you may want to change the following settings
 
 **IMPORTANT**: 
 
-- **SIP**: If you're planning to install macOS Monterey, SIP needs to be disabled! Because installing the graphics drivers with Intel HD 4000 Patcher breaks macOS security seal so therefore boot will crash if SIP is enabled!
-- **MinDate/MinVersion**: you should keep a working backup of your EFI folder on a FAT32 formatted USB flash drive before changing these settings, because if they are wrong, the APFS driver won't load and you won't see your macOS drive(s)!
+- **SIP**: If you're planning to install macOS Monterey or newer, SIP needs to be disabled! Because installing the necessary graphics drivers breaks macOS' security seal and the system will crash during boot if it is enabled!
+- **MinDate/MinVersion**: You should keep a working backup of your EFI folder on a FAT32 formatted USB flash drive before changing these settings, because if they are wrong, the APFS driver won't load and you won't see your disk(s) in the BootPicker!
 
 ### Fixing CPU Power Management 
-1. Mount your EFI
-2. Open your `config.plist`
-3. In `ACPI/Add`, disable `SSDT-PM`
-4. In `ACPI/Delete`, enable the rules to `Drop CpuPm` and `Drop Cpu0Ist`
-5. Save the config and reboot
-6. Open Terminal
-7. Enter the following command to download ssdtPRGen: `curl -o ~/ssdtPRGen.sh https://raw.githubusercontent.com/Piker-Alpha/ssdtPRGen.sh/Beta/ssdtPRGen.sh`
-8. To make the scrip executable, enter: `chmod +x ~/ssdtPRGen.sh`
-9. Run the script: `sudo ~/ssdtPRGen.sh`
-10. The generated `ssdt.aml` will be located under `~/Library/ssdtPRGen`
-11. Rename it to `SSDT-PM.aml` and copy it
-12. Paste it into `EFI/OC/ACPI`, replacing the existing file
-13. In config, go to `ACPI/Add` and re-enable `SSDT-PM.aml` if it is disabled
-14. Disable the two patches from step 3 again
-16. Save the config and reboot
 
-CPU Power Management should work fine after that. Optionally, you can install [Intel Power Gadget](https://www.intel.com/content/www/us/en/developer/articles/tool/power-gadget.html) to check if the CPU runs within specs. You don't need SMCProcessor and SMCSuperIO kexts to monitor the CPU if you use Intel Power Gadget, btw.
+Follow [this guide](https://github.com/5T33Z0/OC-Little-Translated/tree/main/01_Adding_missing_Devices_and_enabling_Features/CPU_Power_Management/CPU_Power_Management_(Legacy)) to generate an SSDT-PM.aml to fix CPU Power Management. CPU Power Management should work fine after that. 
 
-You can also use overrides to the command to change the low frequency mode for example, as explained [here](https://github.com/5T33Z0/OC-Little-Translated/tree/main/01_Adding_missing_Devices_and_enabling_Features/CPU_Power_Management/CPU_Power_Management_(Legacy)).
+Optionally, install [Intel Power Gadget](https://www.intel.com/content/www/us/en/developer/articles/tool/power-gadget.html) to check whether or not the CPU runs within specs. You don't need SMCProcessor and SMCSuperIO kexts to monitor the CPU if you use Intel Power Gadget, btw.
 
-**NOTES**: 
-
-- Only necessary if you use a different CPU than i7 3630QM
+**NOTES**:
+- Generating an SSDT-PM is necessary if you use a different CPU than i7 3630QM
+- Pre-generated SSDTs for other CPU models used in the T530 can be found [here](https://github.com/5T33Z0/Lenovo-T530-Hackintosh-OpenCore/tree/main/ACPI/SSDT-PM)  
 - You can add modifiers to the terminal command for building SSDT-PM. For example, you can drop the low frequency from the default 1200 MHz to 900 MHz in 100 MHz increments, but no lower than that. Otherwise the system crashes during boot. I suggests you experiment with the modifiers a bit.
 
 #### Re-Enabling ACPI Power Management in macOS Ventura
@@ -353,14 +341,14 @@ But when Apple released macOS Ventura, they removed the actual `ACPI_SMC_Platfor
 
 So when switching to macOS Ventura, you either have to force-enable XCPM by enabling the corresponding Kernel Patch contained in my config or inject kexts to re-enable ACPI CPU Power Management (Plugin-Type 0) instead. The latter is recommended, since ACPI CPU Power Management just works better on Ivy Bridge than XCPM and my current EFI folders are configured to do so.
 
-My EFI is already configured to use ACPI CPU Power Management on macOS Ventura. Anyway, this is how it's done: 
+My EFI is already configured to use ACPI CPU Power Management in macOS Ventura. Anyway, this is how it's done: 
 
 - Download my latest OpenCore EFI folder [release](https://github.com/5T33Z0/Lenovo-T530-Hackintosh-OpenCore/releases)
 - Enable `AppleCpuPmCfgLock` Quirk (enabled by default). Not necessary if you have a modded BIOS where CFG Lock is disabled
 - Add [Kexts from OpenCore Legacy Patcher](https://github.com/dortania/OpenCore-Legacy-Patcher/tree/main/payloads/Kexts/Misc) (already present):
 	- `AppleIntelCPUPowerManagement.kext` (set `MinKernel` to 22.0.0)
 	- `AppleIntelCPUPowerManagementClient.kext` (set `MinKernel` to 22.0.0)
-- Disable Kernel/Patch: `_xcpm_bootstrap` 
+- Disable Kernel/Patch: `_xcpm_bootstrap` (if enabled)
 - Disable Kernel/Quirks: `AppleXcmpCfgLock` and `AppleXcpmExtraMsrs` 
 - Save and reboot
 
@@ -371,12 +359,6 @@ sysctl machdep.xcpm.mode
 ```
 The output should be `0`, indicating that the `X86PlatformPlugin` is not loaded, which is good in this case.
  
-### Fixing issues with external Webcams
-
-When using my EFI folder for macOS 12 or newer, disabling Apple Mobile File Integrity (AMFI) is necessary to boot macOS. But disabling it causes prompts to grant special permissions to access the cam/mic by 3rd party apps like Zoom, Microsoft Teams, etc to not pop-up .
-
-There are [several approaches](https://github.com/5T33Z0/Lenovo-T530-Hackintosh-OpenCore/issues/41#issuecomment-1528999560) for fixing this issue.
-
 ### Fixing Sleep issues
 If you have issues with sleep, run the following commands in Terminal:
 
@@ -408,9 +390,15 @@ If the wake reason is related to `RTC (Alarm)`, do the following:
 ### Reducing boot time
 - In `UEFI/Drivers`, disable `ConnectDrivers`. This reduces the timeout between the LENOVO logo and the BootPicker by 5 to 8 seconds.
 
-:warning: **CAUTION**: 
-- With `ConnectDrivers` disabled, the boot chime cannot be played back since `AudioDXE.efi` is not loaded. 
-- Before installing macOS from a USB flash drive, `ConnectDrivers` needs to be re-enabled, otherwise you won't see the flash drive in the BootPicker.
+> **:Warning:**
+- Before installing macOS from a USB flash drive, `ConnectDrivers` needs to be re-enabled, otherwise you won't see it in the BootPicker.
+- With `ConnectDrivers` disabled, the bootchime cannot be played back since `AudioDXE.efi` is not loaded. 
+
+### Fixing issues with external Webcams
+
+When using my EFI folder for macOS 12 or newer, disabling Apple Mobile File Integrity (AMFI) is necessary to boot macOS. But disabling it causes prompts to grant special permissions to access the cam/mic by 3rd party apps like Zoom, Microsoft Teams, etc to not pop-up .
+
+There are [several approaches](https://github.com/5T33Z0/Lenovo-T530-Hackintosh-OpenCore/issues/41#issuecomment-1528999560) for fixing this issue.
 
 ### Swapping Command ⌘ and Option ⌥ Keys
 Prior to version 0.7.4 of my OpenCore EFI Folder, the **[Command]** and **[Option]** keys were set to "swapped" in the `info.plist` of `VoodooPS2Keyboard.kext` by default. So in macOS, the **[WINDOWS]** key was bound to the **[Option]** key function and the **[ALT]** Key was bound to the **[Command]** key function which felt weird. Therefore, users had to swap these Keys back around in the System Settings so everything worked as expected.
