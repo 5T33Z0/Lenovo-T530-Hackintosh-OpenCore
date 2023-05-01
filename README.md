@@ -308,7 +308,9 @@ The system may crash the first time when booting macOS Ventura. That's normal. I
 - **IMPORTANT**: When upgrading from macOS Catalina or older to Big Sur and newer, additional preparations are necessary. Follow my install instructions [**here**](https://github.com/5T33Z0/Lenovo-T530-Hackintosh-OpenCore/tree/main/macOS_Install)
 
 #### Recommended macOS version
-Up until recently, my recommendation was macOS Catalina. While testing my own instructions for upgrading from macOS Catalina (or older) to Big Sur, I noticed that Big Sur feels snappier and more responsive overall (although benchmarks are slightly lower), so Big Sur is my new recommendation.
+Up until recently, my recommendation was macOS Catalina. While testing my own instructions for upgrading from macOS Catalina (or older) to Big Sur, I noticed that Big Sur feels snappier and more responsive overall (although benchmarks are slightly lower).
+
+Big Sur is also the best choice if you're planing to upgrade to macOS Monterey or newer. Because macOS 11.3 introduced a virtualization technology which can be used to trick macOS into thinking that it is running in a VM. This allows installing and booting macOS 12+ with an unsupported SMBIOS designed for Ivy Bridge CPUs which improves CPU Power Management and also allows installing System Updates which wouldn't be possible otherwise.
 
 ## Post-Install
 
