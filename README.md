@@ -12,7 +12,7 @@
 - [EFI Folder Content (OpenCore)](#efi-folder-content-opencore)
 - [Deployment](#deployment)
   - [Preparing the `config.plist`](#preparing-the-configplist)
-    - [About other used boot arguments and NVRAM variables](#about-other-used-boot-arguments-and-nvram-variables)
+    - [Used boot arguments and NVRAM variables](#used-boot-arguments-and-nvram-variables)
   - [EFI How To](#efi-how-to)
   - [BIOS Settings](#bios-settings)
   - [Installing macOS](#installing-macos)
@@ -20,7 +20,7 @@
 - [Post-Install](#post-install)
   - [Strengthen Security](#strengthen-security)
   - [Fixing CPU Power Management](#fixing-cpu-power-management)
-    - [Re-Enabling ACPI Power Management in macOS Ventura](#re-enabling-acpi-power-management-in-macos-ventura)
+    - [ACPI Power Management in macOS Ventura](#acpi-power-management-in-macos-ventura)
   - [Fixing Sleep issues](#fixing-sleep-issues)
   - [Reducing boot time](#reducing-boot-time)
   - [Fixing issues with external Webcams](#fixing-issues-with-external-webcams)
@@ -231,7 +231,7 @@ Open the `config.plist` and adjust the following settings depending on your syst
 
 	- Add boot-arg `applbkl=0` for increased maximum brightness of the display as defined in `SSDT-PNLF.aml` instead of letting Whatevergreen handle it. Also available as device property (see Whatevergreen documentation for details).
 
-#### About other used boot arguments and NVRAM variables
+#### Used boot arguments and NVRAM variables
 - **Boot-args:**
 	- `gfxrst=1`: Draws Apple logo at 2nd boot stage instead of framebuffer copying &rarr; Smoothens transition from the progress bar to the Login Screen/Desktop when an external monitor is attached.
 	- `ipc_control_port_options=0`: Fixes issues with electron-based Apps like Discord in macOS Monterey and newer when SIP is lowered.
@@ -332,34 +332,17 @@ Follow [this guide](https://github.com/5T33Z0/OC-Little-Translated/tree/main/01_
 Optionally, install [Intel Power Gadget](https://www.intel.com/content/www/us/en/developer/articles/tool/power-gadget.html) to check whether or not the CPU runs within specs. You don't need SMCProcessor and SMCSuperIO kexts to monitor the CPU if you use Intel Power Gadget, btw.
 
 **NOTES**:
+
 - Generating an SSDT-PM is necessary if you use a different CPU than i7 3630QM
 - Pre-generated SSDTs for other CPU models used in the T530 can be found [here](https://github.com/5T33Z0/Lenovo-T530-Hackintosh-OpenCore/tree/main/ACPI/SSDT-PM)  
-- You can add modifiers to the terminal command for building SSDT-PM. For example, you can drop the low frequency from the default 1200 MHz to 900 MHz in 100 MHz increments, but no lower than that. Otherwise the system crashes during boot. I suggests you experiment with the modifiers a bit.
+- You can add modifiers to the terminal command for building SSDT-PM. For example, you can drop the low frequency from the default 1200 MHz to 900 MHz in 100 MHz increments, but no lower than that. Otherwise the system crashes during boot. I suggest you experiment with the modifiers a bit.
 
-#### Re-Enabling ACPI Power Management in macOS Ventura
-With the release of macOS Monterey, Apple dropped the Plugin-Type check for handling CPU Power Management, so that the `X86PlatformPlugin` is now loaded by default. For Haswell and newer CPU families this is great, since you no longer need `SSDT-PLUG` to enable Plugin-Type `1`. But for Ivy Bridge and older, you now need to tell macOS to use Plugin-Type `0` which is fine since it is set in `SSDT-PM` already, so ACPI CPU Power Management still works in Monterey.
+#### ACPI Power Management in macOS Ventura
+With the release of macOS Monterey, Apple dropped the plugin-type check for handling CPU Power Management. Since then, the `X86PlatformPlugin` (Plugin-type 1) is loaded by default – prior to Monterey, plugin-type 0 (ACPI_SMC_PlatformPlugin) was the default. For Haswell and newer this is great because you no longer need `SSDT-PLUG` to enable Plugin-Type 1. But for Ivy Bridge and older, you now not only need `SSDT-PM` to inject C-States and P-States but also to declare Plugin-Type 0 usage. But using ACPI CPU Power Management is still possible. For macOS Ventura, it's a different story…
 
-But when Apple released macOS Ventura, they removed the actual `ACPI_SMC_PlatformPlugin` *binary* from the `ACPI_SMC_PlatformPlugin.kext` itself (previously located under S/L/E/IOPlatformPluginFamily.kext/Contents/PlugIns/ACPI_SMC_PlatformPlugin.kext/Contents/MacOS/), rendering `SSDT-PM` generated for 'plugin-type' 0 useless, since the plugin binary is missing and therefore can't be utilized. Instead, the `X86PlaformPlugin` is loaded by default now. This results in CPU Power Management not working correctly out of the box (no Turbo states, etc.).
+In macOS Ventura, Apple removed the actual `ACPI_SMC_PlatformPlugin` *binary* from the kext itself rendering `SSDT-PM` generated for 'plugin-type' 0 useless, since it can't address a plugin which doesn't exist any more. Instead, the `X86PlaformPlugin` is loaded. This results in CPU Power Management not working correctly out of the box (no Turbo states, etc.).
 
-So when switching to macOS Ventura, you either have to force-enable XCPM by enabling the corresponding Kernel Patch contained in my config or inject kexts to re-enable ACPI CPU Power Management (Plugin-Type 0) instead. The latter is recommended, since ACPI CPU Power Management just works better on Ivy Bridge than XCPM and my current EFI folders are configured to do so.
-
-My EFI is already configured to use ACPI CPU Power Management in macOS Ventura. Anyway, this is how it's done: 
-
-- Download my latest OpenCore EFI folder [release](https://github.com/5T33Z0/Lenovo-T530-Hackintosh-OpenCore/releases)
-- Enable `AppleCpuPmCfgLock` Quirk (enabled by default). Not necessary if you have a modded BIOS where CFG Lock is disabled
-- Add [Kexts from OpenCore Legacy Patcher](https://github.com/dortania/OpenCore-Legacy-Patcher/tree/main/payloads/Kexts/Misc) (already present):
-	- `AppleIntelCPUPowerManagement.kext` (set `MinKernel` to 22.0.0)
-	- `AppleIntelCPUPowerManagementClient.kext` (set `MinKernel` to 22.0.0)
-- Disable Kernel/Patch: `_xcpm_bootstrap` (if enabled)
-- Disable Kernel/Quirks: `AppleXcmpCfgLock` and `AppleXcpmExtraMsrs` 
-- Save and reboot
-
-Once the 2 Kexts are injected, ACPI Power Management will work in Ventura and you can use your `SSDT-PM` like before. For tests, enter in Terminal:
-
-```shell
-sysctl machdep.xcpm.mode
-```
-The output should be `0`, indicating that the `X86PlatformPlugin` is not loaded, which is good in this case.
+So when switching to macOS Ventura, injecting additional kexts to re-enable ACPI CPU Power Management (Plugin-Type 0) is necessary. My EFI is already configured to boot macOS Ventura and use ACPI CPU Power Management, so you don't have to worry about it.
  
 ### Fixing Sleep issues
 If you have issues with sleep, run the following commands in Terminal:
