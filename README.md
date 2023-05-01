@@ -12,7 +12,7 @@
 - [EFI Folder Content (OpenCore)](#efi-folder-content-opencore)
 - [Deployment](#deployment)
   - [Preparing the `config.plist`](#preparing-the-configplist)
-    - [Used boot arguments and NVRAM variables](#used-boot-arguments-and-nvram-variables)
+    - [About other used boot arguments and NVRAM variables](#about-other-used-boot-arguments-and-nvram-variables)
   - [EFI How To](#efi-how-to)
   - [BIOS Settings](#bios-settings)
   - [Installing macOS](#installing-macos)
@@ -26,6 +26,7 @@
   - [Swapping Command ⌘ and Option ⌥ Keys](#swapping-command--and-option--keys)
   - [Changing Themes](#changing-themes)
   - [Eject Button](#eject-button)
+  - [Fixing issues with AirportBrcmFixup (Broadcom WiFi Cards only)](#fixing-issues-with-airportbrcmfixup-broadcom-wifi-cards-only)
 - [CPU Benchmark](#cpu-benchmark)
 - [Credits and Thank Yous](#credits-and-thank-yous)
 
@@ -34,7 +35,7 @@ OpenCore and Clover EFI Folders for running macOS 10.13 to 13.1+ on a Lenovo Thi
 
 The OpenCore EFI also includes the latest Booter and Kernel patches which make use of macOSes virtualization capabilities (VMM) to spoof a special Board-ID which allows installing and running macOS Big Sur and Monterey with SMBIOS `MacBookPro10,1` for Ivy Bridge CPUs, so you can enjoy the benefits of optimal CPU Power Management *and* System Updates which wouldn't be possible when using the `-no_compat_check` boot arg. If you want to know more about how these patches work, [read this](https://github.com/5T33Z0/OC-Little-Translated/tree/main/09_Board-ID_VMM-Spoof).
 
-:bulb: Although this EFI *might work* with the T430 and the X230, is was not intended for these ThinkPad models. So don't misuse issue reports for support requests! I will close such "issues" immediately!
+:bulb: Although this EFI *might work* with the T430 and X230, is was not intended for these ThinkPad models. So don't misuse issue reports for support requests! I will close such "issues" immediately!
 
 |:warning: Issues related to macOS 12+|
 |:------------------------------------|
@@ -213,27 +214,29 @@ Open the `config.plist` and adjust the following settings depending on your syst
 		- To figure out if the `MSR 0xE2` register of your BIOS is unlocked, add `ControlMsrE2.efi` to `EFI/OC/Tools` and your config.plist (under `Misc/Tools`) and run it from the BootPicker. The output should look like this: </br>![CFG Lock Disabled](https://user-images.githubusercontent.com/76865553/210180491-0f48b7b0-ae46-4dda-b110-6703401e2c25.jpg)
 
 9. **Misc Section**
-	- **Misc/Boot**: `HideAuxiliary` is enabled. This hides additional items like macOS Recovery and resetting NVRAM. You can reveal them by pressing the space bar in BootPicker. If you want all items to show by default, disable `HideAuxiliary`.
+	- **Misc/Boot**: `HideAuxiliary` is enabled. This hides additional items like Recovery and resetting NVRAM. You can reveal them by pressing the space bar in BootPicker. If you want all items to show by default, disable `HideAuxiliary`.
 
-10. **Alternative/Optional Kexts**:
+10. **NVRAM Section** 
+	- **Boot-args:** (under GUID `7C436110-AB2A-4BBB-A880-FE41995C9F82`)
+		- `brcmfx-country=#a`: Sets Wifi Country Code (`#a` = generic) for Broadcom WiFi cards using [**AirportBrcmFixup**](https://github.com/acidanthera/AirportBrcmFixup). If you are using an Intel Card, delete this boot argument. Otherwise replace the generic country code with the one for your country [**listed here**](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2#Officially_assigned_code_elements). This is recommended to avoid connectivity issues and getting AirDrop to work properly (which I don't use). 
+
+11. **Add/enable alternative/optional Kexts**:
 	- [**itlwm**](https://github.com/OpenIntelWireless/itlwm): Kext for Intel WiFi Cards. Use instead of `AirportBrcmFixup`if you don't use a Broadcom WiFi Card
 	- [**IntelBluetoothFirmware**](https://github.com/OpenIntelWireless/IntelBluetoothFirmware): Kext for Intel Bluetooth Cards. Use instead of `BrcmPatchRam` and Plugins if you don't use a Broadcom BT Card
-	- [**NoTouchID**](https://github.com/al3xtjames/NoTouchID): only required for macOS 10.13 and 10.14 so the boot process won't stall while looking for a Touch ID sensor.
-	- [**Feature Unlock**](https://github.com/acidanthera/FeatureUnlock): Unlocks additional features like Sidecar, NighShift, Airplay to Mac, Universal Control and Content Caching. Under macOS Monterey, Content Caching also requires `-allow_assetcache` boot-arg.
-	- [**RestictEvents.kext**](https://github.com/acidanthera/RestrictEvents): Combined with boot-arg `revpatch=diskread,memtab`, it enables "Memory" tab in "About this Mac" section and disables "Uninitialized Disk" warning in Finder (for macOS 10.14 and older). Loads automatically for Kernel 20.4 (Big Sur 11.3 and newer) to enable a special board-id for virtual machines which allows installing system updates which wouldn't be possible otherwise with the `MacBookPro10,X` SMBIOS.
+	- [**NoTouchID**](https://github.com/al3xtjames/NoTouchID): only required for macOS 10.13 and 10.14 so the boot process won't stall while checking for a Touch ID sensor.
+	- [**Feature Unlock**](https://github.com/acidanthera/FeatureUnlock): Unlocks additional features like Sidecar, NighShift, Airplay, etc.
 
-11. **Increase Max Backlight Brightness Level** (optional): 
+12. **Increase Max Backlight Brightness Level** (optional): 
 
 	- Add boot-arg `applbkl=0` for increased maximum brightness of the display as defined in `SSDT-PNLF.aml` instead of letting Whatevergreen handle it. Also available as device property (see Whatevergreen documentation for details).
 
-#### Used boot arguments and NVRAM variables
+#### About other used boot arguments and NVRAM variables
 - **Boot-args:**
-	- `brcmfx-country=#a`: Wifi Country Code (`#a` = generic). For details check the [**AirportBrcmFixup**](https://github.com/acidanthera/AirportBrcmFixup) documentation. Replace the generic country code with the one for your country [**listed here**](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2#Officially_assigned_code_elements). This is recommended for avoiding connectivity issues getting AirDrop to work properly (which I don't use).
 	- `gfxrst=1`: Draws Apple logo at 2nd boot stage instead of framebuffer copying &rarr; Smoothens transition from the progress bar to the Login Screen/Desktop when an external monitor is attached.
 	- `ipc_control_port_options=0`: Fixes issues with electron-based Apps like Discord in macOS Monterey and newer when SIP is lowered.
 	- `amfi_get_out_of_my_way=0x1`: Disables [Apple Mobile File Integrity](https://eclecticlight.co/2018/12/29/amfi-checking-file-integrity-on-your-mac/). Required to be able to install Intel HD 4000 drivers in macOS 12+ using OpenCore Legacy Patcher (OCLP) in Post-Install. Also required to boot macOS Ventura afterwards. Requires SIP to be disabled.
 - **NVRAM variables**:
-	- OCLP Settings `-allow_amfi`: Does the same as boot-arg `amfi_get_out_of_my_way=0x1` but only when the OpenCore Patcher App is running. Otherwise you can't run the root patcher.
+	- OCLP Settings `-allow_amfi`: Does the same as boot-arg `amfi_get_out_of_my_way=0x1` but only when the OpenCore Patcher App is running. Otherwise you can't run the root patcher. But this didn't work the last time I tried this setting might be deprecated.
 	- `hbfx-ahbm`: Lets the system hibernate instead of using regular sleep. Requires HibernationFixup.kext. More details [here](https://github.com/5T33Z0/OC-Little-Translated/tree/main/H_Boot-args#hibernationfixup) 
 	- `revblock:media`: Blocks `mediaanalysisd` on Ventura+ (for Metal 1 GPUs). Required so apps like Firefox don't crash. Requires RestrictEvents.kext
 	- `revpatch`:
@@ -370,7 +373,7 @@ The output should be `0`, indicating that the `X86PlatformPlugin` is not loaded,
  
 ### Fixing issues with external Webcams
 
-When using my EFI folder for macOS 12 or newer, disabling AMFI is necessary to boot macOS. But disabling MAFI causes prompts to grant special permissions to not appear in 3rd party apps like Zoom, Microsoft Teams, etc. 
+When using my EFI folder for macOS 12 or newer, disabling Apple Mobile File Integrity (AMFI) is necessary to boot macOS. But disabling it causes prompts to grant special permissions to access the cam/mic by 3rd party apps like Zoom, Microsoft Teams, etc to not pop-up .
 
 There are [several approaches](https://github.com/5T33Z0/Lenovo-T530-Hackintosh-OpenCore/issues/41#issuecomment-1528999560) for fixing this issue.
 
@@ -396,7 +399,7 @@ If the wake reason is related to `RTC (Alarm)`, do the following:
 - Open Energy Settings
 - Disable "Wake on LAN"
 - Disable "Power Nap"
-- In Bluetooth Settings, "Advanced Options…" disable the 3rd entry about allowing Bluetooth device to exit sleep
+- In Bluetooth Settings, "Advanced Options…" disable the 3rd entry about allowing Bluetooth devices to exit sleep
 
 **NOTES**
 - In my tests, fixing the sleepimage actually prohibited the machine from entering sleep on its own. You can use Hackintool to revert the settings.
@@ -432,6 +435,12 @@ macOS locks the optical drive sometimes so that you can't open it with the physi
 - **Option 1**: Go to `System/Library/CoreServices/Menu Extras` and double-click on `Eject.menu`. This adds an Eject button Icon to the Menu Bar.
 - **Option 2**: Press and hold the `INS` button (right below the Power Button) until the Eject Icon appears on the screen and the CD tray opens.
 </details>
+
+### Fixing issues with AirportBrcmFixup (Broadcom WiFi Cards only)
+
+I've noticed recently that a lot of crash reports for `com.apple.drive.Airport.Brcm4360.0` and `com.apple.iokit.IO80211Family` are being generated (located under /Library/Logs/CrashReporter/CoreCapture).
+
+This issue seems to be related to Smart Connect. It' is a feature of WiFi routers which support 2,4 gHz and 5 gHz networks. It makes the WiFi card automatically switch between both network types depending on the signal quality. I've read that turning off Smart Connect might resolve the issue. So far, this seems to do the trick but it has to be monitored a little longer to tell if this really fixes it.
 
 ## CPU Benchmark
 
