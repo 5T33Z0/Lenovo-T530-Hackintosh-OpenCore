@@ -390,7 +390,7 @@ If the wake reason is related to `RTC (Alarm)`, do the following:
 ### Reducing boot time
 - In `UEFI/Drivers`, disable `ConnectDrivers`. This reduces the timeout between the LENOVO logo and the BootPicker by 5 to 8 seconds.
 
-> **:Warning:**
+> **Warning**
 - Before installing macOS from a USB flash drive, `ConnectDrivers` needs to be re-enabled, otherwise you won't see it in the BootPicker.
 - With `ConnectDrivers` disabled, the bootchime cannot be played back since `AudioDXE.efi` is not loaded. 
 
