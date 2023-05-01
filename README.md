@@ -400,7 +400,7 @@ If the wake reason is related to `RTC (Alarm)`, do the following:
 
 When using my EFI folder for macOS 12 or newer, disabling Apple Mobile File Integrity (AMFI) is necessary to boot macOS. But disabling it causes prompts to grant special permissions to access the cam/mic by 3rd party apps like Zoom, Microsoft Teams, etc to not pop-up.
 
-There are [several approaches](https://github.com/5T33Z0/OC-Little-Translated/blob/main/13_Peripherals/Fixing_Webcams.md) for fixing this issue but not all of them are applicable for everybody.
+There are [several approaches](https://github.com/5T33Z0/Lenovo-T530-Hackintosh-OpenCore/issues/41#issuecomment-1528999560) for fixing this issue.
 
 ### Swapping Command ⌘ and Option ⌥ Keys
 Prior to version 0.7.4 of my OpenCore EFI Folder, the **[Command]** and **[Option]** keys were set to "swapped" in the `info.plist` of `VoodooPS2Keyboard.kext` by default. So in macOS, the **[WINDOWS]** key was bound to the **[Option]** key function and the **[ALT]** Key was bound to the **[Command]** key function which felt weird. Therefore, users had to swap these Keys back around in the System Settings so everything worked as expected.
