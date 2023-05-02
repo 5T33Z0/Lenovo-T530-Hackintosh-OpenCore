@@ -32,29 +32,23 @@
 - [Credits and Thank Yous](#credits-and-thank-yous)
 
 ## About
-OpenCore and Clover EFI Folders for running macOS 10.13 to 13.1+ on a Lenovo ThinkPad T530. They utilize the new `ECEnabler.kext` which enables battery status read-outs without the need for additional Battery Patches.
-
-The OpenCore EFI also includes the latest Booter and Kernel patches which make use of macOSes virtualization capabilities (VMM) to spoof a special Board-ID which allows installing and running macOS Big Sur and Monterey with SMBIOS `MacBookPro10,1` for Ivy Bridge CPUs, so you can enjoy the benefits of optimal CPU Power Management *and* System Updates which wouldn't be possible when using the `-no_compat_check` boot arg. If you want to know more about how these patches work, [read this](https://github.com/5T33Z0/OC-Little-Translated/tree/main/09_Board-ID_VMM-Spoof).
-
-:bulb: Although this EFI *might work* with the T430 and X230, is was not intended for these ThinkPad models. So don't misuse issue reports for support requests! I will close such "issues" immediately!
-
-|:warning: Issues related to macOS 12+|
-|:------------------------------------|
-|**macOS Monterey and newer**: requires [**OCLP**](https://github.com/dortania/Opencore-Legacy-Patcher) to re-enable graphics acceleration
-
-### Audio Working on Docking Stations 
-I created my own AppleALC Layout-ID which supports the Lenovo Mini Dock 3 Type 4337 and 4338 docking stations. It uses **Layout-ID 39** and has been integrated into AppleALC since [version 1.7.3](https://github.com/acidanthera/AppleALC/releases/tag/1.7.3)
-
-### DSDT-less config
-The config contained in this repo is DSDT-less. This means, it doesn't use a patched DSDT. Everything is patched live using ACPI Hotpatches (SSDTs) and a few DSDT patches via binary renames. So instead of replacing the *whole* system DSDT by a patched one during boot, only things which need fixing are addressed and patched-in on the fly (hence the term "hot-patching")  – just like it is supposed to be done nowadays. The benefits of this approach are:
-
-- Hotpatching is cleaner, more precise and independent of the installed BIOS version since it only addresses specific areas of ACPI tables which need patching.
-- Issues which might occur with newer macOS versions can be addressed and resolved easier by modifying or adding SSDTs without having to update and export the whole patched DSDT again.
-- The system boots faster, runs smoother and performance is better compared to using a patched DSDT.
+OpenCore and Clover EFI Folders for running macOS High Sierra to Ventura on the Lenovo ThinkPad T530.
 
 > **Note**: Read and follow the instructions carefully and thoroughly before deploying the EFI folder if you want your system to boot successfully!
+> :bulb: Although this EFI *might work* with the T430 and X230, is was not intended for these ThinkPad models. So don't misuse issue reports for support requests! I will close such "issues" immediately!
 
-## Hardware Specs
+### Special Features
+- Booter and Kernel patches from OCLP. Allow installing macOS Big Sur and newer with the `MacBookPro10,1` SMBIOS for optimal CPU Power Management *and* ability to install System Updates. [Find out more](https://github.com/5T33Z0/OC-Little-Translated/tree/main/09_Board-ID_VMM-Spoof).
+- Working battery status read-outs without additional ACPI Hotpatches thanks to `ECEnabler.kext`
+- No patched `DSDT` – using SSDTs hotpatches for maximum ACPI-conformity
+- Created my own AppleALC Layout-ID for the Lenovo Mini Dock Station 4337/4338. It uses **Layout-ID 39** and has been integrated into AppleALC since [version 1.7.3](https://github.com/acidanthera/AppleALC/releases/tag/1.7.3)
+ 
+|:warning: Issues related to macOS 12+|
+|:------------------------------------|
+|**macOS Monterey and newer**: require [**OCLP**](https://github.com/dortania/Opencore-Legacy-Patcher) to re-enable graphics acceleration
+
+## Specs
+
 | Component           | Details                                       |
 | ------------------: | :-------------------------------------------- |
 | Model               | Lenovo ThinkPad T530, Model# 2429-62G         |
@@ -190,7 +184,7 @@ Open the `config.plist` and adjust the following settings depending on your syst
 	- For macOS Mojave/Catalina: `EF070000`(0x7EF)
 	- For macOS High Sierra: `FF030000` (0x3FF)</br></br>
 	
-	> **Note**: Disabling SIP is mandatory if you want to run macOS Monterey or newer in order to install and load Intel HD 4000 Drivers! If you have issues running OCLP in Post, set `csr-active-config` to `03080000` (default) or `FE0F0000` (almost fully disabled).
+	> **Note**: Disabling SIP is mandatory if you want to run macOS Monterey or newer in order to install and load Intel HD 4000 Drivers! If you have issues running OCLP in Post-Install, set `csr-active-config` to `03080000` (default) or `FE0F0000` (almost fully disabled).
 
 6. **SMBIOS**: Under `SystemProductName`, select the correct SMBIOS for your CPU and generate a serial, etc. for it.
 	-  For Intel i7: `MacBookPro10,1`
@@ -243,6 +237,7 @@ Open the `config.plist` and adjust the following settings depending on your syst
 	- `revpatch`:
 		- `sbvmm`: Forces VMM SB model, allowing OTA updates for unsupported models on macOS 11.3 and newer. Requires `RestrictEvents.kext`. 
 		- `memtab`: Adds Memory tab to "About this Mac" section. Requires RestrictEvents.kext.
+		- `f16c`: Disables Resolves f16c instruction set reporting in macOS 13.3 or newer to prevent CoreGraphics crashing on Ivy Bridge CPUs
 
 ### EFI How To
 Once you're done adjusting the `config.plist`, mount your system's ESP and do the following:
@@ -315,14 +310,16 @@ Big Sur is also the best choice if you're planing to upgrade to macOS Monterey o
 ## Post-Install
 
 ### Strengthen Security
-Once your system is up and running you may want to change the following settings to make your system more secure:
+Once macOS is up and running, you may want to change the following settings to make your system more secure:
 
-- Enable System Integrity Protection (SIP): change `csr-active-config` to `00000000` (macOS ≤ 11.x only!)
-- Under `UEFI/APFS`, change `MinDate` and `MinVersion` from `-1` (disabled) to the correct values for the macOS version you are using. A list with the correct values for can be found [here](https://github.com/5T33Z0/OC-Little-Translated/tree/main/A_Config_Tips_and_Tricks#mindateminversion-settings-for-the-apfs-driver).
+- `Misc/Security/SecureBootModel`: `Default`
+- `csr-active-config`: `00000000` (macOS 11.x or older only!)
+- `UEFI/APFS`: change `MinDate` and `MinVersion` from `-1` (disabled) to `0` (default) or use [specific values for different versions of macOS](https://github.com/5T33Z0/OC-Little-Translated/tree/main/A_Config_Tips_and_Tricks#mindateminversion-settings-for-the-apfs-driver).
 
-**IMPORTANT**: 
+**NOTES**
 
-- **SIP**: If you're planning to install macOS Monterey or newer, SIP needs to be disabled! Because installing the necessary graphics drivers breaks macOS' security seal and the system will crash during boot if it is enabled!
+- Enter `nvram 94b73556-2197-4702-82a8-3e1337dafbfb:AppleSecureBootPolicy` to check the security level. It should return `%01` for medium security. More info [here](https://github.com/perez987/Apple-Secure-Boot-and-Vault-with-OpenCore)
+- **SIP**: If you're planning to install macOS Monterey or newer, System Integritiy Protection must be disabled! Because installing the necessary graphics drivers breaks macOS' security seal and the system will crash during boot if it is enabled!
 - **MinDate/MinVersion**: You should keep a working backup of your EFI folder on a FAT32 formatted USB flash drive before changing these settings, because if they are wrong, the APFS driver won't load and you won't see your disk(s) in the BootPicker!
 
 ### Fixing CPU Power Management 
