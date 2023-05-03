@@ -1,17 +1,13 @@
 # Alternate IRQ Fix
-If you don't want to use SSDTTime to generate `SSDT-HPET`, you can use this approach instead. It doesn't require binary renames at all and is even more acpi-compliant.
+If you don't want to use SSDTTime to generate `SSDT-HPET`, you can use this approach instead. It doesn't require binary renames at all and is even more acpi-compliant. This is already implemented since Release 092, so you don't need to do anything.
 
-## Preparations
-If present, disable/delete the following in your `config.plist`:
-
-- `ACPUI/Add`: 
+## Instructions
+- `ACPI/Add`: 
 	- Disable/delete `SSDT-HPET.aml` (and from EFI/OC/ACPI)
 - `ACPI/Patch`: 
 	- Disable/delete "change _CRS to XCRS, pair with SSDT-HPET"
 	- Disable/delete "RTC IRQ 8 Patch"
 	- Disable/delete "TIMR IRQ 0 Patch"
-
-## Instructions
 - Add `SSDT-IRQSSDT-IRQ_FIXES.aml` to EFI/OC/ACPI and your config.plist
 - Change ALC Layout-ID to `18` or `39` (when using a Docking Station)
 - Save and reboot
