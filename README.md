@@ -150,7 +150,7 @@ Download the EFI Folder from the [Releases](https://github.com/5T33Z0/Lenovo-T53
 Open the `config.plist` and adjust the following settings depending on your system:
 
 1. **ACPI** Section:
-	- Disable `SSDT-PM.aml` (unless you have an i7 3630QM as well). Generate your own with ssdtPRGen in Post-Install. See [Fixing CPU Power Management](#fixing-cpu-power-Management) for instructions.
+	- Disable `SSDT-PM.aml` (unless you have an i7 3630QM as well). Generate your own with ssdtPRGen in Post-Install.
 
 2. **Booter** Section:
 	- The entries in the MMIO Whitelist are memory regions used by *my* firmware. Since I don't know if these are used by all T530 BIOSes, I disabled them and the corresponding `DevirtualiseMmio` Quirk
@@ -179,11 +179,13 @@ Open the `config.plist` and adjust the following settings depending on your syst
 		- Make sure `ConnectDrivers` is enabled
 
 5. **SIP**: Under `NVRAM/Add/7C436110-AB2A-4BBB-A880-FE41995C9F82`, adjust `csr-active-config` according to the macOS version you want to use:
-	- For macOS Big Sur and newer: `03080000`(0x803)
-	- For macOS Mojave/Catalina: `EF070000`(0x7EF)
-	- For macOS High Sierra: `FF030000` (0x3FF)</br></br>
+	- SIP enabled: `00000000` (macOS Big Sur and older only!)
+	- SIP disabled:
+		- For Big Sur and newer: `03080000`(0x803)
+		- For macOS Mojave/Catalina: `EF070000`(0x7EF)
+		- For macOS High Sierra: `FF030000` (0x3FF)</br></br>
 	
-> **Note**: Disabling SIP is mandatory if you want to run macOS Monterey or newer in order to install and load Intel HD 4000 Drivers! If you have issues running OCLP in Post-Install, set `csr-active-config` to `03080000` (default) or `FE0F0000` (almost fully disabled).
+> **Note**: Disabling SIP is mandatory if you want to run macOS Monterey or newer in order to install and load Intel HD 4000 Drivers! If you have issues running OCLP in Post-Install, change `csr-active-config` to `FE0F0000` (almost fully disabled).
 
 6. **SMBIOS**: Under `SystemProductName`, select the correct SMBIOS for your CPU and generate a serial, etc. for it.
 	-  For Intel i7: `MacBookPro10,1`
@@ -236,18 +238,18 @@ Open the `config.plist` and adjust the following settings depending on your syst
 	- `revpatch`:
 		- `sbvmm`: Forces VMM SB model, allowing OTA updates for unsupported models on macOS 11.3 and newer. Requires `RestrictEvents.kext`. 
 		- `memtab`: Adds Memory tab to "About this Mac" section. Requires RestrictEvents.kext.
-		- `f16c`: Disables Resolves f16c instruction set reporting in macOS 13.3 or newer to prevent CoreGraphics crashing on Ivy Bridge CPUs
+		- `f16c`: Disables f16c instruction set reporting in macOS 13.3 or newer to prevent CoreGraphics crashing on Ivy Bridge CPUs
 
 ### EFI How To
 Once you're done adjusting the `config.plist`, mount your system's ESP and do the following:
 
-- Backup your current EFI folder on a FAT32 formatted USB flash drive and disconnect it
+- Backup your current EFI folder on a FAT32 formatted USB flash drive
 - Paste in my EFI folder
 - Restart
 - Perform an NVRAM Reset (in BootPicker, hit Space Bar to reveal the tool)
 - Select macOS to boot
 
-The system may crash the first time when booting macOS Ventura. That's normal. I think it's be related to injecting the AppleIntelCPUPowerManagement kexts. After that, it's working fine.
+The system may crash the first time when booting macOS Ventura. That's normal. After that, it should work as expected.
 
 ### BIOS Settings
 
@@ -299,10 +301,10 @@ The system may crash the first time when booting macOS Ventura. That's normal. I
 **Coming from macOS**: 
 
 - If you already have macOS installed, you can either download macOS from the App Store, with [**OCLP**](https://github.com/dortania/OpenCore-Legacy-Patcher) or with [**ANYmacOS**](https://www.sl-soft.de/en/anymacos/). Both can download macOS and create a USB Installer as well.
-- **IMPORTANT**: When upgrading from macOS Catalina or older to Big Sur and newer, additional preparations are necessary. Follow my install instructions [**here**](https://github.com/5T33Z0/Lenovo-T530-Hackintosh-OpenCore/tree/main/macOS_Install)
+- **IMPORTANT**: When upgrading from macOS Catalina or older to Big Sur and newer, additional preparations are required. Follow my install instructions [**here**](https://github.com/5T33Z0/Lenovo-T530-Hackintosh-OpenCore/tree/main/macOS_Install)
 
 #### Recommended macOS version
-Up until recently, my recommendation was macOS Catalina. While testing my own instructions for upgrading from macOS Catalina (or older) to Big Sur, I noticed that Big Sur feels snappier and more responsive overall (although benchmarks are slightly lower).
+Until recently, my recommendation was macOS Catalina. While testing my own instructions for upgrading from macOS Catalina (or older) to Big Sur, I noticed that Big Sur feels snappier and more responsive overall (although benchmarks are slightly lower).
 
 Big Sur is also the best choice if you're planing to upgrade to macOS Monterey or newer. Because macOS 11.3 introduced a virtualization technology which can be used to trick macOS into thinking that it is running in a VM. This allows installing and booting macOS 12+ with an unsupported SMBIOS designed for Ivy Bridge CPUs which improves CPU Power Management and also allows installing System Updates which wouldn't be possible otherwise.
 
