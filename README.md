@@ -411,7 +411,7 @@ macOS locks the optical drive sometimes so that you can't open it with the physi
 
 I've noticed recently that a lot of crash reports for `com.apple.drive.Airport.Brcm4360.0` and `com.apple.iokit.IO80211Family` are being generated (located under /Library/Logs/CrashReporter/CoreCapture).
 
-This issue seems to be related to Smart Connect. It' is a feature of WiFi routers which support 2,4 gHz and 5 gHz networks. It makes the WiFi card automatically switch between both network types depending on the signal quality. I've read that turning off Smart Connect might resolve the issue. So far, this seems to do the trick but it has to be monitored a little longer to tell if this really fixes it.
+This issue is related to Smart Connect, a feature of WiFi routers which support 2,4 gHz and 5 gHz basebands to make the WiFi card switch between the two automatically depending on the signal quality. In my case, turning off Smart Connect resolved the issue.
 
 ## CPU Benchmark
 
