@@ -38,8 +38,8 @@ Installing macOS Ventura on legacy systems which don't support AVX 2.0 CPU instr
 - Paste in my EFI Folder and edit the `config.plist`:
 	- Generate SMBIOS date for `MacBookPro10,1` (Core i7) or `MacBookPro10,2` (Core i5)
 	- Change `csr-active-config` to: `03080000` (a must to install the Intel HD4000 Drivers)
-- Download macOS Monterey via App Store, System Updates or the OCLP App
-- Run the "Install macOS Monterey" App
+- Download macOS Ventura via App Store, System Updates or the OCLP App
+- Run the "Install macOS Ventura" App
 - There will be a few reboots
 - Boot from the new macOS Partition until it's no longer present in the Boot Picker
 
