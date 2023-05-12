@@ -229,7 +229,7 @@ Open the `config.plist` and adjust the following settings depending on your syst
 #### Used boot arguments and NVRAM variables
 - **Boot-args:**
 	- `gfxrst=1`: Draws Apple logo at 2nd boot stage instead of framebuffer copying &rarr; Smoothens transition from the progress bar to the Login Screen/Desktop when an external monitor is attached.
-	- `ipc_control_port_options=0`: Fixes issues with electron-based Apps like Discord in macOS Monterey and newer when SIP is lowered.
+	- `ipc_control_port_options=0`: Fixes issues with Firefox not working and electron-based Apps like Discord in macOS Monterey and newer when SIP is lowered.
 	- `amfi_get_out_of_my_way=0x1`: Disables [Apple Mobile File Integrity](https://eclecticlight.co/2018/12/29/amfi-checking-file-integrity-on-your-mac/). Required to be able to install Intel HD 4000 drivers in macOS 12+ using OpenCore Legacy Patcher (OCLP) in Post-Install. Also required to boot macOS Ventura afterwards. Requires SIP to be disabled.
 - **NVRAM variables**:
 	- OCLP Settings `-allow_amfi`: Does the same as boot-arg `amfi_get_out_of_my_way=0x1` but only when the OpenCore Patcher App is running. Otherwise you can't run the root patcher. But this didn't work the last time I tried this setting might be deprecated.
