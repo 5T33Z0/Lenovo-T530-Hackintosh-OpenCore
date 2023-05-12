@@ -259,38 +259,23 @@ The system may crash the first time when booting macOS Ventura. That's normal. A
 **Latest BIOS Version:** `2.77`
 [**DOWNLOAD**](https://pcsupport.lenovo.com/us/en/products/laptops-and-netbooks/thinkpad-t-series-laptops/thinkpad-t530/downloads/ds029246?clickid=RhAUWZ1-exyLRCuwUx0Mo3ELUkERY-RmHTlwSg0&Program=3786&pid=269814&acid=ww%3Aaffiliate%3A74clty&cid=de%3Aaffiliate%3Axg02ds)
 
-**CONFIG [TAB]**
+| TAB      |  Submenu          | Function                          | Setting    |
+| -------- | :---------------: | ------------------------------- | :----------|
+| **Config**   | USB               | <li>UEFI BIOS Support<li>USB 3.0 Mode    | `Enabled` <br> `Enabled`
+|          |Display|  <ul><li>Boot Display Device:<li>OS Detection for NVIDIA Optimus: | `ThinkPad LCD` </br> `Disabled`
+||SATA | SATA Controller Mode |`AHCI`
+||CPU | <ul><li>Core Multi-Processing <li> Intel (R) Hyper-Threading Technology|`Enabled` <br> `Enabled`
+| **Security** |– |Security Chip                                   | `Disabled`|
+||UEFI BIOS Update Options|<li> Flash BIOS Updating by End-Users<li>  Secure Rollback Prevention: `Enabled`|`Enabled` <br> `Enabled` 
+|          | –|Memory Protection |            `Enabled`  
+|          | Virtualization    | Intel Virtualization Technology | `Enabled`    |
+||I/O Port Access | <li> Wireless WAN <li> ExpressCard Slot <li> eSATA Port <li> Fingerprint Reader <li> Antitheft and Computrace <li> Secure Boot | `Disabled`
+| Startup  | –|UEFI/Legacy Boot                                   | `UEFI Only` |
+|          | – |CSM Support                                      | `Disabled`  |
+|          | –|Boot Mode                                          | `Quick`     |
+|          | – |Boot Order Lock | `Enabled`     |
 
-* USB UEFI BIOS Support: `Enabled`
-* USB 3.0 Mode: `Enabled`
-* Display > Boot Display Device: `ThinkPad LCD`
-* Display > OS Detection for NVIDIA Optimus: `Disabled`
-* SATA > SATA Controller Mode: `AHCI`
-* CPU > Core Multi-Processing: `Enabled`
-* CPU > Intel (R) Hyper-Threading: `Enabled` (CPU must support it)
-
-**SECURITY [TAB]**
-
-* Security Chip: `Disabled`
-* UEFI BIOS Update Options > Flash BIOS Updating by End-Users: `Enabled`
-* UEFI BIOS Update Options > Secure Rollback Prevention: `Enabled`
-* Memory Protection: `Enabled`
-* Virtualization > Intel (R) Virtualization Technology: `Enabled` (Relevant for Windows only, can be disabled in macOS via the `DisableIOMapper` Quirk)
-* I/O Port Access (`Disable` the following devices/features):
-	* Wireless WAN
-	* ExpressCard Slot
-	* eSATA Port
-	* Fingerprint Reader
-	* Antitheft and Computrace
-	* Secure Boot: `Disabled`
-
-**STARTUP [TAB]**
-
-* Boot (Set the Order of Boot devices. Set HDD/SSD as first device)
-* UEFI/Legacy Boot: `UEFI only`
-* CSM Support: `Disabled`
-* Boot Mode: `Quick`
-* Boot Order Lock: `Enabled` Enable this *after* you've set-up the order of the Boot Drives. This prevents `WindowsBootManager` from taking over the first slot of the boot drives. This way, you don't need to enable the `LauncherOption` in OpenCore!
+> **Note**: Enable Boot Order Lock *after* you've set-up the order of the Boot Drives. This prevents `WindowsBootManager` from taking over the first slot of the boot drives. This way, you don't need to enable the `LauncherOption` in OpenCore!
 </details>
 
 ### Installing macOS
