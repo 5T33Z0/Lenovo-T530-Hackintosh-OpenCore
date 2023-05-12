@@ -261,19 +261,21 @@ The system may crash the first time when booting macOS Ventura. That's normal. A
 
 | TAB      |  Submenu          | Function                          | Setting    |
 | -------- | :---------------: | ------------------------------- | :----------|
-| **Config**   | USB               | <li>UEFI BIOS Support<li>USB 3.0 Mode    | `Enabled` <br> `Enabled`
+| **Config**   | USB               | <ul> <li>UEFI BIOS Support<li>USB 3.0 Mode    | `Enabled` <br> `Enabled`
 |          |Display|  <ul><li>Boot Display Device:<li>OS Detection for NVIDIA Optimus: | `ThinkPad LCD` </br> `Disabled`
 ||SATA | SATA Controller Mode |`AHCI`
 ||CPU | <ul><li>Core Multi-Processing <li> Intel (R) Hyper-Threading Technology|`Enabled` <br> `Enabled`
 | **Security** |– |Security Chip                                   | `Disabled`|
-||UEFI BIOS Update Options|<li> Flash BIOS Updating by End-Users<li>  Secure Rollback Prevention: `Enabled`|`Enabled` <br> `Enabled` 
+||UEFI BIOS Update Options|<ul><li> Flash BIOS Updating by End-Users<li>  Secure Rollback Prevention: `Enabled`|`Enabled` <br> `Enabled` 
 |          | –|Memory Protection |            `Enabled`  
 |          | Virtualization    | Intel Virtualization Technology | `Enabled`    |
-||I/O Port Access | <li> Wireless WAN <li> ExpressCard Slot <li> eSATA Port <li> Fingerprint Reader <li> Antitheft and Computrace <li> Secure Boot | `Disabled`
+||I/O Port Access | <ul><li> Wireless WAN <li> ExpressCard Slot <li> eSATA Port <li> Fingerprint Reader <li> Antitheft and Computrace <li> Secure Boot | `Disabled`
 | Startup  | –|UEFI/Legacy Boot                                   | `UEFI Only` |
 |          | – |CSM Support                                      | `Disabled`  |
 |          | –|Boot Mode                                          | `Quick`     |
 |          | – |Boot Order Lock | `Enabled`     |
+
+> **Note**: Enable Boot Order Lock *after* you've set-up the order of the Boot Drives. This prevents `WindowsBootManager` from taking over the first slot of the boot drives. This way, you don't need to enable the `LauncherOption` in OpenCore!
 
 > **Note**: Enable Boot Order Lock *after* you've set-up the order of the Boot Drives. This prevents `WindowsBootManager` from taking over the first slot of the boot drives. This way, you don't need to enable the `LauncherOption` in OpenCore!
 </details>
