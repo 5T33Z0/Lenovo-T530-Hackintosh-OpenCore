@@ -65,7 +65,10 @@ OpenCore and Clover EFI Folders for running macOS High Sierra to Ventura on the 
 | ExpressCard/34 slot | disabled                                      |
 | Docking Station     | Lenovo ThinkPad 4338 Mini Dock plus Series 3  |
 
-[**ThinkPad T530 User Guide (PDF)**](https://download.lenovo.com/ibmdl/pub/pc/pccbbs/mobiles_pdf/t530_t530i_w530_ug_en.pdf)
+**DOCS**
+
+- [**ThinkPad T530 User Guide** (PDF)](https://download.lenovo.com/ibmdl/pub/pc/pccbbs/mobiles_pdf/t530_t530i_w530_ug_en.pdf)
+- [**7-Series Chipset Datasheet** (PDF)](https://www.intel.com/content/dam/www/public/us/en/documents/datasheets/7-series-chipset-pch-datasheet.pdf)
 
 ### macOS-incompatible Components
 - [ ] NVIDIA Optimus GPU must be disabled in BIOS - otherwise no boot!
