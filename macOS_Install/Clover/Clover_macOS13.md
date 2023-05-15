@@ -12,7 +12,6 @@
 - [Credits](#credits)
 
 ## I. Requirements
-:warning: **Don't install macOS 13.3 beta yet.** They changed something so installing graphics drivers in post breaks macOS, leaving the system in an unbootable state. In this case you need to boot into safe-mode and run OCLP again to revert the root patches. I guess we have to wait for a new version of OCLP to address this issue. 
 
 - [**OpenCore Legacy Patcher (OCLP)**](https://github.com/dortania/OpenCore-Legacy-Patcher/releases)  &rarr; Click on "Assets" and download "OpenCore-Patcher-GUI-App".
 - macOS Ventura. Either download it through System Update, App Store or OCLP.
