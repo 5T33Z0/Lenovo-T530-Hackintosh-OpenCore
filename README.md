@@ -197,7 +197,7 @@ Open the `config.plist` and adjust the following settings depending on your syst
 	> **Note**: My config contains Booter Patches from OpenCore Legacy Patcher and RestrictEvents kext which allow using the correct SMBIOS for Ivy Bridge CPUs on macOS 11.3 and newer (Darwin Kernel 20.4+), so native Power Management and OTA System Updates are working which wouldn't be possible otherwise past macOS Catalina.
 
 7. **WiFi and Bluetooth** (Read carefully!)
-	- **Case 1: Intel Wifi/BT Card**. If you have a the stock configuration with an Intel WiFi/Bluetooth card, it may work with the [**OpenIntelWireless**](https://github.com/OpenIntelWireless) kexts. 
+	- **Case 1: Intel Wifi/BT Card**. In stock configuration, the T530 comes with an Intel WiFi/Bluetooth card, so you need different kexts for WiFi and Bluetooth. It may work with [**OpenIntelWireless**](https://github.com/OpenIntelWireless) kexts. 
 		- Check the compatibility list to find out if your card is supported. 
 		- Remove `BluetoolFixup` and `Brcm` Kexts
 		- Add the required Kexts for your Intel card to `EFI/OC/Kexts` folder and `config.plist` before attempting to boot with this EFI!
@@ -240,7 +240,7 @@ Open the `config.plist` and adjust the following settings depending on your syst
 	- `revblock:media`: Blocks `mediaanalysisd` on Ventura+ (for Metal 1 GPUs). Required so apps like Firefox don't crash. Requires RestrictEvents.kext
 	- `revpatch`:
 		- `sbvmm`: Forces VMM SB model, allowing OTA updates for unsupported models on macOS 11.3 and newer. Requires `RestrictEvents.kext`. 
-		- `memtab`: Adds Memory tab to "About this Mac" section. Requires RestrictEvents.kext.
+		- `memtab`: Adds Memory tab to "About this Mac" section (macOS ≤ 12 only). Requires RestrictEvents.
 		- `f16c`: Disables f16c instruction set reporting in macOS 13.3 or newer to prevent CoreGraphics crashing on Ivy Bridge CPUs
 
 ### EFI How To
