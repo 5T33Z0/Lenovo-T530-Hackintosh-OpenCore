@@ -1,0 +1,3 @@
+Device path: PciRoot(0x0)/Pci(0x1B,0x0)
+Controller: Intel 7 Series HD Audio Controller
+Vendor Id: 0x1E208086
