@@ -162,7 +162,7 @@ Open the `config.plist` and adjust the following settings depending on your syst
 
 3. **DeviceProperties**: Enable the correct Framebuffer-Patch for the display panel. Two types of display panels exist for the T530: `HD+` and `HD` panels using different AAPL,ig-platform-ids and resolutions:</br>
 	
-	`AAPL,ig-platform-id 04006601` = `HD+` = WSXGA and FullHD FullHD. Resolution: ≥ 1600x900 px. (**Default**)</br>
+	`AAPL,ig-platform-id 04006601` = `HD+` = WSXGA and FullHD. Resolution: ≥ 1600x900 px. (**Default**)</br>
 	`AAPL,ig-platform-id 03006601` = `HD` = SD. Resolution: ≤ 1366x768 px</br>
 	
 	If your T530 has an SD panel, do the following;
