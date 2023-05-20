@@ -291,7 +291,7 @@ The system may crash the first time when booting macOS Ventura. That's normal. A
 **Coming from macOS**: 
 
 - If you already have macOS installed, you can either download macOS from the App Store, with [**OCLP**](https://github.com/dortania/OpenCore-Legacy-Patcher) or with [**ANYmacOS**](https://www.sl-soft.de/en/anymacos/). Both can download macOS and create a USB Installer as well.
-- **IMPORTANT**: When upgrading from macOS Catalina or older to Big Sur and newer, additional preparations are required. Follow my install instructions [**here**](https://github.com/5T33Z0/Lenovo-T530-Hackintosh-OpenCore/tree/main/macOS_Install)
+- **IMPORTANT**: When upgrading from macOS Catalina or older to Big Sur and newer, additional preparations are required. [**Follow my macOS install instructions**](https://github.com/5T33Z0/Lenovo-T530-Hackintosh-OpenCore/tree/main/macOS_Install).
 
 #### Recommended macOS version
 Until recently, my recommendation was macOS Catalina. While testing my own instructions for upgrading from macOS Catalina (or older) to Big Sur, I noticed that Big Sur feels snappier and more responsive overall (although benchmarks are slightly lower).
@@ -303,7 +303,10 @@ Big Sur is also the best choice if you're planing to upgrade to macOS Monterey o
 ### Strengthen Security
 Once macOS is up and running, you may want to change the following settings to make your system more secure:
 
-- `Misc/Security/SecureBootModel`: `Default`
+- `Misc/Security/SecureBootModel`: 
+	- macOS Big Sur and older: `Default`
+	- macOS Monterey: `Disabled` (otherwise insta-crash)
+	- macOS Ventura: `Default` (I don't know why but `Default` works – which it shouldn't…)
 - `csr-active-config`: `00000000` (macOS 11.x or older only!)
 - `UEFI/APFS`: change `MinDate` and `MinVersion` from `-1` (disabled) to `0` (default) or use [specific values for different versions of macOS](https://github.com/5T33Z0/OC-Little-Translated/tree/main/A_Config_Tips_and_Tricks#mindateminversion-settings-for-the-apfs-driver).
 
