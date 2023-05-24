@@ -33,22 +33,16 @@
 ## About
 OpenCore and Clover EFI Folders for running macOS High Sierra to Ventura on the Lenovo ThinkPad T530.
 
-> **Note**: Read and follow the instructions carefully and thoroughly before deploying the EFI folder if you want your system to boot successfully!
-> :bulb: Although this EFI *might work* with the T430 and X230, is was not intended for these ThinkPad models. So don't misuse issue reports for support requests! I will close such "issues" immediately!
-
 ### Special Features
-- Includes Patches and Kexts from OpenCore Legacy Patcher for extended macOS support, such as:
+- Includes Patches and Kexts from [**OpenCore Legacy Patcher**](https://github.com/dortania/Opencore-Legacy-Patcher), such as:
+	- Fully working graphics acceleration for the Intel HD 4000 in macOS 12 and newer
 	- Booter Patches and kexts that allow installing and updating macOS Big Sur and newer with a `MacBookPro10,x` SMBIOS ([More](https://github.com/5T33Z0/OC-Little-Translated/tree/main/09_Board-ID_VMM-Spoof))
 	- Native SMC CPU Power Management in macOS Ventura for optimal CPU Power Management ([More](https://github.com/5T33Z0/OC-Little-Translated/tree/main/01_Adding_missing_Devices_and_enabling_Features/CPU_Power_Management/CPU_Power_Management_(Legacy)#re-enabling-acpi-power-management-in-macos-ventura)).
 	- Ability to boot macOS 12 and newer with AMFI enabled thanks to AMFIPass.kext.
 	- Working battery status read-outs without additional DSDT/ACPI patches thanks to `ECEnabler.kext`
 - No patched `DSDT` – only SSDT hotpatches were used for maximum ACPI-compliance
-- I've created a new AppleALC Layout to support the Audio Jack's of Lenovo Mini Dock Statiosn 4337 and 4338. It uses **Layout-ID 39** and has been integrated into AppleALC since [version 1.7.3](https://github.com/acidanthera/AppleALC/releases/tag/1.7.3)
+- Custom AppleALC Layout to support the Audio Jack's of Lenovo Mini Dock Statiosn 4337 and 4338. It uses **Layout-ID 39** and has been integrated into AppleALC since [version 1.7.3](https://github.com/acidanthera/AppleALC/releases/tag/1.7.3)
  
-|:warning: Issues related to macOS 12+|
-|:------------------------------------|
-|**macOS Monterey and newer**: require [**OCLP**](https://github.com/dortania/Opencore-Legacy-Patcher) to re-enable graphics acceleration
-
 ## Specs
 
 | Component           | Details                                       |
@@ -148,7 +142,9 @@ EFI
 </details>
 
 ## Deployment
-Please read the following explanations carefully and follow the given instructions. In order to boot macOS with this EFI successfully, adjustments to the `config.plist` and used kexts may be necessary to adapt the config to your T530 model and the macOS version you want to install/run.
+Please read this carefully and follow the instructions before deploying my EFI folder. Depending on your T530 model, the used WiFi/BT card and macOS version you want to run, adjustments to the `config.plist` and used kexts may be necessary to adapt the config to your needs.
+
+> **Note**: Although this EFI *might work* with T430 and X230, is was not intended for these ThinkPad models. So don't misuse issue reports for support requests!
 
 ### Preparing the `config.plist`
 Download the EFI Folder from the [Releases](https://github.com/5T33Z0/Lenovo-T530-Hackintosh-OpenCore/releases) section and unpack it. Make sure to read the included `Changelog.md` as well, since it contains useful explanations. 
