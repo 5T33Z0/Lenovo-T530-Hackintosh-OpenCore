@@ -37,10 +37,13 @@ OpenCore and Clover EFI Folders for running macOS High Sierra to Ventura on the 
 > :bulb: Although this EFI *might work* with the T430 and X230, is was not intended for these ThinkPad models. So don't misuse issue reports for support requests! I will close such "issues" immediately!
 
 ### Special Features
-- Booter and Kernel patches from OCLP. Allow installing macOS Big Sur and newer with the `MacBookPro10,1` SMBIOS for optimal CPU Power Management *and* ability to install System Updates. [Find out more](https://github.com/5T33Z0/OC-Little-Translated/tree/main/09_Board-ID_VMM-Spoof).
-- Working battery status read-outs without additional ACPI Hotpatches thanks to `ECEnabler.kext`
-- No patched `DSDT` – using SSDTs hotpatches for maximum ACPI-conformity
-- Created my own AppleALC Layout-ID for the Lenovo Mini Dock Station 4337/4338. It uses **Layout-ID 39** and has been integrated into AppleALC since [version 1.7.3](https://github.com/acidanthera/AppleALC/releases/tag/1.7.3)
+- Includes Patches and Kexts from OpenCore Legacy Patcher for extended macOS support, such as:
+	- Booter Patches and kexts that allow installing and updating macOS Big Sur and newer with a `MacBookPro10,x` SMBIOS ([More](https://github.com/5T33Z0/OC-Little-Translated/tree/main/09_Board-ID_VMM-Spoof))
+	- Native SMC CPU Power Management in macOS Ventura for optimal CPU Power Management ([More](https://github.com/5T33Z0/OC-Little-Translated/tree/main/01_Adding_missing_Devices_and_enabling_Features/CPU_Power_Management/CPU_Power_Management_(Legacy)#re-enabling-acpi-power-management-in-macos-ventura)).
+	- Ability to boot macOS 12 and newer with AMFI enabled thanks to AMFIPass.kext.
+	- Working battery status read-outs without additional DSDT/ACPI patches thanks to `ECEnabler.kext`
+- No patched `DSDT` – only SSDT hotpatches were used for maximum ACPI-compliance
+- I've created a new AppleALC Layout to support the Audio Jack's of Lenovo Mini Dock Statiosn 4337 and 4338. It uses **Layout-ID 39** and has been integrated into AppleALC since [version 1.7.3](https://github.com/acidanthera/AppleALC/releases/tag/1.7.3)
  
 |:warning: Issues related to macOS 12+|
 |:------------------------------------|
