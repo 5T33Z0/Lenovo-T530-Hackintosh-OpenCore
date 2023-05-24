@@ -142,7 +142,7 @@ EFI
 </details>
 
 ## Deployment
-Please read this carefully and follow the instructions before deploying my EFI folder. Depending on your T530 model, the used WiFi/BT card and macOS version you want to run, adjustments to the `config.plist` and used kexts may be necessary to adapt the config to your needs.
+Please read the following sections and instructions instructions before deploying my EFI folder. Depending on your T530 model, the used WiFi/BT card and macOS version you want to run, adjustments to the `config.plist` and used kexts may be necessary to adapt the config to your needs.
 
 > **Note**: Although this EFI *might work* with T430 and X230, is was not intended for these ThinkPad models. So don't misuse issue reports for support requests!
 
