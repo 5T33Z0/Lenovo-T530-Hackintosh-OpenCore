@@ -22,7 +22,9 @@
 	- When upgrading from Big Sur 11.3 or newer: stay on `MacBookPro10,1` (i7) or `MacBookPro10,2` (i5)
 
 ### Important Note about SMBIOS
-My configuration includes a board-id skip which allows using the `MacBookPro10,1` SMBIOS which wouldn't be possible otherwise. It requires vitrtualization technology introduced in macOS Big Sur. Therefore, you can't simply upgrade from macOS Catalina or older using the `MacBookPro10,X` SMBIOS since the required virtualization technology to make the board-id skip work isn't present prior to macOS 11.3 (Darwin Kernel 20.4). So when upgrading from macOS Catalina or older, you need to *temporarily* switch the SMBIOS to use `MacBookPro14,1` (i7) or `MacBookPro14,2` (i5)  in order to be able to install macOS Ventura. You can revert to `MacBooPro10,1` (i7) or `MacBookPro10,2` (i5) once the installation is completed.
+My configuration includes a board-id skip which allows using the `MacBookPro10,1` SMBIOS which wouldn't be possible otherwise. It requires vitrtualization technology introduced in macOS Big Sur. Therefore, you can't simply upgrade from macOS Catalina or older using the `MacBookPro10,X` SMBIOS since the required virtualization technology to make the board-id skip work isn't present prior to macOS 11.3 (Darwin Kernel 20.4). 
+
+So when upgrading from macOS Catalina or older, you need to *temporarily* switch the SMBIOS to use `MacBookPro14,1` (i7) or `MacBookPro14,2` (i5)  in order to be able to install macOS Ventura. You can revert to `MacBooPro10,1` (i7) or `MacBookPro10,2` (i5) once the installation is completed.
 
 ## II. macOS Ventura Install Instructions
 Installing macOS Ventura on legacy systems which don't support AVX 2.0 CPU instruction requires OpenCore Legacy Patcher in order to prepare the macOS Ventura Installer so it works on unsupported hardware.
@@ -36,8 +38,13 @@ Installing macOS Ventura on legacy systems which don't support AVX 2.0 CPU instr
 - Download OCLP
 - Mount your EFI Partition
 - Paste in my EFI Folder and edit the `config.plist`:
+	- Enable Kernel the following Kernel Patches (if disabled):
+		- "Reroute kern.hv_vmm_present patch (1)"
+		- "Reroute kern.hv_vmm_present patch (2) Ventura"
+	- Adjust the `config.plist` to your needs as explained on my repo.
 	- Generate SMBIOS date for `MacBookPro10,1` (Core i7) or `MacBookPro10,2` (Core i5)
 	- Change `csr-active-config` to: `03080000` (a must to install the Intel HD4000 Drivers)
+- Save config and reboot (you can skip this if Kernel Patches were enabled already!)
 - Download macOS Ventura via App Store, System Updates or the OCLP App
 - Run the "Install macOS Ventura" App
 - There will be a few reboots
@@ -58,12 +65,15 @@ To create a USB Installer, you can use OpenCore Legacy Patcher:
 - Once the USB Installer has been created, do the following:
 	- Copy the OpenCore-Patcher App to the USB Installer (and OCAT or your plist Editor of choice as well)
 	- Mount the EFI Partition of the USB flash drive (using MountEFI or OCAT)
-	- Paste in my EFI Folder 
+	- Paste in my EFI Folder and edit the `config.plist`:
+	- Enable Kernel the following Kernel Patches (if disabled):
+		- "Reroute kern.hv_vmm_present patch (1)"
+		- "Reroute kern.hv_vmm_present patch (2) Ventura"
 	- Adjust the `config.plist` to your needs as explained on my repo.
 	- Generate SMBIOS data:
-		- If you are on Big Sur 11.3 or newer already: use `MacBookPro10,1` (Core i7) or `MacBookPro10,2` (Core i5)
-		- If you are upgrading from Catalina or older: use `MacBookPro14,1` (i7) or `MacBookPro14,2` (i5) temporarily
-	- Change `csr-active-config` to: `03080000`. This is a must in order to install the Intel HD4000 Drivers.
+		- Coming from macOS 11.3+: Use `MacBookPro10,1` (i7) or `MacBookPro10,2` (i5)
+		- Coming from macOS 10.15 or older: Use `MacBookPro14,1` (i7) or `MacBookPro14,2` (i5) 
+	- Change `csr-active-config` to: `03080000` (a must to install the Intel HD4000 Drivers)
 - Reboot from USB flash drive and run "Install macOS Ventura"
 - There will be a few reboots along the way. Boot from the new Install Partition until it's no longer present in the Boot Picker
 - Once the Installation has finished, copy the EFI folder from the USB Installer to the EFI partition on your HDD/SSD

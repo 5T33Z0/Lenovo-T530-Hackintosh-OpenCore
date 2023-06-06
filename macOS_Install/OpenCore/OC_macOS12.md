@@ -44,7 +44,7 @@ So when upgrading from macOS Catalina or older, you need to *temporarily* switch
 	- Adjust the `config.plist` to your needs as explained on my repo.
 	- Generate SMBIOS date for `MacBookPro10,1` (Core i7) or `MacBookPro10,2` (Core i5)
 	- Change `csr-active-config` to: `03080000` (a must to install the Intel HD4000 Drivers)
-- Safe config and reboot (you can skip this if Kernel Patches were enabled already!)
+- Save config and reboot (you can skip this if Kernel Patches were enabled already!)
 - Download macOS Monterey via App Store, System Updates or the OCLP App
 - Run the "Install macOS Monterey" App
 - There will be a few reboots
@@ -71,7 +71,9 @@ To create a USB Installer, you can use OpenCore Legacy Patcher:
 		- "Reroute kern.hv_vmm_present patch (2) Legacy" (= Monterey)
 		- "Reroute kern.hv_vmm_present patch (2) Ventura" (optional)
 	- Adjust the `config.plist` to your needs as explained on my repo.
-	- Generate SMBIOS date for `MacBookPro10,1` (Core i7) or `MacBookPro10,2` (Core i5)
+	- Generate SMBIOS data:
+		- Coming from macOS 11.3+: Use `MacBookPro10,1` (i7) or `MacBookPro10,2` (i5)
+		- Coming from macOS 10.15 or older: Use `MacBookPro14,1` (i7) or `MacBookPro14,2` (i5) 
 	- Change `csr-active-config` to: `03080000` (a must to install the Intel HD4000 Drivers)
 - Reboot from USB flash drive and select "Install macOS Monterey"
 - There will be a few reboots along the way. Boot from the new Install Partition until it's no longer present in the Boot Picker

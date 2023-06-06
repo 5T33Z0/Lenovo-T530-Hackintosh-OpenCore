@@ -8,7 +8,7 @@ The board-id skip included in my configuration which allows using the `MacBookPr
 
 ## Install instructions
 - Download macOS Big Sur via the App Store or [**Open Core Legacy Patcher**](https://dortania.github.io/OpenCore-Legacy-Patcher/INSTALLER.html#creating-the-installer)
-- Once that's done, disable Wifi ab LAN (unplug LAN and flip the physical switch near the USB ports to disables all wireless communication). Otherwise you have to generate new Serials, etc.
+- Once that's complete, disable WiFi an LAN (unplug LAN and flip the physical switch near the USB ports to disable all wireless communication). Otherwise you have to generate new Serials, etc.
 - In `config.plist`, change `SystemProductName` to `MacBookPro11,1` – leave the rest as is.
 - Save and Reboot
 - Create a new Volume in Disk Utility if you want to run Big Sur as a separate installation. If you just want to upgrade macOS you can skip this step.
