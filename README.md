@@ -42,7 +42,13 @@ OpenCore and Clover EFI Folders for running macOS High Sierra to Ventura on the 
 	- Working battery status read-outs without additional DSDT/ACPI patches thanks to `ECEnabler.kext`
 - No patched `DSDT` – only SSDT hotpatches were used for maximum ACPI-compliance
 - Custom AppleALC Layout to support the Audio Jack's of Lenovo Mini Dock Statiosn 4337 and 4338. It uses **Layout-ID 39** and has been integrated into AppleALC since [version 1.7.3](https://github.com/acidanthera/AppleALC/releases/tag/1.7.3)
- 
+
+### ⚠️ WARNING
+
+| ATTENTION       
+|:--------------
+Don't apply root patches with OpenCore Legacy Patcher after installing macOS Sonoma – it will semi-brick the system. In this case, boot into Safe Mode (or add `-igvxvesa` to boot-args) and revert the root patches.
+
 ## Specs
 
 | Component           | Details                                       |
