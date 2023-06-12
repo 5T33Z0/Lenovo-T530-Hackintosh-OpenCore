@@ -47,7 +47,7 @@ OpenCore and Clover EFI Folders for running macOS High Sierra to Ventura on the 
 
 | ATTENTION       
 |:--------------
-Don't apply root patches with OpenCore Legacy Patcher after installing macOS Sonoma – it will semi-brick the system. In this case, boot into Safe Mode (or add `-igvxvesa` to boot-args) and revert the root patches.
+Don't apply root patches with OpenCore Legacy Patcher after installing macOS Sonoma – it's not compatible with macOS 14 and will semi-brick the system. In this case, boot into Safe Mode (or add `-igvxvesa` to boot-args) and revert the root patches.
 
 ## Specs
 
