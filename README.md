@@ -1,6 +1,6 @@
 # Lenovo ThinkPad T530 Hackintosh OpenCore
 
-[![T530](https://img.shields.io/badge/ThinkPad-T530-informational.svg)](https://psref.lenovo.com/syspool/Sys/PDF/withdrawnbook/ThinkPad_T530.pdf) [![OpenCore](https://img.shields.io/badge/OpenCore-0.9.3-cyan.svg)](https://github.com/acidanthera/OpenCorePkg/releases/latest) [![Clover Version](https://img.shields.io/badge/Clover-r5151-lime.svg)](https://github.com/CloverHackyColor/CloverBootloader/releases) [![MacOS Catalina](https://img.shields.io/badge/macOS-10.15.7-white.svg)](https://www.apple.com/li/macos/catalina/) [![MacOS Big Sur](https://img.shields.io/badge/macOS-11.7.7-white.svg)](https://www.apple.com/macos/big-sur/) [![MacOS Monterey](https://img.shields.io/badge/macOS-12.6.3-white.svg)](https://www.apple.com/macos/monterey/) [![macOS Ventura](https://img.shields.io/badge/macOS-13.5b2-white.svg)](https://www.apple.com/macos/ventura/) [![macOS Sonoma](https://img.shields.io/badge/macOS-14.0b-white.svg)](https://www.apple.com/macos/sonoma-preview/) [![release](https://img.shields.io/badge/Download-latest-success.svg)](https://github.com/5T33Z0/Lenovo-T530-Hackinosh-OpenCore/releases/latest)<br>![10103711](https://github.com/5T33Z0/Lenovo-T530-Hackintosh-OpenCore/assets/76865553/90e7d9ac-f63c-4597-a7ed-49f8da8c18d6)
+[![T530](https://img.shields.io/badge/ThinkPad-T530-informational.svg)](https://psref.lenovo.com/syspool/Sys/PDF/withdrawnbook/ThinkPad_T530.pdf) [![OpenCore](https://img.shields.io/badge/OpenCore-0.9.3-cyan.svg)](https://github.com/acidanthera/OpenCorePkg/releases/latest) [![Clover Version](https://img.shields.io/badge/Clover-r5152-apple.svg)](https://github.com/CloverHackyColor/CloverBootloader/releases) ![MacOS](https://img.shields.io/badge/macOS-10.13–14b-purple.svg) [![release](https://img.shields.io/badge/Download-latest-success.svg)](https://github.com/5T33Z0/Lenovo-T530-Hackinosh-OpenCore/releases/latest)<br>![10103711](https://github.com/5T33Z0/Lenovo-T530-Hackintosh-OpenCore/assets/76865553/90e7d9ac-f63c-4597-a7ed-49f8da8c18d6)
 
 **TABLE of CONTENTS**
 
@@ -43,11 +43,11 @@ OpenCore and Clover EFI Folders for running macOS High Sierra to Ventura on the 
 - No patched `DSDT` – only SSDT hotpatches were used for maximum ACPI-compliance
 - Custom AppleALC Layout to support the Audio Jack's of Lenovo Mini Dock Statiosn 4337 and 4338. It uses **Layout-ID 39** and has been integrated into AppleALC since [version 1.7.3](https://github.com/acidanthera/AppleALC/releases/tag/1.7.3)
 
-### ⚠️ WARNING
+### ⚠️ WARNING!
 
 | ATTENTION       
 |:--------------
-Don't apply root patches with OpenCore Legacy Patcher after installing macOS Sonoma – it's not compatible with macOS 14 and will semi-brick the system. In this case, boot into Safe Mode (or add `-igvxvesa` to boot-args) and revert the root patches.
+Don't apply root patches with OpenCore Legacy Patcher after installing macOS Sonoma – it's not compatible with macOS 14 yet and will semi-brick the system. In this case, boot into Safe Mode (or add `-igvxvesa` to boot-args) and revert the root patches.
 
 ## Specs
 
