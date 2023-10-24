@@ -81,7 +81,7 @@ To bring them back, do the following:
 
 - Copy the OpenCore Patcher App from you USB Installer to the Desktop and run it
 - In the OpenCore Legacy Patcher menu, select "Post Install Root Patch": </br>![menu](https://user-images.githubusercontent.com/76865553/181920348-21a3abad-311f-49c6-b4d9-25e6560b6150.png)
-- The following screen will list the avaialble Root Patches for your system. Press "OK"  to start pathing:</br>![](/Volumes/Sonoma - Daten/Users/5t33z0/Desktop/OCLP_root.png)
+- The following screen will list the avaialble Root Patches for your system. Press "OK" to start pathing:</br>![OCLP_root](https://github.com/5T33Z0/Lenovo-T530-Hackintosh-OpenCore/assets/76865553/e17bcb6d-307b-42c5-9513-c94c00473137)
 - The App has to relaunch with Admin Roots. Click Yes:</br>![yes](https://user-images.githubusercontent.com/76865553/181920381-2b6a4194-60c3-472e-81bb-c5478e3298f9.png)
 - You will have to enter your Admin Password and then the installation will begin:</br>![Install](https://user-images.githubusercontent.com/76865553/181920398-38ddf7c5-0dfd-428e-9d7a-5646010d3c08.png)
 - Once. it's done, you have to reboot and Graphics acceleration will work
