@@ -150,7 +150,8 @@ EFI
 ## Deployment
 Please read the following sections and instructions instructions before deploying my EFI folder. Depending on your T530 model, the used WiFi/BT card and macOS version you want to run, adjustments to the `config.plist` and used kexts may be necessary to adapt the config to your needs.
 
-> **Note**: Although this EFI *might work* with T430 and X230, is was not intended for these ThinkPad models. So don't misuse issue reports for support requests!
+> [!NOTE]
+> Although this EFI *might work* with T430 and X230, is was not intended for these ThinkPad models. So don't misuse issue reports for support requests!
 
 ### Preparing the `config.plist`
 Download the EFI Folder from the [Releases](https://github.com/5T33Z0/Lenovo-T530-Hackintosh-OpenCore/releases) section and unpack it. Make sure to read the included `Changelog.md` as well, since it contains useful explanations. 
@@ -192,14 +193,14 @@ Open the `config.plist` and adjust the following settings depending on your syst
 		- For Big Sur and newer: `03080000`(0x803)
 		- For macOS Mojave/Catalina: `EF070000`(0x7EF)
 		- For macOS High Sierra: `FF030000` (0x3FF)</br></br>
-	
-	> **Note**: Disabling SIP is mandatory if you want to run macOS Monterey or newer in order to install and load Intel HD 4000 Drivers! If you have issues running OCLP in Post-Install, change `csr-active-config` to `FE0F0000` (almost fully disabled).
+	> [!NOTE]
+ 	> Disabling SIP is mandatory if you want to run macOS Monterey or newer in order to install and load Intel HD 4000 Drivers! If you have issues running OCLP in Post-Install, change `csr-active-config` to `FE0F0000` (almost fully disabled).
 
 6. **SMBIOS**: Under `SystemProductName`, select the correct SMBIOS for your CPU and generate a serial, etc. for it.
 	-  For Intel i7: `MacBookPro10,1`
 	-  For Intel i5: `MacBookPro10,2`</br></br>
-	
-	> **Note**: My config contains Booter Patches from OpenCore Legacy Patcher and RestrictEvents kext which allow using the correct SMBIOS for Ivy Bridge CPUs on macOS 11.3 and newer (Darwin Kernel 20.4+), so native Power Management and OTA System Updates are working which wouldn't be possible otherwise past macOS Catalina.
+	> [!NOTE]
+ 	> My config contains Booter Patches from OpenCore Legacy Patcher and RestrictEvents kext which allow using the correct SMBIOS for Ivy Bridge CPUs on macOS 11.3 and newer (Darwin Kernel 20.4+), so native Power Management and OTA System Updates are working which wouldn't be possible otherwise past macOS Catalina.
 
 7. **WiFi and Bluetooth** (Read carefully!)
 	- **Case 1: Intel Wifi/BT Card**. In stock configuration, the T530 comes with an Intel WiFi/Bluetooth card, so you need different kexts for WiFi and Bluetooth. It may work with [**OpenIntelWireless**](https://github.com/OpenIntelWireless) kexts. 
