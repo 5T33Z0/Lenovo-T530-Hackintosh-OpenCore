@@ -36,11 +36,13 @@ OpenCore and Clover EFI Folders for running macOS High Sierra to Ventura on the 
 ### Special Features
 - Includes Patches and Kexts from [**OpenCore Legacy Patcher**](https://github.com/dortania/Opencore-Legacy-Patcher), such as:
 	- Fully working graphics acceleration for the Intel HD 4000 in macOS 12 and newer
-	- Booter Patches and kexts that allow installing and updating macOS Big Sur and newer with a `MacBookPro10,x` SMBIOS ([More](https://github.com/5T33Z0/OC-Little-Translated/tree/main/09_Board-ID_VMM-Spoof))
-	- Native SMC CPU Power Management in macOS Ventura for optimal CPU Power Management ([More](https://github.com/5T33Z0/OC-Little-Translated/tree/main/01_Adding_missing_Devices_and_enabling_Features/CPU_Power_Management/CPU_Power_Management_(Legacy)#re-enabling-acpi-power-management-in-macos-ventura)).
-	- Ability to boot macOS 12 and newer with AMFI enabled thanks to AMFIPass.kext.
+  	- Working legacy Broadcom Wi-Fi and Bluetooth in macOS Sonoma 
+	- Booter Patches and kext to install and run macOS Big Sur and newer with a `MacBookPro10,x` SMBIOS ([More](https://github.com/5T33Z0/OC-Little-Translated/tree/main/09_Board-ID_VMM-Spoof))
+	- Native SMC CPU Power Management in macOS 13 and newer for optimal CPU Power Management ([More](https://github.com/5T33Z0/OC-Little-Translated/tree/main/01_Adding_missing_Devices_and_enabling_Features/CPU_Power_Management/CPU_Power_Management_(Legacy)#re-enabling-acpi-power-management-in-macos-ventura)).
+	- Ability to boot macOS 12+ with AMFI enabled thanks to AMFIPass.kext.
 	- Working battery status read-outs without additional DSDT/ACPI patches thanks to `ECEnabler.kext`
 - No patched `DSDT` – only SSDT hotpatches were used for maximum ACPI-compliance
+- IRQ patches fully realized via custom SSDT – no binary renames required. 
 - Custom AppleALC Layout to support the Audio Jack's of Lenovo Mini Dock Statiosn 4337 and 4338. It uses **Layout-ID 39** and has been integrated into AppleALC since [version 1.7.3](https://github.com/acidanthera/AppleALC/releases/tag/1.7.3)
 
 ### ⚠️ WARNING!
