@@ -31,7 +31,7 @@
 - [Credits and Thank Yous](#credits-and-thank-yous)
 
 ## About
-OpenCore and Clover EFI Folders for running macOS High Sierra to Ventura on the Lenovo ThinkPad T530.
+OpenCore and Clover EFI Folders for running macOS High Sierra to Sonoma on the Lenovo ThinkPad T530.
 
 ### Special Features
 - Includes Patches and Kexts from [**OpenCore Legacy Patcher**](https://github.com/dortania/Opencore-Legacy-Patcher), such as:
@@ -44,12 +44,6 @@ OpenCore and Clover EFI Folders for running macOS High Sierra to Ventura on the 
 - No patched `DSDT` – only SSDT hotpatches were used for maximum ACPI-compliance
 - IRQ patches fully realized via custom SSDT – no binary renames required. 
 - Custom AppleALC Layout to support the Audio Jack's of Lenovo Mini Dock Statiosn 4337 and 4338. It uses **Layout-ID 39** and has been integrated into AppleALC since [version 1.7.3](https://github.com/acidanthera/AppleALC/releases/tag/1.7.3)
-
-### ⚠️ WARNING!
-
-| ATTENTION       
-|:--------------
-Don't apply root patches with OpenCore Legacy Patcher after installing macOS Sonoma – it's not compatible with macOS 14 yet and will semi-brick the system. In this case, boot into Safe Mode (or add `-igvxvesa` to boot-args) and revert the root patches.
 
 ## Specs
 
@@ -97,36 +91,40 @@ EFI
     │   ├── SSDT-EXT5.aml
     │   ├── SSDT-IRQ_FIXES.aml
     │   ├── SSDT-NBCF.aml
+    │   ├── SSDT-PM.aml
     │   ├── SSDT-PNLF.aml
     │   ├── SSDT-PRW0.aml
     │   ├── SSDT-PTSWAKTTS.aml
-    │   ├── SSDT-PWRB.aml
     │   ├── SSDT-SBUS-MCHC.aml
-    │   ├── SSDT-TEMPToFans.aml
-    │   └── SSDT-XCPM.aml
+    │   └── SSDT-TEMPToFans.aml
     ├── Drivers
     │   ├── AudioDXE.efi (disabled)
     │   ├── HfsPlus.efi
     │   ├── OpenCanopy.efi
     │   ├── OpenRuntime.efi
     │   └── ResetNvramEntry.efi
-    ├── Kexts (loaded based on Min Kernel/Max Kernel settings)
+    ├── Kexts (loaded based on Min/Max Kernel settings)
+    │   ├── AdvancedMap.kext (macOS 12+)
     │   ├── AirportBrcmFixup.kext
+    │   ├── AMFIPass.kext (macOS 12+)
     │   ├── AppleALC.kext
-    │   ├── AppleIntelCPUPowerManagement.kext
-    │   ├── AppleIntelCPUPowerManagementClient.kext
-    │   ├── BlueToolFixup.kext
+    │   ├── AppleIntelCPUPowerManagement.kext (macOS 13+)
+    │   ├── AppleIntelCPUPowerManagementClient.kext (macOS 13+)
+    │   ├── BlueToolFixup.kext (macOS 12+)
     │   ├── BrcmBluetoothInjector.kext
     │   ├── BrcmFirmwareData.kext
     │   ├── BrcmPatchRAM2.kext
-    │   ├── BrcmPatchRAM3.kext
+    │   ├── BrcmPatchRAM3.kext 
     │   ├── BrightnessKeys.kext
-    │   ├── CryptexFixup.kext
+    │   ├── CryptexFixup.kext (macOS 13+)
     │   ├── ECEnabler.kext
+    │   ├── HibernationFixup.kext
     │   ├── IntelMausi.kext
+    │   ├── IO80211FamilyLegacy.kext (macOS 14+)
+    │   ├── IOSkywalkFamily.kext (macOS 14+)
     │   ├── Lilu.kext
-    │   ├── NoTouchID.kext
-    │   ├── RestrictEvents.kext
+    │   ├── NoTouchID.kext (macOS 10.13 and 10.14)
+    │   ├── RestrictEvents.kext (macOS 11+)
     │   ├── SMCBatteryManager.kext
     │   ├── VirtualSMC.kext
     │   ├── VoodooPS2Controller.kext
@@ -150,7 +148,7 @@ EFI
 </details>
 
 ## Deployment
-Please read the following sections and instructions instructions before deploying my EFI folder. Depending on your T530 model, the used WiFi/BT card and macOS version you want to run, adjustments to the `config.plist` and used kexts may be necessary to adapt the config to your needs.
+Please read the following instructions carefully before deploying my EFI folder. Depending on your T530 model, the used WiFi/BT card and macOS version you want to run, adjustments to the `config.plist` and used kexts may be necessary to adapt the config to your system.
 
 > [!NOTE]
 > Although this EFI *might work* with T430 and X230, is was not intended for these ThinkPad models. So don't misuse issue reports for support requests!
@@ -161,7 +159,7 @@ Download the EFI Folder from the [Releases](https://github.com/5T33Z0/Lenovo-T53
 Open the `config.plist` and adjust the following settings depending on your system:
 
 1. **ACPI** Section:
-	- Disable `SSDT-PM.aml` (unless you have an i7 3630QM as well). Generate your own with ssdtPRGen in Post-Install.
+	- Disable `SSDT-PM.aml` (unless you have an i7 3630QM as well). Generate your own with [ssdtPRGen](https://github.com/5T33Z0/OC-Little-Translated/blob/main/01_Adding_missing_Devices_and_enabling_Features/CPU_Power_Management/CPU_Power_Management_(Legacy)/README.md) in Post-Install.
 
 2. **Booter** Section:
 	- The entries in the MMIO Whitelist are memory regions used by *my* firmware. Since I don't know if these are used by all T530 BIOSes, I disabled them and the corresponding `DevirtualiseMmio` Quirk
@@ -196,23 +194,23 @@ Open the `config.plist` and adjust the following settings depending on your syst
 		- For macOS Mojave/Catalina: `EF070000`(0x7EF)
 		- For macOS High Sierra: `FF030000` (0x3FF)</br></br>
 	> [!NOTE]
- 	> Disabling SIP is mandatory if you want to run macOS Monterey or newer in order to install and load Intel HD 4000 Drivers! If you have issues running OCLP in Post-Install, change `csr-active-config` to `FE0F0000` (almost fully disabled).
+	> Lowering SIP is mandatory if you want to run macOS Monterey or newer in order to install and load Intel HD 4000 Drivers! If you have issues running OCLP in Post-Install, change `csr-active-config` to `FE0F0000` (almost fully disabled).
 
 6. **SMBIOS**: Under `SystemProductName`, select the correct SMBIOS for your CPU and generate a serial, etc. for it.
 	-  For Intel i7: `MacBookPro10,1`
 	-  For Intel i5: `MacBookPro10,2`</br></br>
 	> [!NOTE]
- 	> My config contains Booter Patches from OpenCore Legacy Patcher and RestrictEvents kext which allow using the correct SMBIOS for Ivy Bridge CPUs on macOS 11.3 and newer (Darwin Kernel 20.4+), so native Power Management and OTA System Updates are working which wouldn't be possible otherwise past macOS Catalina.
+	> My config contains Booter Patches from OpenCore Legacy Patcher and RestrictEvents kext which allow using the correct SMBIOS for Ivy Bridge CPUs on macOS 11.3 and newer (Darwin Kernel 20.4+), so native Power Management and OTA System Updates are working oob which wouldn't be possible otherwise past macOS Catalina.
 
 7. **WiFi and Bluetooth** (Read carefully!)
 	- **Case 1: Intel Wifi/BT Card**. In stock configuration, the T530 comes with an Intel WiFi/Bluetooth card, so you need different kexts for WiFi and Bluetooth. It may work with [**OpenIntelWireless**](https://github.com/OpenIntelWireless) kexts. 
 		- Check the compatibility list to find out if your card is supported. 
-		- Remove `BluetoolFixup` and `Brcm` Kexts
+		- Remove `BluetoolFixup` and all kexts containing "Brcm" in the name.
 		- Add the required Kexts for your Intel card to `EFI/OC/Kexts` folder and `config.plist` before attempting to boot with this EFI!
 	- **Case 2: 3rd Party WiFi/BT Cards**. These require the [**1vyrain**](https://1vyra.in/) jailbreak to unlock the BIOS to disable the WiFi Whitelist (not required if the 3rd party card is whitelisted).
 		- I use a WiFi/BT Card by Broadcom, so my setup requires `AirportBrcmFixup` for WiFi and `BrcmPatchRAM` and additional satellite kexts for Bluetooth. Read the comments in the config for details.
 		- `BrcmFirmwareData.kext` is used for injecting the required firmware for Broadcom devices. Alternatively, you can use `BrcmFirmwareRepo.kext` which is more efficient but needs to be installed into `System/Library/Extensions` since it cannot be injected by Bootloaders.
-		- If you use a WiFi/BT Card from a different vendor than Broadcom, remove BluetoolFixup and the the Brcm Kexts and add the Kext(s) required for your card to the kext folder and `config.plist` before deploying the EFI folder!
+		- If you use a WiFi/BT Card from a different vendor than Broadcom, remove BluetoolFixup and the Brcm Kexts and add the Kext(s) required for your card to the kext folder and `config.plist` before deploying the EFI folder!
 
 8. **Kernel Section** 
 	- **Kernel/Patch**: If you have an [HDD caddy](https://github.com/5T33Z0/Lenovo-T530-Hackintosh-OpenCore/issues/37#issuecomment-1509840983) for the DVD drive bay, you can add this [kernel patch](https://github.com/5T33Z0/Lenovo-T530-Hackintosh-OpenCore/blob/main/Additional_Files/SATA_Hotplug.plist) to your config to enable SATA hot plugging.
@@ -234,14 +232,12 @@ Open the `config.plist` and adjust the following settings depending on your syst
 	- [**Feature Unlock**](https://github.com/acidanthera/FeatureUnlock): Unlocks additional features like Sidecar, NighShift, Airplay, etc.
 
 12. **Increase Max Backlight Brightness Level** (optional): 
-
 	- Add boot-arg `applbkl=0` for increased maximum brightness of the display as defined in `SSDT-PNLF.aml` instead of letting Whatevergreen handle it. Also available as device property (see Whatevergreen documentation for details).
 
 #### Used boot arguments and NVRAM variables
 - **Boot-args:**
 	- `gfxrst=1`: Draws Apple logo at 2nd boot stage instead of framebuffer copying &rarr; Smoothens transition from the progress bar to the Login Screen/Desktop when an external monitor is attached.
-	- `ipc_control_port_options=0`: Fixes issues with Firefox not working and electron-based Apps like Discord in macOS Monterey and newer when SIP is lowered.
-	- `amfi_get_out_of_my_way=0x1`: Disables [Apple Mobile File Integrity](https://eclecticlight.co/2018/12/29/amfi-checking-file-integrity-on-your-mac/). Required to be able to install Intel HD 4000 drivers in macOS 12+ using OpenCore Legacy Patcher (OCLP) in Post-Install. Also required to boot macOS Ventura afterwards. Requires SIP to be disabled.
+	- `ipc_control_port_options=0`: Fixes issues with Firefox not working and electron-based Apps like Discord in macOS 12+ when SIP is lowered.
 - **NVRAM variables**:
 	- OCLP Settings `-allow_amfi`: Does the same as boot-arg `amfi_get_out_of_my_way=0x1` but only when the OpenCore Patcher App is running. Otherwise you can't run the root patcher. But this didn't work the last time I tried this setting might be deprecated.
 	- `hbfx-ahbm`: Lets the system hibernate instead of using regular sleep. Requires HibernationFixup.kext. More details [here](https://github.com/5T33Z0/OC-Little-Translated/tree/main/H_Boot-args#hibernationfixup) 
@@ -270,31 +266,32 @@ The system may crash the first time when booting macOS Ventura. That's normal. A
 **Latest BIOS Version:** `2.77`
 [**DOWNLOAD**](https://pcsupport.lenovo.com/us/en/products/laptops-and-netbooks/thinkpad-t-series-laptops/thinkpad-t530/downloads/ds029246?clickid=RhAUWZ1-exyLRCuwUx0Mo3ELUkERY-RmHTlwSg0&Program=3786&pid=269814&acid=ww%3Aaffiliate%3A74clty&cid=de%3Aaffiliate%3Axg02ds)
 
-| TAB      |  Submenu          | Function                          | Setting    |
-| -------- | :---------------: | ------------------------------- | :----------|
-| **Config**   | USB               | <ul> <li>UEFI BIOS Support<li>USB 3.0 Mode    | `Enabled` <br> `Enabled`
-|          |Display|  <ul><li>Boot Display Device:<li>OS Detection for NVIDIA Optimus: | `ThinkPad LCD` </br> `Disabled`
-||SATA | SATA Controller Mode |`AHCI`
+ Tab | Submenu | Function | Setting    |
+ ----| :-----: | -------- | :----------|
+**Config** | USB | <ul><li> UEFI BIOS Support<li>USB 3.0 Mode | `Enabled` <br> `Enabled`
+||Display|  <ul><li>Boot Display Device:<li>OS Detection for NVIDIA Optimus: | `ThinkPad LCD` </br> `Disabled`
+||SATA | <ul><li> SATA Controller Mode |`AHCI`
 ||CPU | <ul><li>Core Multi-Processing <li> Intel (R) Hyper-Threading Technology|`Enabled` <br> `Enabled`
-| **Security** |– |Security Chip                                   | `Disabled`|
+**Security** | – | <ul><li> Security Chip | `Disabled`
 ||UEFI BIOS Update Options|<ul><li> Flash BIOS Updating by End-Users<li>  Secure Rollback Prevention: `Enabled`|`Enabled` <br> `Enabled` 
-|          | –|Memory Protection |            `Enabled`  
-|          | Virtualization    | Intel Virtualization Technology | `Enabled`    |
+|          | – | <ul><li> Memory Protection | `Enabled`  
+|          | Virtualization | <ul><li> Intel Virtualization Technology | `Enabled`
 ||I/O Port Access | <ul><li> Wireless WAN <li> ExpressCard Slot <li> eSATA Port <li> Fingerprint Reader <li> Antitheft and Computrace <li> Secure Boot | `Disabled`
-| Startup  | –|UEFI/Legacy Boot                                   | `UEFI Only` |
-|          | – |CSM Support                                      | `Disabled`  |
-|          | –|Boot Mode                                          | `Quick`     |
-|          | – |Boot Order Lock | `Enabled`     |
+**Startup** | – |<ul><li> UEFI/Legacy Boot| `UEFI Only`
+|          | – |<ul><li> CSM Support | `Disabled`
+|          | – |<ul><li> Boot Mode | `Quick`
+|          | – |<ul><li> Boot Order Lock | `Enabled` 
 
-> **Note**: Enable Boot Order Lock *after* you've set-up the order of the Boot Drives. This prevents `WindowsBootManager` from taking over the first slot of the boot drives. This way, you don't need to enable the `LauncherOption` in OpenCore!
+> [!NOTE]
+> Enable Boot Order Lock *after* you've set-up the order of the Boot Drives. This prevents `WindowsBootManager` from taking over the first slot of the boot drives. This way, you don't need to enable the `LauncherOption` in OpenCore!
 
-> **Note**: Enable Boot Order Lock *after* you've set-up the order of the Boot Drives. This prevents `WindowsBootManager` from taking over the first slot of the boot drives. This way, you don't need to enable the `LauncherOption` in OpenCore!
 </details>
 
 ### Installing macOS
 **Coming from Windows/Linux**: Follow the installation guide by [**Dortania**](https://dortania.github.io/OpenCore-Install-Guide/installer-guide/#making-the-installer). 
 
-> **Note**: No support from my end is provided for issues related to UBS Installers created in Windows or Linux or when using a Virtual Machine!
+> [!NOTE]
+> No support from my end is provided for issues related to UBS Installers created in Windows or Linux or when using a Virtual Machine!
 
 **Coming from macOS**: 
 
@@ -367,22 +364,17 @@ If the wake reason is related to `RTC (Alarm)`, do the following:
 - Disable "Power Nap"
 - In Bluetooth Settings, "Advanced Options…" disable the 3rd entry about allowing Bluetooth devices to exit sleep
 
-**NOTES**
-- In my tests, fixing the sleepimage actually prohibited the machine from entering sleep on its own. You can use Hackintool to revert the settings.
-- To exit from Sleep you can press a Mouse button. But to wake from Hibernation, you have to press the `Fn` key or the `Power Button`.
+> [!NOTE]
+>
+> - To exit from Sleep you can press a Mouse button. But to wake from Hibernation, you have to press the `Fn` key or the `Power Button`.
 
 ### Reducing boot time
-- In `UEFI/Drivers`, disable `ConnectDrivers`. This reduces the timeout between the LENOVO logo and the BootPicker by 5 to 8 seconds.
+In `UEFI/Drivers`, disable `ConnectDrivers`. This reduces the timeout between the LENOVO logo and the BootPicker by 5 to 8 seconds.
 
-> **Warning**
+> [!WARNING]
+>
 > - Before installing macOS from a USB flash drive, `ConnectDrivers` needs to be re-enabled, otherwise you won't see it in the BootPicker.
 > - With `ConnectDrivers` disabled, the bootchime cannot be played back since `AudioDXE.efi` is not loaded. 
-
-### Fixing issues with external Webcams
-
-When using my EFI folder for macOS 12 or newer, disabling Apple Mobile File Integrity (AMFI) is necessary to boot macOS. But disabling it causes prompts to grant special permissions to access the cam/mic by 3rd party apps like Zoom, Microsoft Teams, etc to not pop-up.
-
-There are [several approaches](https://github.com/5T33Z0/Lenovo-T530-Hackintosh-OpenCore/issues/41#issuecomment-1528999560) for fixing this issue.
 
 ### Swapping Command ⌘ and Option ⌥ Keys
 Prior to version 0.7.4 of my OpenCore EFI Folder, the **[Command]** and **[Option]** keys were set to "swapped" in the `info.plist` of `VoodooPS2Keyboard.kext` by default. So in macOS, the **[WINDOWS]** key was bound to the **[Option]** key function and the **[ALT]** Key was bound to the **[Command]** key function which felt weird. Therefore, users had to swap these Keys back around in the System Settings so everything worked as expected.
@@ -406,7 +398,6 @@ macOS locks the optical drive sometimes so that you can't open it with the physi
 
 - **Option 1**: Go to `System/Library/CoreServices/Menu Extras` and double-click on `Eject.menu`. This adds an Eject button Icon to the Menu Bar.
 - **Option 2**: Press and hold the `INS` button (right below the Power Button) until the Eject Icon appears on the screen and the CD tray opens.
-</details>
 
 ### Fixing issues with AirportBrcmFixup (Broadcom WiFi Cards only)
 
