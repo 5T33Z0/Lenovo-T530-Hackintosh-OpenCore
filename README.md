@@ -35,11 +35,11 @@ OpenCore and Clover EFI Folders for running macOS High Sierra to Sonoma on the L
 
 ### Special Features
 - Includes Patches and Kexts from [**OpenCore Legacy Patcher** (OCLP)](https://github.com/dortania/Opencore-Legacy-Patcher), such as:
-	- Booter Patches and RestrictEvent.kext to install and run macOS Big Sur+ with a `MacBookPro10,x` SMBIOS ([More](https://github.com/5T33Z0/OC-Little-Translated/tree/main/09_Board-ID_VMM-Spoof))
+	- Booter Patches and `RestrictEvent.kext` to install and run macOS Big Sur+ with a `MacBookPro10,x` SMBIOS ([More](https://github.com/5T33Z0/OC-Little-Translated/tree/main/09_Board-ID_VMM-Spoof))
 	- Native SMC CPU Power Management in macOS 13 and newer for optimal CPU Power Management ([More](https://github.com/5T33Z0/OC-Little-Translated/tree/main/01_Adding_missing_Devices_and_enabling_Features/CPU_Power_Management/CPU_Power_Management_(Legacy)#re-enabling-acpi-power-management-in-macos-ventura)).
 	- Fully working graphics acceleration for the Intel HD 4000 in macOS 12+ (requires Post-Install root patching with OCLP)
 	- Working legacy Broadcom Wi-Fi and Bluetooth in macOS Sonoma (requires Post-Install root patching with OCLP)
-	- Ability to boot macOS 12+ with AMFI enabled thanks to AMFIPass.kext.
+	- Ability to boot macOS 12+ with AMFI enabled thanks to `AMFIPass.kext`.
 - No patched `DSDT` – only SSDT hotpatches were used for maximum ACPI-compliance
 - Working battery status read-outs without additional DSDT/ACPI patches thanks to `ECEnabler.kext`
 - 3D Globe in Maps in macOS 12+ thanks to AdvancedMaps.kext
