@@ -43,7 +43,7 @@ OpenCore and Clover EFI Folders for running macOS High Sierra to Sonoma on the L
 	- Working battery status read-outs without additional DSDT/ACPI patches thanks to `ECEnabler.kext`
 - No patched `DSDT` – only SSDT hotpatches were used for maximum ACPI-compliance
 - IRQ patches fully realized via custom SSDT – no binary renames required. 
-- Custom AppleALC Layout to support the Audio Jack's of Lenovo Mini Dock Statiosn 4337 and 4338. It uses **Layout-ID 39** and has been integrated into AppleALC since [version 1.7.3](https://github.com/acidanthera/AppleALC/releases/tag/1.7.3)
+- Custom AppleALC Layout to support the Audio Jacks of Lenovo Mini Docking Stations 4337 and 4338. It uses **Layout-ID 39** and has been integrated into AppleALC since [version 1.7.3](https://github.com/acidanthera/AppleALC/releases/tag/1.7.3)
 
 ## Specs
 
