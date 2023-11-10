@@ -40,9 +40,10 @@ OpenCore and Clover EFI Folders for running macOS High Sierra to Sonoma on the L
 	- Fully working graphics acceleration for the Intel HD 4000 in macOS 12+ (requires Post-Install root patching with OCLP)
 	- Working legacy Broadcom Wi-Fi and Bluetooth in macOS Sonoma (requires Post-Install root patching with OCLP)
 	- Ability to boot macOS 12+ with AMFI enabled thanks to AMFIPass.kext.
+- No patched `DSDT` – only SSDT hotpatches were used for maximum ACPI-compliance
 - Working battery status read-outs without additional DSDT/ACPI patches thanks to `ECEnabler.kext`
 - 3D Globe in Maps in macOS 12+ thanks to AdvancedMaps.kext
-- IRQ patches fully realized via custom SSDT – no binary renames required. No patched `DSDT` required – only SSDT hotpatches were used for maximum ACPI-compliance.
+- IRQ patches fully realized via custom SSDT – no binary renames required
 - Custom AppleALC Layout to support the Audio Jacks of Lenovo Mini Docking Stations 4337 and 4338. It uses **Layout-ID 39** and has been integrated into AppleALC since [version 1.7.3](https://github.com/acidanthera/AppleALC/releases/tag/1.7.3)
 
 ## Specs
