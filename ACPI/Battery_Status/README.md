@@ -1,34 +1,34 @@
 ## Enabling Battery Status Indicator on the Lenovo T530
 
-Although the Battery Status Indicator is already working in both my Clover and OpenCore EFIs, this is for documenting how to enable it via ACPI.
+Although the Battery Status Indicator is already working in both my Clover and OpenCore EFIs, this is kept for documentation purposes.
 
 To enable the battery status indictaor in macOS, two methods exist (use either or):
 
-- **Method 1**: Using `ECEnabler.kext` (new, and currently used method)
-- **Method 2**: Using a combination of Binary Renames and `SSDT-BATTERY.aml` (old method)
+- **Method 1**: Using `ECEnabler.kext` (new, default)
+- **Method 2**: Using a combination of Binary Renames and `SSDT-BATTERY.aml` (old, obsolete method)
 
-Since the current set-up of my EFI uses `ECENabler.kext`, there's not much to cover here since the kext takes care of everything. Therefore this section focuses on the old method as a fallback – just in case the Kext may stop working in the furture.
+### Method 1: Using `ECEnabler.kext` (default)
+Since my EFI is alread configured to use `ECENabler.kext` to display Battery Status, there's nothing to do here.
 
-### Method 1: Using `ECEnabler.kext` 
-
-Add ECEnabler kext, update your config.plist (OpenCore only), save and reboot. Done! This is the currently used method so you don't have to do anything
+- Add `ECEnabler.kext` to `EFI/OC/Kexts` and your config.plist (OpenCore only)
+- Disable previously used patches (SSDT-BATTERY.aml and corresponding Binary Renames)
+- Save and reboot
 
 ### Method 2: Using Binary Renames and SSDT (Clover/OpenCore)
+This is the previoulsy uses method from the era before ECEnabler existed. It's still valid and if ECEnabler might no longer work in the future or if you prefer to enable Battery Status via ACPI patching, you still can. 
 
-This is the old school method from the time before ECEnabler existed. It's still valid and if you prefer to enable Battery Status this way, you can.
-
-**In OpenCore**:
+**OpenCore**:
 
 - Disable `ECEnabler.kext` (if present) 
 - Open `Battery_Patches_OC.plist` with a plist Editor
-- Copy the entries in the Sections `ACPI > Add `and `ACPI > Patch` to the respective sections of your config.plist and save it.
+- Copy the entries in the `ACPI/Add `and `ACPI/Patch` sections to the respective sections of your config.plist and save it.
 - Copy `SSDT-BATTERY.aml` to `EFI/OC/ACPI`
 - Reboot
 
-**In Clover**:
+**Clover**:
 
 - Disable/Delete `ECEnabler.kext` (if present)
 - Open `Battery_Patches_Clover.plist` with a plist Editor
-- Copy the entries in the Section `ACPI > DSDT > Patches` to the same section of your config.plist and save it.
+- Copy the entries from `ACPI/DSDT/Patches` to the corresponding section of your config.plist and save it.
 - Copy `SSDT-BATTERY.aml` to: `/EFI/CLOVER/ACPI/patched`
 - Reboot
