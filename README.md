@@ -46,6 +46,10 @@ OpenCore and Clover EFI Folders for running macOS High Sierra to Sonoma on the L
 - IRQ patches fully realized via custom SSDT – no binary renames required
 - Custom AppleALC Layout to support the Audio Jacks of Lenovo Mini Docking Stations 4337 and 4338. It uses **Layout-ID 39** and has been integrated into AppleALC since [version 1.7.3](https://github.com/acidanthera/AppleALC/releases/tag/1.7.3)
 
+|:warning: Important Updates|
+|:--------------------------|
+|Don't install macOS 14.2 beta 3 (23C5047e) yet! Patching it with OCLP 1.2.1 in Post-Install will cause the WindowServer to crash so you will get kicked back to the logon screen.
+
 ## Specs
 
 | Component           | Details                                       |
