@@ -22,7 +22,6 @@
     - [ACPI Power Management in macOS Ventura](#acpi-power-management-in-macos-ventura)
   - [Fixing Sleep issues](#fixing-sleep-issues)
   - [Reducing boot time](#reducing-boot-time)
-  - [Fixing issues with external Webcams](#fixing-issues-with-external-webcams)
   - [Swapping Command ⌘ and Option ⌥ Keys](#swapping-command--and-option--keys)
   - [Changing Themes](#changing-themes)
   - [Eject Button](#eject-button)
@@ -193,21 +192,18 @@ Open the `config.plist` and adjust the following settings depending on your syst
 		- Under `EUFI/Audio`, enable `AudioSupport`
 		- Make sure `ConnectDrivers` is enabled
 
-5. **SIP**: Under `NVRAM/Add/7C436110-AB2A-4BBB-A880-FE41995C9F82`, adjust `csr-active-config` according to the macOS version you want to use:
+5. **SIP**: Under `NVRAM/Add/7C436110-AB2A-4BBB-A880-FE41995C9F82`, adjust `csr-active-config` according to the macOS version you want to use. Lowering SIP is _mandatory_ if you want to run macOS Monterey or newer in order to install and load Intel HD 4000 Drivers! If you have issues running OCLP in Post-Install, change `csr-active-config` to `FE0F0000` (almost fully disabled).
+
 	- SIP enabled: `00000000` (macOS Big Sur and older only!)
 	- SIP disabled:
 		- For Big Sur and newer: `03080000`(0x803)
 		- For macOS Mojave/Catalina: `EF070000`(0x7EF)
-		- For macOS High Sierra: `FF030000` (0x3FF)</br></br>
-	> [!NOTE]
-	> Lowering SIP is mandatory if you want to run macOS Monterey or newer in order to install and load Intel HD 4000 Drivers! If you have issues running OCLP in Post-Install, change `csr-active-config` to `FE0F0000` (almost fully disabled).
+		- For macOS High Sierra: `FF030000` (0x3FF)
 
-6. **SMBIOS**: Under `SystemProductName`, select the correct SMBIOS for your CPU and generate a serial, etc. for it.
+6. **SMBIOS**: Under `SystemProductName`, select the correct SMBIOS for your CPU and generate a serial, etc. for it. My EFI utilizes Patches and kexts from OpenCore Legacy Patcher which allow using the correct SMBIOS for Ivy Bridge CPUs on macOS 11.3 and newer (Darwin Kernel 20.4+), so native Power Management and OTA System Updates are working oob which wouldn't be possible otherwise past macOS Catalina.
 	-  For Intel i7: `MacBookPro10,1`
-	-  For Intel i5: `MacBookPro10,2`</br></br>
-	> [!NOTE]
-	> My config contains Booter Patches from OpenCore Legacy Patcher and RestrictEvents kext which allow using the correct SMBIOS for Ivy Bridge CPUs on macOS 11.3 and newer (Darwin Kernel 20.4+), so native Power Management and OTA System Updates are working oob which wouldn't be possible otherwise past macOS Catalina.
-
+	-  For Intel i5: `MacBookPro10,2`
+	
 7. **WiFi and Bluetooth** (Read carefully!)
 	- **Case 1: Intel Wifi/BT Card**. In stock configuration, the T530 comes with an Intel WiFi/Bluetooth card, so you need different kexts for WiFi and Bluetooth. It may work with [**OpenIntelWireless**](https://github.com/OpenIntelWireless) kexts. 
 		- Check the compatibility list to find out if your card is supported. 
