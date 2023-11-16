@@ -33,6 +33,11 @@
 ## About
 OpenCore and Clover EFI Folders for running macOS High Sierra to Sonoma on the Lenovo ThinkPad T530.
 
+| :warning: Important Updates |
+|:----------------------------|
+| Don't install macOS 14.2 beta 3 (23C5047e) yet! Patching it with OCLP 1.2.1 in Post-Install will cause the WindowServer to crash so you will get kicked back to the logon screen.
+| Uninstall Intel Power Gadget before upgrading to macOS Sonoma (use the uninstaller in the app's folder)! The `EnergyDriver.kext` that comes with the app causes all CPU cores to run at 100% in macOS Sonoma 14.2+!
+
 ### Special Features
 - Includes Patches and Kexts from [**OpenCore Legacy Patcher** (OCLP)](https://github.com/dortania/Opencore-Legacy-Patcher), such as:
 	- Booter Patches, NVRAM parameters and `RestrictEvent.kext` to install and run macOS Big Sur+ with a `MacBookPro10,x` SMBIOS ([More](https://github.com/5T33Z0/OC-Little-Translated/tree/main/09_Board-ID_VMM-Spoof))
@@ -45,11 +50,6 @@ OpenCore and Clover EFI Folders for running macOS High Sierra to Sonoma on the L
 - 3D Globe in Maps in macOS 12+ thanks to AdvancedMaps.kext
 - IRQ patches fully realized via custom SSDT – no binary renames required
 - Custom AppleALC Layout to support the Audio Jacks of Lenovo Mini Docking Stations 4337 and 4338. It uses **Layout-ID 39** and has been integrated into AppleALC since [version 1.7.3](https://github.com/acidanthera/AppleALC/releases/tag/1.7.3)
-
-| :warning: Important Updates |
-|:----------------------------|
-| Don't install macOS 14.2 beta 3 (23C5047e) yet! Patching it with OCLP 1.2.1 in Post-Install will cause the WindowServer to crash so you will get kicked back to the logon screen.
-| Uninstall Intel Power Gadget before upgrading to macOS Sonoma (use the uninstaller in the app's folder)! The `EnergyDriver.kext` that comes with the app causes all CPU cores to run at 100% in macOS Sonoma 14.2+!
 
 ## Specs
 
