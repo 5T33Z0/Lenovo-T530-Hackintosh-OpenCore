@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Booter</key>
+	<dict>
+		<key>MmioWhitelist</key>
+		<array>
+			<dict>
+				<key>Address</key>
+				<integer>4161765376</integer>
+				<key>Comment</key>
+				<string>MMIO devirt 0xF80F8000</string>
+				<key>Enabled</key>
+				<true/>
+			</dict>
+			<dict>
+				<key>Address</key>
+				<integer>4275159040</integer>
+				<key>Comment</key>
+				<string>MMIO devirt 0xFED1C000</string>
+				<key>Enabled</key>
+				<true/>
+			</dict>
+		</array>
+	</dict>
+</dict>
+</plist>
