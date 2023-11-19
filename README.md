@@ -166,33 +166,33 @@ Open the `config.plist` and adjust the following settings depending on your syst
 1. **ACPI** Section:
 	- Disable `SSDT-PM.aml` (unless you have an i7 3630QM as well). Generate your own with [ssdtPRGen](https://github.com/5T33Z0/OC-Little-Translated/blob/main/01_Adding_missing_Devices_and_enabling_Features/CPU_Power_Management/CPU_Power_Management_(Legacy)/README.md) in Post-Install.
 
-2. **Booter** Section:
+2. **Booter** Section (optional):
 	- The entries in the MMIO Whitelist are memory regions used by *my* firmware. Since I don't know if these are used by all T530 BIOSes, I disabled them and the corresponding `DevirtualiseMmio` Quirk
 	- To figure out which one(s) your system use(s), you can follow this [guide](https://github.com/5T33Z0/OC-Little-Translated/tree/main/12_MMIO_Whitelist)
 	- This is not a necessity, just some fine-tuning. 
 
-3. **DeviceProperties**: Enable the correct Framebuffer-Patch for the display panel. Two types of display panels exist for the T530: `HD+` and `HD` panels using different AAPL,ig-platform-ids and resolutions:</br>
+3. **DeviceProperties**: Enable the correct Framebuffer-Patch for your display. There T530 support two types of display panels: `HD+` and `HD`, supporting different resolutions. Each reauires a different `AAPL,ig-platform-id` and connector patches:</br>
 	
 	`AAPL,ig-platform-id 04006601` = `HD+` = WSXGA and FullHD. Resolution: ≥ 1600x900 px. (**Default**)</br>
-	`AAPL,ig-platform-id 03006601` = `HD` = SD. Resolution: ≤ 1366x768 px</br>
+	`AAPL,ig-platform-id 03006601` = `HD` = SD. Resolution: ≤ 1366x768 px.</br>
 	
 	If your T530 has an SD panel, do the following;
 	 
 	- Go to `DeviceProperties` 
-	- Disable the `PciRoot(0x0)/Pci(0x2,0x0)` by placing `#` in front of it.
+	- Disable the entry `PciRoot(0x0)/Pci(0x2,0x0)` by placing `#` in front of it.
 	- Enable `#PciRoot(0x0)/Pci(0x2,0x0) 1366x768 px` by deleting the leading `#` and the description `1366x768 px`, so that it looks this: `PciRoot(0x0)/Pci(0x2,0x0)`.
 	
 	:bulb: **HINT**: If your screen turns off during boot, you are using the wrong Framebuffer-Patch!
 	
-4. **Audio**: 
+4. **Audio** (optional): 
 	- If you need digital Audio over HDMI/DP, disable/delete `No-hda-gfx` from the Audio Device Properties in `PciRoot(0x0)/Pci(0x1B,0x0)`.
 	- My EFI contains a custom build of `AppleALC.kext` which only contains layouts `18` and `39` (default) and therefore only is 95 KB in size (instead of 3.6 MB). If you are using a docking station, leave it at `39`. If you don't, change it to `18`.
-	- **Bootchime**: If you want the bootchime to playback, do the following:
+	- **Bootchime**: If you want the bootchime to play, do the following:
 		- Under `UEFI/Drivers`, enable `AudioDxe.efi`
 		- Under `EUFI/Audio`, enable `AudioSupport`
 		- Make sure `ConnectDrivers` is enabled
 
-5. **SIP**: Under `NVRAM/Add/7C436110-AB2A-4BBB-A880-FE41995C9F82`, adjust `csr-active-config` according to the macOS version you want to use. Lowering SIP is _mandatory_ if you want to run macOS Monterey or newer in order to install and load Intel HD 4000 Drivers! If you have issues running OCLP in Post-Install, change `csr-active-config` to `FE0F0000` (almost fully disabled).
+5. **SIP** (optional): Under `NVRAM/Add/7C436110-AB2A-4BBB-A880-FE41995C9F82`, adjust `csr-active-config` according to the macOS version you want to use. Lowering SIP is _mandatory_ if you want to run macOS 12 and newer in order to install and load Intel HD 4000 Drivers! If you have issues running OCLP in Post-Install, change `csr-active-config` to `FE0F0000` (almost fully disabled).
 
 	- SIP enabled: `00000000` (macOS Big Sur and older only!)
 	- SIP disabled:
@@ -201,18 +201,18 @@ Open the `config.plist` and adjust the following settings depending on your syst
 		- For macOS High Sierra: `FF030000` (0x3FF)
 
 6. **SMBIOS**: Under `SystemProductName`, select the correct SMBIOS for your CPU and generate a serial, etc. for it. My EFI utilizes Patches and kexts from OpenCore Legacy Patcher which allow using the correct SMBIOS for Ivy Bridge CPUs on macOS 11.3 and newer (Darwin Kernel 20.4+), so native Power Management and OTA System Updates are working oob which wouldn't be possible otherwise past macOS Catalina.
-	-  For Intel i7: `MacBookPro10,1`
+	-  For Intel i7: `MacBookPro10,1` (Default)
 	-  For Intel i5: `MacBookPro10,2`
 	
 7. **WiFi and Bluetooth** (Read carefully!)
 	- **Case 1: Intel Wifi/BT Card**. In stock configuration, the T530 comes with an Intel WiFi/Bluetooth card, so you need different kexts for WiFi and Bluetooth. It may work with [**OpenIntelWireless**](https://github.com/OpenIntelWireless) kexts. 
 		- Check the compatibility list to find out if your card is supported. 
-		- Remove `BluetoolFixup` and all kexts containing "Brcm" in the name.
+		- Remove all kexts containing "Brcm" in the name.
 		- Add the required Kexts for your Intel card to `EFI/OC/Kexts` folder and `config.plist` before attempting to boot with this EFI!
 	- **Case 2: 3rd Party WiFi/BT Cards**. These require the [**1vyrain**](https://1vyra.in/) jailbreak to unlock the BIOS to disable the WiFi Whitelist (not required if the 3rd party card is whitelisted).
 		- I use a WiFi/BT Card by Broadcom, so my setup requires `AirportBrcmFixup` for WiFi and `BrcmPatchRAM` and additional satellite kexts for Bluetooth. Read the comments in the config for details.
-		- `BrcmFirmwareData.kext` is used for injecting the required firmware for Broadcom devices. Alternatively, you can use `BrcmFirmwareRepo.kext` which is more efficient but needs to be installed into `System/Library/Extensions` since it cannot be injected by Bootloaders.
-		- If you use a WiFi/BT Card from a different vendor than Broadcom, remove BluetoolFixup and the Brcm Kexts and add the Kext(s) required for your card to the kext folder and `config.plist` before deploying the EFI folder!
+		- `BrcmFirmwareData.kext` is used for injecting the required firmware for Broadcom devices. Alternatively, you can use `BrcmFirmwareRepo.kext` which is more efficient but has to be installed into `System/Library/Extensions` since it cannot be injected by Bootloaders.
+		- If you use a WiFi/BT Card from a different vendor than Broadcom, remove the Brcm Kexts and add the Kext(s) required for your card to the kext folder and `config.plist` before deploying the EFI folder!
 
 8. **Kernel Section** 
 	- **Kernel/Patch**: If you have an [HDD caddy](https://github.com/5T33Z0/Lenovo-T530-Hackintosh-OpenCore/issues/37#issuecomment-1509840983) for the DVD drive bay, you can add this [kernel patch](https://github.com/5T33Z0/Lenovo-T530-Hackintosh-OpenCore/blob/main/Additional_Files/SATA_Hotplug.plist) to your config to enable SATA hot plugging.
@@ -223,7 +223,7 @@ Open the `config.plist` and adjust the following settings depending on your syst
 9. **Misc Section**
 	- **Misc/Boot**: `HideAuxiliary` is enabled. This hides additional items like Recovery and resetting NVRAM. You can reveal them by pressing the space bar in BootPicker. If you want all items to show by default, disable `HideAuxiliary`.
 
-10. **NVRAM Section** 
+10. **NVRAM Section**
 	- **Boot-args:** (under GUID `7C436110-AB2A-4BBB-A880-FE41995C9F82`)
 		- `brcmfx-country=#a`: Sets Wifi Country Code (`#a` = generic) for Broadcom WiFi cards using [**AirportBrcmFixup**](https://github.com/acidanthera/AirportBrcmFixup). If you are using an Intel Card, delete this boot argument. Otherwise replace the generic country code with the one for your country [**listed here**](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2#Officially_assigned_code_elements). This is recommended to avoid connectivity issues and getting AirDrop to work properly (which I don't use). 
 
@@ -231,7 +231,7 @@ Open the `config.plist` and adjust the following settings depending on your syst
 	- [**itlwm**](https://github.com/OpenIntelWireless/itlwm): Kext for Intel WiFi Cards. Use instead of `AirportBrcmFixup`if you don't use a Broadcom WiFi Card
 	- [**IntelBluetoothFirmware**](https://github.com/OpenIntelWireless/IntelBluetoothFirmware): Kext for Intel Bluetooth Cards. Use instead of `BrcmPatchRam` and Plugins if you don't use a Broadcom BT Card
 	- [**NoTouchID**](https://github.com/al3xtjames/NoTouchID): only required for macOS 10.13 and 10.14 so the boot process won't stall while checking for a Touch ID sensor.
-	- [**Feature Unlock**](https://github.com/acidanthera/FeatureUnlock): Unlocks additional features like Sidecar, NighShift, Airplay, etc.
+	- [**Feature Unlock**](https://github.com/acidanthera/FeatureUnlock): Unlocks additional features like Sidecar, AirPlay to Mac and Continuity Camera.
 
 12. **Increase Max Backlight Brightness Level** (optional): 
 	- Add boot-arg `applbkl=0` for increased maximum brightness of the display as defined in `SSDT-PNLF.aml` instead of letting Whatevergreen handle it. Also available as device property (see Whatevergreen documentation for details).
@@ -258,7 +258,9 @@ Once you're done adjusting the `config.plist`, mount your system's ESP and do th
 - Perform an NVRAM Reset (in BootPicker, hit Space Bar to reveal the tool)
 - Select macOS to boot
 
-The system may crash the first time when booting macOS Ventura. That's normal. After that, it should work as expected.
+> [!NOTE]
+>
+> The system may crash the first time when booting macOS Ventura or newer. That's normal. After that, it should work as expected.
 
 ### BIOS Settings
 
@@ -285,6 +287,7 @@ The system may crash the first time when booting macOS Ventura. That's normal. A
 |          | – |<ul><li> Boot Order Lock | `Enabled` 
 
 > [!NOTE]
+> 
 > Enable Boot Order Lock *after* you've set-up the order of the Boot Drives. This prevents `WindowsBootManager` from taking over the first slot of the boot drives. This way, you don't need to enable the `LauncherOption` in OpenCore!
 
 </details>
@@ -293,6 +296,7 @@ The system may crash the first time when booting macOS Ventura. That's normal. A
 **Coming from Windows/Linux**: Follow the installation guide by [**Dortania**](https://dortania.github.io/OpenCore-Install-Guide/installer-guide/#making-the-installer). 
 
 > [!NOTE]
+> 
 > No support from my end is provided for issues related to UBS Installers created in Windows or Linux or when using a Virtual Machine!
 
 **Coming from macOS**: 
@@ -417,14 +421,14 @@ This issue is related to Smart Connect, a feature of WiFi routers which support 
 - Acidanthera and Team for [OpenCore Bootloader](https://github.com/acidanthera/OpenCorePkg), OCLP and additional Kexts
 - Dortania for [OpenCore Install Guide](https://dortania.github.io/OpenCore-Install-Guide)
 - SergeySlice for [Clover Bootloader](https://github.com/CloverHackyColor/CloverBootloader)
-- Chris1111 for [Patch-HD4000-Monterey](https://github.com/chris1111/Patch-HD4000-Monterey)
+- khronokernel for [Clover Vanilla Install Guide](https://hackintosh.gitbook.io/-r-hackintosh-vanilla-desktop-guide/)
 - 1Revenger1 for [ECEnabler](https://github.com/1Revenger1/ECEnabler)
+- [Corpnewt](https://github.com/corpnewt) for SSDTTime, GenSMBIOS, ProperTree and BitmaskDecode
 - [ic005k](https://github.com/ic005k/) for OpenCore Auxiliary Tools and PlistEDPlus
 - Mackie100 for [Clover Configurator](https://mackie100projects.altervista.org/download-clover-configurator/)
-- [Corpnewt](https://github.com/corpnewt) for SSDTTime, GenSMBIOS, ProperTree and BitmaskDecode
+- Chris1111 for [Patch-HD4000-Monterey](https://github.com/chris1111/Patch-HD4000-Monterey)
 - Piker-Alpha for [ssdtPRGen](https://github.com/Piker-Alpha/ssdtPRGen.sh)
 - [SL-Soft](https://www.sl-soft.de/software/) for Kext Updater and ANYmacOS
-- khronokernel for [Clover Vanilla Install Guide](https://hackintosh.gitbook.io/-r-hackintosh-vanilla-desktop-guide/)
 - [Rehabman](https://github.com/RehabMan) for Laptop and DSDT patching guides
 - daliansky for [OC Little](https://github.com/5T33Z0/OC-Little-Translated) ACPI Hotpatch Collection
 - [RealKiro](https://github.com/RealKiro/Hackintosh) for Clover EFI with ACPI Patches for referencing
