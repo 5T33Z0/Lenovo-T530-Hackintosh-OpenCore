@@ -418,16 +418,17 @@ This issue is related to Smart Connect, a feature of WiFi routers which support 
 ## Credits and Thank Yous
 
 - George Kushnir for [1vyrain Jailbreak](https://github.com/n4ru/1vyrain) to remove WLAN whitelist from BIOS
-- Acidanthera and Team for [OpenCore Bootloader](https://github.com/acidanthera/OpenCorePkg), OCLP and additional Kexts
-- Dortania for [OpenCore Install Guide](https://dortania.github.io/OpenCore-Install-Guide)
+- Apple for macOS
+- Acidanthera for [OpenCore Bootloader](https://github.com/acidanthera/OpenCorePkg) and countless Kexts
+- Dortania for [OpenCore Install Guide](https://dortania.github.io/OpenCore-Install-Guide) and [OpenCore Legacy Pacher](https://dortania.github.io/OpenCore-Legacy-Patcher/)
 - SergeySlice for [Clover Bootloader](https://github.com/CloverHackyColor/CloverBootloader)
 - khronokernel for [Clover Vanilla Install Guide](https://hackintosh.gitbook.io/-r-hackintosh-vanilla-desktop-guide/)
 - 1Revenger1 for [ECEnabler](https://github.com/1Revenger1/ECEnabler)
 - [Corpnewt](https://github.com/corpnewt) for SSDTTime, GenSMBIOS, ProperTree and BitmaskDecode
+- Piker-Alpha for [ssdtPRGen](https://github.com/Piker-Alpha/ssdtPRGen.sh)
 - [ic005k](https://github.com/ic005k/) for OpenCore Auxiliary Tools and PlistEDPlus
 - Mackie100 for [Clover Configurator](https://mackie100projects.altervista.org/download-clover-configurator/)
 - Chris1111 for [Patch-HD4000-Monterey](https://github.com/chris1111/Patch-HD4000-Monterey)
-- Piker-Alpha for [ssdtPRGen](https://github.com/Piker-Alpha/ssdtPRGen.sh)
 - [SL-Soft](https://www.sl-soft.de/software/) for Kext Updater and ANYmacOS
 - [Rehabman](https://github.com/RehabMan) for Laptop and DSDT patching guides
 - daliansky for [OC Little](https://github.com/5T33Z0/OC-Little-Translated) ACPI Hotpatch Collection
