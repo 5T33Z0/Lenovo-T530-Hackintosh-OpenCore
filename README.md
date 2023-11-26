@@ -34,7 +34,6 @@ OpenCore and Clover EFI Folders for running macOS High Sierra to Sonoma on the L
 
 | :warning: Important Updates |
 |:----------------------------|
-| Don't install macOS 14.2 beta 3 (23C5047e) yet! Patching it with OCLP 1.2.1 in Post-Install will cause the WindowServer to crash so you will get kicked back to the logon screen.
 | Uninstall Intel Power Gadget before upgrading to macOS Sonoma (use the uninstaller in the app's folder)! The `EnergyDriver.kext` that comes with the app causes all CPU cores to run at 100% in macOS Sonoma 14.2+!
 
 ### Special Features
