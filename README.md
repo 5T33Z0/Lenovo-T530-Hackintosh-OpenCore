@@ -214,7 +214,7 @@ Open the `config.plist` and adjust the following settings depending on your syst
 	- **Kernel/Patch**: If you have an [HDD caddy](https://github.com/5T33Z0/Lenovo-T530-Hackintosh-OpenCore/issues/37#issuecomment-1509840983) for the DVD drive bay, you can add this [kernel patch](https://github.com/5T33Z0/Lenovo-T530-Hackintosh-OpenCore/blob/main/Additional_Files/SATA_Hotplug.plist) to your config to enable SATA hot plugging.
 	- **Kernel/Quirks**: 
 		- If you are using the 1vyrain BIOS, `CFG-Lock` will be disabled by default (not on the T430). In this case, you can disable the `AppleCpuPmCfgLock` Quirk. 
-		- To figure out if the `MSR 0xE2` register of your BIOS is unlocked, add `ControlMsrE2.efi` to `EFI/OC/Tools` and your config.plist (under `Misc/Tools`) and run it from the BootPicker. The output should look like this: </br>![CFG Lock Disabled](https://user-images.githubusercontent.com/76865553/210180491-0f48b7b0-ae46-4dda-b110-6703401e2c25.jpg)
+		- To figure out if the `MSR 0xE2` register of your BIOS is unlocked, add `ControlMsrE2.efi` to `EFI/OC/Tools` and your config.plist (under `Misc/Tools`) and run it from the BootPicker. The output should look like this: </br> ![Unlocked](https://github.com/5T33Z0/Lenovo-T530-Hackintosh-OpenCore/assets/76865553/dac7b8d5-583d-46ce-9b1c-619947e16a9e)
 
 9. **Misc Section**
 	- **Misc/Boot**: `HideAuxiliary` is enabled. This hides additional items like Recovery and resetting NVRAM. You can reveal them by pressing the space bar in BootPicker. If you want all items to show by default, disable `HideAuxiliary`.
