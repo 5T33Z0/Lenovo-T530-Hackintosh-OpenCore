@@ -32,22 +32,19 @@
 ## About
 OpenCore and Clover EFI Folders for running macOS High Sierra to Sonoma on the Lenovo ThinkPad T530.
 
-| :warning: Important Updates |
-|:----------------------------|
-| Uninstall Intel Power Gadget before upgrading to macOS Sonoma (use the uninstaller in the app's folder)! The `EnergyDriver.kext` that comes with the app causes all CPU cores to run at 100% in macOS Sonoma 14.2+!
-
 ### Special Features
 - Includes Patches and Kexts from [**OpenCore Legacy Patcher** (OCLP)](https://github.com/dortania/Opencore-Legacy-Patcher), such as:
 	- Booter Patches, NVRAM parameters and `RestrictEvent.kext` to install and run macOS Big Sur+ with a `MacBookPro10,x` SMBIOS ([More](https://github.com/5T33Z0/OC-Little-Translated/tree/main/09_Board-ID_VMM-Spoof))
-	- Native SMC CPU Power Management in macOS 13 and newer for optimal CPU Power Management ([More](https://github.com/5T33Z0/OC-Little-Translated/tree/main/01_Adding_missing_Devices_and_enabling_Features/CPU_Power_Management/CPU_Power_Management_(Legacy)#re-enabling-acpi-power-management-in-macos-ventura)).
+	- Native SMC CPU Power Management in macOS 13+ for optimal CPU Power Management ([More](https://github.com/5T33Z0/OC-Little-Translated/tree/main/01_Adding_missing_Devices_and_enabling_Features/CPU_Power_Management/CPU_Power_Management_(Legacy)#re-enabling-acpi-power-management-in-macos-ventura)).
 	- Fully working graphics acceleration for the Intel HD 4000 in macOS 12+ (requires Post-Install root patching with OCLP)
-	- Working legacy Broadcom Wi-Fi and Bluetooth in macOS Sonoma (requires Post-Install root patching with OCLP)
+	- Working legacy Broadcom Wi-Fi and Bluetooth in macOS 14 (requires Post-Install root patching with OCLP)
 	- Ability to boot macOS 12+ with AMFI enabled thanks to `AMFIPass.kext`.
-- No patched `DSDT` – only SSDT hotpatches were used for maximum ACPI-compliance
+- No patched `DSDT` – only SSDT hotpatches were used for maximum ACPI-compliance!
 - Working battery status read-outs without additional DSDT/ACPI patches thanks to `ECEnabler.kext`
 - 3D Globe in Maps in macOS 12+ thanks to `AdvancedMaps.kext`
 - IRQ patches fully realized via custom SSDT – no binary renames required!
 - Custom AppleALC Layout to support the Audio Jacks of Lenovo Mini Docking Stations 4337 and 4338. It uses **Layout-ID 39** and has been integrated into AppleALC since [version 1.7.3](https://github.com/acidanthera/AppleALC/releases/tag/1.7.3)
+- Working Hibernation
 
 ## Specs
 
@@ -216,7 +213,7 @@ Open the `config.plist` and adjust the following settings depending on your syst
 8. **Kernel Section** 
 	- **Kernel/Patch**: If you have an [HDD caddy](https://github.com/5T33Z0/Lenovo-T530-Hackintosh-OpenCore/issues/37#issuecomment-1509840983) for the DVD drive bay, you can add this [kernel patch](https://github.com/5T33Z0/Lenovo-T530-Hackintosh-OpenCore/blob/main/Additional_Files/SATA_Hotplug.plist) to your config to enable SATA hot plugging.
 	- **Kernel/Quirks**: 
-		- If you are using the 1vyrain BIOS, CFG Lock will be disabled by default (not on the T430). In this case, you can disable the `AppleCpuPmCfgLock` Quirk. 
+		- If you are using the 1vyrain BIOS, `CFG-Lock` will be disabled by default (not on the T430). In this case, you can disable the `AppleCpuPmCfgLock` Quirk. 
 		- To figure out if the `MSR 0xE2` register of your BIOS is unlocked, add `ControlMsrE2.efi` to `EFI/OC/Tools` and your config.plist (under `Misc/Tools`) and run it from the BootPicker. The output should look like this: </br>![CFG Lock Disabled](https://user-images.githubusercontent.com/76865553/210180491-0f48b7b0-ae46-4dda-b110-6703401e2c25.jpg)
 
 9. **Misc Section**
@@ -317,8 +314,11 @@ Once macOS is up and running, you may want to change the following settings to m
 	- macOS Big Sur and older: `Default`
 	- macOS Monterey: `Disabled` (otherwise insta-crash)
 	- macOS Ventura: `Default` (I don't know why but `Default` works – which it shouldn't…)
-- `csr-active-config`: `00000000` (macOS 11.x or older only!)
+- `csr-active-config`: `00000000` (macOS 11.x and older only!)
 - `UEFI/APFS`: change `MinDate` and `MinVersion` from `-1` (disabled) to `0` (default) or use [specific values for different versions of macOS](https://github.com/5T33Z0/OC-Little-Translated/tree/main/A_Config_Tips_and_Tricks#mindateminversion-settings-for-the-apfs-driver).
+- Enable Hibernation (use Terminal or change in Hackintool):
+	- Disable PowerNap: `sudo pmset -a powernap 0`
+	- Change Hibernatemode to 25: `sudo pmset -a hibernatemode 25` 
 
 **NOTES**
 
