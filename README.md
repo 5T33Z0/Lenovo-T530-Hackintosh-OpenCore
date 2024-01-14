@@ -59,7 +59,7 @@ OpenCore and Clover EFI Folders for running macOS High Sierra to Sonoma on the L
 | Chipset             | [Intel QM77 Express](https://www.intel.com/content/dam/www/public/us/en/documents/datasheets/7-series-chipset-pch-datasheet.pdf)
 | BIOS Version        | 2.77, unlocked with 1vyRain                   |
 | Processor           | Intel Core i7 3630QM                          |
-| Memory              | 16GB Samsung DDR3 1600MHz, Dual-Channel       |
+| Memory              | 16GB Samsung DDR3 1600MHz, Dual-Channel <br> Minimum: 8GB |
 | Hard Disk           | Samsung 840 Evo 250GB                         |
 | Integrated Graphics | Intel HD Graphics 4000, 2048 MB RAM assigned  |
 | Display             | 15.6" HD+ TFT Display (1600x900 px)           |
