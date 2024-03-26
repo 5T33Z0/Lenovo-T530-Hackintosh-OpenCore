@@ -3,7 +3,7 @@
 Here you'll find additional SSDT-PM files for optimizing the CPU power management of different Ivy Bridge CPU models. The file names are a combination of CPU Model and Low Frequency (either 900 or 1200 mHz). For mobile Ivy Bridge CPUs, the default Low Frequency is 1200 mHz, the optimised frequency is 900 mHz.
 
 ### How To:
-- **CAUTION**: Before you use this, backup your current EFI Folder on a FAT32 formatted bootstick!
+- ⚠️ Before you add a different `SSDT-PM`, backup your current EFI Folder on a FAT32 formatted bootstick!
 - Rename the file of your choise to `SSDT-PM.aml`before adding it to EFI > OC > ACPI.
 - Don't add the `.dsl` files to your EFI folder!
 - Update you `config.plist` make sure the SSDt-PM is in the list of ACPI > Add
