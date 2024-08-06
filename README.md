@@ -20,9 +20,10 @@
   - [Installing macOS](#installing-macos)
     - [Recommended macOS version](#recommended-macos-version)
 - [Post-Install](#post-install)
+  - [Disable Gatekeeper (optional)](#disable-gatekeeper-optional)
   - [Strengthen Security](#strengthen-security)
   - [Fixing CPU Power Management](#fixing-cpu-power-management)
-    - [ACPI Power Management in macOS Ventura](#acpi-power-management-in-macos-ventura)
+    - [ACPI Power Management in macOS 13+](#acpi-power-management-in-macos-13)
   - [Fixing Sleep issues](#fixing-sleep-issues)
   - [Reducing boot time](#reducing-boot-time)
   - [Swapping Command ⌘ and Option ⌥ Keys](#swapping-command--and-option--keys)
@@ -312,6 +313,11 @@ Big Sur is also the best choice if you're planing to upgrade to macOS Monterey o
 
 ## Post-Install
 
+### Disable Gatekeeper (optional)
+I disable Gatekeeper on my systems because it is annoying and wants to stop you from running scripts from github etc. To do so, enter `sudo spctl --master-disable` in Terminal.
+
+This command no longer works in macOS Sequoia – it requires a [different method](https://github.com/5T33Z0/OC-Little-Translated/blob/main/14_OCLP_Wintel/Guides/Disable_Gatekeeper.md) to disable Gatekeeper.
+
 ### Strengthen Security
 Once macOS is up and running, you may want to change the following settings to make your system more secure:
 
@@ -319,17 +325,17 @@ Once macOS is up and running, you may want to change the following settings to m
 	- macOS Big Sur and older: `Default`
 	- macOS Monterey: `Disabled` (otherwise insta-crash)
 	- macOS Ventura: `Default` (I don't know why but `Default` works – which it shouldn't…)
-- `csr-active-config`: `00000000` (macOS 11.x and older only!)
+- `csr-active-config`: `00000000` (macOS 11.x and older only – leave on `03080000` if your system requires root patches!)
 - `UEFI/APFS`: change `MinDate` and `MinVersion` from `-1` (disabled) to `0` (default) or use [specific values for different versions of macOS](https://github.com/5T33Z0/OC-Little-Translated/tree/main/A_Config_Tips_and_Tricks#mindateminversion-settings-for-the-apfs-driver).
 - Enable Hibernation (use Terminal or change in Hackintool):
 	- Disable PowerNap: `sudo pmset -a powernap 0`
 	- Change Hibernatemode to 25: `sudo pmset -a hibernatemode 25` 
 
-**NOTES**
-
-- Enter `nvram 94b73556-2197-4702-82a8-3e1337dafbfb:AppleSecureBootPolicy` to check the security level. It should return `%01` for medium security. More info [here](https://github.com/perez987/Apple-Secure-Boot-and-Vault-with-OpenCore)
-- **SIP**: If you're planning to install macOS Monterey or newer, System Integritiy Protection must be disabled! Because installing the necessary graphics drivers breaks macOS' security seal and the system will crash during boot if it is enabled!
-- **MinDate/MinVersion**: You should keep a working backup of your EFI folder on a FAT32 formatted USB flash drive before changing these settings, because if they are wrong, the APFS driver won't load and you won't see your disk(s) in the BootPicker!
+> [!NOTE]
+>
+> - Enter `nvram 94b73556-2197-4702-82a8-3e1337dafbfb:AppleSecureBootPolicy` to check the security level. It should return `%01` for medium security. More info [here](https://github.com/perez987/Apple-Secure-Boot-and-Vault-with-OpenCore)
+> - **SIP**: If you're planning to install macOS Monterey or newer, System Integritiy Protection must be lowered! Because installing the necessary graphics drivers breaks macOS' security seal and the system will crash during boot if it is enabled!
+> - **MinDate/MinVersion**: You should keep a working backup of your EFI folder on a FAT32 formatted USB flash drive before changing these settings, because if they are wrong, the APFS driver won't load and you won't see your disk(s) in the BootPicker!
 
 ### Fixing CPU Power Management 
 
@@ -343,12 +349,12 @@ Optionally, install [Intel Power Gadget](https://www.intel.com/content/www/us/en
 - Pre-generated SSDTs for other CPU models used in the T530 can be found [here](https://github.com/5T33Z0/Lenovo-T530-Hackintosh-OpenCore/tree/main/ACPI/SSDT-PM)  
 - You can add modifiers to the terminal command for building SSDT-PM. For example, you can drop the low frequency from the default 1200 MHz to 900 MHz in 100 MHz increments, but no lower than that. Otherwise the system crashes during boot. I suggest you experiment with the modifiers a bit.
 
-#### ACPI Power Management in macOS Ventura
+#### ACPI Power Management in macOS 13+
 With the release of macOS Monterey, Apple dropped the plugin-type check for handling CPU Power Management. Since then, the `X86PlatformPlugin` (Plugin-type 1) is loaded by default – prior to Monterey, plugin-type 0 (ACPI_SMC_PlatformPlugin) was the default. For Haswell and newer this is great because you no longer need `SSDT-PLUG` to enable Plugin-Type 1. But for Ivy Bridge and older, you now not only need `SSDT-PM` to inject C-States and P-States but also to declare Plugin-Type 0 usage. But using ACPI CPU Power Management is still possible. For macOS Ventura, it's a different story…
 
 In macOS Ventura, Apple removed the actual `ACPI_SMC_PlatformPlugin` *binary* from the kext itself rendering `SSDT-PM` generated for 'plugin-type' 0 useless, since it can't address a plugin which doesn't exist any more. Instead, the `X86PlaformPlugin` is loaded. This results in CPU Power Management not working correctly out of the box (no Turbo states, etc.).
 
-So when switching to macOS Ventura, injecting additional kexts to re-enable ACPI CPU Power Management (Plugin-Type 0) is necessary. My EFI is already configured to boot macOS Ventura and use ACPI CPU Power Management, so you don't have to worry about it.
+So when switching to macOS Ventura or newer, injecting additional kexts to re-enable ACPI CPU Power Management (Plugin-Type 0) is necessary. My EFI is already configured to boot macOS Ventura and use ACPI CPU Power Management, so you don't have to worry about it.
  
 ### Fixing Sleep issues
 If you have issues with sleep, run the following commands in Terminal:
