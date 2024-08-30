@@ -1,15 +1,12 @@
 # Lenovo ThinkPad T530 Hackintosh OpenCore
 
-[![T530](https://img.shields.io/badge/ThinkPad-T530-informational.svg)](https://psref.lenovo.com/syspool/Sys/PDF/withdrawnbook/ThinkPad_T530.pdf) [![OpenCore](https://img.shields.io/badge/OpenCore-0.9.9-cyan.svg)](https://github.com/acidanthera/OpenCorePkg/releases/latest) [![Clover Version](https://img.shields.io/badge/Clover-r5156-apple.svg)](https://github.com/CloverHackyColor/CloverBootloader/releases) ![MacOS](https://img.shields.io/badge/macOS-10.13–14.4-purple.svg) [![release](https://img.shields.io/badge/Download-latest-success.svg)](https://github.com/5T33Z0/Lenovo-T530-Hackinosh-OpenCore/releases/latest)<br>![10103711](https://github.com/5T33Z0/Lenovo-T530-Hackintosh-OpenCore/assets/76865553/90e7d9ac-f63c-4597-a7ed-49f8da8c18d6)
-
-<details>
-<summary markdown="span">TABLE of CONTENTS</summary>
+[![T530](https://img.shields.io/badge/ThinkPad-T530-informational.svg)](https://psref.lenovo.com/syspool/Sys/PDF/withdrawnbook/ThinkPad_T530.pdf) [![OpenCore](https://img.shields.io/badge/OpenCore-1.0.2-cyan.svg)](https://github.com/acidanthera/OpenCorePkg/releases/latest) [![Clover Version](https://img.shields.io/badge/Clover-r5156-apple.svg)](https://github.com/CloverHackyColor/CloverBootloader/releases) ![MacOS](https://img.shields.io/badge/macOS-10.13–14.6.1-purple.svg) [![release](https://img.shields.io/badge/Download-latest-success.svg)](https://github.com/5T33Z0/Lenovo-T530-Hackinosh-OpenCore/releases/latest)<br>![10103711](https://github.com/5T33Z0/Lenovo-T530-Hackintosh-OpenCore/assets/76865553/90e7d9ac-f63c-4597-a7ed-49f8da8c18d6)
 
 **TABLE of CONTENTS**
 
 - [About](#about)
   - [Special Features](#special-features)
-- [Specs](#specs)
+- [Hardware Specs](#specs)
   - [macOS-incompatible Components](#macos-incompatible-components)
 - [EFI Folder Content (OpenCore)](#efi-folder-content-opencore)
 - [Deployment](#deployment)
@@ -32,8 +29,6 @@
   - [Fixing issues with AirportBrcmFixup (Broadcom WiFi Cards only)](#fixing-issues-with-airportbrcmfixup-broadcom-wifi-cards-only)
 - [CPU Benchmark](#cpu-benchmark)
 - [Credits and Thank Yous](#credits-and-thank-yous)
-
-</details>
 
 ## About
 OpenCore and Clover EFI Folders for running macOS High Sierra to Sonoma on the Lenovo ThinkPad T530.
@@ -227,15 +222,18 @@ Open the `config.plist` and adjust the following settings depending on your syst
 
 10. **NVRAM Section**
 	- **Boot-args:** (under GUID `7C436110-AB2A-4BBB-A880-FE41995C9F82`)
-		- `brcmfx-country=#a`: Sets Wifi Country Code (`#a` = generic) for Broadcom WiFi cards using [**AirportBrcmFixup**](https://github.com/acidanthera/AirportBrcmFixup). If you are using an Intel Card, delete this boot argument. Otherwise replace the generic country code with the one for your country [**listed here**](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2#Officially_assigned_code_elements). This is recommended to avoid connectivity issues and getting AirDrop to work properly (which I don't use). 
+		- `brcmfx-country=#a`: Sets Wifi Country Code (`#a` = generic) for Broadcom WiFi cards using [**AirportBrcmFixup**](https://github.com/acidanthera/AirportBrcmFixup). If you are using an Intel Card, delete this boot argument. Otherwise replace the generic country code with the one for your country [**listed here**](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2#Officially_assigned_code_elements). This is recommended to avoid connectivity issues and getting AirDrop to work properly (which I don't use).
 
-11. **Add/enable alternative/optional Kexts**:
+11. **PlatformInfo/Generic** Section
+	- Generate and add Serials and stuff for `MacBookPro10,1` with OpenCore Auxiliary Tools or GenSMBIOS, so Facetime will work
+
+12. **Add/enable alternative/optional Kexts**:
 	- [**itlwm**](https://github.com/OpenIntelWireless/itlwm): Kext for Intel WiFi Cards. Use instead of `AirportBrcmFixup`if you don't use a Broadcom WiFi Card
 	- [**IntelBluetoothFirmware**](https://github.com/OpenIntelWireless/IntelBluetoothFirmware): Kext for Intel Bluetooth Cards. Use instead of `BrcmPatchRam` and Plugins if you don't use a Broadcom BT Card
 	- [**NoTouchID**](https://github.com/al3xtjames/NoTouchID): only required for macOS 10.13 and 10.14 so the boot process won't stall while checking for a Touch ID sensor.
 	- [**Feature Unlock**](https://github.com/acidanthera/FeatureUnlock): Unlocks additional features like Sidecar, AirPlay to Mac and Continuity Camera.
 
-12. **Increase Max Backlight Brightness Level** (optional): 
+13. **Increase Max Backlight Brightness Level** (optional): 
 	- Add boot-arg `applbkl=0` for increased maximum brightness of the display as defined in `SSDT-PNLF.aml` instead of letting Whatevergreen handle it. Also available as device property (see Whatevergreen documentation for details).
 
 #### Used boot arguments and NVRAM variables
