@@ -168,7 +168,7 @@ Open the `config.plist` and adjust the following settings depending on your syst
 	- To figure out which one(s) your system use(s), you can follow this [guide](https://github.com/5T33Z0/OC-Little-Translated/tree/main/12_MMIO_Whitelist)
 	- This is not a necessity, just some fine-tuning. 
 
-3. **DeviceProperties**: Enable the correct Framebuffer-Patch for your display. There T530 support two types of display panels: `HD+` and `HD`, supporting different resolutions. Each reauires a different `AAPL,ig-platform-id` and connector patches:</br>
+3. **DeviceProperties**: Enable the correct Framebuffer-Patch for your display. The T530 comes with either one of the following display panels: `HD+` or `HD`, supporting different resolutions. Each requires a different framebuffer patch (`AAPL,ig-platform-id`) with different connector patches:</br>
 	
 	`AAPL,ig-platform-id 04006601` = `HD+` = WSXGA and FullHD. Resolution: ≥ 1600x900 px. (**Default**)</br>
 	`AAPL,ig-platform-id 03006601` = `HD` = SD. Resolution: ≤ 1366x768 px.</br>
