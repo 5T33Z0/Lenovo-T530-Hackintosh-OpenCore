@@ -6,7 +6,7 @@
 
 - [About](#about)
   - [Special Features](#special-features)
-- [Hardware Specs](#specs)
+- [Specs](#specs)
   - [macOS-incompatible Components](#macos-incompatible-components)
 - [EFI Folder Content (OpenCore)](#efi-folder-content-opencore)
 - [Deployment](#deployment)
@@ -17,6 +17,7 @@
   - [Installing macOS](#installing-macos)
     - [Recommended macOS version](#recommended-macos-version)
 - [Post-Install](#post-install)
+  - [Apply Root Patches with OpenCore Legacy Patcher (macOS 12+)](#apply-root-patches-with-opencore-legacy-patcher-macos-12)
   - [Disable Gatekeeper (optional)](#disable-gatekeeper-optional)
   - [Strengthen Security](#strengthen-security)
   - [Fixing CPU Power Management](#fixing-cpu-power-management)
@@ -33,9 +34,13 @@
 ## About
 OpenCore and Clover EFI Folders for running macOS High Sierra to Sonoma on the Lenovo ThinkPad T530.
 
+| ⚠️ Important Status Updates |
+|:----------------------------|
+| Don't install macOS Sequoia yet! A new version of OpenCore Legacy Patcher has to be released first. Currently, there's no solution to enable Intel HD 4000 iGPU in macOS Sequoia.
+
 ### Special Features
-- Includes Patches and Kexts from [**OpenCore Legacy Patcher** (OCLP)](https://github.com/dortania/Opencore-Legacy-Patcher), such as:
-	- Booter Patches, NVRAM parameters and `RestrictEvent.kext` to install and run macOS Big Sur+ with a `MacBookPro10,x` SMBIOS ([More](https://github.com/5T33Z0/OC-Little-Translated/tree/main/09_Board-ID_VMM-Spoof))
+- Contains Patches and Kexts from [**OpenCore Legacy Patcher** (OCLP)](https://github.com/dortania/Opencore-Legacy-Patcher), such as:
+	- Booter Patches, NVRAM parameters and `RestrictEvent.kext` to install and run macOS Big Sur and newer with the `MacBookPro10,x` SMBIOS ([More](https://github.com/5T33Z0/OC-Little-Translated/tree/main/09_Board-ID_VMM-Spoof))
 	- Native SMC CPU Power Management in macOS 13+ for optimal CPU Power Management ([More](https://github.com/5T33Z0/OC-Little-Translated/tree/main/01_Adding_missing_Devices_and_enabling_Features/CPU_Power_Management/CPU_Power_Management_(Legacy)#re-enabling-acpi-power-management-in-macos-ventura)).
 	- Fully working graphics acceleration for the Intel HD 4000 in macOS 12+ (requires Post-Install root patching with OCLP)
 	- Working legacy Broadcom Wi-Fi and Bluetooth in macOS 14 (requires Post-Install root patching with OCLP)
@@ -43,7 +48,7 @@ OpenCore and Clover EFI Folders for running macOS High Sierra to Sonoma on the L
 - No patched `DSDT` – only SSDT hotpatches were used for maximum ACPI-compliance!
 - Working battery status read-outs without additional DSDT/ACPI patches thanks to `ECEnabler.kext`
 - 3D Globe in Maps in macOS 12+ thanks to `AdvancedMaps.kext`
-- IRQ patches fully realized via custom SSDT – no binary renames required!
+- IRQ patches fully realized via a custom SSDT – zero binary renames required!
 - Custom AppleALC Layout to support the Audio Jacks of Lenovo Mini Docking Stations 4337 and 4338. It uses **Layout-ID 39** and has been integrated into AppleALC since [version 1.7.3](https://github.com/acidanthera/AppleALC/releases/tag/1.7.3)
 - Working Hibernation
 
@@ -311,6 +316,9 @@ Until recently, my recommendation was macOS Catalina. While testing my own instr
 Big Sur is also the best choice if you're planing to upgrade to macOS Monterey or newer. Because macOS 11.3 introduced a virtualization technology which can be used to trick macOS into thinking that it is running in a VM. This allows installing and booting macOS 12+ with an unsupported SMBIOS designed for Ivy Bridge CPUs which improves CPU Power Management and also allows installing System Updates which wouldn't be possible otherwise.
 
 ## Post-Install
+
+### Apply Root Patches with OpenCore Legacy Patcher (macOS 12+)
+If you areinstalling macOS 12 or newer, you need to apply post-install root patches with OpenCore legacy Patcher so that on-board graphics and Wi-Fi/Bluetooth work. Instructions can be found in the [macOS Install](https://github.com/5T33Z0/Lenovo-T530-Hackintosh-OpenCore/tree/main/macOS_Install) section.
 
 ### Disable Gatekeeper (optional)
 I disable Gatekeeper on my systems because it is annoying and wants to stop you from running scripts from github etc. To do so, enter `sudo spctl --master-disable` in Terminal.
