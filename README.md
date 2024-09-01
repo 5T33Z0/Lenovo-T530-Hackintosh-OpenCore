@@ -5,7 +5,7 @@
 **TABLE of CONTENTS**
 
 - [About](#about)
-  - [Special Features](#special-features)
+  - [Noteworthy Features](#noteworthy-features)
 - [Specs](#specs)
   - [macOS-incompatible Components](#macos-incompatible-components)
 - [EFI Folder Content (OpenCore)](#efi-folder-content-opencore)
@@ -38,7 +38,7 @@ OpenCore and Clover EFI Folders for running macOS High Sierra to Sonoma on the L
 |:----------------------------|
 | Don't install macOS Sequoia yet! A new version of OpenCore Legacy Patcher has to be released first. Currently, there's no solution to enable Intel HD 4000 iGPU in macOS Sequoia.
 
-### Special Features
+### Noteworthy Features
 - Contains Patches and Kexts from [**OpenCore Legacy Patcher** (OCLP)](https://github.com/dortania/Opencore-Legacy-Patcher), such as:
 	- Booter Patches, NVRAM parameters and `RestrictEvent.kext` to install and run macOS Big Sur and newer with the `MacBookPro10,x` SMBIOS ([More](https://github.com/5T33Z0/OC-Little-Translated/tree/main/09_Board-ID_VMM-Spoof))
 	- Native SMC CPU Power Management in macOS 13+ for optimal CPU Power Management ([More](https://github.com/5T33Z0/OC-Little-Translated/tree/main/01_Adding_missing_Devices_and_enabling_Features/CPU_Power_Management/CPU_Power_Management_(Legacy)#re-enabling-acpi-power-management-in-macos-ventura)).
