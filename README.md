@@ -1,6 +1,6 @@
 # Lenovo ThinkPad T530 Hackintosh OpenCore
 
-[![T530](https://img.shields.io/badge/ThinkPad-T530-informational.svg)](https://psref.lenovo.com/syspool/Sys/PDF/withdrawnbook/ThinkPad_T530.pdf) [![OpenCore](https://img.shields.io/badge/OpenCore-1.0.2-cyan.svg)](https://github.com/acidanthera/OpenCorePkg/releases/latest) [![Clover Version](https://img.shields.io/badge/Clover-r5156-apple.svg)](https://github.com/CloverHackyColor/CloverBootloader/releases) ![MacOS](https://img.shields.io/badge/macOS-10.13–14.7-purple.svg) [![release](https://img.shields.io/badge/Download-latest-success.svg)](https://github.com/5T33Z0/Lenovo-T530-Hackinosh-OpenCore/releases/latest)<br>![10103711](https://github.com/5T33Z0/Lenovo-T530-Hackintosh-OpenCore/assets/76865553/90e7d9ac-f63c-4597-a7ed-49f8da8c18d6)
+[![T530](https://img.shields.io/badge/ThinkPad-T530-informational.svg)](https://psref.lenovo.com/syspool/Sys/PDF/withdrawnbook/ThinkPad_T530.pdf) [![OpenCore](https://img.shields.io/badge/OpenCore-1.0.2-cyan.svg)](https://github.com/acidanthera/OpenCorePkg/releases/latest) [![Clover Version](https://img.shields.io/badge/Clover-r5156-apple.svg)](https://github.com/CloverHackyColor/CloverBootloader/releases) ![MacOS](https://img.shields.io/badge/macOS-10.13–15.0-purple.svg) [![release](https://img.shields.io/badge/Download-latest-success.svg)](https://github.com/5T33Z0/Lenovo-T530-Hackinosh-OpenCore/releases/latest)<br>![10103711](https://github.com/5T33Z0/Lenovo-T530-Hackintosh-OpenCore/assets/76865553/90e7d9ac-f63c-4597-a7ed-49f8da8c18d6)
 
 **TABLE of CONTENTS**
 
@@ -36,8 +36,8 @@ OpenCore and Clover EFI Folders for running macOS High Sierra to Sonoma on the L
 
 | ⚠️ Important Status Updates |
 |:----------------------------|
-| Don't install macOS Sequoia yet! A new version of OpenCore Legacy Patcher has to be released first. Currently, there's no solution to enable Intel HD 4000 iGPU in macOS Sequoia.
-
+| Sequoia can be installed and patched with n[ightly build of OpenCore Legacy Patcher from Sequoia Develoment branch!
+](https://github.com/dortania/OpenCore-Legacy-Patcher/pull/1137#issuecomment-2295376562)
 ### Noteworthy Features
 - Contains Patches and Kexts from [**OpenCore Legacy Patcher** (OCLP)](https://github.com/dortania/Opencore-Legacy-Patcher), such as:
 	- Booter Patches, NVRAM parameters and `RestrictEvent.kext` to install and run macOS Big Sur and newer with the `MacBookPro10,x` SMBIOS ([More](https://github.com/5T33Z0/OC-Little-Translated/tree/main/09_Board-ID_VMM-Spoof))
