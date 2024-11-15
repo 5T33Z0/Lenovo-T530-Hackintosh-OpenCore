@@ -79,6 +79,7 @@ OpenCore and Clover EFI Folders for running macOS High Sierra to Sonoma on the L
 ### macOS-incompatible Components
 - [ ] NVIDIA Optimus GPU must be disabled in BIOS - otherwise no boot!
 - [ ] Fingerprint Reader
+- [ ] SD Card Reader (not working in macOS 14+). VoodooSDHC.kext has to be updated. The original version is like 10 years old (build for OSX 10.12).
 - [ ] VGA Port – not supported since macOS Mountain Lion: [Intel HD Graphics VGA Support](https://github.com/acidanthera/WhateverGreen/blob/master/Manual/FAQ.IntelHD.en.md#vga-support)
 
 ## EFI Folder Content (OpenCore)
