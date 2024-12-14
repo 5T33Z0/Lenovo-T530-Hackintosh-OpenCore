@@ -19,6 +19,7 @@
 - [Post-Install](#post-install)
   - [Apply Root Patches with OpenCore Legacy Patcher (macOS 12+)](#apply-root-patches-with-opencore-legacy-patcher-macos-12)
   - [Disable Gatekeeper (optional)](#disable-gatekeeper-optional)
+  - [Enable brightness control for external displays](#enable-brightness-control-for-external-displays)
   - [Strengthen Security](#strengthen-security)
   - [Fixing CPU Power Management](#fixing-cpu-power-management)
     - [ACPI Power Management in macOS 13+](#acpi-power-management-in-macos-13)
@@ -325,6 +326,10 @@ If you areinstalling macOS 12 or newer, you need to apply post-install root patc
 I disable Gatekeeper on my systems because it is annoying and wants to stop you from running scripts from github etc. To do so, enter `sudo spctl --master-disable` in Terminal.
 
 This command no longer works in macOS Sequoia – it requires a [different method](https://github.com/5T33Z0/OC-Little-Translated/blob/main/14_OCLP_Wintel/Guides/Disable_Gatekeeper.md) to disable Gatekeeper.
+
+### Enable brightness control for external displays
+
+There's a new app called [**MonitorControl**](https://github.com/MonitorControl/MonitorControl) which allows controlling the brightness and contrast of attached external displays right from the menu bar. I tested it with my EIZO monitor that is connected to my docking station via DVI and it's working great. Might not work with every display, though.
 
 ### Strengthen Security
 Once macOS is up and running, you may want to change the following settings to make your system more secure:
