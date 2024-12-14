@@ -33,7 +33,7 @@
 - [Credits and Thank Yous](#credits-and-thank-yous)
 
 ## About
-OpenCore and Clover EFI Folders for running macOS High Sierra to Sonoma on the Lenovo ThinkPad T530.
+OpenCore EFI Folder for running macOS High Sierra all the way up to macOS Sequoia on the Lenovo ThinkPad T530. There's also a Clover version which is capable of running macOS 11 and newer.
 
 | ⚠️ Important Status Updates |
 |:----------------------------|
@@ -41,7 +41,9 @@ OpenCore and Clover EFI Folders for running macOS High Sierra to Sonoma on the L
 
 ### Noteworthy Features
 - Contains Patches and Kexts from [**OpenCore Legacy Patcher** (OCLP)](https://github.com/dortania/Opencore-Legacy-Patcher), such as:
-	- Booter Patches, NVRAM parameters and `RestrictEvent.kext` to install and run macOS Big Sur and newer with the `MacBookPro10,x` SMBIOS ([More](https://github.com/5T33Z0/OC-Little-Translated/tree/main/09_Board-ID_VMM-Spoof))
+	- Booter Patches so that macOS Big Sur and newer can be installed
+ 	- NVRAM parameters
+  	- `RestrictEvent.kext` to install and run macOS Big Sur and newer with `MacBookPro10,x` SMBIOS ([More](https://github.com/5T33Z0/OC-Little-Translated/tree/main/09_Board-ID_VMM-Spoof))
 	- Native SMC CPU Power Management in macOS 13+ for optimal CPU Power Management ([More](https://github.com/5T33Z0/OC-Little-Translated/tree/main/01_Adding_missing_Devices_and_enabling_Features/CPU_Power_Management/CPU_Power_Management_(Legacy)#re-enabling-acpi-power-management-in-macos-ventura)).
 	- Fully working graphics acceleration for the Intel HD 4000 in macOS 12+ (requires Post-Install root patching with OCLP)
 	- Working legacy Broadcom Wi-Fi and Bluetooth in macOS 14 (requires Post-Install root patching with OCLP)
