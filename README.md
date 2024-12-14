@@ -31,7 +31,7 @@
   - [Fixing issues with AirportBrcmFixup (Broadcom WiFi Cards only)](#fixing-issues-with-airportbrcmfixup-broadcom-wifi-cards-only)
 - [CPU Benchmark](#cpu-benchmark)
 - [Credits and Thank Yous](#credits-and-thank-yous)
-
+---
 ## About
 OpenCore EFI Folder for running macOS High Sierra all the way up to macOS Sequoia on the Lenovo ThinkPad T530. There's also a Clover version which is capable of running macOS 11 and newer.
 
