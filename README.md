@@ -37,7 +37,7 @@ OpenCore and Clover EFI Folders for running macOS High Sierra to Sonoma on the L
 
 | ⚠️ Important Status Updates |
 |:----------------------------|
-| Don't install macOS 15.2 beta – it will crash the installer early. Issue requires further investigation but seems to be related to VoodooPS2 Controller kext.
+| SD Card Reader not working in Sonoma+
 
 ### Noteworthy Features
 - Contains Patches and Kexts from [**OpenCore Legacy Patcher** (OCLP)](https://github.com/dortania/Opencore-Legacy-Patcher), such as:
