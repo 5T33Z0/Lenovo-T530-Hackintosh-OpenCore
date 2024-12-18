@@ -48,7 +48,7 @@ OpenCore EFI Folder for running macOS High Sierra all the way up to macOS Sequoi
 	- Fully working graphics acceleration for the Intel HD 4000 in macOS 12+ (requires Post-Install root patching with OCLP)
 	- Working legacy Broadcom Wi-Fi and Bluetooth in macOS 14 (requires Post-Install root patching with OCLP)
 	- Ability to boot macOS 12+ with AMFI enabled thanks to `AMFIPass.kext`.
-- No patched `DSDT` – only SSDT hotpatches were used for maximum ACPI-compliance!
+- No patched `DSDT` – only SSDT hotpatches were used for maximum ACPI-compliance and future macOS-compatibility! Try using a patched DSDT from 2013 with a current macOS and you know what I mean! 
 - Working battery status read-outs without additional DSDT/ACPI patches thanks to `ECEnabler.kext`
 - 3D Globe in Maps in macOS 12+ thanks to `AdvancedMaps.kext`
 - IRQ patches fully realized via a custom SSDT – zero binary renames required!
