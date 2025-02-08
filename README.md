@@ -1,6 +1,6 @@
 # Lenovo ThinkPad T530 Hackintosh OpenCore
 
-[![T530](https://img.shields.io/badge/ThinkPad-T530-informational.svg)](https://psref.lenovo.com/syspool/Sys/PDF/withdrawnbook/ThinkPad_T530.pdf) [![OpenCore](https://img.shields.io/badge/OpenCore-1.0.3-cyan.svg)](https://github.com/acidanthera/OpenCorePkg/releases/latest) [![Clover Version](https://img.shields.io/badge/Clover-r5160-apple.svg)](https://github.com/CloverHackyColor/CloverBootloader/releases) ![MacOS](https://img.shields.io/badge/macOS-10.13–15.3-purple.svg) [![release](https://img.shields.io/badge/Download-latest-success.svg)](https://github.com/5T33Z0/Lenovo-T530-Hackinosh-OpenCore/releases/latest)<br>![10103711](https://github.com/5T33Z0/Lenovo-T530-Hackintosh-OpenCore/assets/76865553/90e7d9ac-f63c-4597-a7ed-49f8da8c18d6)
+[![T530](https://img.shields.io/badge/ThinkPad-T530-informational.svg)](https://psref.lenovo.com/syspool/Sys/PDF/withdrawnbook/ThinkPad_T530.pdf) [![OpenCore](https://img.shields.io/badge/OpenCore-1.0.3-cyan.svg)](https://github.com/acidanthera/OpenCorePkg/releases/latest) ![MacOS](https://img.shields.io/badge/macOS-10.13–15.3-purple.svg) [![release](https://img.shields.io/badge/Download-latest-success.svg)](https://github.com/5T33Z0/Lenovo-T530-Hackinosh-OpenCore/releases/latest)<br>![10103711](https://github.com/5T33Z0/Lenovo-T530-Hackintosh-OpenCore/assets/76865553/90e7d9ac-f63c-4597-a7ed-49f8da8c18d6)
 
 **TABLE of CONTENTS**
 
@@ -33,7 +33,7 @@
 - [Credits and Thank Yous](#credits-and-thank-yous)
 ---
 ## About
-OpenCore EFI Folder for running macOS High Sierra all the way up to macOS Sequoia on the Lenovo ThinkPad T530. There's also a Clover version which is capable of running macOS 11 and newer.
+OpenCore EFI Folder for running macOS High Sierra all the way up to macOS Sequoia on the Lenovo ThinkPad T530.
 
 | ⚠️ Important Status Updates |
 |:----------------------------|
@@ -446,13 +446,10 @@ This issue is related to Smart Connect, a feature of WiFi routers which support 
 - Apple for macOS
 - Acidanthera for [OpenCore Bootloader](https://github.com/acidanthera/OpenCorePkg) and countless Kexts
 - Dortania for [OpenCore Install Guide](https://dortania.github.io/OpenCore-Install-Guide) and [OpenCore Legacy Pacher](https://dortania.github.io/OpenCore-Legacy-Patcher/)
-- SergeySlice for [Clover Bootloader](https://github.com/CloverHackyColor/CloverBootloader)
-- khronokernel for [Clover Vanilla Install Guide](https://hackintosh.gitbook.io/-r-hackintosh-vanilla-desktop-guide/)
 - 1Revenger1 for [ECEnabler](https://github.com/1Revenger1/ECEnabler)
 - [Corpnewt](https://github.com/corpnewt) for SSDTTime, GenSMBIOS, ProperTree and BitmaskDecode
 - Piker-Alpha for [ssdtPRGen](https://github.com/Piker-Alpha/ssdtPRGen.sh)
 - [ic005k](https://github.com/ic005k/) for OpenCore Auxiliary Tools and PlistEDPlus
-- Mackie100 for [Clover Configurator](https://mackie100projects.altervista.org/download-clover-configurator/)
 - Chris1111 for [Patch-HD4000-Monterey](https://github.com/chris1111/Patch-HD4000-Monterey)
 - [SL-Soft](https://www.sl-soft.de/software/) for Kext Updater and ANYmacOS
 - [Rehabman](https://github.com/RehabMan) for Laptop and DSDT patching guides
