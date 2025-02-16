@@ -322,7 +322,7 @@ Big Sur is also the best choice if you're planing to upgrade to macOS Monterey o
 ## Post-Install
 
 ### Apply Root Patches with OpenCore Legacy Patcher (macOS 12+)
-If you areinstalling macOS 12 or newer, you need to apply post-install root patches with OpenCore legacy Patcher so that on-board graphics and Wi-Fi/Bluetooth work. Instructions can be found in the [macOS Install](https://github.com/5T33Z0/Lenovo-T530-Hackintosh-OpenCore/tree/main/macOS_Install) section.
+If you are installing macOS 12 or newer, you need to apply post-install root patches with OpenCore Legacy Patcher so that on-board graphics and Wi-Fi/Bluetooth will work. Instructions can be found in the [macOS Install](https://github.com/5T33Z0/Lenovo-T530-Hackintosh-OpenCore/tree/main/macOS_Install) section.
 
 ### Disable Gatekeeper (optional)
 I disable Gatekeeper on my systems because it is annoying and wants to stop you from running scripts from github etc. To do so, enter `sudo spctl --master-disable` in Terminal.
