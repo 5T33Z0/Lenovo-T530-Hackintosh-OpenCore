@@ -88,7 +88,7 @@ OpenCore EFI Folder for running macOS High Sierra all the way up to macOS Sequoi
 ## EFI Folder Content (OpenCore)
 
 <details>
-<summary><strong>Click to reveal</strong></summary>
+<summary><strong>Click to reveal</strong></summary><br>
 
 ```
 EFI
@@ -98,10 +98,10 @@ EFI
     ├── ACPI
     │   ├── SSDT-ALS0.aml
     │   ├── SSDT-BAT1-Disable.aml
-    │   ├── SSDT-EXT4.aml
+    │   ├── SSDT-EXP1-disable.aml
+    │   ├── SSDT-EXT3.aml
     │   ├── SSDT-EXT5.aml
     │   ├── SSDT-IRQ_FIXES.aml
-    │   ├── SSDT-NBCF.aml
     │   ├── SSDT-PM.aml
     │   ├── SSDT-PNLF.aml
     │   ├── SSDT-PRW0.aml
@@ -121,6 +121,7 @@ EFI
     │   ├── AppleALC.kext
     │   ├── AppleIntelCPUPowerManagement.kext (macOS 13+)
     │   ├── AppleIntelCPUPowerManagementClient.kext (macOS 13+)
+    │   ├── AutoPkgInstaller.kext
     │   ├── BlueToolFixup.kext (macOS 12+)
     │   ├── BrcmBluetoothInjector.kext
     │   ├── BrcmFirmwareData.kext
