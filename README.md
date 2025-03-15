@@ -37,8 +37,8 @@ OpenCore EFI Folder for running macOS High Sierra all the way up to macOS Sequoi
 
 | ⚠️ Important Status Updates |
 |:----------------------------|
-| Don't install macOS 15.4.0 yet. OCLP does not patch it properly. The system will stall in 2nd boot phase after patching. Revert Patches in Safe Mode (Press Shft+Enter in OpenCore)!
-| SD Card Reader not working in Sonoma+
+| Don't install macOS 15.4.0 beta yet. OCLP does not patch it properly. The system will stall in the 2nd boot phase after patching. Revert Patches in Safe Mode (Press Shft+Enter in OpenCore)!
+| SD Card Reader is not working in Sonoma+
 
 ### Noteworthy Features
 - Contains Patches and Kexts from [**OpenCore Legacy Patcher** (OCLP)](https://github.com/dortania/Opencore-Legacy-Patcher), such as:
