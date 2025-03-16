@@ -276,10 +276,8 @@ Once you're done adjusting the `config.plist`, mount your system's ESP and do th
 
 ### BIOS Settings
 
-<details>
-<summary><strong>Click to reveal</strong></summary>
-
 **Latest BIOS Version:** `2.77`
+
 [**DOWNLOAD**](https://pcsupport.lenovo.com/us/en/products/laptops-and-netbooks/thinkpad-t-series-laptops/thinkpad-t530/downloads/ds029246?clickid=RhAUWZ1-exyLRCuwUx0Mo3ELUkERY-RmHTlwSg0&Program=3786&pid=269814&acid=ww%3Aaffiliate%3A74clty&cid=de%3Aaffiliate%3Axg02ds)
 
  Tab | Submenu | Function | Setting    |
@@ -301,8 +299,6 @@ Once you're done adjusting the `config.plist`, mount your system's ESP and do th
 > [!NOTE]
 > 
 > Enable Boot Order Lock *after* you've set-up the order of the Boot Drives. This prevents `WindowsBootManager` from taking over the first slot of the boot drives. This way, you don't need to enable the `LauncherOption` in OpenCore!
-
-</details>
 
 ### Installing macOS
 **Coming from Windows/Linux**: Follow the installation guide by [**Dortania**](https://dortania.github.io/OpenCore-Install-Guide/installer-guide/#making-the-installer). 
