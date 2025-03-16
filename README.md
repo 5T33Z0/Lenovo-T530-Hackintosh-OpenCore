@@ -284,7 +284,7 @@ Once you're done adjusting the `config.plist`, mount your system's ESP and do th
 
  Tab | Submenu | Function | Setting    |
  ----| :-----: | -------- | :----------|
-**Config** | USB | <ul><li> UEFI BIOS Support<li>USB 3.0 Mode | `Enabled` <br> `Enabled`
+**Config** | USB | <ul><li> UEFI BIOS Support<li>USB 3.0 Mode | `Enabled` <br> `Auto`
 ||Display|  <ul><li>Boot Display Device:<li>OS Detection for NVIDIA Optimus: | `ThinkPad LCD` </br> `Disabled`
 ||SATA | <ul><li> SATA Controller Mode |`AHCI`
 ||CPU | <ul><li>Core Multi-Processing <li> Intel (R) Hyper-Threading Technology|`Enabled` <br> `Enabled`
