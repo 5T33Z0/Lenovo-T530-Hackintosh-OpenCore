@@ -367,7 +367,7 @@ In macOS Ventura, Apple removed the actual `ACPI_SMC_PlatformPlugin` *binary* fr
 So when switching to macOS Ventura or newer, injecting additional kexts to re-enable ACPI CPU Power Management (Plugin-Type 0) is necessary. My EFI is already configured to boot macOS Ventura and use ACPI CPU Power Management, so you don't have to worry about it.
  
 ### Fixing Sleep issues
-Please follow my my guide to [configure hibernation](https://github.com/5T33Z0/OC-Little-Translated/tree/main/04_Fixing_Sleep_and_Wake_Issues/Changing_Hibernation_Modes#testing-hibernation)
+Please follow my my guide to [configure hibernation](https://github.com/5T33Z0/OC-Little-Translated/tree/main/content/04_Fixing_Sleep_and_Wake_Issues/Changing_Hibernation_Modes#testing-hibernation)
 
 **Other Settings**:
 
