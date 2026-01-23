@@ -20,7 +20,7 @@ With the release of macOS Monterey, Apple dropped the Plugin-Type check, so that
 ### macOS Ventura and newer
 When Apple released macOS Ventura, they removed the actual `ACPI_SMC_PlatformPlugin` binary from the `ACPI_SMC_PlatformPlugin.kext` itself (previously located under S/L/E/IOPlatformPluginFamily.kext/Contents/PlugIns/ACPI_SMC_PlatformPlugin.kext/Contents/MacOS/), rendering `SSDT-PM` generated for Plugin-Type 0 useless since it cannot utilize a plugin which is no longer present. Instead, the `X86PlaformPlugin` is loaded by default. Therefore, CPU Power Management doesn't work correctly on legacy Intel CPUs out of the box (no turbo states, incorrect LFM frequency, higher average clock). So when switching to macOS Ventura or newer, you either have to:
 
-- [**Re-enable ACPI CPU Power Management**](https://github.com/5T33Z0/OC-Little-Translated/tree/main/01_Adding_missing_Devices_and_enabling_Features/CPU_Power_Management/CPU_Power_Management_(Legacy)#re-enabling-acpi-power-management-in-macos-13-and-newer) (recommended, default in my EFI)
+- [**Re-enable ACPI CPU Power Management**](https://github.com/5T33Z0/OC-Little-Translated/tree/main/Content/01_Adding_missing_Devices_and_enabling_Features/CPU_Power_Management/CPU_Power_Management_(Legacy)#re-enabling-acpi-power-management-in-macos-13-and-newer) (recommended, default in my EFI)
 - Force-enable XCPM (Ivy Bridge only) (not recommended)
 
 ## Requirements:
