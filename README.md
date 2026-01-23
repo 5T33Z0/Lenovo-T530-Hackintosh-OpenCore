@@ -43,8 +43,8 @@ OpenCore EFI Folder for running macOS High Sierra all the way up to macOS Sequoi
 - Contains Patches and Kexts from [**OpenCore Legacy Patcher** (OCLP)](https://github.com/dortania/Opencore-Legacy-Patcher), such as:
 	- Booter Patches so that macOS Big Sur and newer can be installed
  	- NVRAM parameters
-  	- `RestrictEvent.kext` to install and run macOS Big Sur and newer with `MacBookPro10,x` SMBIOS ([More](https://github.com/5T33Z0/OC-Little-Translated/tree/main/content/09_Board-ID_VMM-Spoof))
-	- Native SMC CPU Power Management in macOS 13+ for optimal CPU Power Management ([More](https://github.com/5T33Z0/OC-Little-Translated/tree/main/content/01_Adding_missing_Devices_and_enabling_Features/CPU_Power_Management/CPU_Power_Management_(Legacy)#re-enabling-acpi-power-management-in-macos-ventura)).
+  	- `RestrictEvent.kext` to install and run macOS Big Sur and newer with `MacBookPro10,x` SMBIOS ([More](https://github.com/5T33Z0/OC-Little-Translated/tree/main/Content/09_Board-ID_VMM-Spoof))
+	- Native SMC CPU Power Management in macOS 13+ for optimal CPU Power Management ([More](https://github.com/5T33Z0/OC-Little-Translated/tree/main/Content/01_Adding_missing_Devices_and_enabling_Features/CPU_Power_Management/CPU_Power_Management_(Legacy)#re-enabling-acpi-power-management-in-macos-ventura)).
 	- Fully working graphics acceleration for the Intel HD 4000 in macOS 12+ (requires Post-Install root patching with OCLP)
 	- Working legacy Broadcom Wi-Fi and Bluetooth in macOS 14 (requires Post-Install root patching with OCLP)
 	- Ability to boot macOS 12+ with AMFI enabled thanks to `AMFIPass.kext`.
@@ -171,11 +171,11 @@ Download the latest EFI Folder from the [Releases](https://github.com/5T33Z0/Len
 Open the `config.plist` and adjust the following settings depending on your system:
 
 1. **ACPI** Section:
-	- Disable `SSDT-PM.aml` (unless you have an i7 3630QM as well). Generate your own with [ssdtPRGen](https://github.com/5T33Z0/OC-Little-Translated/blob/main/01_Adding_missing_Devices_and_enabling_Features/CPU_Power_Management/CPU_Power_Management_(Legacy)/README.md) in Post-Install.
+	- Disable `SSDT-PM.aml` (unless you have an i7 3630QM as well). Generate your own with [ssdtPRGen](https://github.com/5T33Z0/OC-Little-Translated/blob/main/Content/01_Adding_missing_Devices_and_enabling_Features/CPU_Power_Management/CPU_Power_Management_(Legacy)/README.md) in Post-Install.
 
 2. **Booter** Section (optional):
 	- The entries in the MMIO Whitelist are memory regions used by *my* firmware. Since I don't know if these are used by all T530 BIOSes, I disabled them and the corresponding `DevirtualiseMmio` Quirk
-	- To figure out which one(s) your system use(s), you can follow this [guide](https://github.com/5T33Z0/OC-Little-Translated/tree/main/12_MMIO_Whitelist)
+	- To figure out which one(s) your system use(s), you can follow this [guide](https://github.com/5T33Z0/OC-Little-Translated/tree/main/Content/12_MMIO_Whitelist)
 	- This is not a necessity, just some fine-tuning. 
 
 3. **DeviceProperties**: Enable the correct Framebuffer-Patch for your display. The T530 comes with either one of the following display panels: `HD+` or `HD`, supporting different resolutions. Each requires a different framebuffer patch (`AAPL,ig-platform-id`) with different connector patches:</br>
@@ -253,7 +253,7 @@ Open the `config.plist` and adjust the following settings depending on your syst
 	- `ipc_control_port_options=0`: Fixes issues with Firefox not working and electron-based Apps like Discord in macOS 12+ when SIP is lowered.
 - **NVRAM variables**:
 	- OCLP Settings `-allow_amfi`: Does the same as boot-arg `amfi_get_out_of_my_way=0x1` but only when the OpenCore Patcher App is running. Otherwise you can't run the root patcher. But this didn't work the last time I tried this setting might be deprecated.
-	- `hbfx-ahbm`: Lets the system hibernate instead of using regular sleep. Requires HibernationFixup.kext. More details [here](https://github.com/5T33Z0/OC-Little-Translated/tree/main/H_Boot-args#hibernationfixup) 
+	- `hbfx-ahbm`: Lets the system hibernate instead of using regular sleep. Requires HibernationFixup.kext. More details [here](https://github.com/5T33Z0/OC-Little-Translated/tree/main/Content/H_Boot-args#hibernationfixup) 
 	- `revblock:media`: Blocks `mediaanalysisd` on Ventura+ (for Metal 1 GPUs). Required so apps like Firefox don't crash. Requires RestrictEvents.kext
 	- `revpatch`:
 		- `sbvmm`: Forces VMM SB model, allowing OTA updates for unsupported models on macOS 11.3 and newer. Requires `RestrictEvents.kext`. 
@@ -322,7 +322,7 @@ If you are installing macOS 12 or newer, you need to apply post-install root pat
 ### Disable Gatekeeper (optional)
 I disable Gatekeeper on my systems because it is annoying and wants to stop you from running scripts from github etc. To do so, enter `sudo spctl --master-disable` in Terminal.
 
-This command no longer works in macOS Sequoia – it requires a [different method](https://github.com/5T33Z0/OC-Little-Translated/blob/main/14_OCLP_Wintel/Guides/Disable_Gatekeeper.md) to disable Gatekeeper.
+This command no longer works in macOS Sequoia – it requires a [different method](https://github.com/5T33Z0/OC-Little-Translated/blob/main/Content/14_OCLP_Wintel/Guides/Disable_Gatekeeper.md) to disable Gatekeeper.
 
 ### Enable brightness control for external displays
 
@@ -336,7 +336,7 @@ Once macOS is up and running, you may want to change the following settings to m
 	- macOS Monterey: `Disabled` (otherwise insta-crash)
 	- macOS Ventura: `Default` (I don't know why but `Default` works – which it shouldn't…)
 - `csr-active-config`: `00000000` (macOS 11.x and older only – leave on `03080000` if your system requires root patches!)
-- `UEFI/APFS`: change `MinDate` and `MinVersion` from `-1` (disabled) to `0` (default) or use [specific values for different versions of macOS](https://github.com/5T33Z0/OC-Little-Translated/tree/main/A_Config_Tips_and_Tricks#mindateminversion-settings-for-the-apfs-driver).
+- `UEFI/APFS`: change `MinDate` and `MinVersion` from `-1` (disabled) to `0` (default) or use [specific values for different versions of macOS](https://github.com/5T33Z0/OC-Little-Translated/tree/main/Content/A_Config_Tips_and_Tricks#mindateminversion-settings-for-the-apfs-driver).
 - Enable Hibernation (use Terminal or change in Hackintool):
 	- Disable PowerNap: `sudo pmset -a powernap 0`
 	- Change Hibernatemode to 25: `sudo pmset -a hibernatemode 25` 
@@ -349,7 +349,7 @@ Once macOS is up and running, you may want to change the following settings to m
 
 ### Fixing CPU Power Management 
 
-Follow [this guide](https://github.com/5T33Z0/OC-Little-Translated/tree/main/01_Adding_missing_Devices_and_enabling_Features/CPU_Power_Management/CPU_Power_Management_(Legacy)) to generate an SSDT-PM.aml to fix CPU Power Management. CPU Power Management should work fine after that. 
+Follow [this guide](https://github.com/5T33Z0/OC-Little-Translated/blob/main/Content/01_Adding_missing_Devices_and_enabling_Features/CPU_Power_Management/CPU_Power_Management_(Legacy)/README.md) to generate an SSDT-PM.aml to fix CPU Power Management. CPU Power Management should work fine after that. 
 
 Optionally, install [Intel Power Gadget](https://www.intel.com/content/www/us/en/developer/articles/tool/power-gadget.html) to check whether or not the CPU runs within specs. You don't need SMCProcessor and SMCSuperIO kexts to monitor the CPU if you use Intel Power Gadget, btw.
 
@@ -367,7 +367,7 @@ In macOS Ventura, Apple removed the actual `ACPI_SMC_PlatformPlugin` *binary* fr
 So when switching to macOS Ventura or newer, injecting additional kexts to re-enable ACPI CPU Power Management (Plugin-Type 0) is necessary. My EFI is already configured to boot macOS Ventura and use ACPI CPU Power Management, so you don't have to worry about it.
  
 ### Fixing Sleep issues
-Please follow my my guide to [configure hibernation](https://github.com/5T33Z0/OC-Little-Translated/tree/main/content/04_Fixing_Sleep_and_Wake_Issues/Changing_Hibernation_Modes#testing-hibernation)
+Please follow my my guide to [configure hibernation](https://github.com/5T33Z0/OC-Little-Translated/tree/main/Content/04_Fixing_Sleep_and_Wake_Issues/Changing_Hibernation_Modes#testing-hibernation)
 
 **Other Settings**:
 
