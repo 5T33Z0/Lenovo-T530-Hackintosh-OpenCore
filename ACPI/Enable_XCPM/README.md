@@ -31,7 +31,7 @@ Apple deactivated the `X86PlatformPlugin` support for Ivy Bridge CPUs in macOS a
 | **Introduction** | OS X Mavericks (10.9) | Mac OS X era |
 | **Location** | Built into XNU kernel | Separate kext (AppleIntelCPUPowerManagement) |
 | **Configuration Method** | Board-id matching | Custom SSDT tables |
-| **Setup Complexity** | Simple SSDT to enable the plugin (<= macOS 11)| Complex (requires SSDT generation with [ssdtPRGen](https://github.com/Piker-Alpha/ssdtPRGen.sh)) |
+| **Setup Complexity** | Simple SSDT to enable the plugin (≤ macOS 11)| Complex (requires SSDT generation with [ssdtPRGen](https://github.com/Piker-Alpha/ssdtPRGen.sh)) |
 | **P-state Definition** | Internal to macOS | Defined in ACPI SSDT |
 | **C-state Definition** | Internal to macOS | Defined in ACPI SSDT |
 | **Performance** | Better responsiveness | Slower transitions |
