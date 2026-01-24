@@ -10,9 +10,9 @@ Although Ivy Bridge CPUs are capable of utilizing `XCPM`, it's deactivated in ma
 
 This guide explains re-enable `XCPM` with a kernel patch, 2 kernel quirks and a modified `SSDT-XCPM.aml` or `SSDT-PLUG.aml` to use the `X86PlatformPlugin` (i.e. setting Plugin Type to `1`).
 
-> [!WARNING] 
+> [!CAUTION] 
 > 
-> Enabling `X86PlatformPlugin` for Ivy Bridge CPUs is not recommended – in my experience CPU performance is worse than using the legacy plugin. This guide only exists to show you that you *can* re-enable it – not that you *should* do it!
+> Enabling `X86PlatformPlugin` for Ivy Bridge CPUs is not recommended – in my experience CPU performance is worse than using the legacy `ACPI_SMC_PlatformPlugin`. This guide only exists to show you that you *can* re-enable it – not that you *should* do it! So please, don't.
 
 ### macOS Monterey
 With the release of macOS Monterey, Apple dropped the Plugin-Type check, so that the `X86PlatformPlugin` is loaded by default. For Haswell and newer CPUs this is great, since you no longer need `SSDT-PLUG` to enable Plugin-Type 1. But for Ivy Bridge and older, you now need to select Plugin-Type 0 explicitly. If you've previously generated an `SSDT-PM` with ssdtPRGen, it's already configured to use Plugin-Type 0, so ACPI CPU Power Management is still working. From macOS Ventura onwards, it's a different story…
