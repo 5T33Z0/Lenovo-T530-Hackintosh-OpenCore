@@ -2,7 +2,7 @@
 > **Applicable to**: macOS Catalina and newer
 
 ## About
-CPM stands for **XNU CPU Power Management**. It's Apple's modern CPU power management system introduced in OS X Mavericks (10.9) for **Haswell** and newer Intel processors. This guide explains how to re-enable `XCPM` with a kernel patch, 2 kernel quirks and a modified `SSDT-XCPM.aml` or `SSDT-PLUG.aml` to use the `X86PlatformPlugin` (i.e. setting Plugin Type to `1`). XAlthough Ivy Bridge CPUs are capable of utilizing `XCPM`, it's deactivated in macOS. And there isn't much info about how to re-enable it in OpenCore's documentation:
+`XCPM` stands for **XNU CPU Power Management**. It's Apple's modern CPU power management system introduced in OS X Mavericks (10.9) for **Haswell** and newer Intel processors. This guide explains how to re-enable `XCPM` with a kernel patch, 2 kernel quirks and a modified `SSDT-XCPM.aml` or `SSDT-PLUG.aml` to use the `X86PlatformPlugin` (i.e. setting Plugin Type to `1`). XAlthough Ivy Bridge CPUs are capable of utilizing `XCPM`, it's deactivated in macOS. And there isn't much info about how to re-enable it in OpenCore's documentation:
 
 > Note that the following configurations are unsupported by XCPM (at least out of the box): Consumer Ivy Bridge (0x0306A9) as Apple disabled XCPM for Ivy Bridge and recommends legacy power management for these CPUs. `_xcpm_bootstrap` should manually be patched to enforce XCPM on these CPUs […].
 
