@@ -2,12 +2,12 @@
 > **Compatibility**: macOS Catalina and newer
 
 ## About
-
-This guide explains how to re-enable `XCPM` with a kernel patch, 2 kernel quirks and a modified `SSDT-XCPM.aml` or `SSDT-PLUG.aml` to use the `X86PlatformPlugin` (i.e. setting Plugin Type to `1`). XCPM stands for **XNU CPU Power Management**. It's Apple's modern CPU power management system introduced in OS X Mavericks (10.9) for **Haswell** and newer Intel processors. Although Ivy Bridge CPUs are capable of utilizing `XCPM`, it's deactivated in macOS. And there isn't much info about how to re-enable it in OpenCore's documentation:
+CPM stands for **XNU CPU Power Management**. It's Apple's modern CPU power management system introduced in OS X Mavericks (10.9) for **Haswell** and newer Intel processors. This guide explains how to re-enable `XCPM` with a kernel patch, 2 kernel quirks and a modified `SSDT-XCPM.aml` or `SSDT-PLUG.aml` to use the `X86PlatformPlugin` (i.e. setting Plugin Type to `1`). XAlthough Ivy Bridge CPUs are capable of utilizing `XCPM`, it's deactivated in macOS. And there isn't much info about how to re-enable it in OpenCore's documentation:
 
 > Note that the following configurations are unsupported by XCPM (at least out of the box): Consumer Ivy Bridge (0x0306A9) as Apple disabled XCPM for Ivy Bridge and recommends legacy power management for these CPUs. `_xcpm_bootstrap` should manually be patched to enforce XCPM on these CPUs […].
 
 **What it does:**
+
 - Manages CPU frequency scaling (SpeedStep)
 - Controls CPU power states (C-states and P-states)
 - Handles turbo boost
@@ -23,9 +23,9 @@ XCPM is built directly into the XNU kernel (the core of macOS) and works automat
 ## Technical Background
 Apple deactivated the `X86PlatformPlugin` support for Ivy Bridge CPUs in macOS a few years back. Instead, the `ACPI_SMC_PlatformPlugin` is used for CPU power management up to macOS Big Sur.
 
-**Key differences:**
+**Key differences between XCPM and ACPI SMC Plugin:**
 
-| Feature | XCPM | Legacy ACPI SMC Plugin |
+| Feature | XCPM |  ACPI SMC Plugin |
 |---------|------|------------------------|
 | **CPU Support** | Haswell (4th gen) and newer | Sandy Bridge, Ivy Bridge, and older |
 | **Introduction** | OS X Mavericks (10.9) | Mac OS X era |
