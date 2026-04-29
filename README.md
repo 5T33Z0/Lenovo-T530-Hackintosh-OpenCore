@@ -78,6 +78,7 @@ OpenCore EFI Folder for running macOS High Sierra all the way up to macOS Sequoi
 
 - [**ThinkPad T530 User Guide** (PDF)](https://download.lenovo.com/ibmdl/pub/pc/pccbbs/mobiles_pdf/t530_t530i_w530_ug_en.pdf)
 - [**7-Series Chipset Datasheet** (PDF)](https://www.intel.com/content/dam/www/public/us/en/documents/datasheets/7-series-chipset-pch-datasheet.pdf)
+- T530 Support: https://pcsupport.lenovo.com/de/de/products/laptops-and-netbooks/thinkpad-t-series-laptops/thinkpad-t530/downloads/driver-list/
 
 ### macOS-incompatible Components
 - [ ] NVIDIA Optimus GPU must be disabled in BIOS - otherwise no boot!
