@@ -430,8 +430,10 @@ This issue is related to Smart Connect, a feature of WiFi routers which support 
 
 ![Screenshot](https://raw.githubusercontent.com/5T33Z0/Lenovo-T530-Hackinosh-OpenCore/main/Pics/benchmark_latest.png)</br>[Benchmark Results](https://browser.geekbench.com/v5/cpu/9553877)
 
-## Credits and Thank Yous
+## Links
+[Lenovo Driver and Software Matrix](https://download.lenovo.com/cdrt/tools/drivermatrix/dm_2.html)
 
+## Credits and Thank Yous
 - George Kushnir for [1vyrain Jailbreak](https://github.com/n4ru/1vyrain) to remove WLAN whitelist from BIOS
 - Apple for macOS
 - Acidanthera for [OpenCore Bootloader](https://github.com/acidanthera/OpenCorePkg) and countless Kexts
