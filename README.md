@@ -31,7 +31,9 @@
   - [Fixing issues with AirportBrcmFixup (Broadcom WiFi Cards only)](#fixing-issues-with-airportbrcmfixup-broadcom-wifi-cards-only)
 - [CPU Benchmark](#cpu-benchmark)
 - [Credits and Thank Yous](#credits-and-thank-yous)
+
 ---
+
 ## About
 OpenCore EFI Folder for running macOS High Sierra all the way up to macOS Tahoe on the Lenovo ThinkPad T530.
 
@@ -40,20 +42,20 @@ OpenCore EFI Folder for running macOS High Sierra all the way up to macOS Tahoe 
 | SD Card Reader is not working in Sonoma+
 
 ### Noteworthy Features
-- Contains Patches and Kexts from [**OpenCore Legacy Patcher** (OCLP)](https://github.com/dortania/Opencore-Legacy-Patcher), such as:
-	- Booter Patches so that macOS Big Sur and newer can be installed
- 	- NVRAM parameters
-  	- `RestrictEvent.kext` to install and run macOS Big Sur and newer with `MacBookPro10,x` SMBIOS ([More](https://github.com/5T33Z0/OC-Little-Translated/tree/main/Content/09_Board-ID_VMM-Spoof))
-	- Native SMC CPU Power Management in macOS 13+ for optimal CPU Power Management ([More](https://github.com/5T33Z0/OC-Little-Translated/tree/main/Content/01_Adding_missing_Devices_and_enabling_Features/CPU_Power_Management/CPU_Power_Management_(Legacy)#re-enabling-acpi-power-management-in-macos-ventura)).
-	- Fully working graphics acceleration for the Intel HD 4000 in macOS 12+ (requires Post-Install root patching with OCLP)
-	- Working legacy Broadcom Wi-Fi and Bluetooth in macOS 14/15 (requires Post-Install root patching with OCLP)
-	- Ability to boot macOS 12+ with AMFI enabled thanks to `AMFIPass.kext`.
-- No patched `DSDT` – only SSDT hotpatches were used for maximum ACPI-compliance and _future_ macOS-compatibility! Try using a patched `DSDT` from 2013 with a current version of macOS and you will understand what I mean! 
-- Working battery status read-outs without additional DSDT/ACPI patches thanks to `ECEnabler.kext`
-- 3D Globe in Maps in macOS 12+ thanks to `AdvancedMaps.kext`
-- IRQ patches fully realized via a custom SSDT – zero binary renames required!
-- Custom AppleALC Layout to support the Audio Jacks of Lenovo Mini Docking Stations 4337 and 4338. It uses **Layout-ID 39** and has been integrated into AppleALC since [version 1.7.3](https://github.com/acidanthera/AppleALC/releases/tag/1.7.3)
-- Working Hibernation
+- [x]Contains Patches and Kexts from [**OpenCore Legacy Patcher** (OCLP)](https://github.com/dortania/Opencore-Legacy-Patcher), such as:
+	- [x] Booter Patches so that macOS Big Sur and newer can be installed
+	- [x] Fully working graphics acceleration for the Intel HD 4000 in macOS 12+ (requires Post-Install root patching with OCLP)
+	- [x] Native SMC CPU Power Management in macOS 13+ for optimal CPU Power Management ([More](https://github.com/5T33Z0/OC-Little-Translated/tree/main/Content/01_Adding_missing_Devices_and_enabling_Features/CPU_Power_Management/CPU_Power_Management_(Legacy)#re-enabling-acpi-power-management-in-macos-ventura)).
+	- [x] Working legacy Broadcom Wi-Fi and Bluetooth in macOS 14/15 (requires Post-Install root patching with OCLP)
+	- [x] Ability to boot macOS 12+ with AMFI enabled thanks to `AMFIPass.kext`.
+ 	- [x] NVRAM parameters to address compatibility issues
+  	- [x] `RestrictEvent.kext` to install and run macOS Big Sur and newer with `MacBookPro10,x` SMBIOS ([More](https://github.com/5T33Z0/OC-Little-Translated/tree/main/Content/09_Board-ID_VMM-Spoof)) 
+- [x] No patched `DSDT` – only SSDT hotpatches were used for maximum ACPI-compliance and _future_ macOS-compatibility! Try using a patched `DSDT` from 2013 with a current version of macOS and you will understand what I mean! 
+- [x] Working battery status read-outs without additional DSDT/ACPI patches thanks to `ECEnabler.kext`
+- [x] 3D Globe in Maps in macOS 12+ thanks to `AdvancedMaps.kext`
+- [x] IRQ patches fully realized via a custom SSDT – zero binary renames required!
+- [x] Custom AppleALC Layout to support the Audio Jacks of Lenovo Mini Docking Stations 4337 and 4338. It uses **Layout-ID 39** and has been integrated into AppleALC since [version 1.7.3](https://github.com/acidanthera/AppleALC/releases/tag/1.7.3)
+- [x] Fully Working Hibernation (Modes 3 and 25)
 
 ## Specs
 
