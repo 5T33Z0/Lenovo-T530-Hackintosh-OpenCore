@@ -321,9 +321,13 @@ Big Sur is also the best choice if you're planing to upgrade to macOS Monterey o
 If you are installing macOS 12 or newer, you need to apply post-install root patches with OpenCore Legacy Patcher so that on-board graphics and Wi-Fi/Bluetooth will work. Instructions can be found in the [macOS Install](https://github.com/5T33Z0/Lenovo-T530-Hackintosh-OpenCore/tree/main/macOS_Install) section.
 
 ### Disable Gatekeeper (optional)
-I disable Gatekeeper on my systems because it is annoying and wants to stop you from running scripts from github etc. To do so, enter `sudo spctl --master-disable` in Terminal.
+I disable Gatekeeper on my systems because it is annoying and wants to stop you from running scripts from github etc. To do so, enter in Terminal:
 
-This command no longer works in macOS Sequoia – it requires a [different method](https://github.com/5T33Z0/OC-Little-Translated/blob/main/Content/14_OCLP_Wintel/Guides/Disable_Gatekeeper.md) to disable Gatekeeper.
+```
+sudo spctl --master-disable
+```
+
+In macOS Sequoia/Tahoe, [additional steps](https://github.com/5T33Z0/OC-Little-Translated/blob/main/Content/14_OCLP_Wintel/Guides/Disable_Gatekeeper.md) are required afterwards to complete the process.
 
 ### Enable brightness control for external displays
 
