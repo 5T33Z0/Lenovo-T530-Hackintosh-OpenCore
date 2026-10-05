@@ -42,7 +42,7 @@ OpenCore EFI Folder for running macOS High Sierra all the way up to macOS Tahoe 
 | SD Card Reader is not working in Sonoma+
 
 ### Noteworthy Features
-- [x]Contains Patches and Kexts from [**OpenCore Legacy Patcher** (OCLP)](https://github.com/dortania/Opencore-Legacy-Patcher), such as:
+- [x] Implemented Patches and Kexts from [**OpenCore Legacy Patcher** (OCLP)](https://github.com/dortania/Opencore-Legacy-Patcher), such as:
 	- [x] Booter Patches so that macOS Big Sur and newer can be installed
 	- [x] Fully working graphics acceleration for the Intel HD 4000 in macOS 12+ (requires Post-Install root patching with OCLP)
 	- [x] Native SMC CPU Power Management in macOS 13+ for optimal CPU Power Management ([More](https://github.com/5T33Z0/OC-Little-Translated/tree/main/Content/01_Adding_missing_Devices_and_enabling_Features/CPU_Power_Management/CPU_Power_Management_(Legacy)#re-enabling-acpi-power-management-in-macos-ventura)).
