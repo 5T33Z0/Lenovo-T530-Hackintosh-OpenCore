@@ -194,7 +194,7 @@ Open the `config.plist` and adjust the following settings depending on your syst
 	- Disable the entry `PciRoot(0x0)/Pci(0x2,0x0)` by placing `#` in front of it.
 	- Enable `#PciRoot(0x0)/Pci(0x2,0x0) 1366x768 px` by deleting the leading `#` and the description `1366x768 px`, so that it looks this: `PciRoot(0x0)/Pci(0x2,0x0)`.
 	
-	:bulb: **HINT**: If your screen turns off during boot, you are using the wrong Framebuffer-Patch!
+	💡 If your screen turns off during boot, you are using the wrong Framebuffer-Patch!
 	
 4. **Audio** (optional): 
 	- If you need digital Audio over HDMI/DP, disable/delete `No-hda-gfx` from the Audio Device Properties in `PciRoot(0x0)/Pci(0x1B,0x0)`.
