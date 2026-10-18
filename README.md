@@ -363,7 +363,7 @@ Once macOS is up and running, you may want to change the following settings to m
 
 Follow [this guide](https://github.com/5T33Z0/OC-Little-Translated/blob/main/Content/01_Adding_missing_Devices_and_enabling_Features/CPU_Power_Management/CPU_Power_Management_(Legacy)/README.md) to generate an SSDT-PM.aml to fix CPU Power Management. CPU Power Management should work fine after that. 
 
-Optionally, install [Intel Power Gadget](https://www.intel.com/content/www/us/en/developer/articles/tool/power-gadget.html) to check whether or not the CPU runs within specs. You don't need SMCProcessor and SMCSuperIO kexts to monitor the CPU if you use Intel Power Gadget, btw.
+Optionally, install [Intel Power Gadget](https://intel-power-gadget.macupdate.com/) to check whether or not the CPU runs within specs. You don't need SMCProcessor and SMCSuperIO kexts to monitor the CPU if you use Intel Power Gadget, btw.
 
 **NOTES**:
 
