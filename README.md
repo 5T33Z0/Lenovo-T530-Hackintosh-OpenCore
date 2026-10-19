@@ -7,81 +7,58 @@
 
 ---
 
-**TABLE of CONTENTS**
-
-- [About](#about)
-  - [Noteworthy Features](#noteworthy-features)
-- [Specs](#specs)
-  - [macOS-incompatible Components](#macos-incompatible-components)
-- [EFI Folder Content (OpenCore)](#efi-folder-content-opencore)
-- [Deployment](#deployment)
-  - [Preparing the `config.plist`](#preparing-the-configplist)
-    - [Used boot arguments and NVRAM variables](#used-boot-arguments-and-nvram-variables)
-  - [EFI How To](#efi-how-to)
-  - [BIOS Settings](#bios-settings)
-  - [Installing macOS](#installing-macos)
-    - [Recommended macOS version](#recommended-macos-version)
-- [Post-Install](#post-install)
-  - [Apply Root Patches with OpenCore Legacy Patcher (macOS 12+)](#apply-root-patches-with-opencore-legacy-patcher-macos-12)
-  - [Disable Gatekeeper (optional)](#disable-gatekeeper-optional)
-  - [Enable brightness control for external displays](#enable-brightness-control-for-external-displays)
-  - [Strengthen Security](#strengthen-security)
-  - [Fixing CPU Power Management](#fixing-cpu-power-management)
-    - [ACPI Power Management in macOS 13+](#acpi-power-management-in-macos-13)
-  - [Fixing Sleep issues](#fixing-sleep-issues)
-  - [Reducing boot time](#reducing-boot-time)
-  - [Swapping Command ⌘ and Option ⌥ Keys](#swapping-command--and-option--keys)
-  - [Changing Themes](#changing-themes)
-  - [Eject Button](#eject-button)
-  - [Fixing issues with AirportBrcmFixup (Broadcom WiFi Cards only)](#fixing-issues-with-airportbrcmfixup-broadcom-wifi-cards-only)
-- [CPU Benchmark](#cpu-benchmark)
-- [Credits and Thank Yous](#credits-and-thank-yous)
-
----
-
 ## About
 OpenCore EFI Folder for running macOS High Sierra all the way up to macOS Tahoe on the Lenovo ThinkPad T530.
 
-### Noteworthy Features
+## Working
 
-- :wrench: **OCLP support:** Booter patches, legacy Broadcom Wi-Fi/Bluetooth, and Intel HD 4000 graphics acceleration.
-- :zap: **Native CPU power management** on macOS Ventura and newer.
-- :battery: **Battery status** without additional ACPI patches.
-- :zzz: **Hibernation support** (modes 3 and 25).
-- :electric_plug: **ACPI hotpatching** using SSDTs only—no patched DSDT or binary renames.
-- :headphones: **Lenovo Mini Dock audio support** (Layout-ID 39).
-- :globe_with_meridians: **3D Globe in Maps** on macOS Monterey and newer.
+- [x] Intel HD 4000 graphics acceleration (via OCLP)
+- [x] External display via Mini DisplayPort (including Audio)
+- [x] Broadcom Wi-Fi and Bluetooth (legacy support via OCLP)
+- [x] Native CPU power management on macOS Ventura and newer
+- [x] Battery status indicator
+- [x] Hibernation (modes 3 and 25)
+- [x] Lenovo Mini Dock audio (Layout ID 39)
+- [x] 3D globe in Maps on macOS Monterey and newer
 
-## Specs
+## Not Working
 
-| Component           | Details                                       |
-| ------------------: | :-------------------------------------------- |
-| Model               | Lenovo ThinkPad T530, Model# 2429-62G         |
-| Chipset             | [Intel QM77 Express](https://www.intel.com/content/dam/www/public/us/en/documents/datasheets/7-series-chipset-pch-datasheet.pdf)
-| BIOS Version        | 2.77, unlocked with 1vyRain                   |
-| Processor           | Intel Core i7 3630QM                          |
-| Memory              | 16GB Samsung DDR3 1600MHz, Dual-Channel <br> Minimum: 8GB |
-| Hard Disk           | Samsung 840 Evo 250GB                         |
-| Integrated Graphics | Intel HD Graphics 4000, 2048 MB RAM assigned  |
-| Display             | 15.6" HD+ TFT Display (1600x900 px)           |
-| Audio               | Realtek ALC269VC Rev.3 (Layout-id:`39`)       |
-| Ethernet            | Intel 82579LM Gigabit Network Connection      |
-| WiFi and Bluetooth  | Broadcom BCM94352HMB DW1550, 802.11 a/b/g/n/ac<br>BT Firmware: `BCM20702A1_001.002.014.1502.1757_v5853.zhx`|
-| Multicard Reader    | Ricoh 4-in-1 reader (MMC, SD, SDHC, SDXC)     |
-| ExpressCard/34 slot | disabled                                      |
-| Docking Station     | Lenovo ThinkPad 4338 Mini Dock plus Series 3  |
+- [ ] NVIDIA Optimus GPU — must be disabled in BIOS, otherwise macOS will not boot
+- [ ] Fingerprint reader
+- [ ] VGA output — unsupported since macOS Mountain Lion ([WhateverGreen documentation](https://github.com/acidanthera/WhateverGreen/blob/master/Manual/FAQ.IntelHD.en.md#vga-support)
 
-**DOCS**
+## Noteworthy Features
 
-- [**ThinkPad T530 User Guide** (PDF)](https://download.lenovo.com/ibmdl/pub/pc/pccbbs/mobiles_pdf/t530_t530i_w530_ug_en.pdf)
-- [**7-Series Chipset Datasheet** (PDF)](https://www.intel.com/content/dam/www/public/us/en/documents/datasheets/7-series-chipset-pch-datasheet.pdf)
-- T530 Support: https://pcsupport.lenovo.com/de/de/products/laptops-and-netbooks/thinkpad-t-series-laptops/thinkpad-t530/downloads/driver-list/
+- :wrench: **OCLP support:** Booter patches and legacy hardware support.
+- :electric_plug: **ACPI hotpatching:** SSDTs only, without a patched DSDT or binary renames.
+- :desktop_computer: **Wide macOS compatibility:** High Sierra through Tahoe.
 
-### macOS-incompatible Components
-- [ ] NVIDIA Optimus GPU must be disabled in BIOS - otherwise no boot!
-- [ ] Fingerprint Reader
-- [ ] SD Card Reader (not working in macOS 14+). The source code for `VoodooSDHC.kext` has to be updated. The original version is like 10 years old (build for OSX 10.12).
-- [ ] VGA Port – not supported since macOS Mountain Lion: [Intel HD Graphics VGA Support](https://github.com/acidanthera/WhateverGreen/blob/master/Manual/FAQ.IntelHD.en.md#vga-support)
+## System Specs
+
+| Component            | Details |
+|:---------------------|:--------|
+| Model                | Lenovo ThinkPad T530, Model 2429-62G |
+| Chipset              | [Intel QM77 Express](https://www.intel.com/content/dam/www/public/us/en/documents/datasheets/7-series-chipset-pch-datasheet.pdf) |
+| BIOS                 | Version 2.77, unlocked with 1vyrain |
+| Processor            | Intel Core i7-3630QM |
+| Memory               | 16 GB Samsung DDR3-1600, dual-channel (minimum: 8 GB) |
+| Storage              | Samsung 840 EVO 250 GB SSD |
+| Integrated Graphics  | Intel HD Graphics 4000 (2048 MB allocated) |
+| Display              | 15.6-inch HD+ TFT, 1600 × 900 px |
+| Audio                | Realtek ALC269VC Rev. 3 (Layout ID: `39`) |
+| Ethernet             | Intel 82579LM Gigabit Network Connection |
+| Wi-Fi / Bluetooth    | Broadcom BCM94352HMB DW1550, 802.11 a/b/g/n/ac<br>BT firmware: `BCM20702A1_001.002.014.1502.1757_v5853.zhx` |
+| Multicard Reader     | Ricoh 4-in-1 reader (MMC, SD, SDHC, SDXC)<br>Vendor ID: `1180`, Device ID: `E823` |
+| ExpressCard/34 Slot  | Disabled |
+| Docking Station      | Lenovo ThinkPad Mini Dock Plus Series 3 (4338) |
+
+### Resources
+
+- **Lenovo T530 Support Site:** [Drivers & Software (Windows)](https://pcsupport.lenovo.com/de/de/products/laptops-and-netbooks/thinkpad-t-series-laptops/thinkpad-t530/downloads/driver-list/)
+
+- **Documentation:**
+  - [ThinkPad T530 User Guide (PDF)](https://download.lenovo.com/ibmdl/pub/pc/pccbbs/mobiles_pdf/t530_t530i_w530_ug_en.pdf)
+  - [Intel 7-Series Chipset Datasheet (PDF)](https://www.intel.com/content/dam/www/public/us/en/documents/datasheets/7-series-chipset-pch-datasheet.pdf)
 
 ## EFI Folder Content (OpenCore)
 
@@ -157,10 +134,26 @@ EFI
 ```
 </details>
 
-## Deployment
-Please read the following instructions _carefully_ before deploying my EFI folder. Depending on your T530 model, the used WiFi/BT card and macOS version you want to run, adjustments to the `config.plist` and used kexts may be necessary to adapt the config to your system.
+## Quick Deployment (TL;DR)
+
+1. Download the latest EFI from [Releases](https://github.com/5T33Z0/Lenovo-T530-Hackintosh-OpenCore/releases) and read the included `Changelog.md`.
+2. Open `config.plist` with [OpenCore Auxiliary Tools (OCAT)](https://github.com/ic005k/OCAuxiliaryTools).
+3. Generate and add your SMBIOS data (`SystemSerialNumber`, `MLB`, `ROM`, etc.) under `PlatformInfo/Generic`.
+4. If your T530 has the low-resolution HD panel (1366 × 768 px), enable the corresponding framebuffer patch under `DeviceProperties` instead of the default HD+ patch. See [DeviceProperties](#deviceproperties) for details.
+5. Mount the EFI System Partition (ESP) on your macOS installation drive.
+6. Copy the prepared `EFI` folder to the root of the mounted ESP.
+7. Reboot and select **Reset NVRAM** from the OpenCore boot picker. Press Space if auxiliary entries are hidden.
+8. Boot the macOS installer or your existing macOS installation.
+9. On macOS Ventura and newer, apply the required root patches using [OpenCore Legacy Patcher (OCLP) 3.0.0 or newer](https://github.com/dortania/OpenCore-Legacy-Patcher/releases).
+
+---
+
+## Detailed Instructions
+
+Please read the following instructions *carefully* before deploying my EFI folder. Depending on your T530 model, the installed Wi-Fi/Bluetooth card, and the macOS version you want to run, adjustments to `config.plist` and the included kexts may be necessary.
 
 > [!NOTE]
+> 
 > Although this EFI *might work* with T430 and X230, is was not intended for these ThinkPad models. So don't misuse issue reports for support requests!
 
 ### Preparing the `config.plist`
