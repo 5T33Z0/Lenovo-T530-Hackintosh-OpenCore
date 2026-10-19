@@ -42,10 +42,6 @@
 ## About
 OpenCore EFI Folder for running macOS High Sierra all the way up to macOS Tahoe on the Lenovo ThinkPad T530.
 
-| ⚠️ Important Status Updates |
-|:----------------------------|
-| SD Card Reader is not working in Sonoma+
-
 ### Noteworthy Features
 
 - :wrench: **OCLP support:** Booter patches, legacy Broadcom Wi-Fi/Bluetooth, and Intel HD 4000 graphics acceleration.
