@@ -47,20 +47,14 @@ OpenCore EFI Folder for running macOS High Sierra all the way up to macOS Tahoe 
 | SD Card Reader is not working in Sonoma+
 
 ### Noteworthy Features
-- [x] Implemented Patches and Kexts from [**OpenCore Legacy Patcher** (OCLP)](https://github.com/dortania/Opencore-Legacy-Patcher), such as:
-	- [x] Booter Patches so that macOS Big Sur and newer can be installed
-	- [x] Fully working graphics acceleration for the Intel HD 4000 in macOS 12+ (requires Post-Install root patching with OCLP)
-	- [x] Native SMC CPU Power Management in macOS 13+ for optimal CPU Power Management ([More](https://github.com/5T33Z0/OC-Little-Translated/tree/main/Content/01_Adding_missing_Devices_and_enabling_Features/CPU_Power_Management/CPU_Power_Management_(Legacy)#re-enabling-acpi-power-management-in-macos-ventura)).
-	- [x] Working legacy Broadcom Wi-Fi and Bluetooth in macOS 14/15 (requires Post-Install root patching with OCLP)
-	- [x] Ability to boot macOS 12+ with AMFI enabled thanks to `AMFIPass.kext`.
- 	- [x] NVRAM parameters to address compatibility issues
-  	- [x] `RestrictEvent.kext` to install and run macOS Big Sur and newer with `MacBookPro10,x` SMBIOS ([More](https://github.com/5T33Z0/OC-Little-Translated/tree/main/Content/09_Board-ID_VMM-Spoof)) 
-- [x] No patched `DSDT` – only SSDT hotpatches were used for maximum ACPI-compliance and _future_ macOS-compatibility! Try using a patched `DSDT` from 2013 with a current version of macOS and you will understand what I mean! 
-- [x] Working battery status read-outs without additional DSDT/ACPI patches thanks to `ECEnabler.kext`
-- [x] 3D Globe in Maps in macOS 12+ thanks to `AdvancedMaps.kext`
-- [x] IRQ patches fully realized via a custom SSDT – zero binary renames required!
-- [x] Custom AppleALC Layout to support the Audio Jacks of Lenovo Mini Docking Stations 4337 and 4338. It uses **Layout-ID 39** and has been integrated into AppleALC since [version 1.7.3](https://github.com/acidanthera/AppleALC/releases/tag/1.7.3)
-- [x] Fully Working Hibernation (Modes 3 and 25)
+
+- :wrench: **OCLP support:** Booter patches, legacy Broadcom Wi-Fi/Bluetooth, and Intel HD 4000 graphics acceleration.
+- :zap: **Native CPU power management** on macOS Ventura and newer.
+- :battery: **Battery status** without additional ACPI patches.
+- :zzz: **Hibernation support** (modes 3 and 25).
+- :electric_plug: **ACPI hotpatching** using SSDTs only—no patched DSDT or binary renames.
+- :headphones: **Lenovo Mini Dock audio support** (Layout-ID 39).
+- :globe_with_meridians: **3D Globe in Maps** on macOS Monterey and newer.
 
 ## Specs
 
