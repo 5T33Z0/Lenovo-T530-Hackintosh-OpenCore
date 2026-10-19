@@ -8,24 +8,25 @@
 ---
 
 ## About
+
 OpenCore EFI Folder for running macOS High Sierra all the way up to macOS Tahoe on the Lenovo ThinkPad T530.
 
 ## Working
 
-- [x] Intel HD 4000 graphics acceleration (via OCLP)
-- [x] External display via Mini DisplayPort (including Audio)
-- [x] Broadcom Wi-Fi and Bluetooth (legacy support via OCLP)
-- [x] Native CPU power management on macOS Ventura and newer
-- [x] Battery status indicator
-- [x] Hibernation (modes 3 and 25)
-- [x] Lenovo Mini Dock audio (Layout ID 39)
-- [x] 3D globe in Maps on macOS Monterey and newer
+- [x] :white_check_mark: Intel HD 4000 graphics acceleration (via OCLP)
+- [x] :desktop_computer: External display via Mini DisplayPort (including audio)
+- [x] :satellite: Broadcom Wi-Fi and Bluetooth (legacy support via OCLP)
+- [x] :zap: Native CPU power management on macOS Ventura and newer
+- [x] :battery: Battery status indicator
+- [x] :zzz: Hibernation (modes 3 and 25)
+- [x] :speaker: Lenovo Mini Dock audio (Layout ID 39)
+- [x] :globe_with_meridians: 3D globe in Maps on macOS Monterey and newer
 
 ## Not Working
 
-- [ ] NVIDIA Optimus GPU — must be disabled in BIOS, otherwise macOS will not boot
-- [ ] Fingerprint reader
-- [ ] VGA output — unsupported since macOS Mountain Lion ([WhateverGreen documentation](https://github.com/acidanthera/WhateverGreen/blob/master/Manual/FAQ.IntelHD.en.md#vga-support)
+- [ ] :warning: NVIDIA Optimus GPU — must be disabled in BIOS, otherwise macOS will not boot
+- [ ] :fingerprint: Fingerprint reader
+- [ ] :x: VGA output — unsupported since macOS Mountain Lion ([WhateverGreen documentation](https://github.com/acidanthera/WhateverGreen/blob/master/Manual/FAQ.IntelHD.en.md#vga-support))
 
 ## Noteworthy Features
 
