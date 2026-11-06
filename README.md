@@ -68,72 +68,73 @@ OpenCore EFI Folder for running macOS High Sierra all the way up to macOS Tahoe 
 <details>
 <summary><strong>Click to reveal</strong></summary><br>
 
-```
+```text
 EFI
 ├── BOOT
-│   └── BOOTx64.efi
+│   └── BOOTx64.efi
 └── OC
     ├── ACPI
-    │   ├── SSDT-ALS0.aml
-    │   ├── SSDT-BAT1-Disable.aml
-    │   ├── SSDT-EXP1-disable.aml
-    │   ├── SSDT-EXT3.aml
-    │   ├── SSDT-EXT5.aml
-    │   ├── SSDT-IRQ_FIXES.aml
-    │   ├── SSDT-PM.aml
-    │   ├── SSDT-PNLF.aml
-    │   ├── SSDT-PRW0.aml
-    │   ├── SSDT-PTSWAKTTS.aml
-    │   ├── SSDT-SBUS-MCHC.aml
-    │   └── SSDT-TEMPToFans.aml
+    │   ├── SSDT-ALS0.aml
+    │   ├── SSDT-BAT1-disable.aml
+    │   ├── SSDT-EXP1-disable.aml
+    │   ├── SSDT-EXT3-WakeScreen.aml
+    │   ├── SSDT-EXT5.aml
+    │   ├── SSDT-IRQ-FIXES.aml
+    │   ├── SSDT-OSDW.aml
+    │   ├── SSDT-PM.aml
+    │   ├── SSDT-PNLF.aml
+    │   ├── SSDT-PRW0.aml
+    │   ├── SSDT-PTSWAKTTS.aml
+    │   ├── SSDT-SBUS-MCHC.aml
+    │   └── SSDT-TEMPToFans.aml
+    ├── config.plist
     ├── Drivers
-    │   ├── AudioDXE.efi (disabled)
-    │   ├── HfsPlus.efi
-    │   ├── OpenCanopy.efi
-    │   ├── OpenRuntime.efi
-    │   └── ResetNvramEntry.efi
-    ├── Kexts (loaded based on Min/Max Kernel settings)
-    │   ├── AdvancedMap.kext (macOS 12+)
-    │   ├── AirportBrcmFixup.kext
-    │   ├── AMFIPass.kext (macOS 12+)
-    │   ├── AppleALC.kext
-    │   ├── AppleIntelCPUPowerManagement.kext (macOS 13+)
-    │   ├── AppleIntelCPUPowerManagementClient.kext (macOS 13+)
-    │   ├── AutoPkgInstaller.kext
-    │   ├── BlueToolFixup.kext (macOS 12+)
-    │   ├── BrcmBluetoothInjector.kext
-    │   ├── BrcmFirmwareData.kext
-    │   ├── BrcmPatchRAM2.kext
-    │   ├── BrcmPatchRAM3.kext 
-    │   ├── BrightnessKeys.kext
-    │   ├── CryptexFixup.kext (macOS 13+)
-    │   ├── ECEnabler.kext
-    │   ├── HibernationFixup.kext
-    │   ├── IntelMausi.kext
-    │   ├── IO80211FamilyLegacy.kext (macOS 14+)
-    │   ├── IOSkywalkFamily.kext (macOS 14+)
-    │   ├── Lilu.kext
-    │   ├── NoTouchID.kext (macOS 10.13 and 10.14)
-    │   ├── RestrictEvents.kext (macOS 11+)
-    │   ├── SMCBatteryManager.kext
-    │   ├── VirtualSMC.kext
-    │   ├── VoodooPS2Controller.kext
-    │   ├── VoodooSDHC.kext
-    │   └── WhateverGreen.kext
+    │   ├── AudioDxe.efi
+    │   ├── btrfs_x64.efi
+    │   ├── ext4_x64.efi
+    │   ├── HfsPlus.efi
+    │   ├── OpenCanopy.efi
+    │   ├── OpenLinuxBoot.efi
+    │   ├── OpenRuntime.efi
+    │   └── ResetNvramEntry.efi
+    ├── Kexts
+    │   ├── AdvancedMap.kext
+    │   ├── AirportBrcmFixup.kext
+    │   ├── AMFIPass.kext
+    │   ├── AppleALC.kext
+    │   ├── AppleIntelCPUPowerManagement.kext
+    │   ├── AppleIntelCPUPowerManagementClient.kext
+    │   ├── AutoPkgInstaller.kext
+    │   ├── BlueToolFixup.kext
+    │   ├── BrcmBluetoothInjector.kext
+    │   ├── BrcmFirmwareData.kext
+    │   ├── BrcmPatchRAM2.kext
+    │   ├── BrcmPatchRAM3.kext
+    │   ├── BrightnessKeys.kext
+    │   ├── CryptexFixup.kext
+    │   ├── ECEnabler.kext
+    │   ├── HibernationFixup.kext
+    │   ├── IntelMausiEthernet.kext
+    │   ├── Lilu.kext
+    │   ├── NoTouchID.kext
+    │   ├── RestrictEvents.kext
+    │   ├── SimpleBCM.kext
+    │   ├── SMCBatteryManager.kext
+    │   ├── VirtualSMC.kext
+    │   ├── VoodooPS2Controller.kext
+    │   ├── VoodooSDHC.kext
+    │   └── WhateverGreen.kext
     ├── OpenCore.efi
-    ├── Resources (NOTE: shows sub-folders only, no files)
-    │   ├── Font
-    │   └── Image
-    │       └── Acidanthera
-    │       │   ├── Chardonnay
-    │       │   ├── GoldenGate
-    │       │   └── Syrah
-    │       └── Blackosx
-    │       │   └── BsxM1
-    │       └── velickovicdj
-    │       │   └── EnterTwilight
-    │       └── Label
-    └── config.plist
+    └── Resources
+        ├── Audio
+        ├── Font
+        ├── Image
+        │   ├── Blackosx
+        │   │   └── BsxM1
+        │   └── HJebbour
+        │       └── GoldenGateExt
+        └── Label
+
 ```
 </details>
 
