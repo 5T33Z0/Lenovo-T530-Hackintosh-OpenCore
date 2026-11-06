@@ -1,6 +1,12 @@
 # Lenovo ThinkPad T530 Hackintosh OpenCore
 
-[![T530](https://img.shields.io/badge/ThinkPad-T530-informational.svg)](https://psref.lenovo.com/syspool/Sys/PDF/withdrawnbook/ThinkPad_T530.pdf)  [![OpenCore](https://img.shields.io/badge/OpenCore-1.0.9-cyan.svg)](https://github.com/acidanthera/OpenCorePkg/releases/latest) ![MacOS](https://img.shields.io/badge/macOS-10.13–26.x-purple.svg) [![release](https://img.shields.io/badge/Download-latest-success.svg)](https://github.com/5T33Z0/Lenovo-T530-Hackintosh-OpenCore/releases/latest)
+[![T530](https://img.shields.io/badge/ThinkPad-T530-informational.svg)](https://psref.lenovo.com/syspool/Sys/PDF/withdrawnbook/ThinkPad_T530.pdf) 
+[![OpenCore](https://img.shields.io/badge/OpenCore-1.0.9-cyan.svg)](https://github.com/acidanthera/OpenCorePkg/releases/latest)
+![MacOS](https://img.shields.io/badge/macOS-10.13–26.x-purple.svg) 
+[![release](https://img.shields.io/badge/Download-latest-success.svg)](https://github.com/5T33Z0/Lenovo-T530-Hackintosh-OpenCore/releases/latest)
+
+![OC](https://github.com/5T33Z0/Lenovo-T530-Hackintosh-OpenCore/blob/main/Docs/Images/BootPicker_M1.png)
+
 ---
 
 ## About
