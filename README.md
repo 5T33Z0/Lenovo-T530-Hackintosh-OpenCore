@@ -1,10 +1,6 @@
 # Lenovo ThinkPad T530 Hackintosh OpenCore
 
-[![T530](https://img.shields.io/badge/ThinkPad-T530-informational.svg)](https://psref.lenovo.com/syspool/Sys/PDF/withdrawnbook/ThinkPad_T530.pdf) 
-[![OpenCore](https://img.shields.io/badge/OpenCore-1.0.8-cyan.svg)](https://github.com/acidanthera/OpenCorePkg/releases/latest) 
-![MacOS](https://img.shields.io/badge/macOS-10.13–26.x-purple.svg) 
-[![release](https://img.shields.io/badge/Download-latest-success.svg)](https://github.com/5T33Z0/Lenovo-T530-Hackinosh-OpenCore/releases/latest)<br>![10103711](https://github.com/5T33Z0/Lenovo-T530-Hackintosh-OpenCore/assets/76865553/90e7d9ac-f63c-4597-a7ed-49f8da8c18d6)
-
+[![T530](https://img.shields.io/badge/ThinkPad-T530-informational.svg)](https://psref.lenovo.com/syspool/Sys/PDF/withdrawnbook/ThinkPad_T530.pdf)  [![OpenCore](https://img.shields.io/badge/OpenCore-1.0.9-cyan.svg)](https://github.com/acidanthera/OpenCorePkg/releases/latest) ![MacOS](https://img.shields.io/badge/macOS-10.13–26.x-purple.svg) [![release](https://img.shields.io/badge/Download-latest-success.svg)](https://github.com/5T33Z0/Lenovo-T530-Hackintosh-OpenCore/releases/latest)
 ---
 
 ## About
@@ -140,7 +136,7 @@ EFI
 1. Download the latest EFI from [Releases](https://github.com/5T33Z0/Lenovo-T530-Hackintosh-OpenCore/releases) and read the included `Changelog.md`.
 2. Open `config.plist` with [OpenCore Auxiliary Tools (OCAT)](https://github.com/ic005k/OCAuxiliaryTools).
 3. Generate and add your SMBIOS data (`SystemSerialNumber`, `MLB`, `ROM`, etc.) under `PlatformInfo/Generic`.
-4. If your T530 has the low-resolution HD panel (1366 × 768 px), enable the corresponding framebuffer patch under `DeviceProperties` instead of the default HD+ patch. See [DeviceProperties](#deviceproperties) for details.
+4. If your T530 has the low-resolution HD panel (1366 × 768 px), enable the corresponding framebuffer patch under `DeviceProperties` instead of the default HD+ patch. See the DeviceProperties instructions below for details.
 5. Mount the EFI System Partition (ESP) on your macOS installation drive.
 6. Copy the prepared `EFI` folder to the root of the mounted ESP.
 7. Reboot and select **Reset NVRAM** from the OpenCore boot picker. Press Space if auxiliary entries are hidden.
@@ -214,7 +210,7 @@ Open the `config.plist` and adjust the following settings depending on your syst
 		- If you use a WiFi/BT Card from a different vendor than Broadcom, remove the Brcm Kexts and add the Kext(s) required for your card to the kext folder and `config.plist` before deploying the EFI folder!
 
 8. **Kernel Section** 
-	- **Kernel/Patch**: If you have an [HDD caddy](https://github.com/5T33Z0/Lenovo-T530-Hackintosh-OpenCore/issues/37#issuecomment-1509840983) for the DVD drive bay, you can add this [kernel patch](https://github.com/5T33Z0/Lenovo-T530-Hackintosh-OpenCore/blob/main/Additional_Files/SATA_Hotplug.plist) to your config to enable SATA hot plugging.
+	- **Kernel/Patch**: If you have an [HDD caddy](https://github.com/5T33Z0/Lenovo-T530-Hackintosh-OpenCore/issues/37#issuecomment-1509840983) for the DVD drive bay, you can add this [Kernel Patch](https://github.com/5T33Z0/Lenovo-T530-Hackintosh-OpenCore/blob/main/Docs/plists/SATA_Hotplug.plist) to your config to enable SATA hot plugging.
 	- **Kernel/Quirks**:
 		- If you are using a stock BIOS, you need to enable `AppleCpuPmCfgLock` Quirk.
 		- If you are using the 1vyrain BIOS, `CFG-Lock` will be disabled by default (not the case for the T430). In this case, you don't need the `AppleCpuPmCfgLock` Quirk.
@@ -245,7 +241,7 @@ Open the `config.plist` and adjust the following settings depending on your syst
 	- `ipc_control_port_options=0`: Fixes issues with Firefox not working and electron-based Apps like Discord in macOS 12+ when SIP is lowered.
 - **NVRAM variables**:
 	- OCLP Settings `-allow_amfi`: Does the same as boot-arg `amfi_get_out_of_my_way=0x1` but only when the OpenCore Patcher App is running. Otherwise you can't run the root patcher. But this didn't work the last time I tried this setting might be deprecated.
-	- `hbfx-ahbm`: Lets the system hibernate instead of using regular sleep. Requires HibernationFixup.kext. More details [here](https://github.com/5T33Z0/OC-Little-Translated/tree/main/Content/H_Boot-args#hibernationfixup) 
+	- `hbfx-ahbm`: Lets the system hibernate instead of using regular sleep. Requires HibernationFixup.kext. More details [here](https://github.com/5T33Z0/OC-Little-Translated/tree/main/Content/H_Boot-args#hibernationfixup)
 	- `revblock:media`: Blocks `mediaanalysisd` on Ventura+ (for Metal 1 GPUs). Required so apps like Firefox don't crash. Requires RestrictEvents.kext
 	- `revpatch`:
 		- `sbvmm`: Forces VMM SB model, allowing OTA updates for unsupported models on macOS 11.3 and newer. Requires `RestrictEvents.kext`. 
@@ -299,7 +295,7 @@ Once you're done adjusting the `config.plist`, mount your system's ESP and do th
 **Coming from macOS**: 
 
 - If you already have macOS installed, you can either download macOS from the App Store, with [**OCLP**](https://github.com/dortania/OpenCore-Legacy-Patcher) or with [**ANYmacOS**](https://www.sl-soft.de/en/anymacos/). Both can download macOS and create a USB Installer as well.
-- **IMPORTANT**: When upgrading from macOS Catalina or older to Big Sur and newer, additional preparations are required. [**Follow my macOS install instructions**](https://github.com/5T33Z0/Lenovo-T530-Hackintosh-OpenCore/tree/main/macOS_Install).
+- **IMPORTANT**: When upgrading from macOS Catalina or older to Big Sur and newer, additional preparations are required. [Follow my macOS install instructions](https://github.com/5T33Z0/Lenovo-T530-Hackintosh-OpenCore/tree/main/Docs/macOS_Install)
 
 #### Recommended macOS version
 Until recently, my recommendation was macOS Catalina. While testing my own instructions for upgrading from macOS Catalina (or older) to Big Sur, I noticed that Big Sur feels snappier and more responsive overall (although benchmarks are slightly lower).
@@ -309,7 +305,7 @@ Big Sur is also the best choice if you're planing to upgrade to macOS Monterey o
 ## Post-Install
 
 ### Apply Root Patches with OpenCore Legacy Patcher (macOS 12+)
-If you are installing macOS 12 or newer, you need to apply post-install root patches with OpenCore Legacy Patcher so that on-board graphics and Wi-Fi/Bluetooth will work. Instructions can be found in the [macOS Install](https://github.com/5T33Z0/Lenovo-T530-Hackintosh-OpenCore/tree/main/macOS_Install) section.
+If you are installing macOS 12 or newer, you need to apply post-install root patches with OpenCore Legacy Patcher so that on-board graphics and Wi-Fi/Bluetooth will work. Instructions can be found in the [macOS Install](https://github.com/5T33Z0/Lenovo-T530-Hackintosh-OpenCore/tree/main/Docs/macOS_Install) section.
 
 ### Disable Gatekeeper (optional)
 I disable Gatekeeper on my systems because it is annoying and wants to stop you from running scripts from github etc. To do so, enter in Terminal:
@@ -352,7 +348,7 @@ Optionally, install [Intel Power Gadget](https://intel-power-gadget.macupdate.co
 **NOTES**:
 
 - Generating an SSDT-PM is necessary if you use a different CPU than i7 3630QM
-- Pre-generated SSDTs for other CPU models used in the T530 can be found [here](https://github.com/5T33Z0/Lenovo-T530-Hackintosh-OpenCore/tree/main/ACPI/SSDT-PM)  
+- Pre-generated SSDTs for other CPU models used in the T530 can be found [here](https://github.com/5T33Z0/Lenovo-T530-Hackintosh-OpenCore/tree/main/Hardware_Support/ACPI/SSDT-PM)
 - You can add modifiers to the terminal command for building SSDT-PM. For example, you can drop the low frequency from the default 1200 MHz to 900 MHz in 100 MHz increments, but no lower than that. Otherwise the system crashes during boot. I suggest you experiment with the modifiers a bit.
 
 #### ACPI Power Management in macOS 13+
@@ -423,7 +419,7 @@ This issue is related to Smart Connect, a feature of WiFi routers which support 
 
 ## CPU Benchmark
 
-![Screenshot](https://raw.githubusercontent.com/5T33Z0/Lenovo-T530-Hackinosh-OpenCore/main/Pics/benchmark_latest.png)</br>[Benchmark Results](https://browser.geekbench.com/v5/cpu/9553877)
+![Screenshot](https://raw.githubusercontent.com/5T33Z0/Lenovo-T530-Hackintosh-OpenCore/main/Docs/Images/benchmark_latest.png)
 
 ## Links
 [Lenovo Driver and Software Matrix](https://download.lenovo.com/cdrt/tools/drivermatrix/dm_2.html)
